@@ -1,0 +1,603 @@
+<REAPER_PROJECT 0.1 "7.27/win64" 1707000000
+  <NOTES 0 2
+    |ReapNES Studio Project
+    |MIDI Import - Friday_the_13th_title_rom_v1
+  >
+  RIPPLE 0
+  GROUPOVERRIDE 0 0 0
+  AUTOXFADE 129
+  ENVATTACH 3
+  POOLEDENVATTACH 0
+  MIXERUIFLAGS 11 48
+  ENVFADESZ10 40
+  PEAKGAIN 1
+  FEEDBACK 0
+  PANLAW 1
+  PROJOFFS 0 0 0
+  MAXPROJLEN 0 0
+  GRID 3199 8 1 8 1 0 0 0
+  TIMEMODE 1 5 -1 30 0 0 -1
+  VIDEO_CONFIG 0 0 65792
+  PANMODE 3
+  PANLAWFLAGS 3
+  CURSOR 0
+  ZOOM 100 0 0
+  VZOOMEX 6 0
+  USE_REC_CFG 0
+  RECMODE 1
+  SMPTESYNC 0 30 100 40 1000 300 0 0 1 0 0
+  LOOP 0
+  LOOPGRAN 0 4
+  RECORD_PATH "Media" ""
+  <RECORD_CFG
+    ZXZhdxgAAQ==
+  >
+  <APPLYFX_CFG
+  >
+  RENDER_FILE ""
+  RENDER_PATTERN ""
+  RENDER_FMT 0 2 0
+  RENDER_1X 0
+  RENDER_RANGE 1 0 0 18 1000
+  RENDER_RESAMPLE 3 0 1
+  RENDER_ADDTOPROJ 0
+  RENDER_STEMS 0
+  RENDER_DITHER 0
+  TIMELOCKMODE 1
+  TEMPOENVLOCKMODE 1
+  ITEMMIX 1
+  DEFPITCHMODE 589824 0
+  TAKELANE 1
+  SAMPLERATE 44100 0 0
+  <RENDER_CFG
+    ZXZhdxgAAQ==
+  >
+  LOCK 1
+  <METRONOME 6 2
+    VOL 0.25 0.125
+    BEATLEN 4
+    FREQ 1760 880 1
+    SAMPLES "" ""
+    SPLIGNORE 0 0
+    SPLDEF 2 660 "" 0
+    SPLDEF 3 440 "" 0
+    PATTERN 0 169
+    PATTERNSTR ABBB
+    MULT 1
+  >
+  GLOBAL_AUTO -1
+  TEMPO 128.59999614200012 4 4
+  PLAYRATE 1 0 0.25 4
+  SELECTION 0 0
+  SELECTION2 0 0
+  MASTERAUTOMODE 0
+  MASTERTRACKHEIGHT 0 0
+  MASTERPEAKCOL 16576
+  MASTERMUTESOLO 0
+  MASTERTRACKVIEW 0 0.6667 0.5 0.5 0 0 0 0 0 0 0 0 0 0
+  MASTERHWOUT 0 0 1 0 0 0 0 -1
+  MASTER_NCH 2 2
+  MASTER_VOLUME 1 0 -1 -1 1
+  MASTER_PANMODE 3
+  MASTER_PANLAWFLAGS 3
+  MASTER_FX 1
+  MASTER_SEL 0
+  <MASTERPLAYSPEEDENV
+    EGUID {107713C9-5842-478C-A132-887F9C11A077}
+    ACT 0 -1
+    VIS 0 1 1
+    LANEHEIGHT 0 0
+    ARM 0
+    DEFSHAPE 0 -1 -1
+  >
+  <TEMPOENVEX
+    EGUID {31201AEB-8D96-4B5A-99B2-8CDE5E1789F5}
+    ACT 1 -1
+    VIS 1 0 1
+    LANEHEIGHT 0 0
+    ARM 0
+    DEFSHAPE 1 -1 -1
+  >
+  <PROJBAY
+  >
+  <TRACK {D2ADE601-88C1-4FCB-B287-398443CD0A81}
+    NAME "NES - Pulse 1 [ch0]"
+    PEAKCOL 16576606
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 1
+    REC 1 5088 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {D2ADE601-88C1-4FCB-B287-398443CD0A81}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 24 52 700 560
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <JS "ReapNES Studio/ReapNES_Console.jsfx" ""
+        2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 0 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
+      >
+      FLOATPOS 0 0 0 0
+      FXID {A5392F68-3F12-493B-BF5F-016FA6F3BAE1}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      LENGTH 3.9813376000000003
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {E382FDF9-D12C-4711-A0C3-711F3C65D974}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 c0 50
+        E 0 b0 0c 40
+        E 0 b0 0b 55
+        E 0 90 3e 55
+        E 32 b0 0b 4c
+        E 48 b0 0b 44
+        E 48 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 48 b0 0b 22
+        E 16 b0 0b 44
+        E 32 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 48 b0 0b 22
+        E 48 b0 0b 19
+        E 48 b0 0b 11
+        E 16 b0 0b 33
+        E 32 b0 0b 2a
+        E 48 b0 0b 22
+        E 48 b0 0b 19
+        E 48 b0 0b 11
+        E 48 b0 0b 08
+        E 48 80 3e 00
+        E 16 b0 0b 22
+        E 0 90 3e 22
+        E 32 b0 0b 19
+        E 48 b0 0b 11
+        E 48 b0 0b 08
+        E 48 80 3e 00
+        E 112 b0 0b 11
+        E 0 90 3e 11
+        E 32 b0 0b 08
+        E 48 80 3e 00
+        E 256 b0 0b 55
+        E 0 90 42 55
+        E 32 b0 0b 4c
+        E 48 b0 0b 44
+        E 48 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 32 b0 0b 55
+        E 0 80 42 00
+        E 0 90 3b 55
+        E 32 b0 0b 4c
+        E 48 b0 0b 44
+        E 48 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 32 b0 0b 55
+        E 0 80 3b 00
+        E 0 90 3e 55
+        E 32 b0 0b 4c
+        E 48 b0 0b 44
+        E 48 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 32 b0 0b 55
+        E 0 80 3e 00
+        E 0 90 42 55
+        E 32 b0 0b 4c
+        E 48 b0 0b 44
+        E 48 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 32 b0 0b 55
+        E 0 80 42 00
+        E 0 90 3b 55
+        E 32 b0 0b 4c
+        E 48 b0 0b 44
+        E 48 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 32 b0 0b 55
+        E 0 80 3b 00
+        E 0 90 3e 55
+        E 32 b0 0b 4c
+        E 48 b0 0b 44
+        E 48 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 32 b0 0b 55
+        E 0 80 3e 00
+        E 0 90 40 55
+        E 32 b0 0b 4c
+        E 48 b0 0b 44
+        E 48 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 32 b0 0b 55
+        E 0 80 40 00
+        E 0 90 3a 55
+        E 32 b0 0b 4c
+        E 48 b0 0b 44
+        E 48 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 32 b0 0b 55
+        E 0 80 3a 00
+        E 0 90 3d 55
+        E 32 b0 0b 4c
+        E 48 b0 0b 44
+        E 48 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 32 b0 0b 55
+        E 0 80 3d 00
+        E 0 90 40 55
+        E 32 b0 0b 4c
+        E 48 b0 0b 44
+        E 48 b0 0b 3b
+        E 48 b0 0b 33
+        E 48 b0 0b 2a
+        E 32 b0 0b 55
+        E 0 80 40 00
+        E 0 90 3a 55
+        E 32 b0 0b 4c
+        E 16 80 3a 00
+        E 0 b0 7b 00
+        E 0 ff 2f 00
+      >
+    >
+  >
+  <TRACK {9CAAF9FA-93FD-459B-BE56-88BD574B849C}
+    NAME "NES - Pulse 2 [ch1]"
+    PEAKCOL 10092441
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 5088 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {9CAAF9FA-93FD-459B-BE56-88BD574B849C}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 24 52 700 560
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <JS "ReapNES Studio/ReapNES_Console.jsfx" ""
+        2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 1 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
+      >
+      FLOATPOS 0 0 0 0
+      FXID {902B780D-73C2-4865-8C18-EBB9B70F5A4D}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      LENGTH 3.9813376000000003
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {6A04FCF7-7E46-46F6-B813-B9A160EF6626}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 c1 51
+        E 0 b1 0c 40
+        E 0 b1 0b 55
+        E 0 91 37 55
+        E 32 b1 0b 4c
+        E 48 b1 0b 44
+        E 48 b1 0b 3b
+        E 48 b1 0b 33
+        E 48 b1 0b 2a
+        E 48 b1 0b 22
+        E 16 b1 0b 44
+        E 32 b1 0b 3b
+        E 48 b1 0b 33
+        E 48 b1 0b 2a
+        E 48 b1 0b 22
+        E 48 b1 0b 19
+        E 48 b1 0b 11
+        E 16 b1 0b 33
+        E 32 b1 0b 2a
+        E 48 b1 0b 22
+        E 48 b1 0b 19
+        E 48 b1 0b 11
+        E 48 b1 0b 08
+        E 48 81 37 00
+        E 16 b1 0b 22
+        E 0 91 37 22
+        E 32 b1 0b 19
+        E 48 b1 0b 11
+        E 48 b1 0b 08
+        E 48 81 37 00
+        E 112 b1 0b 11
+        E 0 91 37 11
+        E 32 b1 0b 08
+        E 48 81 37 00
+        E 640 b1 0b 33
+        E 0 91 42 33
+        E 32 b1 0b 2a
+        E 48 b1 0b 22
+        E 48 b1 0b 19
+        E 48 b1 0b 11
+        E 48 b1 0b 08
+        E 32 b1 0b 33
+        E 0 81 42 00
+        E 0 91 3b 33
+        E 32 b1 0b 2a
+        E 48 b1 0b 22
+        E 48 b1 0b 19
+        E 48 b1 0b 11
+        E 48 b1 0b 08
+        E 32 b1 0b 33
+        E 0 81 3b 00
+        E 0 91 3e 33
+        E 32 b1 0b 2a
+        E 48 b1 0b 22
+        E 48 b1 0b 19
+        E 48 b1 0b 11
+        E 48 b1 0b 08
+        E 32 b1 0b 33
+        E 0 81 3e 00
+        E 0 91 42 33
+        E 32 b1 0b 2a
+        E 48 b1 0b 22
+        E 48 b1 0b 19
+        E 48 b1 0b 11
+        E 48 b1 0b 08
+        E 32 b1 0b 33
+        E 0 81 42 00
+        E 0 91 3b 33
+        E 32 b1 0b 2a
+        E 48 b1 0b 22
+        E 48 b1 0b 19
+        E 48 b1 0b 11
+        E 48 b1 0b 08
+        E 32 b1 0b 33
+        E 0 81 3b 00
+        E 0 91 3e 33
+        E 32 b1 0b 2a
+        E 48 b1 0b 22
+        E 48 b1 0b 19
+        E 48 b1 0b 11
+        E 48 b1 0b 08
+        E 32 b1 0b 33
+        E 0 81 3e 00
+        E 0 91 40 33
+        E 32 b1 0b 2a
+        E 48 b1 0b 22
+        E 48 b1 0b 19
+        E 48 b1 0b 11
+        E 48 b1 0b 08
+        E 32 b1 0b 33
+        E 0 81 40 00
+        E 0 91 3a 33
+        E 32 b1 0b 2a
+        E 48 b1 0b 22
+        E 48 b1 0b 19
+        E 48 b1 0b 11
+        E 48 b1 0b 08
+        E 32 b1 0b 33
+        E 0 81 3a 00
+        E 0 91 3d 33
+        E 32 b1 0b 2a
+        E 48 b1 0b 22
+        E 48 b1 0b 19
+        E 48 81 3d 00
+        E 0 b1 7b 00
+        E 0 ff 2f 00
+      >
+    >
+  >
+  <TRACK {12D4A244-795C-4BF4-B5FF-335199DAFD4E}
+    NAME "NES - Triangle [ch2]"
+    PEAKCOL 16744192
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 5088 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {12D4A244-795C-4BF4-B5FF-335199DAFD4E}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 24 52 700 560
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <JS "ReapNES Studio/ReapNES_Console.jsfx" ""
+        2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 2 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
+      >
+      FLOATPOS 0 0 0 0
+      FXID {B74A4CE3-336C-4246-83C8-4C8DDDC1A586}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      LENGTH 3.9813376000000003
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {9B61DC74-1054-4944-A050-4863F4B5C78F}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 c2 26
+        E 0 b2 0b 7f
+        E 0 92 24 7f
+        E 288 82 24 00
+        E 1200 b2 0b 7f
+        E 0 92 23 7f
+        E 1024 82 23 00
+        E 512 b2 0b 7f
+        E 0 92 22 7f
+        E 1024 82 22 00
+        E 48 b2 7b 00
+        E 0 ff 2f 00
+      >
+    >
+  >
+  <TRACK {0978FE2B-9F0D-4745-946E-F60657697960}
+    NAME "NES - Noise / Drums [ch3]"
+    PEAKCOL 11184810
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 5088 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {0978FE2B-9F0D-4745-946E-F60657697960}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 24 52 700 560
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <JS "ReapNES Studio/ReapNES_Console.jsfx" ""
+        2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 3 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
+      >
+      FLOATPOS 0 0 0 0
+      FXID {59CAB73D-7E1D-4E80-8AC7-D89689EDAD21}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      LENGTH 3.9813376000000003
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {D96DDC07-3C77-40CE-B9A9-A5728FA94AAD}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 32 83 2a 00
+        E 0 93 2a 66
+        E 1040 83 2a 00
+        E 736 93 2a 4c
+        E 16 83 2a 00
+        E 240 93 2a 4c
+        E 16 83 2a 00
+        E 496 93 2a 4c
+        E 16 83 2a 00
+        E 240 93 2a 4c
+        E 16 83 2a 00
+        E 496 93 2a 4c
+        E 16 83 2a 00
+        E 240 93 2a 4c
+        E 16 83 2a 00
+        E 32 b3 7b 00
+        E 0 ff 2f 00
+      >
+    >
+  >
+>

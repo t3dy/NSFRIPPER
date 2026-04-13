@@ -1,0 +1,2067 @@
+[
+  {
+    "game": "1942",
+    "songs_extracted": 14,
+    "songs_with_audio": 13,
+    "total_notes": 119,
+    "nsf": {
+      "total_songs": 14,
+      "title": "1942",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$8000",
+      "play_addr": "$C081",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.4,
+      "avg_cc12_per_note": 0.4,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 1,
+        "25%": 1,
+        "50%": 7,
+        "75%": 2
+      },
+      "uses_noise": true,
+      "noise_pct": 38.0,
+      "channel_usage": {
+        "pulse1": 6,
+        "noise": 5,
+        "pulse2": 5,
+        "triangle": 4
+      }
+    }
+  },
+  {
+    "game": "3_D_Battles_of_WorldRunner",
+    "songs_extracted": 8,
+    "songs_with_audio": 8,
+    "total_notes": 7140,
+    "nsf": {
+      "total_songs": 8,
+      "title": "3-D Battles of WorldRunner",
+      "artist": "Nobuo Uematsu",
+      "load_addr": "$B000",
+      "init_addr": "$DCA0",
+      "play_addr": "$DCF0",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 5.4,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "75%",
+      "duty_distribution": {
+        "12.5%": 7,
+        "25%": 1,
+        "50%": 0,
+        "75%": 8
+      },
+      "uses_noise": true,
+      "noise_pct": 88.0,
+      "channel_usage": {
+        "pulse1": 8,
+        "pulse2": 8,
+        "triangle": 8,
+        "noise": 7
+      }
+    }
+  },
+  {
+    "game": "Abadox_The_Deadly_Inner_War",
+    "songs_extracted": 29,
+    "songs_with_audio": 29,
+    "total_notes": 19371,
+    "nsf": {
+      "total_songs": 29,
+      "title": "AbadoX",
+      "artist": "Kyouhei Sada",
+      "load_addr": "$8000",
+      "init_addr": "$C3A0",
+      "play_addr": "$8016",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 2.2,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 69,
+        "25%": 27,
+        "50%": 83,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 55.0,
+      "channel_usage": {
+        "pulse1": 28,
+        "pulse2": 14,
+        "triangle": 9,
+        "noise": 16
+      }
+    }
+  },
+  {
+    "game": "Batman",
+    "songs_extracted": 3,
+    "songs_with_audio": 3,
+    "total_notes": 3498,
+    "nsf": {
+      "total_songs": 11,
+      "title": "Batman",
+      "artist": "Nobuyuki Kun, Kodaka San",
+      "load_addr": "$8000",
+      "init_addr": "$8003",
+      "play_addr": "$8000",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 7.9,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 25,
+        "25%": 27,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 3,
+        "pulse2": 3,
+        "triangle": 3,
+        "noise": 3
+      }
+    }
+  },
+  {
+    "game": "Battletoads",
+    "songs_extracted": 21,
+    "songs_with_audio": 21,
+    "total_notes": 17554,
+    "nsf": {
+      "total_songs": 21,
+      "title": "Battletoads",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$8054",
+      "play_addr": "$8865",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.1,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 443,
+        "25%": 555,
+        "50%": 541,
+        "75%": 285
+      },
+      "uses_noise": true,
+      "noise_pct": 95.0,
+      "channel_usage": {
+        "pulse1": 21,
+        "pulse2": 21,
+        "triangle": 21,
+        "noise": 20
+      }
+    }
+  },
+  {
+    "game": "Battletoads_Level1",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 1094,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.8,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 14,
+        "25%": 8,
+        "50%": 14,
+        "75%": 8
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Battletoads_trace",
+    "songs_extracted": 4,
+    "songs_with_audio": 4,
+    "total_notes": 3115,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 3.9,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 44,
+        "25%": 28,
+        "50%": 36,
+        "75%": 15
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 4,
+        "pulse2": 4,
+        "triangle": 4,
+        "noise": 4
+      }
+    }
+  },
+  {
+    "game": "Battletoads_trace_v2",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 2059,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.7,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 25,
+        "25%": 12,
+        "50%": 27,
+        "75%": 12
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Battletoads_trace_v3",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 2331,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 3.8,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 25,
+        "25%": 12,
+        "50%": 27,
+        "75%": 12
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Battletoads_trace_v4",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 2032,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.8,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 25,
+        "25%": 12,
+        "50%": 27,
+        "75%": 12
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Battletoads_trace_v5",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 2331,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 3.8,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 25,
+        "25%": 12,
+        "50%": 27,
+        "75%": 12
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Battletoads_trace_v6",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 2041,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.8,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 25,
+        "25%": 12,
+        "50%": 27,
+        "75%": 12
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Battletoads_trace_v7",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 1907,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.8,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 25,
+        "25%": 12,
+        "50%": 27,
+        "75%": 12
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Battletoads_trace_v8",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 885,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.7,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 12,
+        "25%": 5,
+        "50%": 12,
+        "75%": 4
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Battletoads_trace_v9",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 885,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.7,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 12,
+        "25%": 5,
+        "50%": 12,
+        "75%": 4
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Bionic_Commando",
+    "songs_extracted": 22,
+    "songs_with_audio": 22,
+    "total_notes": 19234,
+    "nsf": {
+      "total_songs": 20,
+      "title": "Bionic Commando",
+      "artist": "\"Gondamin\"",
+      "load_addr": "$8000",
+      "init_addr": "$8003",
+      "play_addr": "$8000",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.9,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 38,
+        "25%": 41,
+        "50%": 28,
+        "75%": 25
+      },
+      "uses_noise": true,
+      "noise_pct": 77.0,
+      "channel_usage": {
+        "pulse1": 20,
+        "pulse2": 20,
+        "triangle": 22,
+        "noise": 17
+      }
+    }
+  },
+  {
+    "game": "Blaster_Master",
+    "songs_extracted": 16,
+    "songs_with_audio": 16,
+    "total_notes": 17993,
+    "nsf": {
+      "total_songs": 16,
+      "title": "Blaster Master",
+      "artist": "Naoki Kodaka, Marumo",
+      "load_addr": "$8000",
+      "init_addr": "$8013",
+      "play_addr": "$8077",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 11.7,
+      "avg_cc12_per_note": 0.2,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 11,
+        "25%": 24,
+        "50%": 69,
+        "75%": 58
+      },
+      "uses_noise": true,
+      "noise_pct": 75.0,
+      "channel_usage": {
+        "pulse1": 16,
+        "pulse2": 15,
+        "triangle": 15,
+        "noise": 12
+      }
+    }
+  },
+  {
+    "game": "Castlevania",
+    "songs_extracted": 54,
+    "songs_with_audio": 53,
+    "total_notes": 13121,
+    "nsf": {
+      "total_songs": 54,
+      "title": "Castlevania",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$BB09",
+      "play_addr": "$838A",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.3,
+      "avg_cc12_per_note": 0.2,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 30,
+        "25%": 21,
+        "50%": 101,
+        "75%": 47
+      },
+      "uses_noise": true,
+      "noise_pct": 62.0,
+      "channel_usage": {
+        "pulse1": 33,
+        "pulse2": 19,
+        "triangle": 17,
+        "noise": 33
+      }
+    }
+  },
+  {
+    "game": "Castlevania_2___Simons_Quest",
+    "songs_extracted": 51,
+    "songs_with_audio": 51,
+    "total_notes": 12446,
+    "nsf": {
+      "total_songs": 51,
+      "title": "Castlevania 2",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$BC0C",
+      "play_addr": "$967D",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 2.8,
+      "avg_cc12_per_note": 0.6,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 3303,
+        "25%": 3996,
+        "50%": 972,
+        "75%": 8
+      },
+      "uses_noise": true,
+      "noise_pct": 59.0,
+      "channel_usage": {
+        "pulse1": 33,
+        "pulse2": 11,
+        "triangle": 9,
+        "noise": 30
+      }
+    }
+  },
+  {
+    "game": "Castlevania_3___Draculas_Curse",
+    "songs_extracted": 19,
+    "songs_with_audio": 19,
+    "total_notes": 30780,
+    "nsf": {
+      "total_songs": 28,
+      "title": "Castlevania 3",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$FFDB",
+      "play_addr": "$E24E",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.6,
+      "avg_cc12_per_note": 0.8,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 5080,
+        "25%": 6283,
+        "50%": 2011,
+        "75%": 105
+      },
+      "uses_noise": true,
+      "noise_pct": 84.0,
+      "channel_usage": {
+        "pulse1": 19,
+        "pulse2": 19,
+        "triangle": 19,
+        "noise": 16
+      }
+    }
+  },
+  {
+    "game": "Castlevania_3___Draculas_Curse_JP",
+    "songs_extracted": 15,
+    "songs_with_audio": 15,
+    "total_notes": 15564,
+    "nsf": {
+      "total_songs": 28,
+      "title": "Akumajou Densetsu",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$E0E0",
+      "play_addr": "$E0D0",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 3.7,
+      "avg_cc12_per_note": 1.0,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 5608,
+        "25%": 3987,
+        "50%": 2220,
+        "75%": 2
+      },
+      "uses_noise": true,
+      "noise_pct": 80.0,
+      "channel_usage": {
+        "pulse1": 15,
+        "pulse2": 15,
+        "noise": 12
+      }
+    }
+  },
+  {
+    "game": "Castlevania_APU2",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 814,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.5,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 2,
+        "25%": 5,
+        "50%": 8,
+        "75%": 7
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Castlevania_II",
+    "songs_extracted": 8,
+    "songs_with_audio": 7,
+    "total_notes": 750,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 3.6,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 11,
+        "25%": 0,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 29.0,
+      "channel_usage": {
+        "pulse2": 5,
+        "triangle": 3,
+        "noise": 2,
+        "pulse1": 2
+      }
+    }
+  },
+  {
+    "game": "Castlevania_III",
+    "songs_extracted": 10,
+    "songs_with_audio": 10,
+    "total_notes": 349,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 2.5,
+      "avg_cc12_per_note": 0.3,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 23,
+        "25%": 0,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 40.0,
+      "channel_usage": {
+        "pulse1": 7,
+        "pulse2": 10,
+        "triangle": 2,
+        "noise": 4
+      }
+    }
+  },
+  {
+    "game": "Contra",
+    "songs_extracted": 2,
+    "songs_with_audio": 2,
+    "total_notes": 199,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 1.5,
+      "avg_cc12_per_note": 0.3,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 5,
+        "25%": 0,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": false,
+      "noise_pct": 0.0,
+      "channel_usage": {
+        "pulse1": 2,
+        "pulse2": 2
+      }
+    }
+  },
+  {
+    "game": "Contra_v2",
+    "songs_extracted": 11,
+    "songs_with_audio": 11,
+    "total_notes": 4987,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 7.4,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 173,
+        "25%": 0,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": false,
+      "noise_pct": 0.0,
+      "channel_usage": {
+        "pulse1": 11,
+        "pulse2": 11,
+        "triangle": 11
+      }
+    }
+  },
+  {
+    "game": "Contra_v5",
+    "songs_extracted": 3,
+    "songs_with_audio": 3,
+    "total_notes": 3909,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 6.1,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 24,
+        "25%": 0,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 3,
+        "pulse2": 3,
+        "triangle": 3,
+        "noise": 3
+      }
+    }
+  },
+  {
+    "game": "Contra_v6",
+    "songs_extracted": 11,
+    "songs_with_audio": 11,
+    "total_notes": 7646,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 6.9,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 169,
+        "25%": 0,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 11,
+        "pulse2": 11,
+        "triangle": 11,
+        "noise": 11
+      }
+    }
+  },
+  {
+    "game": "Contra_v7",
+    "songs_extracted": 11,
+    "songs_with_audio": 11,
+    "total_notes": 7594,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 6.9,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 169,
+        "25%": 0,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 11,
+        "pulse2": 11,
+        "triangle": 11,
+        "noise": 11
+      }
+    }
+  },
+  {
+    "game": "Contra_v8",
+    "songs_extracted": 11,
+    "songs_with_audio": 11,
+    "total_notes": 7496,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 7.1,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 169,
+        "25%": 0,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 11,
+        "pulse2": 11,
+        "triangle": 11,
+        "noise": 11
+      }
+    }
+  },
+  {
+    "game": "Dragon_Warrior",
+    "songs_extracted": 48,
+    "songs_with_audio": 47,
+    "total_notes": 12146,
+    "nsf": {
+      "total_songs": 48,
+      "title": "Dragon Quest",
+      "artist": "Koichi Sugiyama",
+      "load_addr": "$EC00",
+      "init_addr": "$F200",
+      "play_addr": "$F2C0",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.1,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 32,
+        "25%": 18,
+        "50%": 56,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 26.0,
+      "channel_usage": {
+        "pulse1": 25,
+        "pulse2": 21,
+        "triangle": 19,
+        "noise": 12
+      }
+    }
+  },
+  {
+    "game": "DuckTales",
+    "songs_extracted": 45,
+    "songs_with_audio": 45,
+    "total_notes": 16137,
+    "nsf": {
+      "total_songs": 45,
+      "title": "Duck Tales",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$8003",
+      "play_addr": "$8000",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.8,
+      "avg_cc12_per_note": 0.2,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 174,
+        "25%": 9,
+        "50%": 225,
+        "75%": 132
+      },
+      "uses_noise": true,
+      "noise_pct": 56.0,
+      "channel_usage": {
+        "pulse1": 13,
+        "pulse2": 39,
+        "triangle": 13,
+        "noise": 25
+      }
+    }
+  },
+  {
+    "game": "Faxanadu",
+    "songs_extracted": 44,
+    "songs_with_audio": 44,
+    "total_notes": 13909,
+    "nsf": {
+      "total_songs": 44,
+      "title": "Faxanadu",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$B3D8",
+      "play_addr": "$B3D1",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 2.1,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 10,
+        "25%": 19,
+        "50%": 38,
+        "75%": 20
+      },
+      "uses_noise": true,
+      "noise_pct": 27.0,
+      "channel_usage": {
+        "pulse1": 17,
+        "pulse2": 38,
+        "triangle": 16,
+        "noise": 12
+      }
+    }
+  },
+  {
+    "game": "Final_Fantasy",
+    "songs_extracted": 23,
+    "songs_with_audio": 23,
+    "total_notes": 13889,
+    "nsf": {
+      "total_songs": 23,
+      "title": "Final Fantasy 1",
+      "artist": "Nobuo Uematsu",
+      "load_addr": "$8000",
+      "init_addr": "$FFD2",
+      "play_addr": "$B000",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 14.9,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 23,
+        "25%": 23,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": false,
+      "noise_pct": 0.0,
+      "channel_usage": {
+        "pulse1": 23,
+        "pulse2": 23,
+        "triangle": 20
+      }
+    }
+  },
+  {
+    "game": "Gargoyles_Quest_II",
+    "songs_extracted": 21,
+    "songs_with_audio": 21,
+    "total_notes": 22739,
+    "nsf": {
+      "total_songs": 21,
+      "title": "Gargoyle's Quest II",
+      "artist": "\"Sato\"",
+      "load_addr": "$8000",
+      "init_addr": "$8003",
+      "play_addr": "$8000",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.8,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 52,
+        "25%": 74,
+        "50%": 73,
+        "75%": 22
+      },
+      "uses_noise": true,
+      "noise_pct": 48.0,
+      "channel_usage": {
+        "pulse1": 21,
+        "pulse2": 21,
+        "triangle": 20,
+        "noise": 10
+      }
+    }
+  },
+  {
+    "game": "Ghosts_n_Goblins",
+    "songs_extracted": 3,
+    "songs_with_audio": 3,
+    "total_notes": 1221,
+    "nsf": {
+      "total_songs": 39,
+      "title": "Ghosts'n'Goblins",
+      "artist": "<?>",
+      "load_addr": "$8380",
+      "init_addr": "$8380",
+      "play_addr": "$842B",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.1,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 3,
+        "25%": 9,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": false,
+      "noise_pct": 0.0,
+      "channel_usage": {
+        "pulse1": 3,
+        "pulse2": 3,
+        "triangle": 3
+      }
+    }
+  },
+  {
+    "game": "Goonies_II_The",
+    "songs_extracted": 56,
+    "songs_with_audio": 56,
+    "total_notes": 14918,
+    "nsf": {
+      "total_songs": 56,
+      "title": "The Goonies II",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$BDE6",
+      "play_addr": "$8179",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 2.7,
+      "avg_cc12_per_note": 0.2,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 12,
+        "25%": 44,
+        "50%": 58,
+        "75%": 21
+      },
+      "uses_noise": true,
+      "noise_pct": 39.0,
+      "channel_usage": {
+        "pulse1": 48,
+        "pulse2": 15,
+        "triangle": 15,
+        "noise": 22
+      }
+    }
+  },
+  {
+    "game": "Gradius",
+    "songs_extracted": 32,
+    "songs_with_audio": 32,
+    "total_notes": 13415,
+    "nsf": {
+      "total_songs": 32,
+      "title": "Gradius",
+      "artist": "Miki Higashino",
+      "load_addr": "$EBF0",
+      "init_addr": "$EC48",
+      "play_addr": "$ED30",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 26.2,
+      "avg_cc12_per_note": 0.2,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 16,
+        "25%": 54,
+        "50%": 53,
+        "75%": 38
+      },
+      "uses_noise": true,
+      "noise_pct": 12.0,
+      "channel_usage": {
+        "pulse1": 25,
+        "pulse2": 15,
+        "triangle": 14,
+        "noise": 4
+      }
+    }
+  },
+  {
+    "game": "Journey_to_Silius",
+    "songs_extracted": 12,
+    "songs_with_audio": 12,
+    "total_notes": 22137,
+    "nsf": {
+      "total_songs": 12,
+      "title": "Journey to Silius",
+      "artist": "Nobuyuki,Marumo,N.Kodaka et al.",
+      "load_addr": "$8000",
+      "init_addr": "$8003",
+      "play_addr": "$8000",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 7.8,
+      "avg_cc12_per_note": 0.3,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 41,
+        "25%": 681,
+        "50%": 669,
+        "75%": 4
+      },
+      "uses_noise": true,
+      "noise_pct": 92.0,
+      "channel_usage": {
+        "pulse1": 12,
+        "pulse2": 12,
+        "triangle": 12,
+        "noise": 11
+      }
+    }
+  },
+  {
+    "game": "Kid_Icarus",
+    "songs_extracted": 35,
+    "songs_with_audio": 28,
+    "total_notes": 9850,
+    "nsf": {
+      "total_songs": 34,
+      "title": "Partena no Kagami",
+      "artist": "Hirokazu \"Hip\" Tanaka",
+      "load_addr": "$C000",
+      "init_addr": "$E000",
+      "play_addr": "$DFF3",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 5.1,
+      "avg_cc12_per_note": 0.2,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 2,
+        "25%": 0,
+        "50%": 23,
+        "75%": 12
+      },
+      "uses_noise": true,
+      "noise_pct": 57.0,
+      "channel_usage": {
+        "pulse1": 23,
+        "pulse2": 13,
+        "triangle": 13,
+        "noise": 16
+      }
+    }
+  },
+  {
+    "game": "Kirbys_Adventure",
+    "songs_extracted": 58,
+    "songs_with_audio": 56,
+    "total_notes": 78992,
+    "nsf": {
+      "total_songs": 58,
+      "title": "Kirby's Adventure",
+      "artist": "Hirokazu Ando, Jun Ishikawa",
+      "load_addr": "$8000",
+      "init_addr": "$FFEF",
+      "play_addr": "$FF28",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 3.7,
+      "avg_cc12_per_note": 0.7,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 3289,
+        "25%": 3358,
+        "50%": 13966,
+        "75%": 10633
+      },
+      "uses_noise": true,
+      "noise_pct": 82.0,
+      "channel_usage": {
+        "pulse1": 54,
+        "pulse2": 55,
+        "triangle": 46,
+        "noise": 46
+      }
+    }
+  },
+  {
+    "game": "Legendary_Wings",
+    "songs_extracted": 36,
+    "songs_with_audio": 36,
+    "total_notes": 23474,
+    "nsf": {
+      "total_songs": 36,
+      "title": "Legendary Wings",
+      "artist": "<?>",
+      "load_addr": "$9000",
+      "init_addr": "$9003",
+      "play_addr": "$9000",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 1.0,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 39,
+        "25%": 15,
+        "50%": 41,
+        "75%": 13
+      },
+      "uses_noise": true,
+      "noise_pct": 47.0,
+      "channel_usage": {
+        "pulse1": 18,
+        "pulse2": 36,
+        "triangle": 23,
+        "noise": 17
+      }
+    }
+  },
+  {
+    "game": "Marble_Madness",
+    "songs_extracted": 9,
+    "songs_with_audio": 9,
+    "total_notes": 4224,
+    "nsf": {
+      "total_songs": 9,
+      "title": "Marble Madness",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$8000",
+      "play_addr": "$801D",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 3.5,
+      "avg_cc12_per_note": 0.2,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 1,
+        "25%": 9,
+        "50%": 18,
+        "75%": 1
+      },
+      "uses_noise": false,
+      "noise_pct": 0.0,
+      "channel_usage": {
+        "pulse1": 9,
+        "pulse2": 9,
+        "triangle": 9
+      }
+    }
+  },
+  {
+    "game": "Mega_Man_1",
+    "songs_extracted": 24,
+    "songs_with_audio": 17,
+    "total_notes": 20198,
+    "nsf": {
+      "total_songs": 16,
+      "title": "Mega Man",
+      "artist": "C. Manami, Yukichan's Papa",
+      "load_addr": "$9000",
+      "init_addr": "$9003",
+      "play_addr": "$9000",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.2,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "75%",
+      "duty_distribution": {
+        "12.5%": 11,
+        "25%": 18,
+        "50%": 21,
+        "75%": 22
+      },
+      "uses_noise": true,
+      "noise_pct": 88.0,
+      "channel_usage": {
+        "pulse1": 17,
+        "pulse2": 17,
+        "triangle": 17,
+        "noise": 15
+      }
+    }
+  },
+  {
+    "game": "Mega_Man_2",
+    "songs_extracted": 24,
+    "songs_with_audio": 24,
+    "total_notes": 41291,
+    "nsf": {
+      "total_songs": 24,
+      "title": "Mega Man 2",
+      "artist": "Ogeretsu,Manami,Ietel,YuukiChan",
+      "load_addr": "$8000",
+      "init_addr": "$C000",
+      "play_addr": "$C020",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.8,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 101,
+        "25%": 69,
+        "50%": 59,
+        "75%": 55
+      },
+      "uses_noise": true,
+      "noise_pct": 88.0,
+      "channel_usage": {
+        "pulse1": 23,
+        "pulse2": 23,
+        "triangle": 24,
+        "noise": 21
+      }
+    }
+  },
+  {
+    "game": "Mega_Man_3",
+    "songs_extracted": 57,
+    "songs_with_audio": 57,
+    "total_notes": 36803,
+    "nsf": {
+      "total_songs": 57,
+      "title": "Mega Man III",
+      "artist": "Yasuaki Fujita",
+      "load_addr": "$8000",
+      "init_addr": "$8003",
+      "play_addr": "$8000",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 3.7,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 38,
+        "25%": 78,
+        "50%": 71,
+        "75%": 48
+      },
+      "uses_noise": true,
+      "noise_pct": 70.0,
+      "channel_usage": {
+        "pulse1": 26,
+        "pulse2": 48,
+        "triangle": 33,
+        "noise": 40
+      }
+    }
+  },
+  {
+    "game": "Mega_Man_4",
+    "songs_extracted": 71,
+    "songs_with_audio": 70,
+    "total_notes": 39179,
+    "nsf": {
+      "total_songs": 71,
+      "title": "Mega Man IV",
+      "artist": "Minae Fujii, Yasuaki Fujita",
+      "load_addr": "$8000",
+      "init_addr": "$8003",
+      "play_addr": "$8000",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 3.7,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 17,
+        "25%": 74,
+        "50%": 86,
+        "75%": 84
+      },
+      "uses_noise": true,
+      "noise_pct": 67.0,
+      "channel_usage": {
+        "pulse1": 37,
+        "pulse2": 61,
+        "triangle": 40,
+        "noise": 47
+      }
+    }
+  },
+  {
+    "game": "Metal_Gear",
+    "songs_extracted": 56,
+    "songs_with_audio": 56,
+    "total_notes": 18288,
+    "nsf": {
+      "total_songs": 56,
+      "title": "Metal Gear",
+      "artist": "Kazuki Muraoka",
+      "load_addr": "$8000",
+      "init_addr": "$8000",
+      "play_addr": "$9344",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 2.0,
+      "avg_cc12_per_note": 0.2,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 20,
+        "25%": 115,
+        "50%": 252,
+        "75%": 159
+      },
+      "uses_noise": true,
+      "noise_pct": 64.0,
+      "channel_usage": {
+        "pulse1": 48,
+        "pulse2": 16,
+        "triangle": 12,
+        "noise": 36
+      }
+    }
+  },
+  {
+    "game": "Metroid",
+    "songs_extracted": 11,
+    "songs_with_audio": 11,
+    "total_notes": 9423,
+    "nsf": {
+      "total_songs": 12,
+      "title": "Metroid",
+      "artist": "Hirokazu \"Hip\" Tanaka",
+      "load_addr": "$8000",
+      "init_addr": "$A000",
+      "play_addr": "$B3B4",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 5.1,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 4,
+        "25%": 0,
+        "50%": 12,
+        "75%": 6
+      },
+      "uses_noise": true,
+      "noise_pct": 18.0,
+      "channel_usage": {
+        "pulse1": 11,
+        "pulse2": 11,
+        "triangle": 11,
+        "noise": 2
+      }
+    }
+  },
+  {
+    "game": "Ninja_Gaiden_III___The_Ancient_Ship_of_Doom",
+    "songs_extracted": 10,
+    "songs_with_audio": 10,
+    "total_notes": 16836,
+    "nsf": {
+      "total_songs": 93,
+      "title": "Ninja Gaiden 3",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$8000",
+      "play_addr": "$803C",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 5.6,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 29,
+        "25%": 22,
+        "50%": 12,
+        "75%": 19
+      },
+      "uses_noise": true,
+      "noise_pct": 70.0,
+      "channel_usage": {
+        "pulse1": 10,
+        "pulse2": 10,
+        "triangle": 10,
+        "noise": 7
+      }
+    }
+  },
+  {
+    "game": "Ninja_Gaiden_II___The_Dark_Sword_of_Chaos",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 1464,
+    "nsf": {
+      "total_songs": 84,
+      "title": "Ninja Gaiden 2",
+      "artist": "S. Kajiya, Mayu, Miya",
+      "load_addr": "$8000",
+      "init_addr": "$BDD0",
+      "play_addr": "$8000",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 10.5,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "75%",
+      "duty_distribution": {
+        "12.5%": 0,
+        "25%": 2,
+        "50%": 3,
+        "75%": 6
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Punch_Out!!",
+    "songs_extracted": 17,
+    "songs_with_audio": 17,
+    "total_notes": 1381,
+    "nsf": {
+      "total_songs": 17,
+      "title": "Punch-Out!!",
+      "artist": "Yukio Kaneoka",
+      "load_addr": "$F004",
+      "init_addr": "$FBA5",
+      "play_addr": "$F060",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 4.3,
+      "avg_cc12_per_note": 0.3,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 0,
+        "25%": 12,
+        "50%": 16,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 6.0,
+      "channel_usage": {
+        "pulse1": 16,
+        "pulse2": 10,
+        "triangle": 8,
+        "noise": 1
+      }
+    }
+  },
+  {
+    "game": "Section_Z",
+    "songs_extracted": 19,
+    "songs_with_audio": 19,
+    "total_notes": 6953,
+    "nsf": {
+      "total_songs": 34,
+      "title": "Section Z",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$8003",
+      "play_addr": "$8000",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.7,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 10,
+        "25%": 1,
+        "50%": 3,
+        "75%": 7
+      },
+      "uses_noise": true,
+      "noise_pct": 42.0,
+      "channel_usage": {
+        "pulse2": 17,
+        "noise": 8,
+        "pulse1": 4,
+        "triangle": 3
+      }
+    }
+  },
+  {
+    "game": "Strider",
+    "songs_extracted": 15,
+    "songs_with_audio": 15,
+    "total_notes": 21744,
+    "nsf": {
+      "total_songs": 15,
+      "title": "Strider Hiryu",
+      "artist": "\"Misses Tarumi\"",
+      "load_addr": "$8000",
+      "init_addr": "$8003",
+      "play_addr": "$8000",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 1.0,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "75%",
+      "duty_distribution": {
+        "12.5%": 10,
+        "25%": 1,
+        "50%": 15,
+        "75%": 40
+      },
+      "uses_noise": true,
+      "noise_pct": 93.0,
+      "channel_usage": {
+        "pulse1": 15,
+        "pulse2": 15,
+        "triangle": 15,
+        "noise": 14
+      }
+    }
+  },
+  {
+    "game": "Super_C",
+    "songs_extracted": 9,
+    "songs_with_audio": 9,
+    "total_notes": 2038,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 5.2,
+      "avg_cc12_per_note": 0.1,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 35,
+        "25%": 0,
+        "50%": 0,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 44.0,
+      "channel_usage": {
+        "pulse1": 9,
+        "pulse2": 8,
+        "triangle": 4,
+        "noise": 4
+      }
+    }
+  },
+  {
+    "game": "Super_Mario_Bros",
+    "songs_extracted": 19,
+    "songs_with_audio": 19,
+    "total_notes": 15510,
+    "nsf": {
+      "total_songs": 18,
+      "title": "Super Mario Bros.",
+      "artist": "Koji Kondo",
+      "load_addr": "$BDC4",
+      "init_addr": "$BE34",
+      "play_addr": "$F2D0",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.9,
+      "avg_cc12_per_note": 0.8,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 1441,
+        "25%": 0,
+        "50%": 1457,
+        "75%": 0
+      },
+      "uses_noise": true,
+      "noise_pct": 47.0,
+      "channel_usage": {
+        "pulse1": 18,
+        "pulse2": 19,
+        "triangle": 19,
+        "noise": 9
+      }
+    }
+  },
+  {
+    "game": "Super_Mario_Bros._2",
+    "songs_extracted": 34,
+    "songs_with_audio": 24,
+    "total_notes": 7153,
+    "nsf": {
+      "total_songs": 34,
+      "title": "Super Mario Bros. 2 Prototype",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$8800",
+      "play_addr": "$8000",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 9.7,
+      "avg_cc12_per_note": 0.3,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 462,
+        "25%": 481,
+        "50%": 476,
+        "75%": 450
+      },
+      "uses_noise": true,
+      "noise_pct": 33.0,
+      "channel_usage": {
+        "pulse1": 16,
+        "pulse2": 20,
+        "triangle": 13,
+        "noise": 8
+      }
+    }
+  },
+  {
+    "game": "Super_Mario_Bros._3",
+    "songs_extracted": 60,
+    "songs_with_audio": 60,
+    "total_notes": 15875,
+    "nsf": {
+      "total_songs": 60,
+      "title": "Super Mario Bros. 3",
+      "artist": "Koji Kondo",
+      "load_addr": "$8000",
+      "init_addr": "$9000",
+      "play_addr": "$A000",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 7.7,
+      "avg_cc12_per_note": 1.3,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 9805,
+        "25%": 7211,
+        "50%": 2675,
+        "75%": 1
+      },
+      "uses_noise": true,
+      "noise_pct": 40.0,
+      "channel_usage": {
+        "pulse1": 45,
+        "pulse2": 39,
+        "triangle": 31,
+        "noise": 24
+      }
+    }
+  },
+  {
+    "game": "Super_Mario_Bros_v2",
+    "songs_extracted": 19,
+    "songs_with_audio": 19,
+    "total_notes": 16806,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.8,
+      "avg_cc12_per_note": 0.8,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 1465,
+        "25%": 13,
+        "50%": 1475,
+        "75%": 6
+      },
+      "uses_noise": true,
+      "noise_pct": 47.0,
+      "channel_usage": {
+        "pulse1": 18,
+        "pulse2": 19,
+        "triangle": 19,
+        "noise": 9
+      }
+    }
+  },
+  {
+    "game": "Super_Mario_Bros_v3",
+    "songs_extracted": 3,
+    "songs_with_audio": 3,
+    "total_notes": 4187,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "detailed",
+      "avg_cc11_per_note": 4.9,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 25,
+        "25%": 12,
+        "50%": 31,
+        "75%": 12
+      },
+      "uses_noise": true,
+      "noise_pct": 100.0,
+      "channel_usage": {
+        "pulse1": 3,
+        "pulse2": 3,
+        "triangle": 3,
+        "noise": 3
+      }
+    }
+  },
+  {
+    "game": "Trojan",
+    "songs_extracted": 35,
+    "songs_with_audio": 35,
+    "total_notes": 7635,
+    "nsf": {
+      "total_songs": 35,
+      "title": "Tatakai no Banka",
+      "artist": "<?>",
+      "load_addr": "$8000",
+      "init_addr": "$BF90",
+      "play_addr": "$BFD0",
+      "uses_bankswitch": false
+    },
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.2,
+      "avg_cc12_per_note": 0.2,
+      "dominant_duty": "12.5%",
+      "duty_distribution": {
+        "12.5%": 21,
+        "25%": 17,
+        "50%": 5,
+        "75%": 4
+      },
+      "uses_noise": true,
+      "noise_pct": 46.0,
+      "channel_usage": {
+        "pulse1": 16,
+        "pulse2": 31,
+        "triangle": 17,
+        "noise": 16
+      }
+    }
+  },
+  {
+    "game": "Ultima_-_Exodus",
+    "songs_extracted": 11,
+    "songs_with_audio": 11,
+    "total_notes": 10217,
+    "nsf": {
+      "total_songs": 11,
+      "title": "Ultima - Exodus",
+      "artist": "Tsugutoshi Goto",
+      "load_addr": "$8000",
+      "init_addr": "$FA10",
+      "play_addr": "$8100",
+      "uses_bankswitch": true
+    },
+    "driver_profile": {
+      "envelope_type": "dense",
+      "avg_cc11_per_note": 9.0,
+      "avg_cc12_per_note": 0.2,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 429,
+        "25%": 698,
+        "50%": 296,
+        "75%": 3
+      },
+      "uses_noise": false,
+      "noise_pct": 0.0,
+      "channel_usage": {
+        "pulse1": 11,
+        "pulse2": 11,
+        "triangle": 11
+      }
+    }
+  },
+  {
+    "game": "Wizards_and_Warriors",
+    "songs_extracted": 29,
+    "songs_with_audio": 29,
+    "total_notes": 15646,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.1,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "50%",
+      "duty_distribution": {
+        "12.5%": 14,
+        "25%": 27,
+        "50%": 33,
+        "75%": 8
+      },
+      "uses_noise": true,
+      "noise_pct": 17.0,
+      "channel_usage": {
+        "pulse1": 26,
+        "pulse2": 29,
+        "triangle": 26,
+        "noise": 5
+      }
+    }
+  },
+  {
+    "game": "Wizards_and_Warriors_trace",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 399,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.0,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 0,
+        "25%": 2,
+        "50%": 1,
+        "75%": 0
+      },
+      "uses_noise": false,
+      "noise_pct": 0.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1
+      }
+    }
+  },
+  {
+    "game": "ww_title_triangle_fix",
+    "songs_extracted": 1,
+    "songs_with_audio": 1,
+    "total_notes": 405,
+    "nsf": {},
+    "driver_profile": {
+      "envelope_type": "sparse",
+      "avg_cc11_per_note": 0.0,
+      "avg_cc12_per_note": 0.0,
+      "dominant_duty": "25%",
+      "duty_distribution": {
+        "12.5%": 0,
+        "25%": 2,
+        "50%": 1,
+        "75%": 0
+      },
+      "uses_noise": false,
+      "noise_pct": 0.0,
+      "channel_usage": {
+        "pulse1": 1,
+        "pulse2": 1,
+        "triangle": 1
+      }
+    }
+  }
+]

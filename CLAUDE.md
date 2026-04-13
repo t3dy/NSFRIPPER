@@ -131,85 +131,16 @@ Existing MIDI/RPP output for games below Rung 3 is **hypothesis output** —
 usable for practical work (listening, arrangement) but not claimable as
 verified or trusted.
 
-## NON-NEGOTIABLE RULES
+## Rules & Validation
 
-```
-NON-NEGOTIABLE: Never skip Frame IR.
-Trace-derived exports must follow:
-Trace -> canonical frame state -> Frame IR -> MIDI/CC/SysEx/project projection.
-Raw register changes are not yet musical events.
-Direct period-change-to-note conversion is a known failure mode.
-Validation should fail if a trace route bypasses Frame IR.
-```
+See `.claude/rules/architecture.md` for the 17 architectural rules.
+See `.claude/rules/session_protocol.md` for workflow, validation ladder, and delivery gates.
 
-```
-NON-NEGOTIABLE: Zero parse errors is NOT musical correctness.
-Parse alignment must be followed by EXECUTION SEMANTICS VALIDATION.
-Zero parse errors means byte-stream alignment — bytes correctly partitioned.
-It does NOT mean pitches, durations, envelopes, or timing are correct.
-Parser output is a hypothesis until execution semantics validation passes.
-No pitch/rhythm/timbre claims may be promoted to "trusted" without it.
-```
-
-```
-NON-NEGOTIABLE: Execution Semantics Validation (required phase).
-After parser alignment, simulate the driver frame by frame:
-  - tempo accumulator, duration counters, control flow
-  - pitch modulation (arpeggio, vibrato, sweep)
-  - volume envelopes, duty cycle
-Compare simulated per-frame state against Mesen trace.
-Block promotion to MIDI/REAPER/trusted output until this passes.
-Required artifacts: parsed event stream, simulated frame-state trace,
-  comparison report, mismatch taxonomy.
-See EXECUTIONSEMANTICSVALIDATION.md for full spec.
-```
-
-**Different ROMs use different music engines.** Do not hard-code one universal
-decoding model. The system must support per-game/per-engine adaptation.
-
-**Three-Layer Architecture (Observed / Intent / Projection):**
-
-All ROM-derived extraction operates across three layers that must
-remain distinct in code, artifacts, documentation, and reasoning:
-
-1. **Observed layer** (ground truth): Mesen trace, NSF emulation,
-   direct emulator APU state. Authoritative. When other layers
-   disagree, this layer wins.
-2. **Intent layer** (parser-derived interpretation): parsed event
-   stream, simulated driver state, reconciled musical events.
-   This is a HYPOTHESIS until validated against Layer 1.
-3. **Projection layer** (generated output): MIDI, REAPER, SysEx,
-   WAV, MP4, musical claims. PROVISIONAL until Layer 2 passes
-   the execution semantics gate against Layer 1.
-
-Execution semantics validation is the gate between Intent and Projection.
-If that gate is not passed, Projection outputs are hypothesis output.
-
-**Five pipeline sub-layers (never conflate):**
-1. Parsed/interpreted event stream from ROM (structural hypothesis)
-2. Simulated frame-level driver state (execution semantics)
-3. Canonical observed data (FrameState from trace/NSF — ground truth)
-4. Inferred musical interpretation (Frame IR)
-5. Downstream DAW/playback projection (MIDI/RPP/synth)
-
-**Three distinct use-cases (never collapse):**
-1. Archival/analytical fidelity to ROM behavior
-2. Editable REAPER project generation
-3. Live MIDI keyboard play through synth plugin
-
-**Pipeline milestone labels (use precisely):**
-- **Parser-aligned**: byte-stream alignment confirmed, zero desync. STRUCTURAL milestone only.
-- **Semantics-validated**: simulated frame state matches trace within thresholds. SEMANTIC milestone.
-- **Trusted / production-ready**: semantics-validated AND ear-checked. May be projected to MIDI/REAPER.
-- **Hypothesis output**: parser-derived music before validation. Usable practically, not claimable as verified.
-
-**Validation Ladder** (see `session_protocol.md` for full table):
-- Rung 0: Unexamined → Rung 1: Parser-aligned → Rung 2: Internal semantics
-- Rung 3: External trace → Rung 4: Trusted projection → Rung 5: Full-game trusted
-
-Read `.claude/rules/session_protocol.md` for gates, ladder, and delivery checklist.
-Read `.claude/rules/architecture.md` for the 17 architectural rules.
-Read `docs/ARCHITECTURE_SPEC.md` for the full pipeline rebuild specification.
+Key principles (details in rules files):
+- **Never skip Frame IR** between trace and MIDI (architecture.md Rule 9)
+- **Zero parse errors ≠ musical correctness** — execution semantics validation required (Rules 13-14)
+- **Different ROMs use different music engines** — no universal decoder (Rule 10)
+- **Three layers: Observed → Intent → Projection** — never conflate (Rule 12)
 
 ## Key Commands
 

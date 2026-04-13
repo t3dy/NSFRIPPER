@@ -324,7 +324,21 @@
       "Bash(python scripts/generate_celtic_cross_reading.py --seed \"arcana-test-001\" --tradition rws --output /tmp/det_test/)",
       "Bash(python scripts/generate_celtic_cross_reading.py --seed \"thoth-reading-001\" --tradition thoth --output examples/)",
       "Bash(rm -rf examples/det_test)",
-      "Bash(python scripts/extract_fiebig.py)"
+      "Bash(python scripts/extract_fiebig.py)",
+      "Bash(ls -d /c/Dev/NSFRIPPER/output/Castlevania*)",
+      "Bash(grep -r \"rom_patch\\\\|song.*address\\\\|NSF.*song\\\\|multi.*song\" /c/Dev/NSFRIPPER/scripts/*.py)",
+      "Bash(ls /c/Dev/NSFRIPPER/output/Zelda_II/rom_capture/*.mid)",
+      "Bash(find /c/Dev/NSFRIPPER -name \"*.md\" -exec grep -l \"multi.*song\\\\|ROM.*patch\\\\|poke.*song\" {} \\\\;)",
+      "Bash(ls output/Ninja_Gaiden*/rom_capture/)",
+      "Bash(ls output/Legend_of_Zelda*/rom_capture/)",
+      "Bash(ls output/Zelda*/rom_capture/)",
+      "Bash(grep -rn \"patch\\\\|rom_patch\\\\|LDA\\\\|song_scan\\\\|multi_song\" scripts/*.py)",
+      "Bash(ls scripts/*song* scripts/*multi* scripts/*scan* scripts/*batch*)",
+      "Bash(grep -rn \"rom_patch\\\\|--rom-patch\\\\|patch_address\\\\|patch_offset\" scripts/*.py output/PROCESS_ADAPTATIONS.md)",
+      "Bash(wc -l CLAUDE.md .claude/rules/*.md docs/MISTAKEBAKED.md docs/ARCHITECTURE_SPEC.md NEXT_SESSION_PROMPT.md)",
+      "Bash(wc -l CODEXWIZARDSWARRIORS.md BATTLETOADSBAKETOIDS.md BATTLETOADSPRETTYGOOD.md EXECUTIONSEMANTICSVALIDATION.md REAPERFUCKERY.md SYNTHROMANDTRANSLATE.md ULTIMAINSIGHTS.md UltimaInsights2.md WIZARDSWARRIORS*.md)",
+      "Bash(git mv:*)",
+      "Bash(wc -l CLAUDE.md docs/ARCHITECTURE_SPEC.md .claude/rules/*.md)"
     ]
   }
 }

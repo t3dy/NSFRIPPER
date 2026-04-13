@@ -237,6 +237,59 @@ Fidelity routes must include:
 
 Diagnostic routes must exist for cases where musical interpretation is uncertain but raw parameter replay is still possible.
 
+## PHASE 4B -- EXECUTION SEMANTICS VALIDATION (MANDATORY FOR ROM-PARSING ROUTES)
+
+**Zero parse errors means byte-stream alignment, not musical truth.**
+
+After parser alignment, all ROM-parsing routes must pass execution semantics
+validation before any output is labeled trusted or production-ready.
+
+### What it is
+
+Simulate the driver's frame-by-frame state machine from parsed events and
+compare every frame's output against the Mesen trace (ground truth).
+
+### What the simulator must model
+
+1. **Tempo accumulator** — exact 8-bit overflow logic, carry-triggers-tick
+2. **Duration counters** — per-channel decrement per tick, advance on zero
+3. **Pitch modulation** — arpeggio cycling, vibrato, sweep unit per frame
+4. **Volume envelopes** — per-frame volume from envelope model/table
+5. **Duty cycle state** — set by instrument commands, held until changed
+6. **Control flow** — subroutine calls, loops, conditional branches
+
+### Required artifacts
+
+- **Parsed event stream** — structural output from parser (hypothesis)
+- **Simulated frame-state trace** — per-frame state from simulator
+- **Comparison report** — sim vs Mesen trace, per-frame per-channel
+- **Mismatch taxonomy** — categorized: tempo drift, duration error,
+  arpeggio error, envelope error, transposition error, alignment shift
+
+### Acceptance criteria
+
+- Period matches trace on 90%+ of sounding frames
+- Volume matches trace on 80%+ of frames
+- Note boundaries align within ±1 frame of trace note attacks
+- No unexplained mismatch categories
+
+### Anti-patterns this phase prevents
+
+- Claiming pitch correctness from parsed notes alone
+- Claiming rhythm correctness from duration bytes alone
+- Treating zero parse errors as a final success condition
+- Direct ROM-event-to-MIDI conversion without semantics validation
+- Collapsing base note (ROM), sounding note (after arpeggio/transpo),
+  and perceived note (after envelope/timbre) into one concept
+
+### Pipeline milestone labels
+
+- **Parser-aligned**: byte-stream alignment confirmed. STRUCTURAL only.
+- **Semantics-validated**: simulated frame state matches trace. SEMANTIC.
+- **Trusted**: semantics-validated AND ear-checked. Ready for projection.
+
+Parser output is a hypothesis until execution semantics validation passes.
+
 ## PHASE 5 -- VALIDATION SYSTEM (MANDATORY)
 
 Create:
@@ -250,12 +303,13 @@ Implement validators as structured functions.
 ### Required validator groups
 
 1. Frame / source integrity
-2. MIDI integrity
-3. SysEx integrity
-4. RPP structure
-5. Platform constraints
-6. Assumption validity
-7. Route suitability by use-case
+2. Execution semantics (sim vs trace comparison — Phase 4B)
+3. MIDI integrity
+4. SysEx integrity
+5. RPP structure
+6. Platform constraints
+7. Assumption validity
+8. Route suitability by use-case
 
 ### Examples that must be implemented
 

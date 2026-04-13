@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d8f3dc"/>
+      <stop offset="100%" stop-color="#9bf6ff"/>
+    </linearGradient>
+    <marker id="arrow2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#22577a"/>
+    </marker>
+    <style>
+      .title { font: 700 44px 'Trebuchet MS', sans-serif; fill: #16324f; }
+      .subtitle { font: 600 22px 'Trebuchet MS', sans-serif; fill: #386641; }
+      .small { font: 700 24px 'Trebuchet MS', sans-serif; fill: #16324f; }
+      .body { font: 500 18px 'Trebuchet MS', sans-serif; fill: #1f2d3d; }
+      .cap { font: 700 20px 'Trebuchet MS', sans-serif; fill: #ffffff; }
+      .box { fill: #ffffff; stroke: #22577a; stroke-width: 4; rx: 24; ry: 24; }
+      .arrow { stroke: #22577a; stroke-width: 8; fill: none; marker-end: url(#arrow2); stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg2)"/>
+  <rect y="690" width="1600" height="210" fill="#7bc96f"/>
+  <rect x="0" y="770" width="1600" height="130" fill="#5f8f47"/>
+  <circle cx="1360" cy="110" r="72" fill="#ffe66d"/>
+  <circle cx="220" cy="110" r="46" fill="#ffffff" opacity="0.85"/>
+  <circle cx="270" cy="92" r="34" fill="#ffffff" opacity="0.85"/>
+  <circle cx="318" cy="118" r="42" fill="#ffffff" opacity="0.85"/>
+
+  <text x="800" y="80" text-anchor="middle" class="title">Mario Fidelity Investigation</text>
+  <text x="800" y="118" text-anchor="middle" class="subtitle">The docs read like a cheerful detective show about one octave, one envelope, and one stubborn synth</text>
+
+  <rect x="150" y="220" width="320" height="180" class="box"/>
+  <rect x="560" y="220" width="320" height="180" class="box"/>
+  <rect x="970" y="220" width="320" height="180" class="box"/>
+  <rect x="430" y="470" width="740" height="170" class="box"/>
+
+  <rect x="242" y="238" width="136" height="34" rx="17" fill="#ff595e"/>
+  <text x="310" y="262" text-anchor="middle" class="cap">CLUE 1</text>
+  <text x="310" y="312" text-anchor="middle" class="small">NSF is +12 semitones</text>
+  <text x="310" y="344" text-anchor="middle" class="body">Intervals are right</text>
+  <text x="310" y="370" text-anchor="middle" class="body">Absolute pitch is not</text>
+
+  <rect x="652" y="238" width="136" height="34" rx="17" fill="#ffca3a"/>
+  <text x="720" y="262" text-anchor="middle" class="cap">CLUE 2</text>
+  <text x="720" y="312" text-anchor="middle" class="small">Mesen is ground truth</text>
+  <text x="720" y="344" text-anchor="middle" class="body">Decoded APU state</text>
+  <text x="720" y="370" text-anchor="middle" class="body">Frame-accurate evidence</text>
+
+  <rect x="1062" y="238" width="136" height="34" rx="17" fill="#1982c4"/>
+  <text x="1130" y="262" text-anchor="middle" class="cap">CLUE 3</text>
+  <text x="1130" y="312" text-anchor="middle" class="small">Mario sound recipe</text>
+  <text x="1130" y="344" text-anchor="middle" class="body">50% duty square</text>
+  <text x="1130" y="370" text-anchor="middle" class="body">64-56-48-40-32 decay</text>
+
+  <rect x="720" y="488" width="160" height="34" rx="17" fill="#6a4c93"/>
+  <text x="800" y="512" text-anchor="middle" class="cap">MAIN FIX</text>
+  <text x="800" y="560" text-anchor="middle" class="small">Honor the envelope in playback</text>
+  <text x="800" y="592" text-anchor="middle" class="body">The MIDI already knows the shape.</text>
+  <text x="800" y="618" text-anchor="middle" class="body">The synth still has to obey CC11.</text>
+
+  <path d="M470 310 C510 310, 520 310, 560 310" class="arrow"/>
+  <path d="M880 310 C920 310, 930 310, 970 310" class="arrow"/>
+  <path d="M1130 400 C1130 450, 940 468, 880 500" class="arrow"/>
+  <path d="M310 400 C310 470, 590 468, 720 500" class="arrow"/>
+
+  <g transform="translate(190,620)">
+    <rect x="0" y="0" width="260" height="98" rx="22" fill="#ffffff" stroke="#22577a" stroke-width="4"/>
+    <text x="130" y="34" text-anchor="middle" class="small">Doc mood</text>
+    <text x="130" y="62" text-anchor="middle" class="body">bug hunt + musicology</text>
+  </g>
+
+  <g transform="translate(1220,592)">
+    <ellipse cx="0" cy="92" rx="92" ry="28" fill="#000000" opacity="0.12"/>
+    <circle cx="0" cy="18" r="56" fill="#ffca3a" stroke="#16324f" stroke-width="4"/>
+    <rect x="-48" y="18" width="96" height="56" rx="18" fill="#ff595e" stroke="#16324f" stroke-width="4"/>
+    <circle cx="-18" cy="8" r="7" fill="#16324f"/>
+    <circle cx="18" cy="8" r="7" fill="#16324f"/>
+    <path d="M-18 34 Q0 48 18 34" stroke="#16324f" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <rect x="-22" y="-48" width="44" height="24" rx="10" fill="#ffffff" stroke="#16324f" stroke-width="4"/>
+    <text x="-150" y="38" class="body">Mesen detective says:</text>
+    <text x="-150" y="68" class="body">"The melody is fine.</text>
+    <text x="-150" y="94" class="body">The hardware pitch is lower."</text>
+  </g>
+</svg>

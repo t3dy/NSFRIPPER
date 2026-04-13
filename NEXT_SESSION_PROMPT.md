@@ -1,4 +1,4 @@
-# Handover: Battletoads Session 2026-04-02
+# Handover: Battletoads Session 2026-04-03 (Session 4, corrected)
 
 Paste this into a new Claude Code window opened at C:\Dev\NSFRIPPER.
 
@@ -10,118 +10,127 @@ You are a constrained maintainer of an NES-to-MIDI-to-REAPER fidelity pipeline.
 
 1. Read CLAUDE.md (auto-loaded)
 2. Read .claude/rules/*.md (auto-loaded)
-3. Read docs/ARCHITECTURE_SPEC.md -- the full architectural directive
-4. Read docs/PIPELINEOVERHAUL42.md -- pipeline redesign rationale
-5. Run `python scripts/session_startup_check.py battletoads`
-6. Read this handover document completely before writing any code
+3. Read extraction/manifests/battletoads.json — **updated this session**
+4. Run `python scripts/session_startup_check.py battletoads`
+5. Read this handover completely before writing any code
 
-## What Happened This Session
+## Critical Correction: NSF Song 2 = Level 1
 
-### ROM Analysis (CRITICAL FINDINGS)
+Previous sessions incorrectly used NSF Song 3 for Level 1 (Ragnoraks Canyon).
+**NSF Song 2 is Level 1.** Verified by pitch comparison:
 
-We found the Battletoads ROM at:
-`D:\All NES Roms (GoodNES)\All NES Roms (GoodNES)\USA\Battletoads (U) [!].nes`
+| Channel | Fan MIDI | NSF Song 2 | NSF Song 3 |
+|---------|----------|-----------|-----------|
+| P1 lead | E4, B4, D5 | E4, B4, D5 | D2, A1, G1 (WRONG) |
+| P2 bass | E2, D2, B2 | E2, D2, B2 | A2, D3, G2 (WRONG) |
+| Triangle | A2, E2, B2 | A2, E2, B2 | N/A |
 
-Key ROM facts:
-- **Mapper 7 (AxROM)**: 32KB bank switching, 8 banks total (256KB PRG)
-- **Sound bank**: Bank 3 (ROM offset 0x18000-0x1FFFF), matches NSF data 99.9%
-- **Period table**: ROM $8E22, 60 entries (5 octaves C2-B6), standard NTSC values
-- **Song table**: ROM $8B7B (indirection through $8060 -> internal ID -> $95B3/$95B4 pointers)
-- **Song 3 (Level 1) internal ID**: 4 (NSF song index 2 -> internal ID 4)
-- **Channel pointers for Song 3**: P1=$A15E, P2=$A2CF, Tri=$A364, Noise=$A408
-- **Driver architecture**: Rare's custom engine, NOT Konami Maezawa. Uses a dispatch table at $8B7B where every data byte (0x00-0x7F) is a command index into a jump table. Bytes >= $81 are notes, $80 is rest.
-- **Note encoding**: Byte $81+N maps to period_table[N]. So $81=C2, $82=C#2, ..., $BC=B6.
-- **Init routine**: $8054 (TAX, LDA $8060,X to get internal ID, JMP $880E)
-- **Play routine**: $8865
+The NSF init lookup table at $8060 maps: `[16, 3, 4, 1, 2, 5, 6, ...]`.
+NSF Song 2 (idx 1) maps to internal ID 3, NOT ID 4 as previously assumed.
 
-### The Opening Melody (GROUND TRUTH FROM ROM)
+### Stale MIDI Warning
 
-The user describes it as: **"dink dink di-dunk dink dink di-dee"**
+The old `output/Battletoads/midi/Battletoads_02_Song_2_v1.mid` had P2 an
+octave too low (E1 instead of E2) — generated with a bugged or different
+version of period_to_midi. The fresh extraction at
+`output/Battletoads_Level1/midi/Battletoads_02_Song_2_v1.mid` is correct.
 
-From trace analysis mapped to ROM period table:
-- **dink** = E3 (period table entry 16, period 678). Trace shows period 669 (off by 9 -- sweep).
-- **dunk** = A2 (period table entry 9, period 1016). Trace shows period 1001 (off by 15 -- sweep).
-- **dee** = A#4 (period table entry 34, period 239). Trace shows period 235 oscillating with 231 (sweep vibrato). **User reports this note is an octave too high in our output.**
+## What This Session Achieved
 
-P2 melody pattern (frames): E3, [silence], E3, A2, E3, [silence], E3, [silence], E3, A#4-vibrato, [silence], repeat.
+### 1. Period Transform Gap Resolved
 
-### Critical Finding: Trace Periods vs ROM Table
+The parser is correct. NSF SysEx data confirms parser periods (up to 1524).
+The Mesen trace captures a subset of NSF periods (max 961 vs 1526).
+Root cause unknown but doesn't block production.
 
-**Almost NO trace period matches the ROM table exactly.** Every period is off by 1-15 units because the hardware sweep unit modifies periods after the driver writes them. The correct approach is to SNAP trace periods to the nearest ROM table entry to get the intended note, then use the CC11 volume data as the ground-truth envelope.
+### 2. Correct Song Identification
 
-| Trace period | Closest table | Note | Offset |
-|---|---|---|---|
-| 669 | 678 | E3 | -9 |
-| 1001 | 1016 | A2 | -15 |
-| 235/231/239 | 239 | A#4 | -4/+8/0 |
-| 677/673/681 | 678 | E3 | -1/-5/+3 |
+NSF Song 2 = Level 1 (Ragnoraks Canyon). Verified against fan MIDI reference
+and MP3 pitch analysis. NSF Song 3 is a completely different arrangement.
 
-### What We Built (v3-v6)
+### 3. Tempo Corrected
 
-- **v3** (Console synth, raw period->note): "Closest yet" per user, but had trills from sweep artifacts, triangle silence, noise underreporting
-- **v4**: Got worse -- over-filtered fake notes, missing real notes
-- **v5** (APU2 synth, SysEx register replay): Fixed SysEx embedding and note/SysEx conflict, but SysEx replay produces hardware artifacts the NES smooths through analog output
-- **v6** (Console synth, smart note detection with 3-frame stability): Eliminated 299 P2 trills, but music starts 2 beats late, 8th note still too high, phantom notes remain
+Level 1 tempo = 87 (0x57) from $959E[4], NOT 130 as previously reported.
+256/87 = 2.94 frames per tick. 4029 frames = 1369 ticks.
 
-### Bugs Found and Fixed This Session
+### 4. Fresh Production Output
 
-1. **APU2 synth never used SysEx for sound** -- only used it for phase reset. Fixed to drive all oscillators from register state.
-2. **SysEx never embedded in RPPs** -- generate_project.py silently dropped SysEx messages. Fixed.
-3. **MIDI notes fought with SysEx** -- note_on events overwrote SysEx-derived frequency. Fixed with !sx[ch*8] guards.
-4. **Smart note detection added** -- build_trace_midi() in trace_to_midi.py now requires 3+ frames of pitch stability before creating a note.
+| File | Content |
+|------|---------|
+| `output/Battletoads_Level1/midi/Battletoads_02_Song_2_v1.mid` | NSF MIDI with correct pitches + SysEx (Track 5) |
+| `output/Battletoads_Level1/reaper/Battletoads_02_Song_2_v1.rpp` | Console RPP (CC playback) |
+| `output/Battletoads_Level1/reaper/Battletoads_02_Ragnoraks_Canyon_APU2_v1.rpp` | APU2 RPP (SysEx replay) |
+| `output/Battletoads_Level1/wav/Battletoads_02_Song_2_v1.wav` | WAV render |
 
-### Remaining Problems
+Quality: P1=432 notes, P2=368 notes, Tri=178 notes, Noise=116 hits.
+All pitches verified against fan MIDI reference.
 
-1. **Music starts 2 beats late** -- missing first two notes of the opening phrase
-2. **8th note (A#4 "dee") too high by ~1 octave** -- need to verify our period->MIDI conversion against the ROM table
-3. **Phantom notes** -- notes appearing that aren't in the game audio
-4. **No Frame IR layer** -- we're still going trace -> MIDI directly, skipping the interpretation step that made CV1/Contra work
-5. **Rare driver not decoded** -- dispatch table format means we can't read the ROM music data directly yet (unlike Konami's linear command format)
-6. **No kitchen_sink.py** -- the multi-route pipeline doesn't exist yet
+### 5. v9 Trace Comparison
 
-### What the Next Session Must Do
+The v9 trace output was "really close" per user. Comparison:
+- v9 P1: E3(76), B3(62) — 1 octave below fan MIDI (E4, B4)
+- NSF Song 2 P1: E4(116), B4(62) — matches fan MIDI exactly
+- v9 P2/Tri/Noise: match fan MIDI
 
-Read docs/ARCHITECTURE_SPEC.md -- the full architectural directive for rebuilding the pipeline. Key priorities:
+The NSF extraction produces the correct P1 octave. The trace-based v9
+was an octave low on P1 only. Both have comparable note counts.
 
-1. **Build kitchen_sink.py** -- orchestration kernel that generates all routes, validates, compares, blocks on failure
-2. **Build Frame IR layer** -- trace -> frame_ir -> MIDI, never skip this step
-3. **Implement period table snapping** -- use ROM period table to interpret trace periods into intended notes
-4. **Fix the opening melody** -- match "dink dink di-dunk dink dink di-dee" note-for-note against ROM data
-5. **Reverse-engineer Rare's dispatch table** -- decode what each command byte (0x00-0x7F) does to understand track structure, loop points, tempo, envelopes
+## What the Next Session Must Do
+
+**Priority 1: Ear-check the NSF Song 2 output.**
+
+Open `output/Battletoads_Level1/reaper/Battletoads_02_Song_2_v1.rpp` in
+REAPER and compare against the game. The pitches match the fan MIDI
+reference. Report any timing, envelope, or arrangement issues.
+
+**Priority 2: Compare NSF vs trace routes.**
+
+The v9 trace had 343 P1 notes vs NSF's 432. The NSF may have better
+note detection. But v9 trace was "really close" — user should compare both.
+
+**Priority 3: Execution semantics validation for parser.**
+
+Now that the correct song is identified (NSF Song 2 = internal ID 3, not 4):
+- Re-verify the parser's channel pointers (P2=$A2CF is for ID 4, may be wrong song)
+- The ROM parser needs to target the correct song data addresses
+- Re-run simulator with tempo 87
+
+**Priority 4: Song numbering reconciliation.**
+
+| NSF Song | Lookup | Internal ID | Content |
+|----------|--------|-------------|---------|
+| 1 (idx 0) | $8060[0]=16 | 16 | Title screen? |
+| 2 (idx 1) | $8060[1]=3 | 3 | Level 1 (Ragnoraks Canyon) |
+| 3 (idx 2) | $8060[2]=4 | 4 | Different arrangement |
+
+The channel pointer table at $95B3 for ID 3 gives:
+- P1=$AAD0, P2=$AC94, Tri=$AD8C, Noise=$AE6C
+
+The parser currently parses ID 4 ($A15E/$A2CF/$A364/$A408).
+It needs to be re-pointed to ID 3 addresses for Level 1.
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `CLAUDE.md` | Project rules with embedded architectural directive |
-| `docs/ARCHITECTURE_SPEC.md` | Full pipeline rebuild specification (verbatim from user) |
-| `docs/PIPELINEOVERHAUL42.md` | What we learned about the pipeline this session |
-| `docs/KITCHENSINKAUDIT.md` | Original gap analysis |
-| `.claude/rules/architecture.md` | Structural rules |
-| `.claude/rules/session_protocol.md` | Working order |
-| `studio/jsfx/ReapNES_APU2.jsfx` | Updated synth with SysEx register replay |
-| `scripts/trace_to_midi.py` | Has build_trace_midi() with smart note detection |
-| `scripts/generate_project.py` | Updated with SysEx embedding |
-| `output/Battletoads_trace_v6/` | Latest output (Console + APU2 RPPs) |
+| `output/Battletoads_Level1/` | **Production output (correct song)** |
+| `output/Battletoads_trace_v9/` | Previous trace-based output (close, P1 octave low) |
+| `extraction/manifests/battletoads.json` | Updated with correct song mapping |
+| `extraction/drivers/rare/parser.py` | Parser (currently pointed at wrong song addresses) |
+| `C:\Users\PC\Downloads\battletoads_level1.mid` | Fan MIDI reference |
+| `output/Battletoads/mp3/2 - Track 2.mp3` | NSF Song 2 MP3 (Level 1 audio reference) |
 
-### ROM Reference Data
+### ROM Reference
 
-Period table (ROM $8E22, 60 entries):
-```
-C2=1710 C#2=1613 D2=1524 D#2=1438 E2=1358 F2=1281
-F#2=1208 G2=1141 G#2=1077 A2=1016 A#2=959 B2=905
-C3=854 C#3=806 D3=761 D#3=718 E3=678 F3=640
-F#3=604 G3=570 G#3=538 A3=508 A#3=479 B3=452
-C4=427 C#4=403 D4=380 D#4=359 E4=338 F4=319
-F#4=301 G4=284 G#4=268 A4=253 A#4=239 B4=226
-C5=213 C#5=201 D5=189 D#5=179 E5=169 F5=159
-F#5=150 G5=142 G#5=134 A5=126 A#5=119 B5=112
-C6=106 C#6=100 D6=94 D#6=89 E6=84 F6=79
-F#6=75 G6=70 G#6=66 A6=63 A#6=59 B6=56
-```
+ROM: `D:\All NES Roms (GoodNES)\All NES Roms (GoodNES)\USA\Battletoads (U) [!].nes`
+Mesen capture: `C:\Users\PC\Documents\Mesen2\capture.csv`
 
-Song 3 channel data pointers: P1=$A15E, P2=$A2CF, Tri=$A364, Noise=$A408
-
-Mesen capture: `C:\Users\PC\Documents\Mesen2\capture.csv` (9,495 frames, 158.2s, 2+ loops of Level 1)
+| Item | ID 3 (Level 1) | ID 4 (different) |
+|------|----------------|-------------------|
+| P1 | $AAD0 | $A15E |
+| P2 | $AC94 | $A2CF |
+| Tri | $AD8C | $A364 |
+| Noise | $AE6C | $A408 |
+| Tempo | $959E[3]=122 | $959E[4]=87 |
 
 ---

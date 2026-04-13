@@ -67,6 +67,9 @@ The most important rule is:
 
 - Triangle period and sounding semantics are effectively solved for the title,
   but the exact last-frame linear-counter value curve is still approximate.
+- The title triangle articulation was overfit in the earlier pass. A later audit
+  showed the exporter was flattening a same-pitch re-attack into one sustained
+  note, so triangle should be treated as reopened rather than fully solved.
 - Noise semantics are only validated as inactive for the clean title capture.
 - Full command meanings are still partial.
 - No full execution-semantics validation report yet.
@@ -257,6 +260,51 @@ Triangle title:
 - sounding agreement: `2169 / 2169`
 - only remaining approximation: the exact linear-counter decay values on the
   last few release frames
+
+Important correction:
+
+- this was too generous as a musical claim
+- a later title-triangle audit found that the parser already encoded a fresh
+  same-pitch short note after the longer note, but the MIDI exporter merged it
+  because it only retriggered when pitch changed
+- the title triangle is therefore not "solved" in the stronger musical sense
+  until ROM event boundaries, frame behavior, and heard articulation all agree
+
+## Title Triangle Reopen
+
+See:
+
+- `extraction/analysis/reconciled/wizards_and_warriors_title_triangle_mismatch_report.md`
+
+Current best interpretation:
+
+- the opening title triangle phrase really is one longer note followed by a
+  run of shorter notes
+- the first short note after the longer one is a fresh event even though it
+  reuses the same pitch
+- the prior sustained feel was mainly an export-layer retrigger bug, not proof
+  that the ROM durations were wrong
+
+Current code change:
+
+- `scripts/nsf_to_reaper.py` now loads parser-driven event boundaries for
+  `Wizards & Warriors` and forces a triangle note retrigger when a fresh event
+  begins on the same MIDI pitch
+
+Current title test artifacts:
+
+- MIDI:
+  `Projects/Wizards_and_Warriors/midi/Wizards_&_Warriors_01_Wizards_&_Warriors_Title_triangle_retrigger_v2.mid`
+- Console project:
+  `Projects/Wizards_and_Warriors/Wizards_&_Warriors_01_Wizards_&_Warriors_Title_triangle_retrigger_v2.rpp`
+- APU2 project:
+  `Projects/Wizards_and_Warriors/Wizards_&_Warriors_01_Wizards_&_Warriors_Title_APU2_triangle_retrigger_v2.rpp`
+
+Macro-duration sanity check:
+
+- reference title MP3: `37.1171s`
+- revised test WAV render: `37.1167s`
+- old blunt render path: `90.0s`
 
 ### Whole-Game NSF Sweep
 

@@ -16,10 +16,22 @@ out_pin:Right
 //
 // CC11 = volume expression (NES 0-15 mapped to MIDI 0-127)
 // CC12 = duty cycle (0-31=12.5%, 32-63=25%, 64-95=50%, 96-127=75%)
-// SysEx formats:
-//   F0 7D 01 ch r0lo r0hi r1lo r1hi r2lo r2hi r3lo r3hi en F7
-//   F0 7D 02 ch r0lo r0hi r1lo r1hi r2lo r2hi r3lo r3hi en write_mask F7
-//   F0 7D 03 ch flags level release_class F7
+// SysEx format:
+//   Legacy: F0 7D 01 ch r0lo r0hi r1lo r1hi r2lo r2hi r3lo r3hi en F7
+//   Write-aware: F0 7D 02 ch r0lo r0hi r1lo r1hi r2lo r2hi r3lo r3hi en mask F7
+//   Audible-state: F0 7D 03 ch flags level release_class F7
+// Flags:
+//   bit0 parser boundary
+//   bit1 hidden same-pitch retrigger
+//   bit2 visible period attack
+//   bit3 composite pulse1+triangle hidden attack
+//   bit4 sounding
+// Release class:
+//   0 effectively_muted
+//   1 sustain_body
+//   2 ringing_decay
+//   3 fresh_attack_damped_body
+//   4 fresh_full_body
 // ===================================================================
 
 // === MODE ===
@@ -55,6 +67,13 @@ slider19:0.8<0,1,0.01>Master Gain
 
 @init
 cpu_clk = 1789773;
+
+// NES console output shaping. The hardware/output chain is not a raw square/
+// triangle/noise sum; these simple filters keep isolated channels from sounding
+// too hard-edged compared with the final game mix.
+hp1_x = hp1_y = 0;
+hp2_x = hp2_y = 0;
+lp_y = 0;
 
 // ---------------------------------------------------------------
 // Duty cycle lookup tables (4 x 8 steps)
@@ -115,10 +134,12 @@ dm[88]=3; dm[89]=0; dm[90]=13; dm[91]=900;
 p1_phase = 0; p1_inc = 0; p1_en = 0;
 p2_phase = 0; p2_inc = 0; p2_en = 0;
 tri_phase = 0; tri_inc = 0; tri_en = 0;
-tri_damped_decay = 0;
-tri_composite_support = 0;
 lfsr = 1; lfsr_acc = 0; noi_en = 0;
 noi_period_idx = 4; noi_mode = 0;
+p1_art_env = 0; p2_art_env = 0; tri_art_env = 0;
+p1_body_gain = 1.0; p2_body_gain = 1.0; tri_body_gain = 1.0; tri_body_target = 1.0;
+p1_env_decay = 15; p1_env_div = 0; p1_env_period = 0; p1_const_vol = 0; p1_env_loop = 0;
+p2_env_decay = 15; p2_env_div = 0; p2_env_period = 0; p2_const_vol = 0; p2_env_loop = 0;
 
 // ---------------------------------------------------------------
 // SysEx register replay state (Priority 1 -- highest fidelity)
@@ -126,16 +147,11 @@ noi_period_idx = 4; noi_mode = 0;
 // from raw APU register values. Bypasses CC and ADSR entirely.
 // ---------------------------------------------------------------
 // sx[ch*8]: 0=active, 1=vol(0-15), 2=duty(0-3), 3=period(11-bit),
-//           4=enable, 5=sweep, 6=linear_ctr(tri), 7=reserved
+//           4=enable, 5=sweep, 6=linear_ctr(tri), 7=audible-state flags
 sx = 150;
 i = 0; loop(32, sx[i] = 0; i += 1; );
-
-// ---------------------------------------------------------------
-// Articulation sideband state
-// art[ch*4]: 0=flags, 1=level, 2=release_class, 3=reserved
-// ---------------------------------------------------------------
-art = 190;
-i = 0; loop(16, art[i] = 0; i += 1; );
+sx_rel = 182;
+i = 0; loop(4, sx_rel[i] = 1; i += 1; );
 
 // ---------------------------------------------------------------
 // CC-driven state (Priority 2 -- from MIDI CC11/CC12)
@@ -151,14 +167,6 @@ i = 0; loop(16, cc[i] = 0; i += 1; );
 // ev[ch*8]: 0=phase, 1=level, 2=atk_rate, 3=dec_rate, 4=sus, 5=rel_rate, 6=peak, 7=unused
 ev = 300;
 i = 0; loop(32, ev[i] = 0; i += 1; );
-
-// ---------------------------------------------------------------
-// Pulse envelope replay state for SysEx mode
-// penv[ch*8]: 0=env_mode, 1=period, 2=loop, 3=level,
-//             4=samples_to_step, 5=step_samples, 6=const_vol, 7=raw_nibble
-// ---------------------------------------------------------------
-penv = 340;
-i = 0; loop(16, penv[i] = 0; i += 1; );
 
 // Keyboard note tracking
 kb_note = 400;
@@ -233,36 +241,6 @@ function process_env(ch) local(base, phase, level, sus) (
   base[1];
 );
 
-function trigger_pulse_env(ch, env_period, env_loop) local(base, step_samples) (
-  base = penv + ch * 8;
-  step_samples = max(1, floor(((env_period + 1) * srate / 240.0) + 0.5));
-  base[0] = 1;
-  base[1] = env_period;
-  base[2] = env_loop;
-  base[3] = 15;
-  base[4] = step_samples;
-  base[5] = step_samples;
-);
-
-function clock_pulse_env(ch) local(base, level, remain) (
-  base = penv + ch * 8;
-  base[0] ? (
-    level = base[3];
-    remain = base[4] - 1;
-    remain <= 0 ? (
-      level > 0 ? (
-        level -= 1;
-      ) : (
-        base[2] ? level = 15;
-      );
-      remain += max(1, base[5]);
-    );
-    base[3] = max(0, min(15, level));
-    base[4] = remain;
-  );
-  base[3];
-);
-
 function trigger_drum(gm_note, velocity) local(idx, base) (
   idx = gm_note - 35;
   idx >= 0 && idx <= 22 ? (
@@ -274,6 +252,43 @@ function trigger_drum(gm_note, velocity) local(idx, base) (
     drum_timer = drum_decay;
     drum_active = 1;
     noi_en = 1;
+  );
+);
+
+function hp_step(x, alpha) local(y) (
+  y = alpha * (hp1_y + x - hp1_x);
+  hp1_x = x;
+  hp1_y = y;
+  y;
+);
+
+function hp2_step(x, alpha) local(y) (
+  y = alpha * (hp2_y + x - hp2_x);
+  hp2_x = x;
+  hp2_y = y;
+  y;
+);
+
+function lp_step(x, alpha) (
+  lp_y = (1 - alpha) * x + alpha * lp_y;
+  lp_y;
+);
+
+function apu_env_step(ch) (
+  ch == 0 ? (
+    p1_env_div == 0 ? (
+      p1_env_div = p1_env_period;
+      p1_env_decay > 0 ? p1_env_decay -= 1 : (p1_env_loop ? p1_env_decay = 15;);
+    ) : (
+      p1_env_div -= 1;
+    );
+  ) : (
+    p2_env_div == 0 ? (
+      p2_env_div = p2_env_period;
+      p2_env_decay > 0 ? p2_env_decay -= 1 : (p2_env_loop ? p2_env_decay = 15;);
+    ) : (
+      p2_env_div -= 1;
+    );
   );
 );
 
@@ -290,7 +305,8 @@ while ((recv_len = midirecv_buf(offset, midi_buf, 128)) > 0) (
   // ---------------------------------------------------------------
   // SysEx: APU Register Replay (Priority 1 -- hardware-exact)
   // F0 7D 01 ch r0lo r0hi r1lo r1hi r2lo r2hi r3lo r3hi en F7
-  // F0 7D 02 ch r0lo r0hi r1lo r1hi r2lo r2hi r3lo r3hi en write_mask F7
+  // F0 7D 02 ch r0lo r0hi r1lo r1hi r2lo r2hi r3lo r3hi en mask F7
+  // F0 7D 03 ch flags level release_class F7
   //
   // When SysEx is present, it drives the oscillators directly from
   // raw APU register state. Volume, duty, period, enable -- all come
@@ -298,48 +314,93 @@ while ((recv_len = midirecv_buf(offset, midi_buf, 128)) > 0) (
   // ---------------------------------------------------------------
   status_byte == 0xF0 ? (
     // Check if it's our APU register SysEx
-    ((recv_len >= 13 && midi_buf[1] == 0x7D && midi_buf[2] == 0x01)
-      || (recv_len >= 14 && midi_buf[1] == 0x7D && midi_buf[2] == 0x02)) ? (
+    recv_len >= 6 && midi_buf[1] == 0x7D && (midi_buf[2] == 0x01 || midi_buf[2] == 0x02 || midi_buf[2] == 0x03) ? (
       sx_ch = midi_buf[3];
-      sx_msg = midi_buf[2];
+      sx_type = midi_buf[2];
+      sx_mask = sx_type == 0x02 && recv_len >= 14 ? (midi_buf[13] & 0x0F) : 0;
+      sx_has_mask = sx_type == 0x02;
       // Only process matching channel
       (ch_mode == 4 || ch_mode == sx_ch) ? (
+        sx_base = sx_ch * 8;
+
+        sx_type == 0x03 ? (
+          sx_flags = midi_buf[4] & 0x1F;
+          sx_level = midi_buf[5] & 0x7F;
+          sx_release = recv_len >= 7 ? (midi_buf[6] & 0x07) : 1;
+          sx[sx_base + 7] = sx_flags;
+          sx_rel[sx_ch] = sx_release;
+
+          // The audible-state layer carries attack semantics that do not
+          // reliably survive note/latch projection.
+          // Use them to shape onset/damping without overriding register truth.
+          attack_flag = sx_flags & 0x0E;
+          sx_ch == 0 && attack_flag ? (
+            p1_art_env = (sx_flags & 0x08) ? 1.0 : 0.7;
+          );
+          sx_ch == 1 && attack_flag ? (
+            p2_art_env = 0.55;
+          );
+          sx_ch == 2 && attack_flag ? (
+            tri_art_env = (sx_flags & 0x08) ? 1.0 : 0.8;
+          );
+
+          sx_ch == 0 ? (
+            sx_release == 4 ? p1_body_gain = 1.0;
+            : sx_release == 3 ? p1_body_gain = 0.74;
+            : sx_release == 2 ? p1_body_gain = 0.62;
+            : sx_release == 0 ? p1_body_gain = 0.0;
+            : p1_body_gain = 0.84;
+          );
+          sx_ch == 1 ? (
+            sx_release == 4 ? p2_body_gain = 1.0;
+            : sx_release == 3 ? p2_body_gain = 0.82;
+            : sx_release == 2 ? p2_body_gain = 0.72;
+            : sx_release == 0 ? p2_body_gain = 0.0;
+            : p2_body_gain = 0.88;
+          );
+          sx_ch == 2 ? (
+            composite_attack = sx_flags & 0x08;
+            sx_release == 4 ? tri_body_target = 1.0;
+            : sx_release == 3 ? tri_body_target = composite_attack ? 0.22 : 0.34;
+            : sx_release == 2 ? tri_body_target = 0.26;
+            : sx_release == 0 ? tri_body_target = 0.0;
+            : tri_body_target = 0.58;
+
+            // Damped-body retriggers need an immediate clamp so the triangle
+            // doesn't briefly re-bloom into a full bass note before the target
+            // gain slews down.
+            composite_attack && sx_release == 3 ? (
+              tri_body_gain = min(tri_body_gain, tri_body_target);
+            ) : (
+              sx_release == 4 && attack_flag ? tri_body_gain = max(tri_body_gain, 0.85);
+            );
+          );
+        ) : (
         // Decode all 4 register bytes
         r0 = (midi_buf[4] & 0x7F) | ((midi_buf[5] & 0x01) << 7);
         r1 = (midi_buf[6] & 0x7F) | ((midi_buf[7] & 0x01) << 7);
         r2 = (midi_buf[8] & 0x7F) | ((midi_buf[9] & 0x01) << 7);
         r3 = (midi_buf[10] & 0x7F) | ((midi_buf[11] & 0x01) << 7);
         sx_en = midi_buf[12] & 1;
-        write_mask = sx_msg == 0x02 ? (midi_buf[13] & 0x0F) : 0;
 
         // Mark this channel as SysEx-active (suppresses CC and ADSR)
-        sx_base = sx_ch * 8;
         sx[sx_base] = 1;  // active flag
         sx[sx_base + 4] = sx_en;
-        sx[sx_base + 7] = write_mask;
 
         // --- Pulse channels (ch 0, 1) ---
         sx_ch < 2 ? (
           // $4000/$4004: [duty:2][loop:1][const:1][vol:4]
-          env_loop = (r0 >> 5) & 0x01;
-          const_vol = (r0 >> 4) & 0x01;
-          env_period = r0 & 0x0F;
-          sx[sx_base + 1] = env_period;          // fallback / const volume
+          sx[sx_base + 1] = r0 & 0x0F;          // raw low nibble
           sx[sx_base + 2] = (r0 >> 6) & 0x03;   // duty 0-3
           sx[sx_base + 5] = r1;                   // sweep register
-
-          penv_base = penv + sx_ch * 8;
-          penv_base[1] = env_period;
-          penv_base[2] = env_loop;
-          penv_base[6] = const_vol;
-          penv_base[7] = env_period;
-          !const_vol ? (
-            // Timer-high writes mark a true pulse re-articulation boundary,
-            // including same-pitch hidden retriggers when write_mask is available.
-            (write_mask & 8) ? trigger_pulse_env(sx_ch, env_period, env_loop);
+          sx_ch == 0 ? (
+            p1_env_loop = (r0 >> 5) & 1;
+            p1_const_vol = (r0 >> 4) & 1;
+            p1_env_period = r0 & 0x0F;
           ) : (
-            penv_base[0] = 0;
-            penv_base[3] = env_period;
+            p2_env_loop = (r0 >> 5) & 1;
+            p2_const_vol = (r0 >> 4) & 1;
+            p2_env_period = r0 & 0x0F;
           );
 
           // $4002+$4003 / $4006+$4007: 11-bit period
@@ -361,12 +422,38 @@ while ((recv_len = midirecv_buf(offset, midi_buf, 128)) > 0) (
             sx_ch == 0 ? ( p1_en = 0; ) : ( p2_en = 0; );
           );
 
-          // Phase reset on r3 write (hardware behavior)
+          // Phase reset on any timer-high write, even if the written value
+          // matches the previous one. That write-level detail is audible on
+          // same-pitch re-attacks.
           sx_ch == 0 ? (
-            r3 != p1_prev_r3 ? p1_phase = 0;
+            pulse_restart = (sx_has_mask ? (sx_mask & 0x08) : (r3 != p1_prev_r3));
+            pulse_restart ? (
+              p1_phase = 0;
+              p1_env_decay = 15;
+              p1_env_div = p1_env_period;
+            ) : (
+              q = 0;
+              loop(4,
+                apu_env_step(0);
+                q += 1;
+              );
+            );
+            sx[sx_base + 1] = p1_const_vol ? (r0 & 0x0F) : p1_env_decay;
             p1_prev_r3 = r3;
           ) : (
-            r3 != p2_prev_r3 ? p2_phase = 0;
+            pulse_restart = (sx_has_mask ? (sx_mask & 0x08) : (r3 != p2_prev_r3));
+            pulse_restart ? (
+              p2_phase = 0;
+              p2_env_decay = 15;
+              p2_env_div = p2_env_period;
+            ) : (
+              q = 0;
+              loop(4,
+                apu_env_step(1);
+                q += 1;
+              );
+            );
+            sx[sx_base + 1] = p2_const_vol ? (r0 & 0x0F) : p2_env_decay;
             p2_prev_r3 = r3;
           );
         );
@@ -389,6 +476,10 @@ while ((recv_len = midirecv_buf(offset, midi_buf, 128)) > 0) (
           ) : (
             tri_en = 0;
           );
+
+          // The title triangle phrase uses same-value rewrites to re-articulate
+          // attacks. Preserve that behavior when the frame transport exposes it.
+          sx_has_mask && (sx_mask & 0x09) ? tri_phase = 0;
         );
 
         // --- Noise (ch 3) ---
@@ -406,15 +497,6 @@ while ((recv_len = midirecv_buf(offset, midi_buf, 128)) > 0) (
             noi_en = 0;
           );
         );
-      );
-    ) : (
-      recv_len >= 7 && midi_buf[1] == 0x7D && midi_buf[2] == 0x03 ? (
-        sx_ch = midi_buf[3];
-        (ch_mode == 4 || ch_mode == sx_ch) ? (
-          art_base = art + sx_ch * 4;
-          art_base[0] = midi_buf[4] & 0x7F;
-          art_base[1] = midi_buf[5] & 0x7F;
-          art_base[2] = midi_buf[6] & 0x7F;
         );
       );
     );
@@ -542,10 +624,9 @@ p1_out = 0;
 (ch_mode == 0 || ch_mode == 4) ? (
   sx[0] ? (
     // Priority 1: SysEx register replay -- vol, duty, period from registers
-    p1_en && (penv[0] ? penv[3] > 0 : sx[1] > 0) ? (
-      p1_art = art;
-      p1_vol_sx = p1_art[1] > 0 ? p1_art[1] : (penv[6] ? penv[7] : clock_pulse_env(0));
-      p1_out = dt[sx[2] * 8 + (floor(p1_phase) & 7)] * p1_vol_sx;
+    p1_en && sx[1] > 0 ? (
+      p1_gain = p1_body_gain * (0.88 + 0.22 * p1_art_env);
+      p1_out = dt[sx[2] * 8 + (floor(p1_phase) & 7)] * sx[1] * p1_gain;
       p1_phase += p1_inc;
       p1_phase >= 8.0 ? p1_phase -= 8.0;
     );
@@ -577,11 +658,9 @@ p2_out = 0;
 (ch_mode == 1 || ch_mode == 4) ? (
   sx[8] ? (
     // Priority 1: SysEx register replay
-    p2_penv = penv + 8;
-    p2_en && (p2_penv[0] ? p2_penv[3] > 0 : sx[9] > 0) ? (
-      p2_art = art + 4;
-      p2_vol_sx = p2_art[1] > 0 ? p2_art[1] : (p2_penv[6] ? p2_penv[7] : clock_pulse_env(1));
-      p2_out = dt[sx[10] * 8 + (floor(p2_phase) & 7)] * p2_vol_sx;
+    p2_en && sx[9] > 0 ? (
+      p2_gain = p2_body_gain * (0.90 + 0.16 * p2_art_env);
+      p2_out = dt[sx[10] * 8 + (floor(p2_phase) & 7)] * sx[9] * p2_gain;
       p2_phase += p2_inc;
       p2_phase >= 8.0 ? p2_phase -= 8.0;
     );
@@ -614,29 +693,13 @@ p2_out = 0;
 tri_out = 0;
 (ch_mode == 2 || ch_mode == 4) ? (
   sx[16] ? (
-    // Priority 1: SysEx -- gate from linear counter and enable, with
-    // body authority shaped by release-class sideband rather than
-    // treating every armed triangle frame as full body.
-    tri_art = art + 8;
-    tri_flags = tri_art[0];
-    tri_rel = tri_art[2];
-    tri_gain = 15;
-    tri_rel == 4 ? tri_damped_decay = 0;
-    tri_rel == 4 ? tri_composite_support = 0;
-    tri_rel == 3 ? (
-      tri_damped_decay = 1;
-      tri_composite_support = (tri_flags & 8) ? 1 : 0;
-    );
-    tri_rel == 0 ? tri_gain = 0;
-    tri_rel == 3 ? tri_gain = tri_composite_support ? 5 : 8;
-    tri_rel == 2 ? (
-      tri_gain = tri_damped_decay ? (tri_composite_support ? 4 : 7) : 13;
-    );
-    tri_rel == 1 ? (
-      tri_gain = tri_damped_decay ? (tri_composite_support ? 4 : 7) : 15;
-    );
+    // Priority 1: SysEx -- gate from linear counter and enable
     tri_en ? (
-      tri_out = tt[floor(tri_phase) & 31] * tri_gain / 15.0;
+      // The live triangle body is not binary. Very small linear reload values
+      // should read as damped/fragile support rather than a full renewed bass.
+      tri_linear_gain = min(1.0, 0.75 + (sx[22] / 32.0));
+      tri_gain = tri_body_gain * tri_linear_gain * (0.78 + 0.22 * tri_art_env);
+      tri_out = tt[floor(tri_phase) & 31] * tri_gain;
       tri_phase += tri_inc;
       tri_phase >= 32.0 ? tri_phase -= 32.0;
     );
@@ -709,6 +772,14 @@ noi_out = 0;
 
 // ---------------------------------------------------------------
 // Mixer
+// Decay audible-state articulation envelopes. These are intentionally small:
+// the middle layer should restore missing attack/muting cues, not replace the
+// hardware mix with a full synth ADSR.
+p1_art_env = max(0, p1_art_env - 0.0028);
+p2_art_env = max(0, p2_art_env - 0.0022);
+tri_art_env = max(0, tri_art_env - 0.0014);
+tri_body_gain += (tri_body_target - tri_body_gain) * (tri_body_target < tri_body_gain ? 0.08 : 0.01);
+
 // Single-channel mode: direct amplitude scaling (no cross-channel DAC effects)
 // Full APU mode: non-linear DAC mixer (hardware-accurate)
 // ---------------------------------------------------------------
@@ -733,6 +804,17 @@ ch_mode < 4 ? (
   raw = pulse_mix + tnd_mix;
   out = raw > 0 ? (raw - 0.4) * slider19 : 0;
 );
+
+// Approximate the NES console/TV output path:
+// high-pass around 90 Hz, another high-pass around 440 Hz, then low-pass
+// around 14 kHz. This is especially important when judging isolated end-note
+// timbre, which otherwise sounds too punchy/edgy.
+hp1_alpha = (srate / (2 * $pi * 90)) / ((srate / (2 * $pi * 90)) + 1);
+hp2_alpha = (srate / (2 * $pi * 440)) / ((srate / (2 * $pi * 440)) + 1);
+lp_alpha = exp(-2 * $pi * 14000 / srate);
+out = hp_step(out, hp1_alpha);
+out = hp2_step(out, hp2_alpha);
+out = lp_step(out, lp_alpha);
 
 spl0 = out;
 spl1 = out;

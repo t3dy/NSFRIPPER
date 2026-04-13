@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d9ed92"/>
+      <stop offset="100%" stop-color="#76c893"/>
+    </linearGradient>
+    <marker id="arrow4" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#184e77"/>
+    </marker>
+    <style>
+      .title { font: 700 44px 'Trebuchet MS', sans-serif; fill: #12343b; }
+      .subtitle { font: 600 22px 'Trebuchet MS', sans-serif; fill: #184e77; }
+      .small { font: 700 24px 'Trebuchet MS', sans-serif; fill: #12343b; }
+      .body { font: 500 18px 'Trebuchet MS', sans-serif; fill: #203239; }
+      .cap { font: 700 20px 'Trebuchet MS', sans-serif; fill: #ffffff; }
+      .box { fill: #ffffff; stroke: #184e77; stroke-width: 4; rx: 24; ry: 24; }
+      .arrow { stroke: #184e77; stroke-width: 8; fill: none; marker-end: url(#arrow4); stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg4)"/>
+  <rect y="748" width="1600" height="152" fill="#52b788"/>
+  <text x="800" y="82" text-anchor="middle" class="title">Battletoads Trace Pipeline</text>
+  <text x="800" y="120" text-anchor="middle" class="subtitle">The loudest lesson in the docs: structural success is not the same thing as musical truth</text>
+
+  <rect x="120" y="220" width="320" height="180" class="box"/>
+  <rect x="520" y="220" width="320" height="180" class="box"/>
+  <rect x="920" y="220" width="320" height="180" class="box"/>
+  <rect x="450" y="490" width="700" height="180" class="box"/>
+
+  <rect x="212" y="238" width="136" height="34" rx="17" fill="#ef476f"/>
+  <text x="280" y="262" text-anchor="middle" class="cap">PROBLEM</text>
+  <text x="280" y="312" text-anchor="middle" class="small">NSF looked fine</text>
+  <text x="280" y="344" text-anchor="middle" class="body">but sounded wrong</text>
+  <text x="280" y="370" text-anchor="middle" class="body">and hid missing motion</text>
+
+  <rect x="612" y="238" width="136" height="34" rx="17" fill="#ffb703"/>
+  <text x="680" y="262" text-anchor="middle" class="cap">SHIFT</text>
+  <text x="680" y="312" text-anchor="middle" class="small">Trace becomes truth</text>
+  <text x="680" y="344" text-anchor="middle" class="body">Mesen CSV to MIDI</text>
+  <text x="680" y="370" text-anchor="middle" class="body">plus SysEx registers</text>
+
+  <rect x="1012" y="238" width="136" height="34" rx="17" fill="#118ab2"/>
+  <text x="1080" y="262" text-anchor="middle" class="cap">PAYOFF</text>
+  <text x="1080" y="312" text-anchor="middle" class="small">Keep the groove alive</text>
+  <text x="1080" y="344" text-anchor="middle" class="body">Sweep vibrato survives</text>
+  <text x="1080" y="370" text-anchor="middle" class="body">Period mask fix lands</text>
+
+  <rect x="720" y="508" width="160" height="34" rx="17" fill="#8338ec"/>
+  <text x="800" y="532" text-anchor="middle" class="cap">RULE</text>
+  <text x="800" y="580" text-anchor="middle" class="small">Verify with ears after math</text>
+  <text x="800" y="612" text-anchor="middle" class="body">Artifacts can validate structurally</text>
+  <text x="800" y="638" text-anchor="middle" class="body">while still missing the feel.</text>
+
+  <path d="M440 310 C480 310, 480 310, 520 310" class="arrow"/>
+  <path d="M840 310 C880 310, 880 310, 920 310" class="arrow"/>
+  <path d="M1080 400 C1080 450, 910 468, 860 520" class="arrow"/>
+  <path d="M280 400 C280 470, 620 468, 720 520" class="arrow"/>
+
+  <g transform="translate(180,566)">
+    <ellipse cx="0" cy="110" rx="96" ry="28" fill="#000000" opacity="0.14"/>
+    <circle cx="-34" cy="18" r="50" fill="#52b788" stroke="#12343b" stroke-width="4"/>
+    <circle cx="34" cy="18" r="50" fill="#2d6a4f" stroke="#12343b" stroke-width="4"/>
+    <circle cx="-46" cy="6" r="6" fill="#12343b"/>
+    <circle cx="-22" cy="6" r="6" fill="#12343b"/>
+    <circle cx="22" cy="6" r="6" fill="#ffffff"/>
+    <circle cx="46" cy="6" r="6" fill="#ffffff"/>
+    <path d="M-48 40 Q-34 56 -18 40" stroke="#12343b" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M18 40 Q34 56 50 40" stroke="#ffffff" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <text x="140" y="24" class="small">Battletoads docs vibe</text>
+    <text x="140" y="54" class="body">part handover note,</text>
+    <text x="140" y="80" class="body">part cautionary tale,</text>
+    <text x="140" y="106" class="body">part triumphant fix log</text>
+  </g>
+</svg>

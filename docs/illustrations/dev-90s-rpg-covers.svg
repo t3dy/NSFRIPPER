@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="bgr" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#161625"/>
+      <stop offset="55%" stop-color="#2b2346"/>
+      <stop offset="100%" stop-color="#72441a"/>
+    </linearGradient>
+    <filter id="shadowr" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <style>
+      .title { font: 700 64px Georgia, 'Times New Roman', serif; fill: #f0d59a; }
+      .subtitle { font: 600 25px Georgia, 'Times New Roman', serif; fill: #d9c08d; }
+      .frame { stroke: #c6a35d; stroke-width: 5; rx: 20; ry: 20; filter: url(#shadowr); }
+      .name { font: 700 30px Georgia, 'Times New Roman', serif; fill: #fff3d1; }
+      .body { font: 500 17px Verdana, sans-serif; fill: #efe2bd; }
+      .tag { font: 700 18px Verdana, sans-serif; fill: #ffd774; }
+      .tiny { font: 700 14px 'Courier New', monospace; fill: #f4ddb0; }
+    </style>
+  </defs>
+
+  <rect width="1800" height="1200" fill="url(#bgr)"/>
+  <circle cx="1460" cy="130" r="72" fill="#ffe09a" opacity="0.85"/>
+  <path d="M0 940 C220 870, 460 980, 720 900 S1240 1010, 1800 920 L1800 1200 L0 1200 Z" fill="#1c3b2a"/>
+  <path d="M0 1000 C250 940, 480 1040, 760 980 S1270 1100, 1800 1000 L1800 1200 L0 1200 Z" fill="#2b523c"/>
+
+  <text x="900" y="112" text-anchor="middle" class="title">The Legends of C:\Dev</text>
+  <text x="900" y="152" text-anchor="middle" class="subtitle">RPG Box Art Edition • every project reimagined as a 1990s fantasy PC adventure</text>
+
+  <g transform="translate(98,220)">
+    <rect width="384" height="268" class="frame" fill="#2b324b"/>
+    <rect x="18" y="18" width="348" height="232" rx="12" fill="#3b6d8d"/>
+    <path d="M18 208 C86 170, 130 128, 190 122 S282 150, 366 90 L366 250 L18 250 Z" fill="#17344d"/>
+    <circle cx="276" cy="70" r="24" fill="#f2e2a4"/>
+    <path d="M104 188 Q152 92 208 190" fill="#b6d5e7"/><path d="M164 110 L178 148 L214 148 L184 170 L196 206 L164 184 L132 206 L144 170 L114 148 L150 148 Z" fill="#ffe08a"/>
+    <text x="24" y="42" class="name">DreamBase</text>
+    <text x="24" y="226" class="tag">Archive-Seer of Ten Thousand Dialogues</text>
+    <text x="24" y="248" class="tiny">Search the ruins. Bind the memory shards.</text>
+  </g>
+
+  <g transform="translate(528,220)">
+    <rect width="384" height="268" class="frame" fill="#4f2a2a"/>
+    <rect x="18" y="18" width="348" height="232" rx="12" fill="#8d4a27"/>
+    <path d="M18 212 C92 186, 138 116, 200 100 S282 120, 366 86 L366 250 L18 250 Z" fill="#52250e"/>
+    <path d="M112 188 Q170 74 232 188" fill="#d87e3f"/><circle cx="172" cy="108" r="20" fill="#ffe39e"/><path d="M132 176 L172 126 L212 176" stroke="#fff0c2" stroke-width="6" fill="none"/>
+    <text x="24" y="42" class="name">ScribeFarm</text>
+    <text x="24" y="226" class="tag">The Citation Citadel</text>
+    <text x="24" y="248" class="tiny">Forge testimony into lawful scrolls.</text>
+  </g>
+
+  <g transform="translate(958,220)">
+    <rect width="384" height="268" class="frame" fill="#213425"/>
+    <rect x="18" y="18" width="348" height="232" rx="12" fill="#50764f"/>
+    <path d="M18 208 C100 170, 144 130, 214 110 S296 132, 366 98 L366 250 L18 250 Z" fill="#243f26"/>
+    <rect x="126" y="86" width="86" height="96" rx="12" fill="#d0e6cf"/><circle cx="169" cy="112" r="10" fill="#35573a"/><path d="M169 132 L169 172 M150 150 L188 150" stroke="#35573a" stroke-width="7"/>
+    <text x="24" y="42" class="name">OldRAGDonald</text>
+    <text x="24" y="226" class="tag">Field Warden of the Contaminated Marches</text>
+    <text x="24" y="248" class="tiny">Record voice, proof, and omen in the wild.</text>
+  </g>
+
+  <g transform="translate(1388,220)">
+    <rect width="316" height="268" class="frame" fill="#36304e"/>
+    <rect x="18" y="18" width="280" height="232" rx="12" fill="#5f4d89"/>
+    <path d="M18 218 C72 158, 118 136, 158 116 S230 132, 298 72 L298 250 L18 250 Z" fill="#2e2451"/>
+    <circle cx="156" cy="118" r="36" fill="#f4dd9b"/><path d="M156 88 L168 114 L196 118 L174 136 L180 164 L156 148 L132 164 L138 136 L116 118 L144 114 Z" fill="#6a4c93"/>
+    <text x="24" y="42" class="name">UbikTrainings</text>
+    <text x="24" y="226" class="tag">The 33 Disciplines</text>
+    <text x="24" y="248" class="tiny">Choose the right rite before the build.</text>
+  </g>
+
+  <g transform="translate(98,552)">
+    <rect width="384" height="268" class="frame" fill="#293449"/>
+    <rect x="18" y="18" width="348" height="232" rx="12" fill="#416384"/>
+    <path d="M18 200 C88 186, 146 122, 214 112 S300 150, 366 86 L366 250 L18 250 Z" fill="#1b2e44"/>
+    <path d="M112 184 L146 126 L178 162 L214 104 L246 158 L280 128" stroke="#ffe08a" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <text x="24" y="42" class="name">ReapNES / NSFRIPPER</text>
+    <text x="24" y="226" class="tag">The Chiptune Archaeologists</text>
+    <text x="24" y="248" class="tiny">Harvest lost songs from silicon catacombs.</text>
+  </g>
+
+  <g transform="translate(528,552)">
+    <rect width="384" height="268" class="frame" fill="#4d2233"/>
+    <rect x="18" y="18" width="348" height="232" rx="12" fill="#82425b"/>
+    <path d="M18 212 C84 180, 138 118, 210 104 S300 132, 366 90 L366 250 L18 250 Z" fill="#4d2335"/>
+    <path d="M130 186 Q190 74 250 186" fill="#f2d6e1"/><path d="M166 118 Q190 92 214 118" stroke="#5c2940" stroke-width="6" fill="none"/><path d="M156 170 Q190 196 224 170" stroke="#5c2940" stroke-width="6" fill="none"/>
+    <text x="24" y="42" class="name">ShakesPhyllis</text>
+    <text x="24" y="226" class="tag">Court of the 154 Sonnets</text>
+    <text x="24" y="248" class="tiny">Read the masks. Track the rival hearts.</text>
+  </g>
+
+  <g transform="translate(958,552)">
+    <rect width="384" height="268" class="frame" fill="#4a361e"/>
+    <rect x="18" y="18" width="348" height="232" rx="12" fill="#8f6841"/>
+    <path d="M18 214 C96 164, 142 132, 202 110 S286 130, 366 76 L366 250 L18 250 Z" fill="#583d1b"/>
+    <circle cx="188" cy="120" r="40" fill="none" stroke="#f0cf8f" stroke-width="8"/><path d="M188 80 L188 160 M148 120 L228 120" stroke="#f0cf8f" stroke-width="6"/>
+    <text x="24" y="42" class="name">RenMagDB / Claudiens</text>
+    <text x="24" y="226" class="tag">The Hermetic Libraries</text>
+    <text x="24" y="248" class="tiny">Seek emblems, figures, and hidden correspondences.</text>
+  </g>
+
+  <g transform="translate(1388,552)">
+    <rect width="316" height="268" class="frame" fill="#353521"/>
+    <rect x="18" y="18" width="280" height="232" rx="12" fill="#85773b"/>
+    <path d="M18 212 C70 182, 116 132, 156 114 S230 118, 298 82 L298 250 L18 250 Z" fill="#4f451a"/>
+    <path d="M118 180 L148 92 L178 180 Z" fill="#f8e6a5"/><circle cx="148" cy="122" r="16" fill="#4f451a"/>
+    <text x="24" y="42" class="name">BachStudies</text>
+    <text x="24" y="226" class="tag">The Counterpoint Abbey</text>
+    <text x="24" y="248" class="tiny">Each work opens a new doctrine tree.</text>
+  </g>
+
+  <g transform="translate(98,884)">
+    <rect width="384" height="226" class="frame" fill="#23444a"/>
+    <rect x="18" y="18" width="348" height="190" rx="12" fill="#3b7b85"/>
+    <path d="M18 172 C90 140, 150 110, 220 92 S306 98, 366 64 L366 208 L18 208 Z" fill="#1c5159"/>
+    <rect x="132" y="82" width="100" height="72" rx="12" fill="#e8f3f6"/><path d="M150 136 L166 118 L182 126 L198 106 L214 116" stroke="#1c5159" stroke-width="7" fill="none"/>
+    <text x="24" y="42" class="name">Draft Academy</text>
+    <text x="24" y="184" class="tag">The Analytic Arena</text>
+    <text x="24" y="204" class="tiny">Where data mages draft by signal and rate.</text>
+  </g>
+
+  <g transform="translate(528,884)">
+    <rect width="384" height="226" class="frame" fill="#4a2e24"/>
+    <rect x="18" y="18" width="348" height="190" rx="12" fill="#8e5438"/>
+    <path d="M18 176 C88 136, 148 122, 218 104 S304 108, 366 76 L366 208 L18 208 Z" fill="#5f341d"/>
+    <rect x="118" y="90" width="128" height="60" rx="10" fill="#f3d8b0"/><rect x="146" y="104" width="72" height="18" fill="#8e5438"/><rect x="146" y="130" width="52" height="10" fill="#8e5438"/>
+    <text x="24" y="42" class="name">Barton Suite</text>
+    <text x="24" y="184" class="tag">Merchants of the Moving Roads</text>
+    <text x="24" y="204" class="tiny">Quote, hire, schedule, and prosper.</text>
+  </g>
+
+  <g transform="translate(958,884)">
+    <rect width="384" height="226" class="frame" fill="#2d2d52"/>
+    <rect x="18" y="18" width="348" height="190" rx="12" fill="#565691"/>
+    <path d="M18 176 C88 132, 156 118, 226 96 S304 112, 366 74 L366 208 L18 208 Z" fill="#29295b"/>
+    <path d="M122 150 Q192 78 262 150" stroke="#ffe9b0" stroke-width="8" fill="none"/><circle cx="192" cy="114" r="16" fill="#ffe9b0"/>
+    <text x="24" y="42" class="name">Capital Interpreter</text>
+    <text x="24" y="184" class="tag">The Theory Engine</text>
+    <text x="24" y="204" class="tiny">Retrieve the canon. Debate the world.</text>
+  </g>
+
+  <g transform="translate(1388,884)">
+    <rect width="316" height="226" class="frame" fill="#3f2b2b"/>
+    <rect x="18" y="18" width="280" height="190" rx="12" fill="#7c4a4a"/>
+    <path d="M18 178 C74 148, 124 118, 174 94 S246 102, 298 70 L298 208 L18 208 Z" fill="#502a2a"/>
+    <circle cx="158" cy="110" r="28" fill="#ffd28a"/><path d="M130 152 L186 152" stroke="#ffd28a" stroke-width="8"/><path d="M158 124 L158 180" stroke="#ffd28a" stroke-width="8"/>
+    <text x="24" y="42" class="name">Vibe Coding Garage</text>
+    <text x="24" y="184" class="tag">Chronicles of the Solo Builder</text>
+    <text x="24" y="204" class="tiny">A campaign map of all your shipped worlds.</text>
+  </g>
+</svg>

@@ -1,0 +1,882 @@
+{
+  "project": {
+    "title": "GlitchMario",
+    "subtitle": "How a quest to perfectly reproduce the Super Mario Bros. Overworld Theme from raw NES hardware data became a catalog of spectacular failures, accidental glitch art, and hard-won signal processing lessons",
+    "timespan": "March 27 - April 1, 2026",
+    "tagline": "Decoding the musical data on an iconic NES ROM, creating weird unwanted glitch art along the way"
+  },
+  "events": [
+    {
+      "id": 1, "day": 1, "phase": "Foundation",
+      "title": "The Pipeline Exists",
+      "summary": "A working NES music extraction pipeline already handles Castlevania and Contra. NSF files run through a py65 6502 CPU emulator, capturing APU register writes as MIDI with CC automation. Castlevania's Vampire Killer achieves 0 pitch mismatches across 1,792 frames. The hubris begins.",
+      "category": "milestone",
+      "docs": ["docs/WHATWORKEDWITHCONTRAANDCASTLEVANIA.md"],
+      "terms": ["NSF", "py65", "APU", "CC11", "6502"]
+    },
+    {
+      "id": 2, "day": 1, "phase": "Foundation",
+      "title": "Batch Processing Goes Live",
+      "summary": "nsf_to_reaper.py --all processes entire game libraries. 50 games, 1,099 MIDIs, 1,099 REAPER projects generated in minutes. Each game gets a folder with midi/, reaper/, and wav/ subdirectories. The machine works. Nobody has listened to any of them yet.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["REAPER", "RPP", "MIDI", "batch processing"]
+    },
+    {
+      "id": 3, "day": 1, "phase": "Foundation",
+      "title": "The Dual-Mode Synth Contract",
+      "summary": "ReapNES_Console.jsfx implements a critical architectural decision: when CC11 data arrives from a file, bypass ADSR and let the automation drive volume directly. When a human plays the keyboard with no CC data, use ADSR envelopes. Two modes, one synth, mutual exclusion. This will matter later.",
+      "category": "architecture",
+      "docs": [".claude/rules/synth_fidelity.md"],
+      "terms": ["JSFX", "CC11", "ADSR", "dual-mode"]
+    },
+    {
+      "id": 4, "day": 1, "phase": "Foundation",
+      "title": "The ReapNES Console Synth",
+      "summary": "A JSFX instrument plugin that emulates the NES 2A03 APU: two pulse wave channels with 4 duty cycles, a triangle wave channel, and a noise channel with 15-bit LFSR. 38 sliders control everything from duty cycle to ADSR to mix levels. It runs inside REAPER as a software instrument.",
+      "category": "architecture",
+      "docs": ["studio/jsfx/ReapNES_Console.jsfx"],
+      "terms": ["2A03", "pulse wave", "triangle wave", "LFSR", "duty cycle"]
+    },
+    {
+      "id": 5, "day": 1, "phase": "Castlevania",
+      "title": "Vampire Killer: 0 Mismatches",
+      "summary": "Castlevania Stage 1 achieves perfect pitch fidelity: every note on both pulse channels matches the emulator trace across 1,792 frames. The Konami driver is well-documented, the disassembly is available, and the sound format is clean. This is the gold standard all other games will be measured against.",
+      "category": "milestone",
+      "docs": ["docs/PROJECTCASTLEVANIA.md", "docs/WHATWORKEDWITHCONTRAANDCASTLEVANIA.md"],
+      "terms": ["trace comparison", "frame", "pitch matching"]
+    },
+    {
+      "id": 6, "day": 1, "phase": "Castlevania",
+      "title": "Contra: 0 Pitch Mismatches Over 2,976 Frames",
+      "summary": "Contra's Jungle theme follows. Different game, same Konami driver family, but with crucial differences: DX reads 3 bytes instead of 2, percussion uses inline commands instead of a separate channel. Each difference cost 2-3 debugging rounds before being discovered. Same driver family does NOT mean same format.",
+      "category": "milestone",
+      "docs": ["docs/PROJECTCONTRA.md", "extraction/drivers/konami/spec.md"],
+      "terms": ["DX command", "sound driver", "ROM parser"]
+    },
+    {
+      "id": 7, "day": 1, "phase": "Castlevania",
+      "title": "Blunder B05: XOR Is Not XOR",
+      "summary": "In JSFX, the ^ operator is exponentiation, not XOR. 0^0 returns 1, not 0. The noise channel LFSR produces completely wrong bit patterns. Every drum sound is corrupted. The fix: (a + b) & 1 for single-bit XOR. A language quirk that cost an afternoon.",
+      "category": "blunder",
+      "docs": ["state/blunders.json"],
+      "terms": ["LFSR", "XOR", "JSFX", "noise channel"]
+    },
+    {
+      "id": 8, "day": 1, "phase": "Castlevania",
+      "title": "Blunder B06: DC Offset in the Mixer",
+      "summary": "The NES hardware mixer formula produces a constant DC bias at rest. Meters show -2.1dB even when nothing is playing. Audio is either inaudible or distorted. The fix: center the output with (value / 15.0 - 0.5) * weight. This fix will itself become a bug five days later.",
+      "category": "blunder",
+      "docs": ["state/blunders.json"],
+      "terms": ["DC offset", "mixer", "DAC", "headroom"]
+    },
+    {
+      "id": 9, "day": 2, "phase": "Battletoads",
+      "title": "Battletoads: The Confidence Test",
+      "summary": "Battletoads is queued as the next batch job. It's a different developer (Rare, not Konami), a different sound driver, and a different mapper. But the batch pipeline handled 50 games automatically. What could go wrong?",
+      "category": "narrative",
+      "docs": ["docs/WHYSUCHABADSTARTWITHBATTLETOADS.md"],
+      "terms": ["mapper", "sound driver", "Rare"]
+    },
+    {
+      "id": 10, "day": 2, "phase": "Battletoads",
+      "title": "21 Projects, Zero Sound",
+      "summary": "nsf_to_reaper.py produces 21 MIDIs, 21 REAPER projects, 21 WAV previews. The WAVs play sound. The REAPER projects play nothing. Multiple rounds of debugging RPP structure, MIDI embedding, and slider configuration find nothing wrong. Because the bug isn't in the data.",
+      "category": "blunder",
+      "docs": ["docs/WHYSUCHABADSTARTWITHBATTLETOADS.md"],
+      "terms": ["RPP", "FX chain", "MIDI embedding"]
+    },
+    {
+      "id": 11, "day": 2, "phase": "Battletoads",
+      "title": "The Red Banner Nobody Checked",
+      "summary": "The JSFX synth has a compile-time syntax error. Two empty else branches contain only comments with no expressions. JSFX requires at least one expression in every branch. The entire @sample block fails to compile. The synth receives MIDI (activity indicators light up) but produces zero audio samples. A red error banner is visible in the FX window the entire time. Nobody checks.",
+      "category": "blunder",
+      "docs": ["docs/WHYSUCHABADSTARTWITHBATTLETOADS.md"],
+      "terms": ["@sample", "JSFX compiler", "syntax error"]
+    },
+    {
+      "id": 12, "day": 2, "phase": "Battletoads",
+      "title": "The Wrong Song",
+      "summary": "While debugging the silence, we compare NSF extraction against a Mesen hardware trace. The data streams are 'fundamentally different.' We spend rounds investigating why. We are comparing the wrong song. NSF Song 2 is 'Interlude' (a cutscene). Level 1 is Song 3. A 30-second web search for the track listing would have caught this.",
+      "category": "blunder",
+      "docs": ["docs/WHYSUCHABADSTARTWITHBATTLETOADS.md", "docs/FINDINGTRACKBOUNDARIES.md"],
+      "terms": ["NSF song index", "track mapping", "Mesen trace"]
+    },
+    {
+      "id": 13, "day": 2, "phase": "Battletoads",
+      "title": "NSF Is Not Ground Truth for Battletoads",
+      "summary": "Even after fixing the song mapping, NSF extraction doesn't match in-game audio. Unlike Konami's clean drivers, Rare's sound system produces different output when run in isolation vs. inside the full game. The NSF misses sweep vibrato, micro-tuning wobbles, and atmospheric noise crescendos. Mesen trace captures exactly what the APU produces during real gameplay.",
+      "category": "discovery",
+      "docs": ["docs/WHYSUCHABADSTARTWITHBATTLETOADS.md", "docs/FRAMEBYFRAME.md"],
+      "terms": ["NSF divergence", "sweep unit", "micro-tuning", "ground truth"]
+    },
+    {
+      "id": 14, "day": 2, "phase": "Lessons",
+      "title": "Rule: Same Opcode Does Not Mean Same Semantics",
+      "summary": "DX reads 2 bytes in Castlevania, 3 bytes in Contra. E8 means different things. EC is unused in CV1 but shifts pitch in Contra. Never copy command handling without checking the target game. This rule gets permanently baked into CLAUDE.md.",
+      "category": "rule",
+      "docs": ["docs/MISTAKEBAKED.md", ".claude/rules/architecture.md"],
+      "terms": ["opcode", "command byte", "driver semantics"]
+    },
+    {
+      "id": 15, "day": 2, "phase": "Lessons",
+      "title": "Rule: Dump Trace Data Before Modeling",
+      "summary": "We guessed 3 envelope hypotheses before looking at actual frame data. Cost: 5 prompts. New rule: always extract and examine the raw data before forming any hypothesis about how the music works.",
+      "category": "rule",
+      "docs": ["docs/MISTAKEBAKED.md"],
+      "terms": ["frame data", "hypothesis testing", "envelope"]
+    },
+    {
+      "id": 16, "day": 2, "phase": "Lessons",
+      "title": "Rule: Always Version Output Files",
+      "summary": "We overwrote Contra MIDI and RPP files during iteration. The user couldn't compare versions to tell what changed. New rule: always use v1, v2, v3 suffixes. Never overwrite a tested file.",
+      "category": "rule",
+      "docs": [".claude/rules/output-versioning.md"],
+      "terms": ["versioning", "artifact management"]
+    },
+    {
+      "id": 17, "day": 2, "phase": "Lessons",
+      "title": "Blunder B01-B04: The JSFX Gauntlet",
+      "summary": "Four consecutive JSFX bugs discovered in sequence: (1) //tags: is a comment, not a directive, (2) missing pin declarations make the synth an audio effect instead of an instrument, (3) Unicode characters silently break the compiler on Windows, (4) REAPER caches compiled JSFX bytecode and doesn't invalidate on source edits. Each one produces a different flavor of silence.",
+      "category": "blunder",
+      "docs": ["state/blunders.json", "docs/AVOIDBLUNDERS.md"],
+      "terms": ["JSFX directives", "pin declarations", "ASCII", "bytecode cache"]
+    },
+    {
+      "id": 18, "day": 2, "phase": "Lessons",
+      "title": "Blunder B07: Unrecognized RPP Tokens",
+      "summary": "MASTER_SEND, REC_INPUT, RECINPUT, RECMON don't exist in REAPER v7.27. The project loads with 5+ warnings, settings silently ignored. Solution: only use tokens verified against a known-good saved project.",
+      "category": "blunder",
+      "docs": ["state/blunders.json"],
+      "terms": ["RPP format", "REAPER v7", "token parsing"]
+    },
+    {
+      "id": 19, "day": 3, "phase": "Glitch Art",
+      "title": "The Keyboard Mode Catastrophe",
+      "summary": "One line of JSFX code turns Castlevania's Vampire Killer into unrecognizable glitch art. The Keyboard Mode remap, designed for live play, intercepts file playback data and remaps ALL four channels to every track's assigned channel. Each track plays all four NES channels simultaneously. Volume seizures at 60Hz as four independent envelope streams clobber each other.",
+      "category": "glitch",
+      "docs": ["docs/glitchy.md"],
+      "terms": ["channel remapping", "keyboard mode", "cc_file_mode"]
+    },
+    {
+      "id": 20, "day": 3, "phase": "Glitch Art",
+      "title": "Blunder B11: Every Track Plays Every Channel",
+      "summary": "Before the channel routing fix, each track runs the full APU: all 4 oscillators simultaneously. Music plays 4x with a thick, muddy, noisy sound. It's technically playing all the right notes — just all of them at once on every track. The fix: Channel Mode slider (0=P1, 1=P2, 2=Tri, 3=Noise) so each track only plays its assigned channel.",
+      "category": "blunder",
+      "docs": ["state/blunders.json"],
+      "terms": ["channel mode", "oscillator", "track routing"]
+    },
+    {
+      "id": 21, "day": 3, "phase": "Glitch Art",
+      "title": "Blunder B13: Drums With No Envelope",
+      "summary": "Drum hits sound like popping artifacts. The noise channel just toggles on/off with no volume shaping. The fix: a 23-entry drum mapping table mapping GM notes to NES noise period, mode, attack volume, and decay rate. Each drum type gets its own characteristic: kicks are low and boomy, hi-hats are short and metallic.",
+      "category": "blunder",
+      "docs": ["state/blunders.json"],
+      "terms": ["GM drum map", "noise period", "drum envelope", "attack/decay"]
+    },
+    {
+      "id": 22, "day": 3, "phase": "Mario Begins",
+      "title": "Mario: The Real Test",
+      "summary": "Super Mario Bros. is the canonical NES game. If the pipeline can't reproduce its overworld theme faithfully, nothing else matters. The NSF extraction runs. Sound comes out. It's recognizably Mario. But something is wrong with the triangle bass.",
+      "category": "narrative",
+      "docs": ["docs/PROJECTMARIO1.md"],
+      "terms": ["Super Mario Bros.", "overworld theme", "Koji Kondo"]
+    },
+    {
+      "id": 23, "day": 3, "phase": "Mario Begins",
+      "title": "NSF Triangle Is Wrong",
+      "summary": "The NSF extraction produces triangle notes that don't match the game. The bass line has wrong pitches. This is the first sign that py65's NSF emulation has a fundamental problem with Mario's sound driver.",
+      "category": "discovery",
+      "docs": ["docs/MARIODISCOVERIES.md"],
+      "terms": ["triangle channel", "NSF emulation", "py65"]
+    },
+    {
+      "id": 24, "day": 3, "phase": "Mario Begins",
+      "title": "NSF Pulse Periods Are Halved",
+      "summary": "Comparing NSF extraction against Mesen trace reveals that pulse channel periods are exactly half what they should be. Every note is one octave too high. This isn't a mapping error — the 6502 emulator is computing different period values than the real hardware.",
+      "category": "discovery",
+      "docs": ["docs/MARIODISCOVERIES.md"],
+      "terms": ["period register", "octave error", "timer"]
+    },
+    {
+      "id": 25, "day": 3, "phase": "Mario Begins",
+      "title": "The $4015 Hypothesis",
+      "summary": "Research into SMB1's sound driver reveals it reads $4015 (APU status register) to check length counter state. py65 returns 0 for this read (flat RAM). If the driver uses this read to decide code paths, returning wrong values could explain the period-halving bug. The hypothesis: intercepting $4015 reads and returning correct status bits might fix NSF extraction at source level.",
+      "category": "discovery",
+      "docs": ["docs/HACKINGMARIOWEB.md"],
+      "terms": ["$4015", "APU status register", "length counter", "py65"]
+    },
+    {
+      "id": 26, "day": 3, "phase": "Mario Begins",
+      "title": "Decision: Mesen Is Ground Truth for Mario",
+      "summary": "With NSF extraction unreliable, the decision is made: use Mesen trace captures as the canonical source for Mario. This means recording actual gameplay in the Mesen emulator and capturing the APU register state at 60fps. The pipeline shifts from emulation to observation.",
+      "category": "architecture",
+      "docs": ["docs/MARIODISCOVERIES.md"],
+      "terms": ["Mesen", "ground truth", "APU trace", "extraction route"]
+    },
+    {
+      "id": 27, "day": 3, "phase": "Mario Begins",
+      "title": "Mesen Capture: 9,496 Frames of Mario",
+      "summary": "A 158-second Mesen capture of Super Mario Bros. gameplay is recorded. 30,362 APU register changes across 21 parameters. The overworld theme starts at frame 134. This CSV file becomes the single source of truth for all Mario work going forward.",
+      "category": "milestone",
+      "docs": ["docs/MARIODISCOVERIES.md"],
+      "terms": ["CSV capture", "frame rate", "register change"]
+    },
+    {
+      "id": 28, "day": 3, "phase": "Mario Begins",
+      "title": "mesen_to_midi.py Is Born",
+      "summary": "A new script to convert Mesen CSV captures directly to MIDI. It reads the sparse/delta register format, detects note boundaries via period changes, converts volume to CC11, and outputs standard MIDI files. Three track builders: pulse (with CC11/CC12), triangle (gate-only), noise (period-to-drum mapping).",
+      "category": "milestone",
+      "docs": ["scripts/mesen_to_midi.py"],
+      "terms": ["delta format", "note boundary", "period change detection"]
+    },
+    {
+      "id": 29, "day": 3, "phase": "Mario Verified",
+      "title": "Melody Confirmed: E4-E4-E4-C4-E4-G4",
+      "summary": "The first 6 notes of the Mario overworld melody are verified against Mesen frame data. Pulse 2 (the melody channel in Mario) plays E4-E4-E4-C4-E4-G4. Every note matches. The pipeline is producing correct pitches from the trace capture.",
+      "category": "milestone",
+      "docs": ["docs/MARIODISCOVERIES.md"],
+      "terms": ["melody verification", "pitch accuracy"]
+    },
+    {
+      "id": 30, "day": 3, "phase": "Mario Verified",
+      "title": "Note Counts Verified",
+      "summary": "P1=353, P2=341, Tri=328, Noise=168. All four channel note counts match between the MIDI extraction and the Mesen frame data. This means every period change is being correctly detected as a note boundary.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["note count", "period change detection"]
+    },
+    {
+      "id": 31, "day": 3, "phase": "Mario Verified",
+      "title": "CC11 Envelope Verified",
+      "summary": "The volume decay pattern 8->7->6->5->4->0 per note matches Mesen frame-by-frame data. Mario's pulse channels max out at volume 8 (not 15), and the decay spans only 5 steps. This detail will matter when the mixer bug is discovered.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["CC11", "volume envelope", "decay pattern"]
+    },
+    {
+      "id": 32, "day": 3, "phase": "Mario Verified",
+      "title": "Duty Cycle: 50% Constant",
+      "summary": "Both pulse channels use 50% duty cycle for 100% of sounding frames. No duty switching. Mario's overworld theme has a warm, full tone because it uses the widest pulse width throughout.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["duty cycle", "50% pulse", "timbre"]
+    },
+    {
+      "id": 33, "day": 3, "phase": "Mario Verified",
+      "title": "Triangle Staccato via Linear Counter",
+      "summary": "The triangle channel produces staccato bass by using the linear counter for sub-frame gating. The counter has 27 distinct values across 3,644 changes — this is NOT just an on/off gate. The driver is using it for precise articulation control.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["linear counter", "staccato", "sub-frame gating"]
+    },
+    {
+      "id": 34, "day": 4, "phase": "Infrastructure",
+      "title": "The Database Is Born",
+      "summary": "SCHEMA.sql defines 14 tables for tracking the entire pipeline: games, captures, frame_states, validation_runs, mismatches, and session_decisions. Mario is seeded with 18 tracks. The operational data moves from scattered files to a single SQLite database.",
+      "category": "milestone",
+      "docs": ["SCHEMA.sql"],
+      "terms": ["SQLite", "pipeline database", "operational data"]
+    },
+    {
+      "id": 35, "day": 4, "phase": "Infrastructure",
+      "title": "Session Startup Gate",
+      "summary": "session_startup_check.py implements a 7-point environment validation that must pass before any work begins: JSFX source exists, installed copy matches, ASCII clean, database ready, track names present. No more starting work with a broken environment.",
+      "category": "milestone",
+      "docs": ["scripts/session_startup_check.py"],
+      "terms": ["environment gate", "pre-flight check"]
+    },
+    {
+      "id": 36, "day": 4, "phase": "Infrastructure",
+      "title": "sync_jsfx.py: One-Command Deploy",
+      "summary": "A single script that handles the entire JSFX deployment cycle: ASCII check, copy to REAPER's AppData Effects folder, cache bust (rename to force recompilation), and hash verification that source matches installed. Never again will a stale cached synth waste debugging time.",
+      "category": "milestone",
+      "docs": ["scripts/sync_jsfx.py"],
+      "terms": ["JSFX deployment", "cache busting", "hash verification"]
+    },
+    {
+      "id": 37, "day": 4, "phase": "Infrastructure",
+      "title": "VALIDATION.md: The 6-Gate Protocol",
+      "summary": "A mandatory validation protocol that nothing can bypass. Gate A: environment startup. Gate B: source integrity. Gate C: ground truth comparison. Gate D: parameter coverage. Gate E: artifact build. Gate F: pre-delivery release gate with 9 checks. Nothing is 'ready to test' until Gate F passes.",
+      "category": "milestone",
+      "docs": ["docs/VALIDATION.md"],
+      "terms": ["validation gate", "pre-delivery", "acceptance criteria"]
+    },
+    {
+      "id": 38, "day": 4, "phase": "Infrastructure",
+      "title": "The Session Protocol",
+      "summary": "Mandatory working order encoded in .claude/rules/session_protocol.md: (1) environment validity, (2) source identity, (3) ground truth comparison, (4) route choice, (5) one-song build, (6) pre-delivery validation, (7) batch build. Fix order: always pitch -> timing -> volume -> timbre. One hypothesis per test cycle.",
+      "category": "architecture",
+      "docs": [".claude/rules/session_protocol.md"],
+      "terms": ["working order", "fix order", "hypothesis testing"]
+    },
+    {
+      "id": 39, "day": 4, "phase": "Infrastructure",
+      "title": "Data Tier Rules",
+      "summary": "Information gets stored in the right format: SQLite for operational truth, JSON for human-maintained config, Markdown for reasoning and postmortems, raw files (CSV, ROM, NSF) stay on disk indexed by DB. Dense per-frame APU state is the canonical representation; MIDI is a downstream projection.",
+      "category": "architecture",
+      "docs": [".claude/rules/session_protocol.md", "docs/DATAONTOLOGY.md"],
+      "terms": ["data tier", "canonical representation", "projection"]
+    },
+    {
+      "id": 40, "day": 4, "phase": "Blunder B14",
+      "title": "Blunder B14: Console Ignores CC11/CC12",
+      "summary": "The flagship synth — ReapNES_Console.jsfx — has no CC11 or CC12 handlers. File playback uses ADSR envelopes instead of ground-truth per-frame automation. Every one of 1,099 projects has wrong volume envelopes. The CC handling code exists in the older ReapNES_APU.jsfx but was never ported to the Console version.",
+      "category": "blunder",
+      "docs": ["state/blunders.json", "docs/FIXINGMARIO1.md"],
+      "terms": ["CC11", "CC12", "ADSR bypass", "ground truth envelope"]
+    },
+    {
+      "id": 41, "day": 4, "phase": "Blunder B14",
+      "title": "The cc_active Flag System",
+      "summary": "The fix: a per-channel cc_active[] array. When CC11 or CC12 arrives on any channel, set cc_active[ch]=1 and cc_file_mode=1. In @sample, if cc_active is true, skip ADSR processing and use CC values directly. On CC123 (all notes off), reset everything. Two mutually exclusive paths, one flag per channel.",
+      "category": "architecture",
+      "docs": [],
+      "terms": ["cc_active", "cc_file_mode", "mutual exclusion"]
+    },
+    {
+      "id": 42, "day": 4, "phase": "Blunder B14",
+      "title": "cc_file_mode Disables Keyboard Remap",
+      "summary": "When cc_file_mode=1 (any CC automation detected), the keyboard remapping is disabled. This prevents the Keyboard Mode Catastrophe (event 19) from recurring during file playback. File data uses its original MIDI channels; keyboard input uses the remap. The cc_file_mode flag is the bridge between the two worlds.",
+      "category": "architecture",
+      "docs": ["docs/glitchy.md"],
+      "terms": ["cc_file_mode", "keyboard remap", "channel filter"]
+    },
+    {
+      "id": 43, "day": 4, "phase": "Mario v1",
+      "title": "First Mario Playback",
+      "summary": "The first REAPER project with CC-driven playback: Super_Mario_Bros._01_Overworld_mesen_v1.rpp. It plays. It sounds like Mario. The melody is recognizable. The swing timing is there. But something is off — the synth sounds thin, and the drums are barely audible.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["RPP generation", "file playback", "swing timing"]
+    },
+    {
+      "id": 44, "day": 4, "phase": "Mario v1",
+      "title": "User Verdict: 'Sounds Like Approximately the Right Sequence'",
+      "summary": "The human ear-check returns: 'sounds like approximately the right sequence of notes with reasonable durations that captures the swing' but 'synth sounds are a bit off and drums are missing something.' The verdict confirms pitch and timing are correct but flags volume/timbre issues.",
+      "category": "narrative",
+      "docs": [],
+      "terms": ["ear-check", "fidelity assessment"]
+    },
+    {
+      "id": 45, "day": 4, "phase": "Diagnosis",
+      "title": "Drums Are Flat",
+      "summary": "The noise channel produces sound, but the drum hits have no punch. Analysis reveals: velocity is constant at 102 for all hits, and only 2 of the NES's 7 noise period values map to distinct drum types. The drum table provides synthetic decay, but it doesn't match the game's actual envelope.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["drum envelope", "velocity", "noise period"]
+    },
+    {
+      "id": 46, "day": 4, "phase": "Diagnosis",
+      "title": "Pulse Volume Peaks at 8, Not 15",
+      "summary": "Mario's sound driver never drives pulse volume above 8 (out of the NES's 0-15 range). The CC11 values top out at 68 in MIDI (mapping back to NES vol 8). This means the pulse output is at roughly 53% of the synth's maximum amplitude. Combined with the mixer formula, this will prove catastrophic.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["volume ceiling", "dynamic range", "CC11 mapping"]
+    },
+    {
+      "id": 47, "day": 4, "phase": "Diagnosis",
+      "title": "The Fidelity Hierarchy",
+      "summary": "Truth flows downhill: (1) ROM/Mesen trace is ground truth, (2) NSF emulation is convenience, (3) MIDI is downstream projection, (4) synth interpretation is approximation, (5) ADSR is last resort. Never let a lower layer silently override a higher one. This becomes a permanent project rule.",
+      "category": "architecture",
+      "docs": ["CLAUDE.md"],
+      "terms": ["fidelity hierarchy", "ground truth", "authority"]
+    },
+    {
+      "id": 48, "day": 5, "phase": "The Mixer Bug",
+      "title": "Session 5 Begins: All Checks Pass",
+      "summary": "session_startup_check.py returns 7/7 PASS. JSFX source and installed match. Database has 14 tables, 18 Mario tracks. The environment is clean. Time to hunt the volume bug.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["session startup", "environment gate"]
+    },
+    {
+      "id": 49, "day": 5, "phase": "The Mixer Bug",
+      "title": "Three Parallel Investigations",
+      "summary": "Three agents deployed simultaneously: one analyzes the raw Mesen capture noise data, one audits mesen_to_midi.py's extraction logic, one audits the synth's noise handling. The results will converge on a single root cause that explains both 'drums are flat' and 'pulse lacks body.'",
+      "category": "narrative",
+      "docs": [],
+      "terms": ["parallel investigation", "root cause analysis"]
+    },
+    {
+      "id": 50, "day": 5, "phase": "The Mixer Bug",
+      "title": "Noise Is Binary, Not Continuous",
+      "summary": "The Mesen capture reveals: Mario's noise channel alternates between vol=12 (hit) and vol=0 (silence) with 6-frame gaps. There ARE volume-zero gaps between drum hits. The session prompt's claim of 'never goes to vol=0' was wrong — it was based on NSF extraction, not the Mesen ground truth.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["volume gating", "binary noise", "gap detection"]
+    },
+    {
+      "id": 51, "day": 5, "phase": "The Mixer Bug",
+      "title": "The B06 Formula Was Wrong All Along",
+      "summary": "The DC-offset mixer formula from Day 1 — (out/15 - 0.5) — only works at full volume (15). At Mario's max volume of 8: output is (8/15 - 0.5) = 0.033. That's 15x quieter than it should be. At volumes below 7.5, the output goes NEGATIVE — the signal phase-inverts. Drum hits that decay through vol=7 cross zero and invert mid-decay.",
+      "category": "blunder",
+      "docs": ["state/blunders.json"],
+      "terms": ["DC offset", "phase inversion", "mixer formula", "asymmetric centering"]
+    },
+    {
+      "id": 52, "day": 5, "phase": "The Mixer Bug",
+      "title": "Blunder B17: The Math",
+      "summary": "For a binary waveform (0 or vol), the formula (out/15 - 0.5) subtracts a constant 0.5 regardless of volume. At vol=15: high=0.5, low=0(skipped). Fine. At vol=8: high=0.033, low=0(skipped). Nearly silent. At vol=5: high=-0.167. NEGATIVE. The waveform only produces negative mixer contributions. Every drum hit with vol < 8 subtracts from the mix instead of adding to it.",
+      "category": "blunder",
+      "docs": [],
+      "terms": ["binary waveform", "centering constant", "mixer arithmetic"]
+    },
+    {
+      "id": 53, "day": 5, "phase": "The Mixer Bug",
+      "title": "The Fix: Symmetric Binary Centering",
+      "summary": "New formula: (2 * out - peak_vol) / 30.0 * weight. When duty is high (out=vol): (2v-v)/30 = v/30. When duty is low (out=0): (0-v)/30 = -v/30. The signal swings symmetrically around zero regardless of volume level. At vol=8: amplitude = 0.267 (was 0.033). At vol=15: amplitude = 0.5 (unchanged). Triangle keeps the old formula since it sweeps the full 0-15 range naturally.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["symmetric centering", "bipolar signal", "volume-independent"]
+    },
+    {
+      "id": 54, "day": 5, "phase": "The Mixer Bug",
+      "title": "Drums Go From Inverted to Correct",
+      "summary": "Before: a hi-hat drum hit starts at vol=8 (positive 0.033), decays through vol=7 (barely positive), crosses zero at vol=7.5 (silent), then goes negative for the rest of the decay. The drum literally reverses polarity mid-hit. After: the hit starts at +0.267 and decays linearly to 0. No phase inversion. No zero-crossing artifact.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["phase inversion", "drum decay", "zero crossing"]
+    },
+    {
+      "id": 55, "day": 5, "phase": "The Mixer Bug",
+      "title": "Pulses Get 8x More Amplitude",
+      "summary": "At Mario's max volume of 8, the pulse channels go from amplitude 0.017 (old) to 0.133 (new). An 8x improvement. This is the 'missing body' the user heard. The melody and harmony channels were playing at 1/15th of their intended volume because the mixer formula assumed they'd always be at full blast.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["amplitude", "volume scaling", "pulse channel"]
+    },
+    {
+      "id": 56, "day": 5, "phase": "Full Audit",
+      "title": "The Full Pipeline Audit",
+      "summary": "A complete audit of every musical parameter from Mesen capture through MIDI to synth playback. 21 unique APU parameters measured. 30,362 register changes cataloged. Translation accuracy scored per dimension: pitch 98%, timing 94%, pulse volume 95%, pulse duty 100%, triangle gating 70%, noise envelope 30%, noise timbre 50%.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["pipeline audit", "translation accuracy", "parameter coverage"]
+    },
+    {
+      "id": 57, "day": 5, "phase": "Full Audit",
+      "title": "Discovery: Pulse 1 Max Volume Is 12",
+      "summary": "Mario's sound driver caps Pulse 1 at volume 12 (not 15) and Pulse 2 at volume 11. The driver deliberately limits dynamic range per channel, likely for mixing headroom. This means the NES hardware's full 0-15 range is never used for pulses in this game.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["volume ceiling", "channel balancing", "headroom"]
+    },
+    {
+      "id": 58, "day": 5, "phase": "Full Audit",
+      "title": "Discovery: Noise Uses Full 0-15 Range",
+      "summary": "Unlike the pulse channels, noise volume spans the complete 0-15 range with 2,545 changes. And the const flag toggles 9 times between constant-volume mode and hardware envelope mode. The noise channel is far more dynamic than previously assumed.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["noise volume", "constant volume flag", "hardware envelope"]
+    },
+    {
+      "id": 59, "day": 5, "phase": "Full Audit",
+      "title": "Discovery: Triangle Linear Counter Has 27 Distinct Values",
+      "summary": "The triangle linear counter isn't just on/off. It has 27 distinct values across 3,644 changes. The sound driver uses it for sub-frame articulation control — varying the counter value changes how quickly the triangle note gates off, creating different staccato lengths.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["linear counter", "articulation", "sub-frame control"]
+    },
+    {
+      "id": 60, "day": 5, "phase": "Full Audit",
+      "title": "Discovery: Pulse 1 Has 40 Duty Changes",
+      "summary": "Mario's Pulse 1 channel changes duty cycle 40 times, using all 4 values (12.5%, 25%, 50%, 75%). The constant 50% duty reported earlier was for the opening section only. Later sections use duty switching for timbral variation.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["duty cycle", "timbral variation", "pulse width modulation"]
+    },
+    {
+      "id": 61, "day": 5, "phase": "Full Audit",
+      "title": "Discovery: 7 Distinct Noise Periods",
+      "summary": "Mario uses 7 of the NES's 16 possible noise period values: 3, 31, 127, 159, 201, 507, 1015. Each produces a different pitch of noise. But the MIDI extraction collapses these 7 into only 4 GM drum categories. Three distinct drum timbres are lost in translation.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["noise period", "GM drum mapping", "information loss"]
+    },
+    {
+      "id": 62, "day": 5, "phase": "Full Audit",
+      "title": "The Missing 30%: Noise Per-Frame Volume",
+      "summary": "The biggest information gap: 2,545 noise volume changes are reduced to a single attack velocity per hit. The drum table provides generic synthetic decay, but it's not the game's actual envelope. Adding CC11 to the noise track would let the synth replay ground-truth drum shapes.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["noise CC11", "per-frame volume", "ground truth envelope"]
+    },
+    {
+      "id": 63, "day": 5, "phase": "Full Audit",
+      "title": "Loaded But Never Used: noi_mode",
+      "summary": "The noise mode bit (short/long LFSR) is loaded from the Mesen capture into the frame state and then never read by any track builder. Short mode produces metallic, tonal buzzes; long mode produces white noise. Two fundamentally different timbres collapsed into one.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["noise mode", "LFSR mode", "metallic noise", "white noise"]
+    },
+    {
+      "id": 64, "day": 5, "phase": "Full Audit",
+      "title": "No DPCM Activity in Mario Overworld",
+      "summary": "All 4 DPCM registers ($4010-$4013) are written once at frame 1 (initialization) and never change. There is zero DPCM sample playback during the overworld theme. Whatever additional percussion or bass the game uses comes from the noise and triangle channels, not sample playback.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["DPCM", "DMC", "delta modulation", "sample playback"]
+    },
+    {
+      "id": 65, "day": 5, "phase": "Full Audit",
+      "title": "The Synth Has No Phase Reset",
+      "summary": "On real NES hardware, writing to $4003/$4007 resets the pulse phase to step 0. Every note starts with a consistent attack. The synth lets the phase continue from wherever it was — each note starts at a random position in the duty cycle. This affects attack consistency and perceived 'punch.'",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["phase reset", "duty cycle phase", "attack consistency"]
+    },
+    {
+      "id": 66, "day": 5, "phase": "Full Audit",
+      "title": "Linear Mixer vs NES Nonlinear DAC",
+      "summary": "The real NES mixes channels through two nonlinear DAC lookup tables: pulse channels share one DAC, triangle+noise+DPCM share another. This creates subtle interaction effects where louder channels slightly reduce the volume of quieter ones. The synth uses simple linear addition. Audibly minor but architecturally significant.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["DAC", "nonlinear mixing", "channel interaction"]
+    },
+    {
+      "id": 67, "day": 5, "phase": "Full Audit",
+      "title": "CC12 Mapping Inconsistency",
+      "summary": "The synth handles CC12 with min(3, msg3) — expecting raw NES duty values 0-3. But the MIDI files encode duty as 16/32/64/96 (spread across the 0-127 range). The synth's CC1 handler uses floor(msg3/32) which correctly maps 0-127 to 0-3. CC12 and CC1 control the same parameter with different formulas. CC12 works by accident because the values happen to be 0-3 in our NSF extraction.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["CC12", "duty mapping", "value range", "round-trip"]
+    },
+    {
+      "id": 68, "day": 5, "phase": "Keyboard Fix",
+      "title": "Keyboard Doesn't Work in Generated Projects",
+      "summary": "Opening a generated Mario project and pressing keys produces no sound. The issue: all 4 tracks have REC 0 5088 (unarmed). No track is armed for MIDI input. The generate_project.py code has armed=(not has_midi) — tracks with MIDI items are unarmed. For file playback projects, this means zero tracks respond to keyboard.",
+      "category": "blunder",
+      "docs": [],
+      "terms": ["REC field", "track arming", "MIDI input routing"]
+    },
+    {
+      "id": 69, "day": 5, "phase": "Keyboard Fix",
+      "title": "Fix: First Track Always Armed",
+      "summary": "Changed from armed=(not has_midi) to armed=(i == 0). The first track is always armed for keyboard play. Other tracks can be armed manually in REAPER. Keyboard now works immediately when the project opens.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["track arming", "keyboard play"]
+    },
+    {
+      "id": 70, "day": 5, "phase": "Keyboard Fix",
+      "title": "No CC123 Reset at End of MIDI",
+      "summary": "After playback ends, cc_file_mode stays locked at 1 because no track emits CC123 (All Notes Off). The keyboard remap is permanently disabled. Pressing keys routes to ch0 only. The synth thinks file playback is still in progress.",
+      "category": "blunder",
+      "docs": [],
+      "terms": ["CC123", "all notes off", "cc_file_mode reset"]
+    },
+    {
+      "id": 71, "day": 5, "phase": "Keyboard Fix",
+      "title": "Fix: CC123 at End of Every Track",
+      "summary": "All three track builders in mesen_to_midi.py now emit CC123 before end_of_track. After playback stops, the synth resets cc_active[] and cc_file_mode, re-enabling keyboard remapping. The keyboard works both during live play and after file playback.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["CC123", "state reset", "keyboard re-enable"]
+    },
+    {
+      "id": 72, "day": 5, "phase": "Keyboard Fix",
+      "title": "The Three Requirements for Working Keyboard",
+      "summary": "After debugging across multiple sessions, keyboard input in REAPER requires exactly three things: (1) REC field with 5088 on every track (even unarmed), (2) Keyboard Mode slider set to ON in the Console synth, (3) Full project header with ~100 lines including RECMODE, SAMPLERATE, METRONOME, etc. Miss any one and keyboard silently fails.",
+      "category": "architecture",
+      "docs": [],
+      "terms": ["REC 5088", "keyboard mode", "project header"]
+    },
+    {
+      "id": 73, "day": 5, "phase": "Mario v4",
+      "title": "Mario v4: The Best Yet",
+      "summary": "Super_Mario_Bros._01_Overworld_mesen_v4.rpp. Fixed mixer, armed Track 1, CC123 reset, full 158s capture (796/642/414/223 notes). The user verdict: 'this is the best yet.' Drums have proper decay instead of phase-inverting. Pulse channels have 8x more amplitude. Keyboard works after playback stops.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["v4 project", "ear-check", "incremental improvement"]
+    },
+    {
+      "id": 74, "day": 5, "phase": "Still Missing",
+      "title": "The Remaining Gap: One Layer Still Missing",
+      "summary": "The user hears improvement but says 'it seems like one layer of something is missing.' The audit identifies candidates: noise per-frame volume (30% fidelity), triangle articulation detail (70% fidelity), phase reset consistency, and 3 of 7 noise period values lost in the 4-drum mapping.",
+      "category": "narrative",
+      "docs": [],
+      "terms": ["fidelity gap", "missing layer"]
+    },
+    {
+      "id": 75, "day": 5, "phase": "Still Missing",
+      "title": "Score: What Percentage of Mario's Music Is Translated?",
+      "summary": "Pitch: 98%. Timing: 94%. Pulse volume: 95%. Pulse duty: 100%. Triangle gating: 70%. Noise envelope: 30%. Noise timbre: 50%. DPCM: N/A (unused). Overall weighted estimate: approximately 80% of the musical information in the Mesen capture reaches the listener's ears.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["fidelity score", "translation accuracy"]
+    },
+    {
+      "id": 76, "day": 1, "phase": "Foundation",
+      "title": "The NES 2A03 APU",
+      "summary": "The sound chip at the heart of everything. Five channels: Pulse 1, Pulse 2, Triangle, Noise, and DPCM. Each controlled by memory-mapped registers ($4000-$4017). The chip runs at 1.789773 MHz (NTSC), producing audio at 60fps frame rate. Every musical decision in this project traces back to what this chip can and cannot do.",
+      "category": "architecture",
+      "docs": ["docs/REGISTER_MAP.md"],
+      "terms": ["2A03", "APU", "NTSC", "memory-mapped registers"]
+    },
+    {
+      "id": 77, "day": 1, "phase": "Foundation",
+      "title": "What Is an NSF File?",
+      "summary": "NES Sound Format. A stripped-down NES ROM containing only the music engine code and data. A 6502 CPU emulator (py65) runs the sound driver in isolation, capturing APU register writes. The NSF format was designed for standalone playback — but 'standalone' doesn't always match 'in-game.'",
+      "category": "architecture",
+      "docs": ["docs/NSF_TO_MIDI_PIPELINE.md"],
+      "terms": ["NSF", "NES Sound Format", "6502", "py65"]
+    },
+    {
+      "id": 78, "day": 3, "phase": "Glitch Art",
+      "title": "Blunder B09: SOURCE MIDIPOOL Doesn't Play Back",
+      "summary": "MIDI items appear visually in the REAPER timeline but pressing Play produces no audio. REAPER v7 treats MIDIPOOL FILE as stubs, not playable items. The fix: use SOURCE MIDI with FILE reference. The distinction between 'shows up in the UI' and 'actually produces sound' becomes a recurring theme.",
+      "category": "blunder",
+      "docs": ["state/blunders.json"],
+      "terms": ["MIDIPOOL", "SOURCE MIDI", "RPP format"]
+    },
+    {
+      "id": 79, "day": 3, "phase": "Glitch Art",
+      "title": "Blunder B10: Slider Parameter Misalignment",
+      "summary": "A gap in the JSFX slider numbering causes RPP parameter values to shift. The synth is silent or produces wrong sounds when loaded from a project file, but works fine when configured manually. The fix: sequential slider numbering with no gaps, padded to 64 with dashes.",
+      "category": "blunder",
+      "docs": ["state/blunders.json"],
+      "terms": ["slider numbering", "parameter alignment", "RPP values"]
+    },
+    {
+      "id": 80, "day": 4, "phase": "Blunder B14",
+      "title": "Blunder B15: Minimal RPP Header Breaks Keyboard",
+      "summary": "Projects generated with a short header (just tempo and track count) open fine in REAPER but keyboard input silently fails. Missing: ENVATTACH, SAMPLERATE, METRONOME, RECORD_CFG, MASTERPLAYSPEEDENV, TEMPOENVEX, PROJBAY. The full header is ~100 lines from a REAPER-saved reference project.",
+      "category": "blunder",
+      "docs": ["state/blunders.json"],
+      "terms": ["RPP header", "REAPER initialization", "keyboard routing"]
+    },
+    {
+      "id": 81, "day": 4, "phase": "Blunder B14",
+      "title": "Blunder B16: REC 0 Forgets MIDI Routing",
+      "summary": "Setting REC 0 0 (unarmed, input=0) on a track seems harmless — it's not armed, so why does input matter? Because when the user later arms it, REAPER defaults to audio input ('Input 1' = microphone). The fix: ALWAYS use REC {0|1} 5088 even when unarmed. Pre-configure MIDI routing so it's ready when needed.",
+      "category": "blunder",
+      "docs": ["state/blunders.json"],
+      "terms": ["REC field", "MIDI routing", "input configuration"]
+    },
+    {
+      "id": 82, "day": 2, "phase": "Lessons",
+      "title": "Rule: Triangle Is Always 1 Octave Lower",
+      "summary": "For the same NES timer period, the triangle channel produces a frequency half that of pulse channels. Pulse uses a 16-step sequencer; triangle uses 32 steps. This is a hardware fact, not a software choice. Changing the octave offset in code without understanding this breaks triangle pitch.",
+      "category": "rule",
+      "docs": [".claude/rules/architecture.md"],
+      "terms": ["sequencer steps", "octave offset", "hardware fact"]
+    },
+    {
+      "id": 83, "day": 2, "phase": "Lessons",
+      "title": "Rule: Trace Is Ground Truth",
+      "summary": "After any change to parser or frame_ir code, run trace_compare.py and verify 0 mismatches. The Mesen trace captures exactly what the NES APU hardware produces. If your code disagrees with the trace, your code is wrong.",
+      "category": "rule",
+      "docs": [".claude/rules/architecture.md"],
+      "terms": ["trace comparison", "ground truth", "hardware verification"]
+    },
+    {
+      "id": 84, "day": 2, "phase": "Lessons",
+      "title": "Rule: Manifests Before Code",
+      "summary": "Every new game MUST have a manifest JSON before any parser code is written. The manifest declares mapper type, pointer table location, command format, and known facts vs. hypotheses. Without it, assumptions get baked into code. The CV1-to-Contra transition wasted 3+ prompts because DX byte count was assumed, not checked.",
+      "category": "rule",
+      "docs": [".claude/rules/architecture.md"],
+      "terms": ["manifest", "mapper", "pointer table", "assumptions"]
+    },
+    {
+      "id": 85, "day": 4, "phase": "Infrastructure",
+      "title": "The Blunder Registry",
+      "summary": "state/blunders.json maintains a structured catalog of every significant bug, with fields for id, title, symptom, root_cause, fix, layer, and status. 17 blunders cataloged across synth, project, and extraction layers. Each entry is designed to be machine-readable so future sessions can check for recurrence.",
+      "category": "architecture",
+      "docs": ["state/blunders.json"],
+      "terms": ["blunder registry", "structured debugging", "recurrence prevention"]
+    },
+    {
+      "id": 86, "day": 4, "phase": "Infrastructure",
+      "title": "The Wins Registry",
+      "summary": "state/wins.json catalogs every proven success: what works, where it was verified, and what it depends on. The counterpart to blunders.json. Together they form a complete picture of what the pipeline can and cannot do.",
+      "category": "architecture",
+      "docs": ["state/wins.json"],
+      "terms": ["wins registry", "verified capabilities"]
+    },
+    {
+      "id": 87, "day": 3, "phase": "Mario Begins",
+      "title": "Period Change Detection: How Notes Are Found",
+      "summary": "In NES music, note boundaries aren't events — they're state changes. A note starts when the APU period register changes value and ends when it changes again. The mesen_to_midi.py script detects these transitions with a jitter filter (ignore changes of 1-2 units) and a minimum period threshold (period <= 8 is ultrasonic).",
+      "category": "architecture",
+      "docs": ["scripts/mesen_to_midi.py"],
+      "terms": ["period change", "note boundary", "jitter filter"]
+    },
+    {
+      "id": 88, "day": 3, "phase": "Mario Begins",
+      "title": "CC11 Is the Envelope",
+      "summary": "NES games don't have ADSR envelopes in the traditional sense. The sound driver updates the volume register every frame (60 times per second). These per-frame volume values ARE the envelope. CC11 (MIDI Expression) captures them exactly: 4-5 CC11 changes per note, each representing one frame's volume.",
+      "category": "architecture",
+      "docs": [".claude/rules/synth_fidelity.md"],
+      "terms": ["CC11", "per-frame volume", "MIDI Expression"]
+    },
+    {
+      "id": 89, "day": 3, "phase": "Mario Begins",
+      "title": "CC12 Is the Timbre",
+      "summary": "The NES duty cycle register changes per-frame alongside volume. CC12 captures these changes. Duty 0=12.5% (thin, nasal), 1=25% (bright), 2=50% (warm, full), 3=75% (inverted 25%). Some games switch duty during a note's attack phase for a brighter onset that mellows into the sustain.",
+      "category": "architecture",
+      "docs": [".claude/rules/synth_fidelity.md"],
+      "terms": ["CC12", "duty cycle", "timbre automation"]
+    },
+    {
+      "id": 90, "day": 3, "phase": "Mario Begins",
+      "title": "128.6 BPM: The NES Frame Rate as Tempo",
+      "summary": "The NES runs at 60.0988 fps (NTSC). At 16 ticks per frame and 480 ticks per beat, the effective tempo is 128.6 BPM. This isn't a musical choice — it's a hardware fact converted to a MIDI-compatible tempo. Every NES game runs at this exact tempo; the sound driver controls note duration by counting frames.",
+      "category": "architecture",
+      "docs": [],
+      "terms": ["frame rate", "BPM", "ticks per frame"]
+    },
+    {
+      "id": 91, "day": 5, "phase": "Full Audit",
+      "title": "Sweep Unit: 5 Toggles, Zero Translation",
+      "summary": "Mario's Pulse 1 sweep unit is toggled 5 times during the capture. The sweep unit creates automatic pitch slides (portamento) by hardware — the period register shifts up or down at a configurable rate. This information exists in the Mesen capture but is never read by mesen_to_midi.py. If Mesen's period values already reflect sweep effects, this is harmless. If not, pitch slides are lost.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["sweep unit", "portamento", "pitch slide"]
+    },
+    {
+      "id": 92, "day": 5, "phase": "Full Audit",
+      "title": "The Timing Compression",
+      "summary": "The script uses 16 ticks per frame, but the true value is ~17.1 (480 ticks/beat / 28.06 frames/beat). This creates a 6.4% tempo compression — the MIDI is slightly faster than the original game. Consistent across all notes (no drift), but the entire song is 6.4% shorter than real-time.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["timing compression", "ticks per frame", "tempo accuracy"]
+    },
+    {
+      "id": 93, "day": 1, "phase": "Foundation",
+      "title": "The Konami Sound Driver",
+      "summary": "Castlevania and Contra both use variants of Konami's pre-VRC sound driver. The format is substantially decoded: DX commands define instruments, E-commands control pitch/volume/tempo, $C0-$CF handle rests. A full spec exists at extraction/drivers/konami/spec.md. This driver is the baseline against which all other drivers are compared.",
+      "category": "architecture",
+      "docs": ["extraction/drivers/konami/spec.md"],
+      "terms": ["Konami driver", "DX command", "VRC", "sound driver"]
+    },
+    {
+      "id": 94, "day": 4, "phase": "Diagnosis",
+      "title": "Web Research: Mario's Music Theory",
+      "summary": "Research into Koji Kondo's composition technique for the overworld theme. The melody uses E4-E4-E4-C4-E4-G4 — three repeated Es that create anticipation before the iconic C4-E4-G4 arpeggiated major chord. The bass follows a D3 pattern with staccato gating. The 'swing' feel comes from unequal note durations, not tempo variation.",
+      "category": "discovery",
+      "docs": ["docs/WEBRESEARCHMARIOMUSIC.md"],
+      "terms": ["Koji Kondo", "melody structure", "swing feel"]
+    },
+    {
+      "id": 95, "day": 4, "phase": "Diagnosis",
+      "title": "Web Research: SMB1 Sound Engine Internals",
+      "summary": "Deep dive into how SMB1's sound driver works at the ROM level. Key finding: the driver reads $4015 (APU status register) to check length counter state. py65 returns 0 for all reads from this register because it's flat RAM, not hardware. This may cause the driver to take wrong code paths — potentially the root cause of period-halving in NSF extraction.",
+      "category": "discovery",
+      "docs": ["docs/HACKINGMARIOWEB.md"],
+      "terms": ["$4015", "APU status", "length counter", "code path divergence"]
+    },
+    {
+      "id": 96, "day": 5, "phase": "Full Audit",
+      "title": "The Mesen Export Format Question",
+      "summary": "A critical unknown: does Mesen export decoded/effective APU values (after sweep, length counter, and frame counter processing), or raw register writes? If decoded, most register omissions in mesen_to_midi.py are harmless. If raw, sweep effects and length counter gating are missing. The entire pipeline's accuracy depends on this answer.",
+      "category": "discovery",
+      "docs": [],
+      "terms": ["Mesen export", "decoded vs raw", "register interpretation"]
+    },
+    {
+      "id": 97, "day": 5, "phase": "Full Audit",
+      "title": "NES vs MIDI: A Lossy Translation",
+      "summary": "The NES APU is a stateful, frame-based system. Every frame, the driver sets registers. There are no 'note on' or 'note off' events. MIDI is an event-based protocol. Converting between them is inherently lossy: continuous state must be quantized into discrete events. The question isn't whether information is lost, but which information matters.",
+      "category": "architecture",
+      "docs": ["docs/NESMUSICTRANSLATEDTOMIDI.md"],
+      "terms": ["stateful vs event-based", "lossy conversion", "quantization"]
+    },
+    {
+      "id": 98, "day": 5, "phase": "GlitchMario",
+      "title": "The GlitchMario Repo",
+      "summary": "Everything deployed to https://github.com/t3dy/GlitchMario. A static website tells the story of five days of accidental glitch art production, with 100 events, a glossary of technical terms, and links to every document. The timeline of spectacular failures becomes the documentation.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["GitHub Pages", "static site", "documentation"]
+    },
+    {
+      "id": 99, "day": 5, "phase": "GlitchMario",
+      "title": "Context Engineering as Development Method",
+      "summary": "This project demonstrates context engineering: an LLM needs simultaneous knowledge of NES hardware registers, MIDI protocol, REAPER's RPP format, JSFX audio programming, signal processing, and music theory. No single document contains all of this. The system files (CLAUDE.md, rules/, blunders.json) are the context — they make the LLM effective by pre-loading the right knowledge at the right time.",
+      "category": "architecture",
+      "docs": ["docs/331CONTEXTENGINEERINGAPPROACH.md"],
+      "terms": ["context engineering", "system files", "pre-loaded knowledge"]
+    },
+    {
+      "id": 100, "day": 5, "phase": "GlitchMario",
+      "title": "The Pipeline Today",
+      "summary": "ROM/NSF -> Mesen trace capture -> mesen_to_midi.py -> generate_project.py -> REAPER with ReapNES_Console.jsfx. 50 games, 1,099 MIDIs. Mario at 80% fidelity and climbing. Every bug is cataloged. Every rule is enforced. Every session starts with a 7-point environment check. The pipeline works — imperfectly, transparently, and with a complete record of every failure that made it better.",
+      "category": "milestone",
+      "docs": [],
+      "terms": ["pipeline", "fidelity", "continuous improvement"]
+    }
+  ],
+  "glossary": {
+    "2A03": "The Ricoh 2A03 — the NES CPU+APU chip. Contains a modified 6502 CPU and a 5-channel audio processing unit. The heart of every NES sound.",
+    "ADSR": "Attack-Decay-Sustain-Release. A standard envelope model for shaping note volume over time. The NES doesn't have ADSR — its volume is set directly per frame by the sound driver. ADSR is only used in the synth for keyboard play when no CC data exists.",
+    "APU": "Audio Processing Unit. The sound hardware inside the 2A03 chip. 5 channels: Pulse 1, Pulse 2, Triangle, Noise, DPCM.",
+    "ASCII": "American Standard Code for Information Interchange. REAPER's JSFX compiler on Windows silently fails on non-ASCII characters. All JSFX files must be pure 7-bit ASCII.",
+    "batch processing": "Running the entire extraction pipeline on multiple games automatically. nsf_to_reaper.py --all processes an entire library.",
+    "binary waveform": "A signal that alternates between exactly two values (0 and volume). Pulse and noise channels produce binary waveforms. The mixer must center them symmetrically to avoid volume-dependent artifacts.",
+    "BPM": "Beats Per Minute. The NES frame rate of 60.0988 fps converts to 128.6 BPM at 16 ticks per frame and 480 ticks per beat.",
+    "bytecode cache": "REAPER compiles JSFX source to bytecode and caches it. Editing the source file doesn't invalidate the cache. Cache busting requires renaming the file.",
+    "CC11": "MIDI Control Change 11 (Expression). Used to encode per-frame NES volume automation. 4-5 CC11 messages per note capture the sound driver's volume envelope.",
+    "CC12": "MIDI Control Change 12. Used to encode NES duty cycle changes. Values 0-3 map to the four pulse duty cycles (12.5%, 25%, 50%, 75%).",
+    "CC123": "MIDI Control Change 123 (All Notes Off). Used at end of tracks to reset the synth's cc_file_mode flag, re-enabling keyboard input after file playback.",
+    "cc_active": "Per-channel flag in the synth. Set to 1 when CC11/CC12 arrives on that channel. When active, ADSR is bypassed and CC values drive volume/duty directly.",
+    "cc_file_mode": "Global flag in the synth. Set to 1 when any CC automation is detected. Disables keyboard channel remapping to prevent the Keyboard Mode Catastrophe.",
+    "channel mode": "Synth slider that selects which NES channel a REAPER track controls: 0=Pulse 1, 1=Pulse 2, 2=Triangle, 3=Noise, 4=Full APU.",
+    "constant volume flag": "Bit 4 of $4000/$4004/$400C. When set, the volume register value is used directly. When clear, the NES hardware envelope generator controls volume.",
+    "CSV capture": "The sparse/delta format Mesen uses to export APU state: frame,parameter,value. Only records when a value changes.",
+    "DAC": "Digital-to-Analog Converter. The NES has two DACs with nonlinear transfer functions: one for pulse channels, one for triangle+noise+DPCM.",
+    "DC offset": "A constant voltage added to a signal. Makes audio sound distorted or clips at lower volumes. The NES mixer naturally produces DC offset which must be removed for clean playback.",
+    "delta format": "A recording format where only changes are stored. If a register value doesn't change between frames, no entry is written. Efficient for sparse data like APU state.",
+    "DPCM": "Delta Pulse Code Modulation. The NES's 5th audio channel, capable of playing 1-bit delta-encoded audio samples. Used for drums, voice clips, and bass in some games.",
+    "dual-mode": "The synth's core architecture: CC-driven mode for file playback (CC11/CC12 bypass ADSR) and ADSR mode for keyboard play (when no CC data exists).",
+    "duty cycle": "The fraction of a pulse wave that is 'high.' The NES has 4 options: 12.5% (thin), 25% (bright), 50% (warm), 75% (inverted 25%). Controls timbre.",
+    "ear-check": "Human listening verification. The final authority on whether extracted music sounds correct. Automated tests can pass while the audio is wrong.",
+    "envelope": "The volume shape of a note over time. On real NES hardware, the sound driver sets volume every frame. In MIDI, this is captured as CC11 automation.",
+    "extraction route": "The method chosen for a specific game: nsf (6502 emulation), mesen_trace (hardware capture), hybrid, or apu2_sysex.",
+    "fidelity": "How accurately the reproduced audio matches the original game. Measured per dimension: pitch, timing, volume, duty, noise.",
+    "frame": "One NES video frame at ~60fps (16.64ms). The fundamental unit of time for NES audio. Sound drivers update all registers once per frame.",
+    "frame rate": "60.0988 fps (NTSC NES). All timing in the pipeline is derived from this rate.",
+    "GM drum map": "General MIDI drum note assignments. Note 36=Kick, 38=Snare, 42=Closed Hi-Hat, etc. Used to map NES noise period values to recognizable drum sounds.",
+    "ground truth": "The most authoritative source of musical data. Hierarchy: Mesen trace > NSF emulation > MIDI > synth interpretation.",
+    "hardware envelope": "The NES's built-in volume decay generator (not ADSR). When enabled (const flag=0), the hardware automatically decrements volume at a configurable rate.",
+    "hypothesis testing": "The debugging discipline: form ONE hypothesis about what's wrong, change ONE thing, rerun comparison. Never change multiple variables simultaneously.",
+    "jitter filter": "A threshold filter (|period_change| > 2) that suppresses hardware timer wobble. Prevents false note detections from minor period fluctuations.",
+    "JSFX": "REAPER's built-in audio plugin format. Programs written in a C-like language, compiled to bytecode at load time. Used to build the ReapNES synth.",
+    "keyboard mode": "Synth slider that enables MIDI channel remapping for live keyboard play. Remaps incoming MIDI to the track's assigned NES channel so the keyboard works regardless of which channel it sends on.",
+    "length counter": "NES hardware timer that automatically silences a channel after N frames. Loaded by writing to $4003/$4007/$400B/$400F.",
+    "LFSR": "Linear Feedback Shift Register. The NES noise channel uses a 15-bit LFSR to generate pseudo-random bit sequences. Two modes: long (32767-step, white noise) and short (93-step, metallic tone).",
+    "linear counter": "Triangle channel's 7-bit down-counter. Controls note duration at sub-frame precision. Different from the length counter.",
+    "lossy conversion": "Any translation that permanently discards information. NES-to-MIDI is inherently lossy: continuous state becomes discrete events, 16 noise periods become 4 drums, sub-semitone detuning is quantized away.",
+    "mapper": "NES cartridge hardware that extends the CPU's address space. Different mappers have different memory layouts, affecting where music data is stored in the ROM.",
+    "memory-mapped registers": "Hardware registers accessed through CPU memory addresses. The NES APU uses $4000-$4017.",
+    "Mesen": "A high-accuracy NES emulator with APU trace capture capability. Exports per-frame register state as CSV.",
+    "MIDI": "Musical Instrument Digital Interface. An event-based protocol for representing music. Notes, velocities, control changes. The intermediate format between NES captures and REAPER projects.",
+    "mixer": "The code that combines all channel outputs into a final audio signal. Must handle DC centering, volume scaling, and channel weighting.",
+    "noise channel": "NES APU channel 4. Generates pseudo-random noise through a 15-bit LFSR. 16 selectable frequencies. Two modes (white noise / metallic). Used for drums and sound effects.",
+    "noise mode": "Bit 7 of $400E. Mode 0 = long sequence (32767 steps, white noise). Mode 1 = short sequence (93 steps, metallic/tonal buzz).",
+    "noise period": "4-bit value ($400E bits 0-3) that selects one of 16 noise frequencies from a lookup table. Lower values = higher frequency noise.",
+    "note boundary": "The moment when one note ends and another begins. In NES music, this occurs when the timer period register changes value.",
+    "NSF": "NES Sound Format. A file containing the music engine code from an NES ROM, stripped of everything except sound. Playable by a 6502 emulator.",
+    "NTSC": "National Television System Committee. The North American video standard. NES NTSC runs at 1.789773 MHz CPU clock and 60.0988 fps.",
+    "octave error": "A pitch error of exactly 12 semitones (one octave). Often caused by using the wrong divisor (16 vs 32 for pulse vs triangle) or by period-halving bugs.",
+    "opcode": "A command byte in a sound driver's music format. Same value can mean different things in different drivers.",
+    "per-frame volume": "Volume updates occurring every NES frame (~60Hz). The sound driver sets volume register values each frame, creating the envelope shape. Captured as CC11 in MIDI.",
+    "period register": "The 11-bit timer value ($4002/$4003 for Pulse 1) that controls pitch. Lower period = higher frequency. Period = CPU_CLK / (16 * frequency) - 1.",
+    "phase inversion": "When a signal flips polarity — positive becomes negative. The old mixer formula caused this at volumes below 7.5 because the centering constant (-0.5) exceeded the signal amplitude.",
+    "phase reset": "Restarting the waveform at step 0. The NES resets pulse phase on $4003/$4007 writes. Ensures consistent attack character for every note.",
+    "pipeline": "The full chain: ROM/NSF -> capture -> MIDI -> REAPER project -> synth playback. Each stage transforms the data, and each transformation is potentially lossy.",
+    "pulse wave": "A rectangular waveform that alternates between two states. The NES has two pulse channels, each with 4 selectable duty cycles.",
+    "py65": "A Python implementation of the MOS 6502 CPU. Used to emulate NSF file playback by running the NES sound driver in isolation.",
+    "REC field": "A line in REAPER project files that configures track recording. Format: REC armed input monitor ... The input field (5088) encodes MIDI device and channel routing.",
+    "REAPER": "Digital Audio Workstation (DAW) used for playback and rendering. Hosts the JSFX synth plugin and plays back MIDI files.",
+    "RPP": "REAPER Project file format. A text-based hierarchical format that defines tracks, plugins, MIDI items, and routing.",
+    "sound driver": "The game's music playback engine, running on the NES CPU. Reads music data and writes APU registers every frame. Each game developer had their own driver format.",
+    "sweep unit": "NES hardware that automatically shifts the pulse timer period up or down at a configurable rate. Creates portamento/pitch slide effects without CPU involvement.",
+    "symmetric centering": "The new mixer formula (2*out - peak)/30. Ensures binary waveforms swing equally above and below zero regardless of volume level.",
+    "trace comparison": "Frame-by-frame comparison of extracted data against emulator APU state. The gold standard for validating extraction accuracy.",
+    "triangle wave": "The NES's third audio channel. A 32-step staircase waveform. No volume control (only gate on/off). 1 octave lower than pulse for the same timer period.",
+    "validation gate": "A checkpoint that must pass before proceeding. The pipeline has 6 gates (A through F) with increasingly strict requirements.",
+    "versioning": "Adding v1, v2, v3 suffixes to output files. Never overwrite a tested artifact. Enables comparison between iterations.",
+    "XOR": "Exclusive OR. Returns 1 when inputs differ. In JSFX, ^ is exponentiation (not XOR). Use (a + b) & 1 for single-bit XOR."
+  }
+}

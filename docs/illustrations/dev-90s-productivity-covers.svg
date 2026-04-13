@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="bgp" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eee6d2"/>
+      <stop offset="100%" stop-color="#b7c7d6"/>
+    </linearGradient>
+    <linearGradient id="headerp" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#224c7a"/>
+      <stop offset="100%" stop-color="#6f9bc7"/>
+    </linearGradient>
+    <filter id="shadowp" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#23384d" flood-opacity="0.25"/>
+    </filter>
+    <style>
+      .title { font: 700 56px Georgia, 'Times New Roman', serif; fill: #15283a; }
+      .subtitle { font: 600 24px Verdana, sans-serif; fill: #27455e; }
+      .cover { stroke: #344e63; stroke-width: 4; rx: 24; ry: 24; filter: url(#shadowp); }
+      .band { fill: url(#headerp); }
+      .name { font: 700 28px Georgia, 'Times New Roman', serif; fill: #ffffff; }
+      .tag { font: 700 18px Verdana, sans-serif; fill: #15283a; }
+      .body { font: 500 17px Verdana, sans-serif; fill: #243746; }
+      .mini { font: 700 15px 'Courier New', monospace; fill: #2a3e52; }
+      .badge { font: 700 14px Verdana, sans-serif; fill: #fff; }
+    </style>
+  </defs>
+
+  <rect width="1800" height="1200" fill="url(#bgp)"/>
+  <rect x="52" y="48" width="1696" height="1104" rx="28" fill="#f7f2e7" stroke="#596f82" stroke-width="6"/>
+  <text x="900" y="118" text-anchor="middle" class="title">C:\Dev 1996 Software Catalog</text>
+  <text x="900" y="154" text-anchor="middle" class="subtitle">Productivity Edition • imagined as shrink-wrapped desktop software box covers</text>
+
+  <g transform="translate(110,220)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">ScribeFarm Pro 95</text>
+    <rect x="22" y="82" width="132" height="132" rx="12" fill="#d2e7f3" stroke="#446782" stroke-width="3"/>
+    <path d="M48 182 L84 124 L120 162 L146 108" stroke="#2b5876" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <rect x="182" y="86" width="148" height="26" rx="6" fill="#ccd8e2"/><rect x="182" y="120" width="128" height="18" rx="6" fill="#dce5eb"/>
+    <rect x="182" y="148" width="136" height="18" rx="6" fill="#dce5eb"/><rect x="182" y="176" width="112" height="18" rx="6" fill="#dce5eb"/>
+    <text x="22" y="232" class="tag">RAG report drafting for inspectors</text>
+    <text x="22" y="258" class="mini">Citations • cases • desktop workflow</text>
+  </g>
+
+  <g transform="translate(520,220)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">DreamBase Deluxe</text>
+    <rect x="28" y="88" width="132" height="118" rx="12" fill="#e5d8f0" stroke="#5a4f73" stroke-width="3"/>
+    <circle cx="68" cy="126" r="18" fill="#8d6cab"/><circle cx="122" cy="126" r="18" fill="#8d6cab"/>
+    <rect x="52" y="154" width="88" height="22" rx="6" fill="#8d6cab"/>
+    <rect x="184" y="90" width="144" height="16" fill="#d3d6de"/><rect x="184" y="116" width="134" height="16" fill="#d3d6de"/>
+    <rect x="184" y="142" width="120" height="16" fill="#d3d6de"/><rect x="184" y="168" width="146" height="16" fill="#d3d6de"/>
+    <text x="22" y="232" class="tag">Personal knowledge archaeology</text>
+    <text x="22" y="258" class="mini">SQLite • search • messages • archives</text>
+  </g>
+
+  <g transform="translate(930,220)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">Draft Academy Gold</text>
+    <rect x="26" y="88" width="134" height="126" rx="12" fill="#f7e7b7" stroke="#876831" stroke-width="3"/>
+    <rect x="48" y="108" width="28" height="80" fill="#c08b2c"/><rect x="90" y="132" width="28" height="56" fill="#c08b2c"/><rect x="132" y="96" width="28" height="92" fill="#c08b2c"/>
+    <text x="184" y="118" class="body">Learn data engineering,</text>
+    <text x="184" y="144" class="body">statistics, and AI design</text>
+    <text x="184" y="170" class="body">through MTG draft analysis.</text>
+    <text x="22" y="232" class="tag">Educational analytics suite</text>
+    <text x="22" y="258" class="mini">Lessons • quizzes • pathways</text>
+  </g>
+
+  <g transform="translate(1340,220)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">UbikTrainings Office</text>
+    <rect x="28" y="86" width="138" height="128" rx="12" fill="#d7ecde" stroke="#41715d" stroke-width="3"/>
+    <circle cx="72" cy="126" r="16" fill="#4e8b70"/><circle cx="122" cy="126" r="16" fill="#4e8b70"/>
+    <rect x="56" y="156" width="82" height="24" rx="7" fill="#4e8b70"/>
+    <rect x="188" y="94" width="134" height="18" fill="#d7dee5"/><rect x="188" y="122" width="122" height="18" fill="#d7dee5"/>
+    <rect x="188" y="150" width="140" height="18" fill="#d7dee5"/><rect x="188" y="178" width="116" height="18" fill="#d7dee5"/>
+    <text x="22" y="232" class="tag">33 workflow skills for AI projects</text>
+    <text x="22" y="258" class="mini">Planning • audits • execution discipline</text>
+  </g>
+
+  <g transform="translate(110,520)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">Barton Systems Suite</text>
+    <rect x="24" y="86" width="144" height="132" rx="12" fill="#f3ddd4" stroke="#8a5c4b" stroke-width="3"/>
+    <rect x="42" y="104" width="108" height="18" fill="#d08a68"/><rect x="42" y="134" width="46" height="60" fill="#d08a68"/><rect x="98" y="134" width="52" height="30" fill="#d08a68"/><rect x="98" y="174" width="52" height="20" fill="#d08a68"/>
+    <text x="188" y="120" class="body">Software pitch package for</text>
+    <text x="188" y="146" class="body">a moving company, with</text>
+    <text x="188" y="172" class="body">catalogs, demos, and hiring.</text>
+    <text x="22" y="232" class="tag">Small business operations</text>
+    <text x="22" y="258" class="mini">CRM • quotes • scheduling • hiring</text>
+  </g>
+
+  <g transform="translate(520,520)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">Capital Interpreter</text>
+    <rect x="30" y="90" width="128" height="120" rx="12" fill="#e6e2d3" stroke="#77705c" stroke-width="3"/>
+    <rect x="52" y="112" width="84" height="76" fill="#b9b18f"/><line x1="70" y1="112" x2="70" y2="188" stroke="#e6e2d3" stroke-width="3"/><line x1="96" y1="112" x2="96" y2="188" stroke="#e6e2d3" stroke-width="3"/>
+    <text x="182" y="118" class="body">Retrieval-augmented reading</text>
+    <text x="182" y="144" class="body">for Marx's Capital, framed</text>
+    <text x="182" y="170" class="body">as a reusable RAG tutorial.</text>
+    <text x="22" y="232" class="tag">Research knowledge engine</text>
+    <text x="22" y="258" class="mini">Chunk • embed • retrieve • answer</text>
+  </g>
+
+  <g transform="translate(930,520)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">ShakesPhyllis 98</text>
+    <rect x="30" y="88" width="132" height="126" rx="12" fill="#f0e1ef" stroke="#715973" stroke-width="3"/>
+    <path d="M52 168 Q94 102 136 168" fill="#b77db5"/><rect x="70" y="138" width="48" height="40" fill="#f0e1ef"/>
+    <text x="186" y="118" class="body">A sonnet database and</text>
+    <text x="186" y="144" class="body">visualization suite with</text>
+    <text x="186" y="170" class="body">rhetoric, theme, and provenance.</text>
+    <text x="22" y="232" class="tag">Digital humanities workstation</text>
+    <text x="22" y="258" class="mini">SQLite • essays • close reading</text>
+  </g>
+
+  <g transform="translate(1340,520)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">RenMagDB Reference</text>
+    <rect x="30" y="88" width="132" height="126" rx="12" fill="#f2e9d8" stroke="#816848" stroke-width="3"/>
+    <circle cx="96" cy="150" r="34" fill="none" stroke="#9f7a41" stroke-width="6"/><path d="M96 112 L96 188 M58 150 L134 150" stroke="#9f7a41" stroke-width="5"/>
+    <text x="186" y="118" class="body">Corpus database for figures,</text>
+    <text x="186" y="144" class="body">terms, timelines, and texts</text>
+    <text x="186" y="170" class="body">in Renaissance magic studies.</text>
+    <text x="22" y="232" class="tag">Scholarly reference database</text>
+    <text x="22" y="258" class="mini">Catalog • dictionary • timeline</text>
+  </g>
+
+  <g transform="translate(110,820)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">OldRAGDonald Mobile</text>
+    <rect x="28" y="88" width="92" height="128" rx="18" fill="#d9e8ef" stroke="#4a687b" stroke-width="3"/>
+    <circle cx="74" cy="116" r="10" fill="#4a687b"/><rect x="48" y="136" width="52" height="52" rx="8" fill="#7aa0b8"/>
+    <text x="146" y="118" class="body">Field inspection capture</text>
+    <text x="146" y="144" class="body">for voice, photo, text, and</text>
+    <text x="146" y="170" class="body">offline speech transcription.</text>
+    <text x="22" y="232" class="tag">Mobile data collection</text>
+    <text x="22" y="258" class="mini">Android • Vosk • export bundles</text>
+  </g>
+
+  <g transform="translate(520,820)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">VoxFugiens Notes</text>
+    <rect x="28" y="88" width="130" height="126" rx="12" fill="#dbe9d0" stroke="#64804c" stroke-width="3"/>
+    <path d="M50 170 Q92 112 134 170" stroke="#5d8a3b" stroke-width="7" fill="none"/><circle cx="92" cy="138" r="14" fill="#5d8a3b"/>
+    <text x="182" y="118" class="body">Local-first Android voice</text>
+    <text x="182" y="144" class="body">notes with real offline</text>
+    <text x="182" y="170" class="body">transcription and search.</text>
+    <text x="22" y="232" class="tag">Personal recording software</text>
+    <text x="22" y="258" class="mini">Compose • Vosk • playback • search</text>
+  </g>
+
+  <g transform="translate(930,820)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">NES Studio Toolkit</text>
+    <rect x="30" y="88" width="132" height="126" rx="12" fill="#e2e7f6" stroke="#556b9d" stroke-width="3"/>
+    <path d="M42 182 L62 146 L82 166 L102 118 L122 154 L142 102" stroke="#556b9d" stroke-width="7" fill="none"/>
+    <text x="186" y="118" class="body">Research and production tools</text>
+    <text x="186" y="144" class="body">for NES music extraction,</text>
+    <text x="186" y="170" class="body">validation, and composition.</text>
+    <text x="22" y="232" class="tag">Audio engineering suite</text>
+    <text x="22" y="258" class="mini">ReapNES • Studio • Lab • NSF</text>
+  </g>
+
+  <g transform="translate(1340,820)">
+    <rect width="360" height="250" class="cover" fill="#fffdf7"/>
+    <rect width="360" height="58" class="band"/>
+    <text x="24" y="38" class="name">Vibe Coding Garage</text>
+    <rect x="28" y="88" width="132" height="126" rx="12" fill="#f1d9c9" stroke="#815a43" stroke-width="3"/>
+    <rect x="50" y="112" width="88" height="72" fill="#c27b52"/><circle cx="72" cy="196" r="10" fill="#815a43"/><circle cx="116" cy="196" r="10" fill="#815a43"/>
+    <text x="184" y="118" class="body">A portfolio box collecting</text>
+    <text x="184" y="144" class="body">the whole one-person AI</text>
+    <text x="184" y="170" class="body">software garage together.</text>
+    <text x="22" y="232" class="tag">Portfolio and showcase</text>
+    <text x="22" y="258" class="mini">Projects • categories • live demos</text>
+  </g>
+
+  <rect x="84" y="1088" width="220" height="38" rx="10" fill="#b73a3a"/><text x="194" y="1113" text-anchor="middle" class="badge">CD-ROM READY</text>
+  <rect x="320" y="1088" width="220" height="38" rx="10" fill="#2d6b3e"/><text x="430" y="1113" text-anchor="middle" class="badge">WINDOWS 95/NT</text>
+  <rect x="556" y="1088" width="260" height="38" rx="10" fill="#415a77"/><text x="686" y="1113" text-anchor="middle" class="badge">MULTIMEDIA EDITION</text>
+</svg>

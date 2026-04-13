@@ -1,0 +1,271 @@
+{
+  "song_number": 14,
+  "track_name": "Inside the Big Tree",
+  "channel": "triangle",
+  "start_cpu": "0xFAC4",
+  "summary": {
+    "channel": "triangle",
+    "start_cpu": 64196,
+    "event_count": 39,
+    "bytes_consumed": 45,
+    "terminal_event": "LoopReturnEvent",
+    "ended_by_loop": true
+  },
+  "events": [
+    {
+      "offset_cpu": 64196,
+      "reg_4000_or_4004": 23,
+      "reg_4001_or_4005": 135,
+      "reg_4003_or_4007": 18
+    },
+    {
+      "offset_cpu": 64199,
+      "command": 7,
+      "params": [
+        12
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64201,
+      "loop_count": 8,
+      "target_cpu": 64257
+    },
+    {
+      "offset_cpu": 64257,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64258,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64259,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64260,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64261,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64262,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64263,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64264,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64265
+    },
+    {
+      "offset_cpu": 64257,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64258,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64259,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64260,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64261,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64262,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64263,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64264,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64265
+    },
+    {
+      "offset_cpu": 64257,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64258,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64259,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64260,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64261,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64262,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64263,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64264,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64265
+    },
+    {
+      "offset_cpu": 64257,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64258,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64259,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64260,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64261,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64262,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64263,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64264,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64265
+    }
+  ]
+}

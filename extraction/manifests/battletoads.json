@@ -1,0 +1,204 @@
+{
+  "game": "Battletoads",
+  "rom_aliases": ["Battletoads (U) [!].nes"],
+  "status": "PARSER_ALIGNED",
+  "driver_family": "rare_custom",
+  "driver_family_status": "verified",
+
+  "rom_layout": {
+    "mapper": 7,
+    "mapper_name": "AxROM",
+    "prg_size_kb": 256,
+    "chr_size_kb": 0,
+    "sound_bank": "bank 3 (PRG 0x18000-0x1FFFF = CPU $8000-$FFFF)",
+    "cpu_to_file_formula": "(cpu_addr - 0x8000) + 0x18000 + 0x10",
+    "status": "verified"
+  },
+
+  "period_table": {
+    "cpu_address": "0x8E22",
+    "file_offset": "0x1AE32",
+    "entries": 60,
+    "range": "C2 (1710) to B6 (56)",
+    "type": "standard_ntsc",
+    "access_code": "LDA $8E20,Y where Y = (note_index + 1) * 2",
+    "status": "verified"
+  },
+
+  "note_encoding": {
+    "note_range": ">= 0x81",
+    "rest_byte": "0x80",
+    "command_range": "0x00-0x7F",
+    "base": "0x81",
+    "index_formula": "byte - 0x81 + transposition",
+    "note_handler": "0x88D9",
+    "status": "verified",
+    "evidence": "ROM disassembly at $88D9: CLC; ADC $0354,X; ASL A; TAY; LDA $8E20,Y"
+  },
+
+  "transposition": {
+    "register": "$0354,X (per-channel, X=0/4/8/C)",
+    "cmd_absolute": "0x12 (1 param: set transposition = param)",
+    "cmd_relative": "0x13 (1 param: transposition += param, signed)",
+    "cmd_all_channels": "0x14 (0 params: set all channels)",
+    "handler_0x12": "$8DCD",
+    "handler_0x13": "$8DD9",
+    "status": "verified",
+    "evidence": "ROM disassembly confirms STA $0354,X at handler; fan MIDI E2/D2/G2 matches ROM bytes 0x85/0x83/0x88 with transposition=0"
+  },
+
+  "duration_encoding": {
+    "scheme": "dual_mode",
+    "inline_mode": "when $0351,X == 0: next byte after note is duration",
+    "persistent_mode": "when $0351,X != 0: all notes use $0351,X as duration",
+    "cmd_set_persistent": "0x06 (1 param: sets $0351,X)",
+    "cmd_clear_persistent": "0x07 (0 params: clears $0351,X, reverts to inline)",
+    "envelope_override": "when $03A2,X bit 7 set: notes consume extra envelope byte before duration",
+    "cmd_enable_override": "0x22 (sets $03A2,X = $80)",
+    "cmd_disable_override": "0x20 (clears $03A2,X) or 0x21 (clears both)",
+    "duration_counter": "$0302,X",
+    "tempo_accumulator": "$32",
+    "tempo_speed": "$33",
+    "tempo_table": "$959E (indexed by song internal ID)",
+    "level1_tempo": "87 (0x57)",
+    "level1_tempo_note": "Previous session incorrectly reported 130 (0x82). Verified: $959E[4] = 87. Tempo 130 was likely from a different song or measurement error.",
+    "frames_per_tick": "~2.94 (256/87)",
+    "total_loop_ticks": "~1369 (1369 ticks * 256/87 = 4029 frames, matches trace loop)",
+    "status": "verified"
+  },
+
+  "envelope_model": {
+    "cmd_envelope": "0x03 (3 params -> $0321, $0322, $0324)",
+    "type": "software_volume",
+    "volume_register_ram": "$0352,X (0-15, ORed into APU $4000/$4004 low nibble)",
+    "volume_modes": {
+      "mode_0": "no automatic volume change",
+      "mode_1": "CMD 0x0D: ramp $0352 toward target at configured rate, then disable",
+      "mode_2": "CMD 0x0E: oscillate $0352 with step+direction reversal"
+    },
+    "mode_register": "$0393,X (0=off, 1=ramp, 2=oscillate)",
+    "duty_source": "$0321,X high 3 bits (duty + length halt + const vol flag)",
+    "apu_write": "APU $4000,X = ($0321 AND $E0) OR $0352",
+    "cmd_0x16_note": "CMD 0x16 enables hardware sweep ($0371 |= $80) THEN sets up mode 1",
+    "trace_shape": "attack=12, decay over ~10 frames (e.g., 12,12,11,11,10,10,9,8,8,7,6...)",
+    "status": "verified"
+  },
+
+  "command_set": {
+    "dispatch_table": "$8B7B",
+    "max_commands": 31,
+    "verified_commands": [
+      {"cmd": "0x00", "params": 0, "handler": "$8BC9", "effect": "channel off", "status": "verified"},
+      {"cmd": "0x01", "params": 2, "handler": "$8C19", "effect": "absolute jump (2-byte address)", "status": "verified"},
+      {"cmd": "0x03", "params": 3, "handler": "$8BEE", "effect": "set envelope (3 bytes)", "status": "verified"},
+      {"cmd": "0x04", "params": 0, "handler": "$8B59", "effect": "return from subroutine", "status": "verified"},
+      {"cmd": "0x12", "params": 1, "handler": "$8DCD", "effect": "set transposition absolute", "status": "verified"},
+      {"cmd": "0x13", "params": 1, "handler": "$8DD9", "effect": "add transposition relative", "status": "verified"},
+      {"cmd": "0x17", "params": 1, "handler": "$8CB2", "effect": "set duty cycle ($0364,X)", "status": "verified"},
+      {"cmd": "0x1E", "params": 2, "handler": "$8C6A", "effect": "subroutine call (2-byte target)", "status": "verified"}
+    ],
+    "unverified_commands": [
+      {"cmd": "0x02", "params": "unknown", "handler": "$8BD1"},
+      {"cmd": "0x05", "params": "unknown", "handler": "$8C8F"},
+      {"cmd": "0x06", "params": "unknown", "handler": "$8BE5"},
+      {"cmd": "0x07", "params": "unknown", "handler": "$8BDD"},
+      {"cmd": "0x08", "params": "unknown", "handler": "$8CBE"},
+      {"cmd": "0x09", "params": "unknown", "handler": "$8CE6"},
+      {"cmd": "0x0A", "params": "unknown", "handler": "$8CF4"},
+      {"cmd": "0x0B", "params": "unknown", "handler": "$8CEE"},
+      {"cmd": "0x0C", "params": "unknown", "handler": "$8D46"},
+      {"cmd": "0x0D", "params": "unknown", "handler": "$8D66"},
+      {"cmd": "0x0E", "params": "unknown", "handler": "$8D91"},
+      {"cmd": "0x0F", "params": "unknown", "handler": "$8DB5"},
+      {"cmd": "0x10", "params": "unknown", "handler": "$8DBD"},
+      {"cmd": "0x11", "params": "unknown", "handler": "$8DC8"},
+      {"cmd": "0x14", "params": "unknown", "handler": "$8DDF"},
+      {"cmd": "0x15", "params": "unknown", "handler": "$8D56"},
+      {"cmd": "0x16", "params": "unknown", "handler": "$8D5E"},
+      {"cmd": "0x18", "params": "unknown", "handler": "$8DF1"},
+      {"cmd": "0x19", "params": "unknown", "handler": "$8DFD"},
+      {"cmd": "0x1A", "params": "unknown", "handler": "$8E01"},
+      {"cmd": "0x1B", "params": "unknown", "handler": "$8E05"},
+      {"cmd": "0x1C", "params": "unknown", "handler": "$8E0D"},
+      {"cmd": "0x1D", "params": "unknown", "handler": "$8E09"}
+    ],
+    "status": "partial"
+  },
+
+  "song_pointers": {
+    "init_routine": "$8054",
+    "song_number_map": "$8060 (NSF song index -> internal ID)",
+    "nsf_song_for_level1": 2,
+    "nsf_song_for_level1_note": "NSF Song 2 = Level 1 (Ragnoraks Canyon). NSF Song 3 is a DIFFERENT arrangement. Verified against fan MIDI and MP3 reference.",
+    "level1_internal_id": 4,
+    "level1_channels": {
+      "pulse1": "$A15E",
+      "pulse2": "$A2CF",
+      "triangle": "$A364",
+      "noise": "$A408"
+    },
+    "status": "verified",
+    "evidence": "Traced from NSF init routine"
+  },
+
+  "loop_structure": {
+    "loop_frames": 4029,
+    "loop_seconds": 67.1,
+    "loop_repetitions_in_trace": 5,
+    "loop_boundaries": [440, 4469, 8497, 12526, 16555],
+    "loop_mechanism": "CMD 0x01 at end jumps back to near-start",
+    "status": "verified"
+  },
+
+  "evidence_sources": {
+    "rom": "D:\\All NES Roms (GoodNES)\\All NES Roms (GoodNES)\\USA\\Battletoads (U) [!].nes",
+    "nsf": "output/Battletoads/nsf/Battletoads (1991-06)(Rare)(Tradewest).nsf",
+    "mesen_trace": "C:\\Users\\PC\\Documents\\Mesen2\\capture.csv",
+    "fan_midi": "C:\\Users\\PC\\Downloads\\battletoads_level1.mid",
+    "trace_notes": "20,885 frames, clean (no SFX), music-only recording"
+  },
+
+  "execution_semantics": {
+    "parser_status": "all 4 channels parse zero errors (P1=954, P2=955, Tri=1292, Noise=643 notes)",
+    "tempo_validated": "87 (0x57) produces 1369 ticks for 4029-frame loop. Previous 130 was wrong.",
+    "period_comparison": {
+      "trace_unique_periods": 10,
+      "parser_unique_periods": 18,
+      "nsf_confirms_parser": true,
+      "nsf_p2_max_period": 1526,
+      "trace_p2_max_period": 961,
+      "trace_is_subset_of_nsf": "ALL trace P2 periods appear in NSF P2 data",
+      "nsf_extra_bass_notes": "D2(1524), E2(1358), F#2(1208), B2(905) in NSF but NOT in trace",
+      "trace_periods_offset": "+1 to +3 from table (consistent with per-frame vibrato)",
+      "discrepancy_note": "NSF and trace play same notes for higher pitches, but trace lacks bass notes. Cause unknown — possibly different game state, channel arrangement in-game, or Mesen capture artifact. NSF is authority for pitch since it runs verified 6502 code."
+    },
+    "nsf_init_patching": {
+      "nsf_init_at_8054": "Patched: TAX, LDA $8060,X (song lookup table), JMP $880E",
+      "rom_init_at_880E": "LDA $32 (game stores song ID in zp $32 before calling)",
+      "nsf_init_at_880E": "STA $32 (patched from LDA to STA — stores lookup result)",
+      "song_lookup_table": "$8060: [16, 3, 4, 1, 2, 5, 6, 7, 8, 9, ...]",
+      "nsf_song3_maps_to": "internal ID 4 (confirmed)"
+    },
+    "pitch_modulation": {
+      "block1_sweep": "CMD 0x0A/0x0B: cumulative period offset, rate=$03A1, reps=$0381, step=$0383",
+      "block2_vibrato": "CMD 0x08/0x17 via $8CC4: oscillating period +-$0344 every $0363 frames",
+      "effect_on_trace": "all trace periods are 1-3 units higher than table values (vibrato offset)"
+    },
+    "volume_modes_decoded": "CMD 0x0D/0x0E/0x16 control $0352 (volume 0-15), NOT pitch arpeggio",
+    "remaining_gaps": [
+      "Trace vs NSF period discrepancy (trace lacks bass notes present in NSF)",
+      "Duration accounting: sim expects 1369 ticks, parser outputs 2048 — ratio 1.50x",
+      "Arpeggio sub-notes (dur=2) cycle faster than trace period capture resolution"
+    ],
+    "status": "in_progress"
+  },
+
+  "outputs": {
+    "current_best": "output/Battletoads_Level1/",
+    "nsf_midi": "output/Battletoads_Level1/midi/Battletoads_02_Song_2_v1.mid",
+    "trace_midi": "output/Battletoads_trace_v9/midi/battletoads_trace_01_Ragnoraks_Canyon_v1.mid",
+    "reaper_console": "output/Battletoads_Level1/reaper/Battletoads_02_Song_2_v1.rpp",
+    "reaper_apu2": "output/Battletoads_Level1/reaper/Battletoads_02_Ragnoraks_Canyon_APU2_v1.rpp",
+    "wav": "output/Battletoads_Level1/wav/Battletoads_02_Song_2_v1.wav"
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "nsf_path": "C:\\Dev\\NSFRIPPER\\state\\ww_ref\\Wizards & Warriors [Densetsu no Kishi - Elrond] (1987-12)(Rare)(Acclaim).nsf",
+    "midi_path": "C:\\Dev\\NSFRIPPER\\Projects\\Wizards_and_Warriors\\midi\\Wizards_&_Warriors_01_Wizards_&_Warriors_Title_releaseaware_v5.mid",
+    "phrase_frames": [
+      928,
+      960,
+      976
+    ],
+    "summary": "Composite bass evidence for the disputed Wizards & Warriors title phrase. Treat pulse1+triangle as one articulation target rather than triangle alone."
+  },
+  "frames": [
+    {
+      "frame": 928,
+      "pulse1": {
+        "period": 508,
+        "midi_note": 57,
+        "duty": 1,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "boundary": true
+      },
+      "triangle": {
+        "period": 253,
+        "midi_note": 57,
+        "linear": 1,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "boundary": true
+      },
+      "writes": [
+        {
+          "reg": "0x4000",
+          "value": 69
+        },
+        {
+          "reg": "0x4002",
+          "value": 252
+        },
+        {
+          "reg": "0x4003",
+          "value": 33
+        },
+        {
+          "reg": "0x4004",
+          "value": 67
+        },
+        {
+          "reg": "0x4006",
+          "value": 169
+        },
+        {
+          "reg": "0x4007",
+          "value": 32
+        },
+        {
+          "reg": "0x4008",
+          "value": 129
+        },
+        {
+          "reg": "0x400A",
+          "value": 253
+        },
+        {
+          "reg": "0x400B",
+          "value": 16
+        }
+      ],
+      "audio": {
+        "release_class": "fresh_full_body",
+        "audio_low_norm": 0.9405562560520123,
+        "audio_high_norm": 0.8061039556997189,
+        "composite_attack": false
+      }
+    },
+    {
+      "frame": 960,
+      "pulse1": {
+        "period": 508,
+        "midi_note": 57,
+        "duty": 1,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "boundary": true
+      },
+      "triangle": {
+        "period": 253,
+        "midi_note": 57,
+        "linear": 1,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "boundary": true
+      },
+      "writes": [
+        {
+          "reg": "0x4000",
+          "value": 69
+        },
+        {
+          "reg": "0x4002",
+          "value": 252
+        },
+        {
+          "reg": "0x4003",
+          "value": 33
+        },
+        {
+          "reg": "0x4004",
+          "value": 67
+        },
+        {
+          "reg": "0x4006",
+          "value": 126
+        },
+        {
+          "reg": "0x4007",
+          "value": 32
+        },
+        {
+          "reg": "0x4008",
+          "value": 129
+        },
+        {
+          "reg": "0x400A",
+          "value": 253
+        },
+        {
+          "reg": "0x400B",
+          "value": 16
+        }
+      ],
+      "audio": {
+        "release_class": "fresh_attack_damped_body",
+        "audio_low_norm": 0.48141886961042357,
+        "audio_high_norm": 1.0,
+        "composite_attack": true
+      }
+    },
+    {
+      "frame": 976,
+      "pulse1": {
+        "period": 570,
+        "midi_note": 55,
+        "duty": 1,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "boundary": true
+      },
+      "triangle": {
+        "period": 284,
+        "midi_note": 55,
+        "linear": 1,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "boundary": true
+      },
+      "writes": [
+        {
+          "reg": "0x4000",
+          "value": 69
+        },
+        {
+          "reg": "0x4002",
+          "value": 58
+        },
+        {
+          "reg": "0x4003",
+          "value": 34
+        },
+        {
+          "reg": "0x4004",
+          "value": 67
+        },
+        {
+          "reg": "0x4006",
+          "value": 201
+        },
+        {
+          "reg": "0x4007",
+          "value": 32
+        },
+        {
+          "reg": "0x4008",
+          "value": 129
+        },
+        {
+          "reg": "0x400A",
+          "value": 28
+        },
+        {
+          "reg": "0x400B",
+          "value": 17
+        }
+      ],
+      "audio": {
+        "release_class": "fresh_full_body",
+        "audio_low_norm": 0.893890880312058,
+        "audio_high_norm": 0.7298410266099155,
+        "composite_attack": false
+      }
+    }
+  ],
+  "midi_projection": {
+    "pulse1_events_920_980": [
+      {
+        "frame": 928,
+        "type": "note_off",
+        "note": 57,
+        "velocity": 0
+      },
+      {
+        "frame": 928,
+        "type": "note_on",
+        "note": 57,
+        "velocity": 40
+      },
+      {
+        "frame": 960,
+        "type": "note_off",
+        "note": 57,
+        "velocity": 0
+      },
+      {
+        "frame": 960,
+        "type": "note_on",
+        "note": 57,
+        "velocity": 40
+      },
+      {
+        "frame": 976,
+        "type": "note_off",
+        "note": 57,
+        "velocity": 0
+      },
+      {
+        "frame": 976,
+        "type": "note_on",
+        "note": 55,
+        "velocity": 40
+      }
+    ],
+    "triangle_events_920_980": [
+      {
+        "frame": 928,
+        "type": "note_off",
+        "note": 45,
+        "velocity": 0
+      },
+      {
+        "frame": 928,
+        "type": "note_on",
+        "note": 57,
+        "velocity": 127
+      },
+      {
+        "frame": 960,
+        "type": "note_off",
+        "note": 57,
+        "velocity": 0
+      },
+      {
+        "frame": 960,
+        "type": "note_on",
+        "note": 57,
+        "velocity": 127
+      },
+      {
+        "frame": 976,
+        "type": "note_off",
+        "note": 57,
+        "velocity": 0
+      },
+      {
+        "frame": 976,
+        "type": "note_on",
+        "note": 55,
+        "velocity": 127
+      }
+    ]
+  }
+}

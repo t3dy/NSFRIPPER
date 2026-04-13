@@ -1,0 +1,67 @@
+{
+  "song_number": 12,
+  "track_name": "Potion",
+  "channel": "triangle",
+  "start_cpu": "0xF932",
+  "summary": {
+    "channel": "triangle",
+    "start_cpu": 63794,
+    "event_count": 10,
+    "bytes_consumed": 19,
+    "terminal_event": "LoopReturnEvent",
+    "ended_by_loop": true
+  },
+  "events": [
+    {
+      "offset_cpu": 63794,
+      "reg_4000_or_4004": 70,
+      "reg_4001_or_4005": 0,
+      "reg_4003_or_4007": 16
+    },
+    {
+      "offset_cpu": 63797,
+      "loop_count": 48,
+      "target_cpu": 63829
+    },
+    {
+      "offset_cpu": 63829,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63831
+    },
+    {
+      "offset_cpu": 63829,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63831
+    },
+    {
+      "offset_cpu": 63829,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63831
+    },
+    {
+      "offset_cpu": 63829,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63831
+    }
+  ]
+}

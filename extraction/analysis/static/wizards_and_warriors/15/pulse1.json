@@ -1,0 +1,1411 @@
+{
+  "song_number": 15,
+  "track_name": "Boss",
+  "channel": "pulse1",
+  "start_cpu": "0xFB0B",
+  "summary": {
+    "channel": "pulse1",
+    "start_cpu": 64267,
+    "event_count": 196,
+    "bytes_consumed": 305,
+    "terminal_event": "LoopCallEvent",
+    "ended_by_loop": true
+  },
+  "events": [
+    {
+      "offset_cpu": 64267,
+      "reg_4000_or_4004": 198,
+      "reg_4001_or_4005": 74,
+      "reg_4003_or_4007": 23
+    },
+    {
+      "offset_cpu": 64270,
+      "loop_count": 1,
+      "target_cpu": 64325
+    },
+    {
+      "offset_cpu": 64325,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64327,
+      "command": 7,
+      "params": [
+        32
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64329,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64330,
+      "command": 10,
+      "params": [
+        196
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64332,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64333,
+      "command": 10,
+      "params": [
+        197
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64335,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64336,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64337,
+      "command": 10,
+      "params": [
+        198
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64339,
+      "command": 7,
+      "params": [
+        4
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64341,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64342,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64343,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64344,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64345,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64346,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64347,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64348,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64349,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64350,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64351,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64352,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64353,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64354,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64355,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64356,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64357,
+      "command": 7,
+      "params": [
+        16
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64359,
+      "command": 10,
+      "params": [
+        197
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64361,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64362,
+      "command": 10,
+      "params": [
+        196
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64364,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64365,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64366,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64368,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64369
+    },
+    {
+      "offset_cpu": 64274,
+      "command": 8,
+      "params": [],
+      "description": "force inline duration mode"
+    },
+    {
+      "offset_cpu": 64275,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64277,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64279,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64281,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64283,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64285,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 48
+    },
+    {
+      "offset_cpu": 64287,
+      "command": 10,
+      "params": [
+        200
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64289,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64291,
+      "command": 10,
+      "params": [
+        204
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64293,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 64
+    },
+    {
+      "offset_cpu": 64295,
+      "command": 10,
+      "params": [
+        198
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64297,
+      "loop_count": 1,
+      "target_cpu": 64325
+    },
+    {
+      "offset_cpu": 64325,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64327,
+      "command": 7,
+      "params": [
+        32
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64329,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64330,
+      "command": 10,
+      "params": [
+        196
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64332,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64333,
+      "command": 10,
+      "params": [
+        197
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64335,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64336,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64337,
+      "command": 10,
+      "params": [
+        198
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64339,
+      "command": 7,
+      "params": [
+        4
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64341,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64342,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64343,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64344,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64345,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64346,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64347,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64348,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64349,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64350,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64351,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64352,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64353,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64354,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64355,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64356,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64357,
+      "command": 7,
+      "params": [
+        16
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64359,
+      "command": 10,
+      "params": [
+        197
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64361,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64362,
+      "command": 10,
+      "params": [
+        196
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64364,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64365,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64366,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64368,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64369
+    },
+    {
+      "offset_cpu": 64301,
+      "command": 8,
+      "params": [],
+      "description": "force inline duration mode"
+    },
+    {
+      "offset_cpu": 64302,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64304,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64306,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64308,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64310,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64312,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64314,
+      "command": 10,
+      "params": [
+        200
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64316,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64318,
+      "command": 10,
+      "params": [
+        204
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64320,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 64
+    },
+    {
+      "offset_cpu": 64322,
+      "target_cpu": 64266
+    },
+    {
+      "offset_cpu": 64266,
+      "command": 4,
+      "params": [
+        198,
+        74,
+        23
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 64270,
+      "loop_count": 1,
+      "target_cpu": 64325
+    },
+    {
+      "offset_cpu": 64325,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64327,
+      "command": 7,
+      "params": [
+        32
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64329,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64330,
+      "command": 10,
+      "params": [
+        196
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64332,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64333,
+      "command": 10,
+      "params": [
+        197
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64335,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64336,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64337,
+      "command": 10,
+      "params": [
+        198
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64339,
+      "command": 7,
+      "params": [
+        4
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64341,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64342,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64343,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64344,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64345,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64346,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64347,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64348,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64349,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64350,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64351,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64352,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64353,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64354,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64355,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64356,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64357,
+      "command": 7,
+      "params": [
+        16
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64359,
+      "command": 10,
+      "params": [
+        197
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64361,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64362,
+      "command": 10,
+      "params": [
+        196
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64364,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64365,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64366,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64368,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64369
+    },
+    {
+      "offset_cpu": 64274,
+      "command": 8,
+      "params": [],
+      "description": "force inline duration mode"
+    },
+    {
+      "offset_cpu": 64275,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64277,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64279,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64281,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64283,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64285,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 48
+    },
+    {
+      "offset_cpu": 64287,
+      "command": 10,
+      "params": [
+        200
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64289,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64291,
+      "command": 10,
+      "params": [
+        204
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64293,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 64
+    },
+    {
+      "offset_cpu": 64295,
+      "command": 10,
+      "params": [
+        198
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64297,
+      "loop_count": 1,
+      "target_cpu": 64325
+    },
+    {
+      "offset_cpu": 64325,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64327,
+      "command": 7,
+      "params": [
+        32
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64329,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64330,
+      "command": 10,
+      "params": [
+        196
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64332,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64333,
+      "command": 10,
+      "params": [
+        197
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64335,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64336,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64337,
+      "command": 10,
+      "params": [
+        198
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64339,
+      "command": 7,
+      "params": [
+        4
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64341,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64342,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64343,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64344,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64345,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64346,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64347,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64348,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64349,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64350,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64351,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64352,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64353,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64354,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64355,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64356,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 64357,
+      "command": 7,
+      "params": [
+        16
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64359,
+      "command": 10,
+      "params": [
+        197
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64361,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64362,
+      "command": 10,
+      "params": [
+        196
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64364,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64365,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64366,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64368,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 64369
+    },
+    {
+      "offset_cpu": 64301,
+      "command": 8,
+      "params": [],
+      "description": "force inline duration mode"
+    },
+    {
+      "offset_cpu": 64302,
+      "command": 10,
+      "params": [
+        195
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64304,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64306,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64308,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64310,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64312,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64314,
+      "command": 10,
+      "params": [
+        200
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64316,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 64318,
+      "command": 10,
+      "params": [
+        204
+      ],
+      "description": "set channel volume/control register"
+    },
+    {
+      "offset_cpu": 64320,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 64
+    },
+    {
+      "offset_cpu": 64322,
+      "target_cpu": 64266
+    },
+    {
+      "offset_cpu": 64266,
+      "command": 4,
+      "params": [
+        198,
+        74,
+        23
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 64270,
+      "loop_count": 1,
+      "target_cpu": 64325
+    }
+  ]
+}

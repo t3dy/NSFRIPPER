@@ -1,0 +1,364 @@
+{
+  "summary": {
+    "claim": "The disputed title phrase contains synchronized same-pitch pulse1+triangle re-attacks that are invisible in latched period state but visible in ROM/parser/write evidence and corroborated by MP3 bright-onset energy.",
+    "best_audio_offset_frames": 0,
+    "best_audio_offset_seconds": 0.0
+  },
+  "phrase_frames": [
+    896,
+    928,
+    960,
+    976,
+    992,
+    1008
+  ],
+  "channels": {
+    "pulse1": [
+      {
+        "frame": 896,
+        "period": 508,
+        "prev_period": 570,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4000",
+          "0x4001"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 928,
+        "period": 508,
+        "prev_period": 508,
+        "period_changed_visible": false,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4000",
+          "0x4001",
+          "0x4002",
+          "0x4003"
+        ],
+        "hidden_retrigger": true
+      },
+      {
+        "frame": 960,
+        "period": 508,
+        "prev_period": 508,
+        "period_changed_visible": false,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4000",
+          "0x4001",
+          "0x4002",
+          "0x4003"
+        ],
+        "hidden_retrigger": true
+      },
+      {
+        "frame": 976,
+        "period": 570,
+        "prev_period": 508,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4000",
+          "0x4001"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 992,
+        "period": 640,
+        "prev_period": 570,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4000",
+          "0x4001",
+          "0x4003"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 1008,
+        "period": 678,
+        "prev_period": 640,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4000",
+          "0x4001",
+          "0x4003"
+        ],
+        "hidden_retrigger": false
+      }
+    ],
+    "pulse2": [
+      {
+        "frame": 896,
+        "period": 169,
+        "prev_period": 284,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4004",
+          "0x4005"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 928,
+        "period": 169,
+        "prev_period": 253,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4004",
+          "0x4005",
+          "0x4007"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 960,
+        "period": 126,
+        "prev_period": 253,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4004",
+          "0x4005",
+          "0x4007"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 976,
+        "period": 201,
+        "prev_period": 253,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4004",
+          "0x4005",
+          "0x4007"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 992,
+        "period": 126,
+        "prev_period": 253,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4004",
+          "0x4005",
+          "0x4007"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 1008,
+        "period": 126,
+        "prev_period": 201,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4004",
+          "0x4005",
+          "0x4007"
+        ],
+        "hidden_retrigger": false
+      }
+    ],
+    "triangle": [
+      {
+        "frame": 896,
+        "period": 508,
+        "prev_period": 570,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4008",
+          "0x4009"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 928,
+        "period": 253,
+        "prev_period": 508,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4008",
+          "0x4009"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 960,
+        "period": 253,
+        "prev_period": 253,
+        "period_changed_visible": false,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4008",
+          "0x4009",
+          "0x400a",
+          "0x400b"
+        ],
+        "hidden_retrigger": true
+      },
+      {
+        "frame": 976,
+        "period": 284,
+        "prev_period": 253,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4008",
+          "0x4009"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 992,
+        "period": 319,
+        "prev_period": 284,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4008",
+          "0x4009",
+          "0x400b"
+        ],
+        "hidden_retrigger": false
+      },
+      {
+        "frame": 1008,
+        "period": 338,
+        "prev_period": 319,
+        "period_changed_visible": true,
+        "sounding_prev": true,
+        "sounding_now": true,
+        "write_mask": 15,
+        "same_value_writes": [
+          "0x4008",
+          "0x4009",
+          "0x400b"
+        ],
+        "hidden_retrigger": false
+      }
+    ]
+  },
+  "composite_hidden_retriggers": [
+    {
+      "frame": 960,
+      "channels": [
+        "pulse1",
+        "triangle"
+      ],
+      "audio": {
+        "frame": 960,
+        "audio_frame": 960,
+        "high_env": 0.09153616605384353,
+        "low_env": 0.09912587457299536,
+        "high_z": 1.498746773639918,
+        "low_z": -1.5265449220116682
+      }
+    }
+  ],
+  "phrase_audio": [
+    {
+      "frame": 896,
+      "audio_frame": 896,
+      "high_env": 0.06568896442262624,
+      "low_env": 0.13071824196197981,
+      "high_z": -1.2444655045644457,
+      "low_z": -0.5718907601042713
+    },
+    {
+      "frame": 928,
+      "audio_frame": 928,
+      "high_env": 0.0737876655455896,
+      "low_env": 0.19366391172349512,
+      "high_z": -0.38493507357232026,
+      "low_z": 1.3301935272806518
+    },
+    {
+      "frame": 960,
+      "audio_frame": 960,
+      "high_env": 0.09153616605384353,
+      "low_env": 0.09912587457299536,
+      "high_z": 1.498746773639918,
+      "low_z": -1.5265449220116682
+    },
+    {
+      "frame": 976,
+      "audio_frame": 976,
+      "high_env": 0.06680684940467285,
+      "low_env": 0.18405534323044107,
+      "high_z": -1.12582226216923,
+      "low_z": 1.039843019864588
+    },
+    {
+      "frame": 992,
+      "audio_frame": 992,
+      "high_env": 0.0832884038447619,
+      "low_env": 0.16093464697474372,
+      "high_z": 0.6233962083262398,
+      "low_z": 0.3411847447524055
+    },
+    {
+      "frame": 1008,
+      "audio_frame": 1008,
+      "high_env": 0.08337964550929379,
+      "low_env": 0.12936490882116422,
+      "high_z": 0.633079858339841,
+      "low_z": -0.6127856097817062
+    }
+  ],
+  "interpretation": {
+    "missing_field": "frame-level retrigger/attack markers, including composite cross-channel attacks",
+    "why_midi_is_lossy": [
+      "same-pitch pulse1 and triangle re-attacks at frame 960 do not appear as new latched periods",
+      "the MP3 carries renewed bright transient energy at the aligned frame even though latch state looks unchanged"
+    ]
+  }
+}

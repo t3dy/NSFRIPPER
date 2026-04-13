@@ -1,0 +1,96 @@
+{
+  "song_number": 10,
+  "track_name": "Entering a Door",
+  "channel": "pulse1",
+  "start_cpu": "0xF8A4",
+  "summary": {
+    "channel": "pulse1",
+    "start_cpu": 63652,
+    "event_count": 12,
+    "bytes_consumed": 15,
+    "terminal_event": "StopEvent",
+    "ended_by_loop": false
+  },
+  "events": [
+    {
+      "offset_cpu": 63652,
+      "reg_4000_or_4004": 130,
+      "reg_4001_or_4005": 160,
+      "reg_4003_or_4007": 33
+    },
+    {
+      "offset_cpu": 63655,
+      "command": 7,
+      "params": [
+        5
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 63657,
+      "raw_byte": 169,
+      "note_index": 41,
+      "period": 169,
+      "duration": 5
+    },
+    {
+      "offset_cpu": 63658,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 5
+    },
+    {
+      "offset_cpu": 63659,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 5
+    },
+    {
+      "offset_cpu": 63660,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 5
+    },
+    {
+      "offset_cpu": 63661,
+      "raw_byte": 169,
+      "note_index": 41,
+      "period": 169,
+      "duration": 5
+    },
+    {
+      "offset_cpu": 63662,
+      "raw_byte": 172,
+      "note_index": 44,
+      "period": 142,
+      "duration": 5
+    },
+    {
+      "offset_cpu": 63663,
+      "raw_byte": 176,
+      "note_index": 48,
+      "period": 112,
+      "duration": 5
+    },
+    {
+      "offset_cpu": 63664,
+      "raw_byte": 179,
+      "note_index": 51,
+      "period": 94,
+      "duration": 5
+    },
+    {
+      "offset_cpu": 63665,
+      "raw_byte": 181,
+      "note_index": 53,
+      "period": 84,
+      "duration": 5
+    },
+    {
+      "offset_cpu": 63666
+    }
+  ]
+}

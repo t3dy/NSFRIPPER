@@ -1,0 +1,94 @@
+{
+  "song_number": 5,
+  "track_name": "Low on Energy",
+  "channel": "noise",
+  "start_cpu": "0xF578",
+  "summary": {
+    "channel": "noise",
+    "start_cpu": 62840,
+    "event_count": 13,
+    "bytes_consumed": 31,
+    "terminal_event": "JumpEvent",
+    "ended_by_loop": true
+  },
+  "events": [
+    {
+      "offset_cpu": 62840,
+      "reg_4000_or_4004": 64,
+      "reg_4001_or_4005": 7,
+      "reg_4003_or_4007": 15
+    },
+    {
+      "offset_cpu": 62843,
+      "raw_byte": 193,
+      "note_index": 65,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62845,
+      "raw_byte": 193,
+      "note_index": 65,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62847,
+      "target_cpu": 62843
+    },
+    {
+      "offset_cpu": 62843,
+      "raw_byte": 193,
+      "note_index": 65,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62845,
+      "raw_byte": 193,
+      "note_index": 65,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62847,
+      "target_cpu": 62843
+    },
+    {
+      "offset_cpu": 62843,
+      "raw_byte": 193,
+      "note_index": 65,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62845,
+      "raw_byte": 193,
+      "note_index": 65,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62847,
+      "target_cpu": 62843
+    },
+    {
+      "offset_cpu": 62843,
+      "raw_byte": 193,
+      "note_index": 65,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62845,
+      "raw_byte": 193,
+      "note_index": 65,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62847,
+      "target_cpu": 62843
+    }
+  ]
+}

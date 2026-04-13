@@ -1,0 +1,1728 @@
+{
+  "song_number": 4,
+  "track_name": "Ice Cave",
+  "channel": "pulse1",
+  "start_cpu": "0xF345",
+  "summary": {
+    "channel": "pulse1",
+    "start_cpu": 62277,
+    "event_count": 233,
+    "bytes_consumed": 542,
+    "terminal_event": "LoopCallEvent",
+    "ended_by_loop": true
+  },
+  "events": [
+    {
+      "offset_cpu": 62277,
+      "reg_4000_or_4004": 132,
+      "reg_4001_or_4005": 4,
+      "reg_4003_or_4007": 14
+    },
+    {
+      "offset_cpu": 62280,
+      "loop_count": 4,
+      "target_cpu": 62319
+    },
+    {
+      "offset_cpu": 62319,
+      "command": 9,
+      "params": [
+        3
+      ],
+      "description": "set tempo divider / song delay"
+    },
+    {
+      "offset_cpu": 62321,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62325,
+      "raw_byte": 129,
+      "note_index": 1,
+      "period": 1710,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62327,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62329,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62331,
+      "raw_byte": 156,
+      "note_index": 28,
+      "period": 359,
+      "duration": 2
+    },
+    {
+      "offset_cpu": 62333,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62335,
+      "raw_byte": 154,
+      "note_index": 26,
+      "period": 403,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62337,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62339,
+      "command": 4,
+      "params": [
+        143,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62343,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62345,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62349,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62351,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62353,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62355,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62357,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62359,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62361,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62363,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62365,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62367,
+      "raw_byte": 156,
+      "note_index": 28,
+      "period": 359,
+      "duration": 2
+    },
+    {
+      "offset_cpu": 62369,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62371,
+      "raw_byte": 154,
+      "note_index": 26,
+      "period": 403,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62373,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62375,
+      "command": 4,
+      "params": [
+        143,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62379,
+      "raw_byte": 152,
+      "note_index": 24,
+      "period": 452,
+      "duration": 8
+    },
+    {
+      "offset_cpu": 62381,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62385,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62387,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62389,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62391,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62393,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62395,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62397,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62399
+    },
+    {
+      "offset_cpu": 62319,
+      "command": 9,
+      "params": [
+        3
+      ],
+      "description": "set tempo divider / song delay"
+    },
+    {
+      "offset_cpu": 62321,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62325,
+      "raw_byte": 129,
+      "note_index": 1,
+      "period": 1710,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62327,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62329,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62331,
+      "raw_byte": 156,
+      "note_index": 28,
+      "period": 359,
+      "duration": 2
+    },
+    {
+      "offset_cpu": 62333,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62335,
+      "raw_byte": 154,
+      "note_index": 26,
+      "period": 403,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62337,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62339,
+      "command": 4,
+      "params": [
+        143,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62343,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62345,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62349,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62351,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62353,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62355,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62357,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62359,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62361,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62363,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62365,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62367,
+      "raw_byte": 156,
+      "note_index": 28,
+      "period": 359,
+      "duration": 2
+    },
+    {
+      "offset_cpu": 62369,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62371,
+      "raw_byte": 154,
+      "note_index": 26,
+      "period": 403,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62373,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62375,
+      "command": 4,
+      "params": [
+        143,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62379,
+      "raw_byte": 152,
+      "note_index": 24,
+      "period": 452,
+      "duration": 8
+    },
+    {
+      "offset_cpu": 62381,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62385,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62387,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62389,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62391,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62393,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62395,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62397,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62399
+    },
+    {
+      "offset_cpu": 62319,
+      "command": 9,
+      "params": [
+        3
+      ],
+      "description": "set tempo divider / song delay"
+    },
+    {
+      "offset_cpu": 62321,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62325,
+      "raw_byte": 129,
+      "note_index": 1,
+      "period": 1710,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62327,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62329,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62331,
+      "raw_byte": 156,
+      "note_index": 28,
+      "period": 359,
+      "duration": 2
+    },
+    {
+      "offset_cpu": 62333,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62335,
+      "raw_byte": 154,
+      "note_index": 26,
+      "period": 403,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62337,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62339,
+      "command": 4,
+      "params": [
+        143,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62343,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62345,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62349,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62351,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62353,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62355,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62357,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62359,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62361,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62363,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62365,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62367,
+      "raw_byte": 156,
+      "note_index": 28,
+      "period": 359,
+      "duration": 2
+    },
+    {
+      "offset_cpu": 62369,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62371,
+      "raw_byte": 154,
+      "note_index": 26,
+      "period": 403,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62373,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62375,
+      "command": 4,
+      "params": [
+        143,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62379,
+      "raw_byte": 152,
+      "note_index": 24,
+      "period": 452,
+      "duration": 8
+    },
+    {
+      "offset_cpu": 62381,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62385,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62387,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62389,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62391,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62393,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62395,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62397,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62399
+    },
+    {
+      "offset_cpu": 62319,
+      "command": 9,
+      "params": [
+        3
+      ],
+      "description": "set tempo divider / song delay"
+    },
+    {
+      "offset_cpu": 62321,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62325,
+      "raw_byte": 129,
+      "note_index": 1,
+      "period": 1710,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62327,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62329,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62331,
+      "raw_byte": 156,
+      "note_index": 28,
+      "period": 359,
+      "duration": 2
+    },
+    {
+      "offset_cpu": 62333,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62335,
+      "raw_byte": 154,
+      "note_index": 26,
+      "period": 403,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62337,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62339,
+      "command": 4,
+      "params": [
+        143,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62343,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62345,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62349,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62351,
+      "raw_byte": 149,
+      "note_index": 21,
+      "period": 538,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62353,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62355,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62357,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62359,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62361,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62363,
+      "raw_byte": 153,
+      "note_index": 25,
+      "period": 427,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62365,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 1
+    },
+    {
+      "offset_cpu": 62367,
+      "raw_byte": 156,
+      "note_index": 28,
+      "period": 359,
+      "duration": 2
+    },
+    {
+      "offset_cpu": 62369,
+      "raw_byte": 155,
+      "note_index": 27,
+      "period": 380,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62371,
+      "raw_byte": 154,
+      "note_index": 26,
+      "period": 403,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62373,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62375,
+      "command": 4,
+      "params": [
+        143,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62379,
+      "raw_byte": 152,
+      "note_index": 24,
+      "period": 452,
+      "duration": 8
+    },
+    {
+      "offset_cpu": 62381,
+      "command": 4,
+      "params": [
+        132,
+        4,
+        14
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62385,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62387,
+      "raw_byte": 146,
+      "note_index": 18,
+      "period": 640,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62389,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62391,
+      "raw_byte": 144,
+      "note_index": 16,
+      "period": 718,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62393,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62395,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 62397,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62399
+    },
+    {
+      "offset_cpu": 62284,
+      "loop_count": 4,
+      "target_cpu": 62400
+    },
+    {
+      "offset_cpu": 62400,
+      "command": 9,
+      "params": [
+        2
+      ],
+      "description": "set tempo divider / song delay"
+    },
+    {
+      "offset_cpu": 62402,
+      "command": 4,
+      "params": [
+        3,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62406,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62408,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62410,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62412,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62414,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62416,
+      "command": 4,
+      "params": [
+        12,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62420,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62422,
+      "command": 4,
+      "params": [
+        3,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62426,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62428,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62430,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62432,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62434,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62436,
+      "command": 4,
+      "params": [
+        12,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62440,
+      "raw_byte": 151,
+      "note_index": 23,
+      "period": 479,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62442
+    },
+    {
+      "offset_cpu": 62400,
+      "command": 9,
+      "params": [
+        2
+      ],
+      "description": "set tempo divider / song delay"
+    },
+    {
+      "offset_cpu": 62402,
+      "command": 4,
+      "params": [
+        3,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62406,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62408,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62410,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62412,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62414,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62416,
+      "command": 4,
+      "params": [
+        12,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62420,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62422,
+      "command": 4,
+      "params": [
+        3,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62426,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62428,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62430,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62432,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62434,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62436,
+      "command": 4,
+      "params": [
+        12,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62440,
+      "raw_byte": 151,
+      "note_index": 23,
+      "period": 479,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62442
+    },
+    {
+      "offset_cpu": 62400,
+      "command": 9,
+      "params": [
+        2
+      ],
+      "description": "set tempo divider / song delay"
+    },
+    {
+      "offset_cpu": 62402,
+      "command": 4,
+      "params": [
+        3,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62406,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62408,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62410,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62412,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62414,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62416,
+      "command": 4,
+      "params": [
+        12,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62420,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62422,
+      "command": 4,
+      "params": [
+        3,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62426,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62428,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62430,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62432,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62434,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62436,
+      "command": 4,
+      "params": [
+        12,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62440,
+      "raw_byte": 151,
+      "note_index": 23,
+      "period": 479,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62442
+    },
+    {
+      "offset_cpu": 62400,
+      "command": 9,
+      "params": [
+        2
+      ],
+      "description": "set tempo divider / song delay"
+    },
+    {
+      "offset_cpu": 62402,
+      "command": 4,
+      "params": [
+        3,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62406,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62408,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62410,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62412,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62414,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62416,
+      "command": 4,
+      "params": [
+        12,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62420,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62422,
+      "command": 4,
+      "params": [
+        3,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62426,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62428,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62430,
+      "raw_byte": 148,
+      "note_index": 20,
+      "period": 570,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62432,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62434,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 6
+    },
+    {
+      "offset_cpu": 62436,
+      "command": 4,
+      "params": [
+        12,
+        4,
+        51
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62440,
+      "raw_byte": 151,
+      "note_index": 23,
+      "period": 479,
+      "duration": 18
+    },
+    {
+      "offset_cpu": 62442
+    },
+    {
+      "offset_cpu": 62288,
+      "command": 9,
+      "params": [
+        2
+      ],
+      "description": "set tempo divider / song delay"
+    },
+    {
+      "offset_cpu": 62290,
+      "command": 4,
+      "params": [
+        189,
+        160,
+        33
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62294,
+      "raw_byte": 157,
+      "note_index": 29,
+      "period": 338,
+      "duration": 8
+    },
+    {
+      "offset_cpu": 62296,
+      "raw_byte": 158,
+      "note_index": 30,
+      "period": 319,
+      "duration": 8
+    },
+    {
+      "offset_cpu": 62298,
+      "raw_byte": 159,
+      "note_index": 31,
+      "period": 301,
+      "duration": 8
+    },
+    {
+      "offset_cpu": 62300,
+      "raw_byte": 160,
+      "note_index": 32,
+      "period": 284,
+      "duration": 8
+    },
+    {
+      "offset_cpu": 62302,
+      "raw_byte": 161,
+      "note_index": 33,
+      "period": 268,
+      "duration": 8
+    },
+    {
+      "offset_cpu": 62304,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62306,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 62308,
+      "command": 4,
+      "params": [
+        131,
+        160,
+        33
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 62312,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62314,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 4
+    },
+    {
+      "offset_cpu": 62316,
+      "target_cpu": 62280
+    },
+    {
+      "offset_cpu": 62280,
+      "loop_count": 4,
+      "target_cpu": 62319
+    }
+  ]
+}

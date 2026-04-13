@@ -1,0 +1,613 @@
+{
+  "game": "Wizards & Warriors",
+  "tracks": [
+    {
+      "song_number": 1,
+      "track_name": "Wizards & Warriors Title",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF07B",
+          "event_count": 116,
+          "bytes_consumed": 240,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\01\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF0E0",
+          "event_count": 297,
+          "bytes_consumed": 335,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\01\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF1A3",
+          "event_count": 91,
+          "bytes_consumed": 135,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\01\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\01\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 2,
+      "track_name": "Forest of Elrond",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF1E8",
+          "event_count": 60,
+          "bytes_consumed": 122,
+          "terminal_event": "LoopCallEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\02\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF20D",
+          "event_count": 60,
+          "bytes_consumed": 122,
+          "terminal_event": "LoopCallEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\02\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF232",
+          "event_count": 151,
+          "bytes_consumed": 237,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\02\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF293",
+          "event_count": 49,
+          "bytes_consumed": 119,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\02\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 3,
+      "track_name": "Tree",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF2B3",
+          "event_count": 101,
+          "bytes_consumed": 231,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\03\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF2EF",
+          "event_count": 93,
+          "bytes_consumed": 215,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\03\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF327",
+          "event_count": 53,
+          "bytes_consumed": 111,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\03\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\03\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 4,
+      "track_name": "Ice Cave",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF345",
+          "event_count": 233,
+          "bytes_consumed": 542,
+          "terminal_event": "LoopCallEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\04\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF3EB",
+          "event_count": 230,
+          "bytes_consumed": 537,
+          "terminal_event": "LoopCallEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\04\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF492",
+          "event_count": 231,
+          "bytes_consumed": 531,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\04\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\04\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 5,
+      "track_name": "Low on Energy",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF539",
+          "event_count": 25,
+          "bytes_consumed": 52,
+          "terminal_event": "LoopCallEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\05\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF54F",
+          "event_count": 33,
+          "bytes_consumed": 87,
+          "terminal_event": "CommandEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\05\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF564",
+          "event_count": 33,
+          "bytes_consumed": 87,
+          "terminal_event": "CommandEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\05\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF578",
+          "event_count": 13,
+          "bytes_consumed": 31,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\05\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 6,
+      "track_name": "Initial Registration",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF582",
+          "event_count": 80,
+          "bytes_consumed": 158,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\06\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF5B1",
+          "event_count": 77,
+          "bytes_consumed": 128,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\06\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF5F2",
+          "event_count": 267,
+          "bytes_consumed": 292,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\06\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF641",
+          "event_count": 83,
+          "bytes_consumed": 125,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\06\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 7,
+      "track_name": "Got an Item",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF668",
+          "event_count": 25,
+          "bytes_consumed": 34,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\07\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF68A",
+          "event_count": 23,
+          "bytes_consumed": 30,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\07\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\07\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\07\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 8,
+      "track_name": "Outside Castle Ironspire",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF694",
+          "event_count": 68,
+          "bytes_consumed": 139,
+          "terminal_event": "TableNoteEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\08\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF6CB",
+          "event_count": 145,
+          "bytes_consumed": 254,
+          "terminal_event": "LoopCallEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\08\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF72D",
+          "event_count": 68,
+          "bytes_consumed": 139,
+          "terminal_event": "TableNoteEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\08\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF764",
+          "event_count": 37,
+          "bytes_consumed": 79,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\08\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 9,
+      "track_name": "Castle Ironspire",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF77B",
+          "event_count": 95,
+          "bytes_consumed": 202,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\09\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF7D8",
+          "event_count": 108,
+          "bytes_consumed": 228,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\09\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF854",
+          "event_count": 82,
+          "bytes_consumed": 166,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\09\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\09\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 10,
+      "track_name": "Entering a Door",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF8A4",
+          "event_count": 12,
+          "bytes_consumed": 15,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\10\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF8B3",
+          "event_count": 12,
+          "bytes_consumed": 15,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\10\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\10\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\10\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 11,
+      "track_name": "Map",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF8C2",
+          "event_count": 8,
+          "bytes_consumed": 19,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\11\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF8CA",
+          "event_count": 25,
+          "bytes_consumed": 47,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\11\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF8D2",
+          "event_count": 10,
+          "bytes_consumed": 25,
+          "terminal_event": "StopEvent",
+          "ended_by_loop": false,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\11\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\11\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 12,
+      "track_name": "Potion",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF8DA",
+          "event_count": 39,
+          "bytes_consumed": 45,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\12\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF8F3",
+          "event_count": 11,
+          "bytes_consumed": 17,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\12\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF932",
+          "event_count": 10,
+          "bytes_consumed": 19,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\12\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\12\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 13,
+      "track_name": "Fire Cavern",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF959",
+          "event_count": 185,
+          "bytes_consumed": 285,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\13\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF9D9",
+          "event_count": 192,
+          "bytes_consumed": 289,
+          "terminal_event": "LoopCallEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\13\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xFA45",
+          "event_count": 38,
+          "bytes_consumed": 49,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\13\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\13\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 14,
+      "track_name": "Inside the Big Tree",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xFA55",
+          "event_count": 72,
+          "bytes_consumed": 146,
+          "terminal_event": "LoopCallEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\14\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xFA9B",
+          "event_count": 10,
+          "bytes_consumed": 19,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\14\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xFAC4",
+          "event_count": 39,
+          "bytes_consumed": 45,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\14\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\14\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 15,
+      "track_name": "Boss",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xFB0B",
+          "event_count": 196,
+          "bytes_consumed": 305,
+          "terminal_event": "LoopCallEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\15\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xFB72",
+          "event_count": 257,
+          "bytes_consumed": 315,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\15\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xFBC3",
+          "event_count": 157,
+          "bytes_consumed": 183,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\15\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\15\\noise.json"
+        }
+      }
+    },
+    {
+      "song_number": 16,
+      "track_name": "Forest of Elrond (alt)",
+      "channels": {
+        "pulse1": {
+          "start_cpu": "0xF1E0",
+          "event_count": 9,
+          "bytes_consumed": 23,
+          "terminal_event": "JumpEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\16\\pulse1.json"
+        },
+        "pulse2": {
+          "start_cpu": "0xF1E8",
+          "event_count": 60,
+          "bytes_consumed": 122,
+          "terminal_event": "LoopCallEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\16\\pulse2.json"
+        },
+        "triangle": {
+          "start_cpu": "0xF20D",
+          "event_count": 60,
+          "bytes_consumed": 122,
+          "terminal_event": "LoopCallEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\16\\triangle.json"
+        },
+        "noise": {
+          "start_cpu": "0xF232",
+          "event_count": 151,
+          "bytes_consumed": 237,
+          "terminal_event": "LoopReturnEvent",
+          "ended_by_loop": true,
+          "artifact": "C:\\Dev\\NSFRIPPER\\extraction\\analysis\\static\\wizards_and_warriors\\16\\noise.json"
+        }
+      }
+    }
+  ]
+}

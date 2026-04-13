@@ -1,0 +1,563 @@
+{
+  "song_number": 9,
+  "track_name": "Castle Ironspire",
+  "channel": "triangle",
+  "start_cpu": "0xF854",
+  "summary": {
+    "channel": "triangle",
+    "start_cpu": 63572,
+    "event_count": 82,
+    "bytes_consumed": 166,
+    "terminal_event": "LoopReturnEvent",
+    "ended_by_loop": true
+  },
+  "events": [
+    {
+      "offset_cpu": 63572,
+      "reg_4000_or_4004": 67,
+      "reg_4001_or_4005": 131,
+      "reg_4003_or_4007": 18
+    },
+    {
+      "offset_cpu": 63575,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63577,
+      "raw_byte": 165,
+      "note_index": 37,
+      "period": 213,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63579,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63581,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63583,
+      "loop_count": 3,
+      "target_cpu": 63621
+    },
+    {
+      "offset_cpu": 63621,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63623,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63625,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63627,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63629,
+      "raw_byte": 165,
+      "note_index": 37,
+      "period": 213,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63631,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63633,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 60
+    },
+    {
+      "offset_cpu": 63635,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63637,
+      "raw_byte": 165,
+      "note_index": 37,
+      "period": 213,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63639,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63641,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63643,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63645,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63647,
+      "raw_byte": 160,
+      "note_index": 32,
+      "period": 284,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63649,
+      "raw_byte": 159,
+      "note_index": 31,
+      "period": 301,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63651
+    },
+    {
+      "offset_cpu": 63621,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63623,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63625,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63627,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63629,
+      "raw_byte": 165,
+      "note_index": 37,
+      "period": 213,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63631,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63633,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 60
+    },
+    {
+      "offset_cpu": 63635,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63637,
+      "raw_byte": 165,
+      "note_index": 37,
+      "period": 213,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63639,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63641,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63643,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63645,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63647,
+      "raw_byte": 160,
+      "note_index": 32,
+      "period": 284,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63649,
+      "raw_byte": 159,
+      "note_index": 31,
+      "period": 301,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63651
+    },
+    {
+      "offset_cpu": 63621,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63623,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63625,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63627,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63629,
+      "raw_byte": 165,
+      "note_index": 37,
+      "period": 213,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63631,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63633,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 60
+    },
+    {
+      "offset_cpu": 63635,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63637,
+      "raw_byte": 165,
+      "note_index": 37,
+      "period": 213,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63639,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63641,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63643,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63645,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63647,
+      "raw_byte": 160,
+      "note_index": 32,
+      "period": 284,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63649,
+      "raw_byte": 159,
+      "note_index": 31,
+      "period": 301,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63651
+    },
+    {
+      "offset_cpu": 63587,
+      "loop_count": 1,
+      "target_cpu": 63602
+    },
+    {
+      "offset_cpu": 63602,
+      "raw_byte": 159,
+      "note_index": 31,
+      "period": 301,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63604,
+      "raw_byte": 161,
+      "note_index": 33,
+      "period": 268,
+      "duration": 60
+    },
+    {
+      "offset_cpu": 63606,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63608,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63610,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63612,
+      "raw_byte": 158,
+      "note_index": 30,
+      "period": 319,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63614,
+      "raw_byte": 161,
+      "note_index": 33,
+      "period": 268,
+      "duration": 60
+    },
+    {
+      "offset_cpu": 63616,
+      "raw_byte": 160,
+      "note_index": 32,
+      "period": 284,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63618,
+      "raw_byte": 161,
+      "note_index": 33,
+      "period": 268,
+      "duration": 60
+    },
+    {
+      "offset_cpu": 63620
+    },
+    {
+      "offset_cpu": 63591,
+      "loop_count": 3,
+      "target_cpu": 63621
+    },
+    {
+      "offset_cpu": 63621,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63623,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63625,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63627,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63629,
+      "raw_byte": 165,
+      "note_index": 37,
+      "period": 213,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63631,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63633,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 60
+    },
+    {
+      "offset_cpu": 63635,
+      "raw_byte": 167,
+      "note_index": 39,
+      "period": 189,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63637,
+      "raw_byte": 165,
+      "note_index": 37,
+      "period": 213,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63639,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63641,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63643,
+      "raw_byte": 163,
+      "note_index": 35,
+      "period": 239,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 63645,
+      "raw_byte": 162,
+      "note_index": 34,
+      "period": 253,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63647,
+      "raw_byte": 160,
+      "note_index": 32,
+      "period": 284,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 63649,
+      "raw_byte": 159,
+      "note_index": 31,
+      "period": 301,
+      "duration": 36
+    },
+    {
+      "offset_cpu": 63651
+    }
+  ]
+}

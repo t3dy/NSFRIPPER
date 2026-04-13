@@ -1,0 +1,2083 @@
+{
+  "triangle_phrase": {
+    "parser_events": [
+      {
+        "frame": 928,
+        "type": "note",
+        "raw": 162,
+        "period": 253,
+        "duration": 32,
+        "offset": 61894
+      },
+      {
+        "frame": 960,
+        "type": "cmd",
+        "command": 7,
+        "params": [
+          16
+        ],
+        "offset": 61895
+      },
+      {
+        "frame": 960,
+        "type": "note",
+        "raw": 162,
+        "period": 253,
+        "duration": 16,
+        "offset": 61897
+      },
+      {
+        "frame": 976,
+        "type": "note",
+        "raw": 160,
+        "period": 284,
+        "duration": 16,
+        "offset": 61898
+      },
+      {
+        "frame": 992,
+        "type": "note",
+        "raw": 158,
+        "period": 319,
+        "duration": 16,
+        "offset": 61899
+      },
+      {
+        "frame": 1008,
+        "type": "note",
+        "raw": 157,
+        "period": 338,
+        "duration": 16,
+        "offset": 61900
+      }
+    ],
+    "frame_window": [
+      {
+        "frame": 920,
+        "latched_period": 508,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 921,
+        "latched_period": 508,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 922,
+        "latched_period": 508,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 923,
+        "latched_period": 508,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 924,
+        "latched_period": 508,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 925,
+        "latched_period": 508,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 926,
+        "latched_period": 508,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 927,
+        "latched_period": 508,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 928,
+        "latched_period": 508,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 929,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {
+          "$400A_period": "253"
+        },
+        "writes": [
+          {
+            "reg": "$4008",
+            "old": 129,
+            "new": 129
+          },
+          {
+            "reg": "$400A",
+            "old": 252,
+            "new": 253
+          },
+          {
+            "reg": "$400B",
+            "old": 17,
+            "new": 16
+          }
+        ]
+      },
+      {
+        "frame": 930,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 931,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 932,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 933,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 934,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 935,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 936,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 937,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 938,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 939,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 940,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 941,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 942,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 943,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 944,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 945,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 946,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 947,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 948,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 949,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 950,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 951,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 952,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 953,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 954,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 955,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 956,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 957,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 958,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 959,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 960,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 961,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": [
+          {
+            "reg": "$4008",
+            "old": 129,
+            "new": 129
+          },
+          {
+            "reg": "$400A",
+            "old": 253,
+            "new": 253
+          },
+          {
+            "reg": "$400B",
+            "old": 16,
+            "new": 16
+          }
+        ]
+      },
+      {
+        "frame": 962,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 963,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 964,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 965,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 966,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 967,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 968,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 969,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 970,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 971,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 972,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 973,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 974,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 975,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 976,
+        "latched_period": 253,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 977,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {
+          "$400A_period": "284"
+        },
+        "writes": [
+          {
+            "reg": "$4008",
+            "old": 129,
+            "new": 129
+          },
+          {
+            "reg": "$400A",
+            "old": 253,
+            "new": 28
+          },
+          {
+            "reg": "$400B",
+            "old": 16,
+            "new": 17
+          }
+        ]
+      },
+      {
+        "frame": 978,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 979,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 980,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 981,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 982,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 983,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 984,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 985,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 986,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 987,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 988,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 989,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 990,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 991,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 992,
+        "latched_period": 284,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 993,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {
+          "$400A_period": "319"
+        },
+        "writes": [
+          {
+            "reg": "$4008",
+            "old": 129,
+            "new": 129
+          },
+          {
+            "reg": "$400A",
+            "old": 28,
+            "new": 63
+          },
+          {
+            "reg": "$400B",
+            "old": 17,
+            "new": 17
+          }
+        ]
+      },
+      {
+        "frame": 994,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 995,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 996,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 997,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 998,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 999,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1000,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1001,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1002,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1003,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1004,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1005,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1006,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1007,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1008,
+        "latched_period": 319,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1009,
+        "latched_period": 338,
+        "latched_4008": 129,
+        "trace": {
+          "$400A_period": "338"
+        },
+        "writes": [
+          {
+            "reg": "$4008",
+            "old": 129,
+            "new": 129
+          },
+          {
+            "reg": "$400A",
+            "old": 63,
+            "new": 82
+          },
+          {
+            "reg": "$400B",
+            "old": 17,
+            "new": 17
+          }
+        ]
+      },
+      {
+        "frame": 1010,
+        "latched_period": 338,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1011,
+        "latched_period": 338,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1012,
+        "latched_period": 338,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1013,
+        "latched_period": 338,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1014,
+        "latched_period": 338,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 1015,
+        "latched_period": 338,
+        "latched_4008": 129,
+        "trace": {},
+        "writes": []
+      }
+    ]
+  },
+  "pulse2_ending": {
+    "parser_events": [
+      {
+        "frame": 2048,
+        "type": "cmd",
+        "command": 8,
+        "params": [],
+        "offset": 61857
+      },
+      {
+        "frame": 2048,
+        "type": "cmd",
+        "command": 4,
+        "params": [
+          189,
+          10,
+          33
+        ],
+        "offset": 61680
+      },
+      {
+        "frame": 2048,
+        "type": "cmd",
+        "command": 7,
+        "params": [
+          8
+        ],
+        "offset": 61684
+      },
+      {
+        "frame": 2048,
+        "type": "note",
+        "raw": 167,
+        "period": 189,
+        "duration": 8,
+        "offset": 61686
+      },
+      {
+        "frame": 2056,
+        "type": "note",
+        "raw": 162,
+        "period": 253,
+        "duration": 8,
+        "offset": 61687
+      },
+      {
+        "frame": 2064,
+        "type": "note",
+        "raw": 169,
+        "period": 169,
+        "duration": 8,
+        "offset": 61688
+      },
+      {
+        "frame": 2072,
+        "type": "note",
+        "raw": 170,
+        "period": 159,
+        "duration": 8,
+        "offset": 61689
+      },
+      {
+        "frame": 2080,
+        "type": "cmd",
+        "command": 4,
+        "params": [
+          185,
+          10,
+          33
+        ],
+        "offset": 61690
+      },
+      {
+        "frame": 2080,
+        "type": "note",
+        "raw": 167,
+        "period": 189,
+        "duration": 8,
+        "offset": 61694
+      },
+      {
+        "frame": 2088,
+        "type": "note",
+        "raw": 162,
+        "period": 253,
+        "duration": 8,
+        "offset": 61695
+      },
+      {
+        "frame": 2096,
+        "type": "note",
+        "raw": 169,
+        "period": 169,
+        "duration": 8,
+        "offset": 61696
+      },
+      {
+        "frame": 2104,
+        "type": "note",
+        "raw": 170,
+        "period": 159,
+        "duration": 8,
+        "offset": 61697
+      },
+      {
+        "frame": 2112,
+        "type": "cmd",
+        "command": 4,
+        "params": [
+          182,
+          10,
+          33
+        ],
+        "offset": 61698
+      },
+      {
+        "frame": 2112,
+        "type": "note",
+        "raw": 167,
+        "period": 189,
+        "duration": 8,
+        "offset": 61702
+      },
+      {
+        "frame": 2120,
+        "type": "note",
+        "raw": 162,
+        "period": 253,
+        "duration": 8,
+        "offset": 61703
+      },
+      {
+        "frame": 2128,
+        "type": "note",
+        "raw": 169,
+        "period": 169,
+        "duration": 8,
+        "offset": 61704
+      },
+      {
+        "frame": 2136,
+        "type": "note",
+        "raw": 170,
+        "period": 159,
+        "duration": 8,
+        "offset": 61705
+      },
+      {
+        "frame": 2144,
+        "type": "cmd",
+        "command": 4,
+        "params": [
+          179,
+          10,
+          33
+        ],
+        "offset": 61706
+      },
+      {
+        "frame": 2144,
+        "type": "note",
+        "raw": 167,
+        "period": 189,
+        "duration": 8,
+        "offset": 61710
+      },
+      {
+        "frame": 2152,
+        "type": "cmd",
+        "command": 8,
+        "params": [],
+        "offset": 61711
+      },
+      {
+        "frame": 2152,
+        "type": "note",
+        "raw": 128,
+        "period": 0,
+        "duration": 16,
+        "offset": 61712
+      },
+      {
+        "frame": 2168,
+        "type": "cmd",
+        "command": 4,
+        "params": [
+          67,
+          10,
+          33
+        ],
+        "offset": 61714
+      }
+    ],
+    "frame_window": [
+      {
+        "frame": 2056,
+        "latched_period": 189,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2057,
+        "latched_period": 253,
+        "latched_4004": 189,
+        "trace": {
+          "$4006_period": "507"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 189,
+            "new": 189
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 189,
+            "new": 253
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2058,
+        "latched_period": 253,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2059,
+        "latched_period": 253,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2060,
+        "latched_period": 253,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2061,
+        "latched_period": 253,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2062,
+        "latched_period": 253,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2063,
+        "latched_period": 253,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2064,
+        "latched_period": 253,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2065,
+        "latched_period": 169,
+        "latched_4004": 189,
+        "trace": {
+          "$4006_period": "339"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 189,
+            "new": 189
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 253,
+            "new": 169
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2066,
+        "latched_period": 169,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2067,
+        "latched_period": 169,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2068,
+        "latched_period": 169,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2069,
+        "latched_period": 169,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2070,
+        "latched_period": 169,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2071,
+        "latched_period": 169,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2072,
+        "latched_period": 169,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2073,
+        "latched_period": 159,
+        "latched_4004": 189,
+        "trace": {
+          "$4006_period": "319"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 189,
+            "new": 189
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 169,
+            "new": 159
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2074,
+        "latched_period": 159,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2075,
+        "latched_period": 159,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2076,
+        "latched_period": 159,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2077,
+        "latched_period": 159,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2078,
+        "latched_period": 159,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2079,
+        "latched_period": 159,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2080,
+        "latched_period": 159,
+        "latched_4004": 189,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2081,
+        "latched_period": 189,
+        "latched_4004": 185,
+        "trace": {
+          "$4004_vol": "9",
+          "$4006_period": "379"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 189,
+            "new": 185
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 159,
+            "new": 189
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2082,
+        "latched_period": 189,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2083,
+        "latched_period": 189,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2084,
+        "latched_period": 189,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2085,
+        "latched_period": 189,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2086,
+        "latched_period": 189,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2087,
+        "latched_period": 189,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2088,
+        "latched_period": 189,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2089,
+        "latched_period": 253,
+        "latched_4004": 185,
+        "trace": {
+          "$4006_period": "507"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 185,
+            "new": 185
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 189,
+            "new": 253
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2090,
+        "latched_period": 253,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2091,
+        "latched_period": 253,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2092,
+        "latched_period": 253,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2093,
+        "latched_period": 253,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2094,
+        "latched_period": 253,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2095,
+        "latched_period": 253,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2096,
+        "latched_period": 253,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2097,
+        "latched_period": 169,
+        "latched_4004": 185,
+        "trace": {
+          "$4006_period": "339"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 185,
+            "new": 185
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 253,
+            "new": 169
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2098,
+        "latched_period": 169,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2099,
+        "latched_period": 169,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2100,
+        "latched_period": 169,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2101,
+        "latched_period": 169,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2102,
+        "latched_period": 169,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2103,
+        "latched_period": 169,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2104,
+        "latched_period": 169,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2105,
+        "latched_period": 159,
+        "latched_4004": 185,
+        "trace": {
+          "$4006_period": "319"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 185,
+            "new": 185
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 169,
+            "new": 159
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2106,
+        "latched_period": 159,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2107,
+        "latched_period": 159,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2108,
+        "latched_period": 159,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2109,
+        "latched_period": 159,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2110,
+        "latched_period": 159,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2111,
+        "latched_period": 159,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2112,
+        "latched_period": 159,
+        "latched_4004": 185,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2113,
+        "latched_period": 189,
+        "latched_4004": 182,
+        "trace": {
+          "$4004_vol": "6",
+          "$4006_period": "379"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 185,
+            "new": 182
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 159,
+            "new": 189
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2114,
+        "latched_period": 189,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2115,
+        "latched_period": 189,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2116,
+        "latched_period": 189,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2117,
+        "latched_period": 189,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2118,
+        "latched_period": 189,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2119,
+        "latched_period": 189,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2120,
+        "latched_period": 189,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2121,
+        "latched_period": 253,
+        "latched_4004": 182,
+        "trace": {
+          "$4006_period": "507"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 182,
+            "new": 182
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 189,
+            "new": 253
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2122,
+        "latched_period": 253,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2123,
+        "latched_period": 253,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2124,
+        "latched_period": 253,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2125,
+        "latched_period": 253,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2126,
+        "latched_period": 253,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2127,
+        "latched_period": 253,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2128,
+        "latched_period": 253,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2129,
+        "latched_period": 169,
+        "latched_4004": 182,
+        "trace": {
+          "$4006_period": "339"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 182,
+            "new": 182
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 253,
+            "new": 169
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2130,
+        "latched_period": 169,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2131,
+        "latched_period": 169,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2132,
+        "latched_period": 169,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2133,
+        "latched_period": 169,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2134,
+        "latched_period": 169,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2135,
+        "latched_period": 169,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2136,
+        "latched_period": 169,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2137,
+        "latched_period": 159,
+        "latched_4004": 182,
+        "trace": {
+          "$4006_period": "319"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 182,
+            "new": 182
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 169,
+            "new": 159
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2138,
+        "latched_period": 159,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2139,
+        "latched_period": 159,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2140,
+        "latched_period": 159,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2141,
+        "latched_period": 159,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2142,
+        "latched_period": 159,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2143,
+        "latched_period": 159,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2144,
+        "latched_period": 159,
+        "latched_4004": 182,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2145,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {
+          "$4004_vol": "3",
+          "$4006_period": "379"
+        },
+        "writes": [
+          {
+            "reg": "$4004",
+            "old": 182,
+            "new": 179
+          },
+          {
+            "reg": "$4005",
+            "old": 10,
+            "new": 10
+          },
+          {
+            "reg": "$4006",
+            "old": 159,
+            "new": 189
+          },
+          {
+            "reg": "$4007",
+            "old": 32,
+            "new": 32
+          }
+        ]
+      },
+      {
+        "frame": 2146,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2147,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2148,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2149,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2150,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2151,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2152,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2153,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2154,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2155,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2156,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2157,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2158,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2159,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2160,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2161,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2162,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2163,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2164,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2165,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2166,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2167,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      },
+      {
+        "frame": 2168,
+        "latched_period": 189,
+        "latched_4004": 179,
+        "trace": {},
+        "writes": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "song_number": 12,
+  "track_name": "Potion",
+  "channel": "pulse1",
+  "start_cpu": "0xF8DA",
+  "summary": {
+    "channel": "pulse1",
+    "start_cpu": 63706,
+    "event_count": 39,
+    "bytes_consumed": 45,
+    "terminal_event": "LoopReturnEvent",
+    "ended_by_loop": true
+  },
+  "events": [
+    {
+      "offset_cpu": 63706,
+      "reg_4000_or_4004": 225,
+      "reg_4001_or_4005": 160,
+      "reg_4003_or_4007": 15
+    },
+    {
+      "offset_cpu": 63709,
+      "command": 7,
+      "params": [
+        10
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 63711,
+      "loop_count": 12,
+      "target_cpu": 63721
+    },
+    {
+      "offset_cpu": 63721,
+      "raw_byte": 157,
+      "note_index": 29,
+      "period": 338,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63722,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63723,
+      "raw_byte": 169,
+      "note_index": 41,
+      "period": 169,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63724,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63725,
+      "raw_byte": 168,
+      "note_index": 40,
+      "period": 179,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63726,
+      "raw_byte": 169,
+      "note_index": 41,
+      "period": 169,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63727,
+      "raw_byte": 168,
+      "note_index": 40,
+      "period": 179,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63728,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63729
+    },
+    {
+      "offset_cpu": 63721,
+      "raw_byte": 157,
+      "note_index": 29,
+      "period": 338,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63722,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63723,
+      "raw_byte": 169,
+      "note_index": 41,
+      "period": 169,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63724,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63725,
+      "raw_byte": 168,
+      "note_index": 40,
+      "period": 179,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63726,
+      "raw_byte": 169,
+      "note_index": 41,
+      "period": 169,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63727,
+      "raw_byte": 168,
+      "note_index": 40,
+      "period": 179,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63728,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63729
+    },
+    {
+      "offset_cpu": 63721,
+      "raw_byte": 157,
+      "note_index": 29,
+      "period": 338,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63722,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63723,
+      "raw_byte": 169,
+      "note_index": 41,
+      "period": 169,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63724,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63725,
+      "raw_byte": 168,
+      "note_index": 40,
+      "period": 179,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63726,
+      "raw_byte": 169,
+      "note_index": 41,
+      "period": 169,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63727,
+      "raw_byte": 168,
+      "note_index": 40,
+      "period": 179,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63728,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63729
+    },
+    {
+      "offset_cpu": 63721,
+      "raw_byte": 157,
+      "note_index": 29,
+      "period": 338,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63722,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63723,
+      "raw_byte": 169,
+      "note_index": 41,
+      "period": 169,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63724,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63725,
+      "raw_byte": 168,
+      "note_index": 40,
+      "period": 179,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63726,
+      "raw_byte": 169,
+      "note_index": 41,
+      "period": 169,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63727,
+      "raw_byte": 168,
+      "note_index": 40,
+      "period": 179,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63728,
+      "raw_byte": 164,
+      "note_index": 36,
+      "period": 226,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63729
+    }
+  ]
+}

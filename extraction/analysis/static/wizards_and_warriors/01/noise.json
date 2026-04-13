@@ -1,0 +1,66 @@
+{
+  "song_number": 1,
+  "track_name": "Wizards & Warriors Title",
+  "channel": "noise",
+  "start_cpu": "0xF1E0",
+  "summary": {
+    "channel": "noise",
+    "start_cpu": 61920,
+    "event_count": 9,
+    "bytes_consumed": 23,
+    "terminal_event": "JumpEvent",
+    "ended_by_loop": true
+  },
+  "events": [
+    {
+      "offset_cpu": 61920,
+      "reg_4000_or_4004": 129,
+      "reg_4001_or_4005": 135,
+      "reg_4003_or_4007": 18
+    },
+    {
+      "offset_cpu": 61923,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 0
+    },
+    {
+      "offset_cpu": 61925,
+      "target_cpu": 61923
+    },
+    {
+      "offset_cpu": 61923,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 0
+    },
+    {
+      "offset_cpu": 61925,
+      "target_cpu": 61923
+    },
+    {
+      "offset_cpu": 61923,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 0
+    },
+    {
+      "offset_cpu": 61925,
+      "target_cpu": 61923
+    },
+    {
+      "offset_cpu": 61923,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 0
+    },
+    {
+      "offset_cpu": 61925,
+      "target_cpu": 61923
+    }
+  ]
+}

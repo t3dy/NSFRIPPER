@@ -1,0 +1,270 @@
+{
+  "song_number": 13,
+  "track_name": "Fire Cavern",
+  "channel": "triangle",
+  "start_cpu": "0xFA45",
+  "summary": {
+    "channel": "triangle",
+    "start_cpu": 64069,
+    "event_count": 38,
+    "bytes_consumed": 49,
+    "terminal_event": "JumpEvent",
+    "ended_by_loop": true
+  },
+  "events": [
+    {
+      "offset_cpu": 64069,
+      "reg_4000_or_4004": 23,
+      "reg_4001_or_4005": 135,
+      "reg_4003_or_4007": 18
+    },
+    {
+      "offset_cpu": 64072,
+      "command": 7,
+      "params": [
+        12
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 64074,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64075,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64076,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64077,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64078,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64079,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64080,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64081,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64082,
+      "target_cpu": 64074
+    },
+    {
+      "offset_cpu": 64074,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64075,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64076,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64077,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64078,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64079,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64080,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64081,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64082,
+      "target_cpu": 64074
+    },
+    {
+      "offset_cpu": 64074,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64075,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64076,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64077,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64078,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64079,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64080,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64081,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64082,
+      "target_cpu": 64074
+    },
+    {
+      "offset_cpu": 64074,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64075,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64076,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64077,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64078,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64079,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64080,
+      "raw_byte": 139,
+      "note_index": 11,
+      "period": 959,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64081,
+      "raw_byte": 140,
+      "note_index": 12,
+      "period": 905,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 64082,
+      "target_cpu": 64074
+    }
+  ]
+}

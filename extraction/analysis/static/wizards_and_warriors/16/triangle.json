@@ -1,0 +1,412 @@
+{
+  "song_number": 16,
+  "track_name": "Forest of Elrond (alt)",
+  "channel": "triangle",
+  "start_cpu": "0xF20D",
+  "summary": {
+    "channel": "triangle",
+    "start_cpu": 61965,
+    "event_count": 60,
+    "bytes_consumed": 122,
+    "terminal_event": "LoopCallEvent",
+    "ended_by_loop": true
+  },
+  "events": [
+    {
+      "offset_cpu": 61965,
+      "reg_4000_or_4004": 68,
+      "reg_4001_or_4005": 10,
+      "reg_4003_or_4007": 14
+    },
+    {
+      "offset_cpu": 61968,
+      "loop_count": 4,
+      "target_cpu": 61975
+    },
+    {
+      "offset_cpu": 61975,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61977,
+      "raw_byte": 129,
+      "note_index": 1,
+      "period": 1710,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61979,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61981,
+      "raw_byte": 131,
+      "note_index": 3,
+      "period": 1524,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61983,
+      "raw_byte": 132,
+      "note_index": 4,
+      "period": 1438,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61985,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61987,
+      "raw_byte": 134,
+      "note_index": 6,
+      "period": 1281,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61989,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61991,
+      "raw_byte": 134,
+      "note_index": 6,
+      "period": 1281,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61993,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61995,
+      "raw_byte": 135,
+      "note_index": 7,
+      "period": 1208,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61997,
+      "raw_byte": 136,
+      "note_index": 8,
+      "period": 1141,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61999,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62001
+    },
+    {
+      "offset_cpu": 61975,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61977,
+      "raw_byte": 129,
+      "note_index": 1,
+      "period": 1710,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61979,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61981,
+      "raw_byte": 131,
+      "note_index": 3,
+      "period": 1524,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61983,
+      "raw_byte": 132,
+      "note_index": 4,
+      "period": 1438,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61985,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61987,
+      "raw_byte": 134,
+      "note_index": 6,
+      "period": 1281,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61989,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61991,
+      "raw_byte": 134,
+      "note_index": 6,
+      "period": 1281,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61993,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61995,
+      "raw_byte": 135,
+      "note_index": 7,
+      "period": 1208,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61997,
+      "raw_byte": 136,
+      "note_index": 8,
+      "period": 1141,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61999,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62001
+    },
+    {
+      "offset_cpu": 61975,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61977,
+      "raw_byte": 129,
+      "note_index": 1,
+      "period": 1710,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61979,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61981,
+      "raw_byte": 131,
+      "note_index": 3,
+      "period": 1524,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61983,
+      "raw_byte": 132,
+      "note_index": 4,
+      "period": 1438,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61985,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61987,
+      "raw_byte": 134,
+      "note_index": 6,
+      "period": 1281,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61989,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61991,
+      "raw_byte": 134,
+      "note_index": 6,
+      "period": 1281,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61993,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61995,
+      "raw_byte": 135,
+      "note_index": 7,
+      "period": 1208,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61997,
+      "raw_byte": 136,
+      "note_index": 8,
+      "period": 1141,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61999,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62001
+    },
+    {
+      "offset_cpu": 61975,
+      "raw_byte": 141,
+      "note_index": 13,
+      "period": 854,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61977,
+      "raw_byte": 129,
+      "note_index": 1,
+      "period": 1710,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61979,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61981,
+      "raw_byte": 131,
+      "note_index": 3,
+      "period": 1524,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61983,
+      "raw_byte": 132,
+      "note_index": 4,
+      "period": 1438,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61985,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61987,
+      "raw_byte": 134,
+      "note_index": 6,
+      "period": 1281,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61989,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61991,
+      "raw_byte": 134,
+      "note_index": 6,
+      "period": 1281,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61993,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61995,
+      "raw_byte": 135,
+      "note_index": 7,
+      "period": 1208,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 61997,
+      "raw_byte": 136,
+      "note_index": 8,
+      "period": 1141,
+      "duration": 24
+    },
+    {
+      "offset_cpu": 61999,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 12
+    },
+    {
+      "offset_cpu": 62001
+    },
+    {
+      "offset_cpu": 61972,
+      "target_cpu": 61968
+    },
+    {
+      "offset_cpu": 61968,
+      "loop_count": 4,
+      "target_cpu": 61975
+    }
+  ]
+}

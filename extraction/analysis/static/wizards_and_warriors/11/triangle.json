@@ -1,0 +1,81 @@
+{
+  "song_number": 11,
+  "track_name": "Map",
+  "channel": "triangle",
+  "start_cpu": "0xF8D2",
+  "summary": {
+    "channel": "triangle",
+    "start_cpu": 63698,
+    "event_count": 10,
+    "bytes_consumed": 25,
+    "terminal_event": "StopEvent",
+    "ended_by_loop": false
+  },
+  "events": [
+    {
+      "offset_cpu": 63698,
+      "reg_4000_or_4004": 129,
+      "reg_4001_or_4005": 135,
+      "reg_4003_or_4007": 18
+    },
+    {
+      "offset_cpu": 63701,
+      "loop_count": 1,
+      "target_cpu": 61903
+    },
+    {
+      "offset_cpu": 61903,
+      "command": 4,
+      "params": [
+        129,
+        135,
+        18
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 61907,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 48
+    },
+    {
+      "offset_cpu": 61909,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 32
+    },
+    {
+      "offset_cpu": 61911,
+      "raw_byte": 143,
+      "note_index": 15,
+      "period": 761,
+      "duration": 16
+    },
+    {
+      "offset_cpu": 61913,
+      "command": 4,
+      "params": [
+        67,
+        43,
+        18
+      ],
+      "description": "set channel instrument registers"
+    },
+    {
+      "offset_cpu": 61917,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 8
+    },
+    {
+      "offset_cpu": 61919
+    },
+    {
+      "offset_cpu": 63705
+    }
+  ]
+}

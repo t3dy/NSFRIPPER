@@ -1,0 +1,2267 @@
+{
+  "meta": {
+    "window_start": 920,
+    "window_end": 980,
+    "source_nsf": "C:\\Dev\\NSFRIPPER\\state\\ww_ref\\Wizards & Warriors [Densetsu no Kishi - Elrond] (1987-12)(Rare)(Acclaim).nsf",
+    "claim": "Pulse low nibble is often envelope period, not steady volume; triangle $4008 low bits are reload, not proven live counter state."
+  },
+  "frames": [
+    {
+      "frame": 920,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 15,
+        "modeled_decay_level": 15,
+        "parser_boundary": true
+      },
+      "triangle": {
+        "period": 508,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 921,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 508,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 922,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 13,
+        "modeled_decay_level": 13,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 508,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 923,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 508,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 924,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 11,
+        "modeled_decay_level": 11,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 508,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 925,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 10,
+        "modeled_decay_level": 10,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 508,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 926,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 9,
+        "modeled_decay_level": 9,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 508,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 927,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 8,
+        "modeled_decay_level": 8,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 508,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 928,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 15,
+        "modeled_decay_level": 15,
+        "parser_boundary": true
+      },
+      "pulse2": {
+        "period": 169,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 15,
+        "modeled_decay_level": 15,
+        "parser_boundary": true
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": true,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 929,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 169,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 930,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 169,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 13,
+        "modeled_decay_level": 13,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 931,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 13,
+        "modeled_decay_level": 13,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 169,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 932,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 169,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 11,
+        "modeled_decay_level": 11,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 933,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 169,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 10,
+        "modeled_decay_level": 10,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 934,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 11,
+        "modeled_decay_level": 11,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 169,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 9,
+        "modeled_decay_level": 9,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 935,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 10,
+        "modeled_decay_level": 10,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 169,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 8,
+        "modeled_decay_level": 8,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 936,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 10,
+        "modeled_decay_level": 10,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 15,
+        "modeled_decay_level": 15,
+        "parser_boundary": true
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 937,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 9,
+        "modeled_decay_level": 9,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 938,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 8,
+        "modeled_decay_level": 8,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 13,
+        "modeled_decay_level": 13,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 939,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 8,
+        "modeled_decay_level": 8,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 940,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 7,
+        "modeled_decay_level": 7,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 11,
+        "modeled_decay_level": 11,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 941,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 6,
+        "modeled_decay_level": 6,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 10,
+        "modeled_decay_level": 10,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 942,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 6,
+        "modeled_decay_level": 6,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 9,
+        "modeled_decay_level": 9,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 943,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 5,
+        "modeled_decay_level": 5,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 8,
+        "modeled_decay_level": 8,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 944,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 4,
+        "modeled_decay_level": 4,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 15,
+        "modeled_decay_level": 15,
+        "parser_boundary": true
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 945,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 4,
+        "modeled_decay_level": 4,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 946,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 3,
+        "modeled_decay_level": 3,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 13,
+        "modeled_decay_level": 13,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 947,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 2,
+        "modeled_decay_level": 2,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 948,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 2,
+        "modeled_decay_level": 2,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 11,
+        "modeled_decay_level": 11,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 949,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 1,
+        "modeled_decay_level": 1,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 10,
+        "modeled_decay_level": 10,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 950,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 9,
+        "modeled_decay_level": 9,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 951,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 8,
+        "modeled_decay_level": 8,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 952,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 15,
+        "modeled_decay_level": 15,
+        "parser_boundary": true
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 953,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 954,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 13,
+        "modeled_decay_level": 13,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 955,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 956,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 11,
+        "modeled_decay_level": 11,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 957,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 10,
+        "modeled_decay_level": 10,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 958,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 9,
+        "modeled_decay_level": 9,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 959,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 0,
+        "modeled_decay_level": 0,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 8,
+        "modeled_decay_level": 8,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 960,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 15,
+        "modeled_decay_level": 15,
+        "parser_boundary": true
+      },
+      "pulse2": {
+        "period": 126,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 15,
+        "modeled_decay_level": 15,
+        "parser_boundary": true
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": true,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 961,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 126,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 962,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 126,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 13,
+        "modeled_decay_level": 13,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 963,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 13,
+        "modeled_decay_level": 13,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 126,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 964,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 126,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 11,
+        "modeled_decay_level": 11,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 965,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 126,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 10,
+        "modeled_decay_level": 10,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 966,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 11,
+        "modeled_decay_level": 11,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 126,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 9,
+        "modeled_decay_level": 9,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 967,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 10,
+        "modeled_decay_level": 10,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 126,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 8,
+        "modeled_decay_level": 8,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 968,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 10,
+        "modeled_decay_level": 10,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 15,
+        "modeled_decay_level": 15,
+        "parser_boundary": true
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 969,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 9,
+        "modeled_decay_level": 9,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 970,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 8,
+        "modeled_decay_level": 8,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 13,
+        "modeled_decay_level": 13,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 971,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 8,
+        "modeled_decay_level": 8,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 972,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 7,
+        "modeled_decay_level": 7,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 11,
+        "modeled_decay_level": 11,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 973,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 6,
+        "modeled_decay_level": 6,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 10,
+        "modeled_decay_level": 10,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 974,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 6,
+        "modeled_decay_level": 6,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 9,
+        "modeled_decay_level": 9,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 975,
+      "pulse1": {
+        "period": 508,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 5,
+        "modeled_decay_level": 5,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 253,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 8,
+        "modeled_decay_level": 8,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 253,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 976,
+      "pulse1": {
+        "period": 570,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 15,
+        "modeled_decay_level": 15,
+        "parser_boundary": true
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 15,
+        "modeled_decay_level": 15,
+        "parser_boundary": true
+      },
+      "triangle": {
+        "period": 284,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": true,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 977,
+      "pulse1": {
+        "period": 570,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 284,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 978,
+      "pulse1": {
+        "period": 570,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 14,
+        "modeled_decay_level": 14,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 13,
+        "modeled_decay_level": 13,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 284,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 979,
+      "pulse1": {
+        "period": 570,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 13,
+        "modeled_decay_level": 13,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 284,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    },
+    {
+      "frame": 980,
+      "pulse1": {
+        "period": 570,
+        "duty": 1,
+        "raw_low_nibble": 5,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 5,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 12,
+        "modeled_decay_level": 12,
+        "parser_boundary": false
+      },
+      "pulse2": {
+        "period": 201,
+        "duty": 1,
+        "raw_low_nibble": 3,
+        "const_vol": 0,
+        "env_loop": 0,
+        "env_period": 3,
+        "mode": "hardware_envelope",
+        "modeled_effective_volume": 11,
+        "modeled_decay_level": 11,
+        "parser_boundary": false
+      },
+      "triangle": {
+        "period": 284,
+        "linear_reload": 1,
+        "linear_control": 1,
+        "current_export_linear": 1,
+        "modeled_linear_counter": 1,
+        "modeled_reload_flag": true,
+        "parser_boundary": false,
+        "warning": "current_export_linear is the reload register value, not proven live internal counter state"
+      }
+    }
+  ]
+}

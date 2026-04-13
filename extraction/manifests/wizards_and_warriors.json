@@ -1,0 +1,211 @@
+{
+  "game": "Wizards & Warriors",
+  "rom_aliases": [
+    "Wizards & Warriors (U) (V1.0) [!].nes",
+    "Wizards & Warriors (U) [!].nes"
+  ],
+  "status": "DISCOVERY",
+  "driver_family": "wizards_and_warriors_custom",
+  "driver_family_status": "hypothesis",
+
+  "rom_layout": {
+    "mapper": 7,
+    "mapper_name": "AxROM",
+    "prg_banks": 8,
+    "prg_size_kb": 128,
+    "chr_size_kb": 0,
+    "nsf_payload_matches_rom_prg_from_start": true,
+    "nsf_payload_match_status": "verified",
+    "resolver_method": "axrom_bank_inference_required",
+    "status": "partial",
+    "notes": "NSF payload matches ROM PRG starting at file offset 0x10, but the active sound bank and CPU-visible mapping are not yet verified."
+  },
+
+  "evidence_sources": {
+    "rom": "C:\\Dev\\NSFRIPPER\\extraction\\roms\\Wizards & Warriors (U) (V1.0) [!].nes",
+    "nsf": "C:\\Dev\\NSFRIPPER\\state\\ww_ref\\Wizards & Warriors [Densetsu no Kishi - Elrond] (1987-12)(Rare)(Acclaim).nsf",
+    "m3u": "C:\\Dev\\NSFRIPPER\\state\\ww_ref\\Wizards & Warriors [Densetsu no Kishi - Elrond] (1987-12)(Rare)(Acclaim).m3u",
+    "mesen_trace": "C:\\Dev\\NSFRIPPER\\extraction\\traces\\wizards_and_warriors\\title_capture.csv"
+  },
+
+  "nsf_metadata": {
+    "songs": 16,
+    "starting_song": 1,
+    "load_address": "0x8000",
+    "init_address": "0xFFC0",
+    "play_address": "0xEE55",
+    "bankswitch": [0, 0, 0, 0, 0, 0, 0, 0],
+    "status": "verified"
+  },
+
+  "driver_hypotheses": [
+    {
+      "family": "konami_maezawa_like",
+      "confidence": 1.0,
+      "status": "rejected_as_primary",
+      "source": "scripts/rom_identify.py",
+      "evidence": [
+        "27 FE repeat patterns",
+        "184 FD subroutine patterns",
+        "6 E8+DX clusters"
+      ],
+      "notes": "Static signature scan overfit on FE/FD/E8-like byte patterns. Disassembly of NSF play routine at 0xEE55 shows a different dispatch structure than the Konami/Maezawa parser path."
+    },
+    {
+      "family": "rare_family_possible_but_unverified",
+      "confidence": 0.2,
+      "status": "hypothesis",
+      "source": "publisher/developer context",
+      "evidence": [
+        "Game developed by Rare",
+        "Existing repo has a Rare parser for Battletoads, but no structural match has been proven here"
+      ],
+      "notes": "Do not reuse the Battletoads parser without command/path verification."
+    },
+    {
+      "family": "wizards_and_warriors_custom",
+      "confidence": 0.8,
+      "status": "hypothesis",
+      "source": "NSF disassembly + init emulation",
+      "evidence": [
+        "Init routine at 0xFFC0 and play routine at 0xEE55 verified by NSF header and py65 disassembly",
+        "Command dispatch table at 0xEEEE with handlers 0xEF04..0xEFBF",
+        "Title song pointers recovered via init emulation",
+        "Non-standard direct-period table at 0xF000 and table-note period table at 0xEFD9"
+      ],
+      "notes": "Current best model is a game-specific driver with two note forms and commands in the 0x00-0x0A range."
+    }
+  ],
+
+  "period_table": {
+    "status": "partial",
+    "table_note_period_addr": "0xEFD9",
+    "direct_period_table_addr": "0xF000",
+    "table_note_first_entries": [0, 1710, 1526, 1334, 1270, 1200, 1080, 1016],
+    "direct_period_first_entries": [570, 538, 508, 479, 452, 427, 403, 380],
+    "direct_period_endianness": "big-endian",
+    "notes": "Naive standard-table scan failed because the driver uses two compact period tables rather than one long canonical NTSC sequence."
+  },
+
+  "command_set": {
+    "status": "partial",
+    "play_routine": "0xEE55",
+    "dispatch_table": "0xEEEE",
+    "handlers": {
+      "0x00": "0xEF04",
+      "0x01": "0xEF74",
+      "0x02": "0xEF27",
+      "0x03": "0xEF33",
+      "0x04": "0xEF5E",
+      "0x05": "0xEF8C",
+      "0x06": "0xEFBF",
+      "0x07": "0xEF4A",
+      "0x08": "0xEF41",
+      "0x09": "0xEF37",
+      "0x0A": "0xEF54"
+    },
+    "notes": "Bytes < 0x10 dispatch through 0xEEEE. Structural semantics are partially decoded in extraction/drivers/other/wizards_and_warriors_parser.py."
+  },
+
+  "song_structure": {
+    "status": "verified",
+    "title_track_number": 1,
+    "title_track_name": "Wizards & Warriors Title",
+    "song_selector_table": "0xFFD0",
+    "song_pointer_table": "0xEC6F",
+    "notes": "Song/channel pointers are recovered deterministically by NSF init emulation.",
+    "title_channels": {
+      "pulse1": "0xF07B",
+      "pulse2": "0xF0E0",
+      "triangle": "0xF1A3",
+      "noise": "0xF1E0"
+    }
+  },
+
+  "tracks": {
+    "1": {"name": "Wizards & Warriors Title", "pulse1": "0xF07B", "pulse2": "0xF0E0", "triangle": "0xF1A3", "noise": "0xF1E0"},
+    "2": {"name": "Forest of Elrond", "pulse1": "0xF1E8", "pulse2": "0xF20D", "triangle": "0xF232", "noise": "0xF293"},
+    "3": {"name": "Tree", "pulse1": "0xF2B3", "pulse2": "0xF2EF", "triangle": "0xF327", "noise": "0xF1E0"},
+    "4": {"name": "Ice Cave", "pulse1": "0xF345", "pulse2": "0xF3EB", "triangle": "0xF492", "noise": "0xF1E0"},
+    "5": {"name": "Low on Energy", "pulse1": "0xF539", "pulse2": "0xF54F", "triangle": "0xF564", "noise": "0xF578"},
+    "6": {"name": "Initial Registration", "pulse1": "0xF582", "pulse2": "0xF5B1", "triangle": "0xF5F2", "noise": "0xF641"},
+    "7": {"name": "Got an Item", "pulse1": "0xF668", "pulse2": "0xF68A", "triangle": "0xF1E0", "noise": "0xF1E0"},
+    "8": {"name": "Outside Castle Ironspire", "pulse1": "0xF694", "pulse2": "0xF6CB", "triangle": "0xF72D", "noise": "0xF764"},
+    "9": {"name": "Castle Ironspire", "pulse1": "0xF77B", "pulse2": "0xF7D8", "triangle": "0xF854", "noise": "0xF1E0"},
+    "10": {"name": "Entering a Door", "pulse1": "0xF8A4", "pulse2": "0xF8B3", "triangle": "0xF1E0", "noise": "0xF1E0"},
+    "11": {"name": "Map", "pulse1": "0xF8C2", "pulse2": "0xF8CA", "triangle": "0xF8D2", "noise": "0xF1E0"},
+    "12": {"name": "Potion", "pulse1": "0xF8DA", "pulse2": "0xF8F3", "triangle": "0xF932", "noise": "0xF1E0"},
+    "13": {"name": "Fire Cavern", "pulse1": "0xF959", "pulse2": "0xF9D9", "triangle": "0xFA45", "noise": "0xF1E0"},
+    "14": {"name": "Inside the Big Tree", "pulse1": "0xFA55", "pulse2": "0xFA9B", "triangle": "0xFAC4", "noise": "0xF1E0"},
+    "15": {"name": "Boss", "pulse1": "0xFB0B", "pulse2": "0xFB72", "triangle": "0xFBC3", "noise": "0xF1E0"},
+    "16": {"name": "Forest of Elrond (alt)", "pulse1": "0xF1E0", "pulse2": "0xF1E8", "triangle": "0xF20D", "noise": "0xF232"}
+  },
+
+  "title_parse_status": {
+    "pulse1": "structurally aligned with provisional parser; pulse simulator now exact on scaled periods across title reference span",
+    "pulse2": "structurally aligned with provisional parser; pulse simulator now exact on scaled periods across title reference span",
+    "triangle": "structurally aligned; simulator now exact on period and sounding state across title reference span, with final linear-counter values approximated during release",
+    "noise": "title trace shows no active noise events; inactive-path validation is complete for this capture",
+    "status": "partial"
+  },
+
+  "trace_validation": {
+    "title_reference_span": "frames 2721-4889 from title_capture.csv",
+    "pulse1": {
+      "frames_compared": 2169,
+      "exact_scaled_period_match": "2169/2169",
+      "sounding_agreement": "2168/2169",
+      "single_disagreement_frame": 2169,
+      "single_disagreement_reason": "Trace volume drops to zero on final captured frame while simulated held note still sustains."
+    },
+    "pulse2": {
+      "frames_compared": 2169,
+      "exact_scaled_period_match": "2169/2169",
+      "sounding_agreement": "2168/2169",
+      "single_disagreement_frame": 2169,
+      "single_disagreement_reason": "Trace volume drops to zero on final captured frame while simulated held note still sustains."
+    },
+    "triangle": {
+      "frames_compared": 2169,
+      "exact_period_match": "2169/2169",
+      "sounding_agreement": "2169/2169",
+      "notes": "Final release is now modeled at the gate/sounding level. Intermediate linear-counter values during the last few frames are still approximate."
+    },
+    "noise": {
+      "frames_compared": 2169,
+      "inactive_match": "2169/2169",
+      "notes": "No active title noise events observed in the clean second-pass capture."
+    },
+    "status": "partial",
+    "notes": "Pulse channels are strongly semantics-aligned for the title. Triangle period and sounding path are exact at the comparison level used here, with only the exact linear-counter decay values still approximate. Noise is inactive in the validated title capture."
+  },
+
+  "trace_segments": {
+    "title_capture_total_frames": 4889,
+    "detected_music_spans": [
+      {"start_frame": 3, "end_frame": 2170, "duration_frames": 2168, "status": "observed"},
+      {"start_frame": 2721, "end_frame": 4889, "duration_frames": 2169, "status": "observed"}
+    ],
+    "title_reference_span": {
+      "start_frame": 2721,
+      "end_frame": 4889,
+      "duration_frames": 2169,
+      "reason": "First pass starts a few frames late; second pass is the clean title reference.",
+      "status": "verified"
+    }
+  },
+
+  "current_outputs": {
+    "trace_title_midi": "C:\\Dev\\NSFRIPPER\\output\\Wizards_and_Warriors_trace\\midi\\wizards_&_warriors_trace_01_Title_v1.mid",
+    "trace_title_reaper_console": "C:\\Dev\\NSFRIPPER\\output\\Wizards_and_Warriors_trace\\reaper\\wizards_&_warriors_trace_01_Title_v1.rpp",
+    "trace_title_reaper_apu2": "C:\\Dev\\NSFRIPPER\\output\\Wizards_and_Warriors_trace\\reaper\\wizards_&_warriors_trace_01_Title_APU2_v1.rpp",
+    "nsf_batch_output": "C:\\Dev\\NSFRIPPER\\output\\Wizards_and_Warriors\\",
+    "status": "provisional"
+  },
+
+  "next_targets": [
+    "Finish semantic decoding of commands 0x03, 0x07, 0x08, 0x09, and 0x0A beyond the pulse-only scope.",
+    "Emit a full title execution-semantics report with period and gate/volume layers separated explicitly.",
+    "Promote the current title pulse validation into a reusable simulator path for the remaining 15 tracks."
+  ]
+}

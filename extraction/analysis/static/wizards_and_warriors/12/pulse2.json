@@ -1,0 +1,75 @@
+{
+  "song_number": 12,
+  "track_name": "Potion",
+  "channel": "pulse2",
+  "start_cpu": "0xF8F3",
+  "summary": {
+    "channel": "pulse2",
+    "start_cpu": 63731,
+    "event_count": 11,
+    "bytes_consumed": 17,
+    "terminal_event": "LoopReturnEvent",
+    "ended_by_loop": true
+  },
+  "events": [
+    {
+      "offset_cpu": 63731,
+      "reg_4000_or_4004": 225,
+      "reg_4001_or_4005": 160,
+      "reg_4003_or_4007": 15
+    },
+    {
+      "offset_cpu": 63734,
+      "command": 7,
+      "params": [
+        10
+      ],
+      "description": "set duration mode / channel mode byte"
+    },
+    {
+      "offset_cpu": 63736,
+      "loop_count": 16,
+      "target_cpu": 63766
+    },
+    {
+      "offset_cpu": 63766,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63767
+    },
+    {
+      "offset_cpu": 63766,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63767
+    },
+    {
+      "offset_cpu": 63766,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63767
+    },
+    {
+      "offset_cpu": 63766,
+      "raw_byte": 128,
+      "note_index": 0,
+      "period": 0,
+      "duration": 10
+    },
+    {
+      "offset_cpu": 63767
+    }
+  ]
+}

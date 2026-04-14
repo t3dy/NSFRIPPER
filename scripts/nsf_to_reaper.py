@@ -60,6 +60,22 @@ class NsfEmulator:
         self.uses_bankswitch = any(b != 0 for b in self.bankswitch)
         self.rom_data = self.nsf_data[128:]
 
+        # Expansion audio flags (NSF header byte $7B)
+        self.expansion_flags = self.nsf_data[0x7B] if len(self.nsf_data) > 0x7B else 0
+        self.has_vrc6 = bool(self.expansion_flags & 0x01)
+        self.has_vrc7 = bool(self.expansion_flags & 0x02)
+        self.has_fds = bool(self.expansion_flags & 0x04)
+        self.has_mmc5 = bool(self.expansion_flags & 0x08)
+        self.has_n163 = bool(self.expansion_flags & 0x10)
+        self.has_5b = bool(self.expansion_flags & 0x20)
+        self.expansion_chips = []
+        if self.has_vrc6: self.expansion_chips.append("vrc6")
+        if self.has_vrc7: self.expansion_chips.append("vrc7")
+        if self.has_fds: self.expansion_chips.append("fds")
+        if self.has_mmc5: self.expansion_chips.append("mmc5")
+        if self.has_n163: self.expansion_chips.append("n163")
+        if self.has_5b: self.expansion_chips.append("5b")
+
     def _load_rom(self, cpu):
         """Load ROM data into CPU memory, handling bankswitch if needed."""
         if not self.uses_bankswitch:
@@ -150,11 +166,27 @@ class NsfEmulator:
 
         base_memory = cpu.memory
 
-        class CaptureMemory:
-            """Memory wrapper that preserves ordered APU writes per frame."""
+        # Build capture ranges based on expansion flags
+        capture_ranges = [(0x4000, 0x4017)]  # Standard APU always captured
+        if self.has_vrc6:
+            capture_ranges.extend([(0x9000, 0x9002), (0xA000, 0xA002), (0xB000, 0xB002)])
+        if self.has_vrc7:
+            capture_ranges.extend([(0x9010, 0x9010), (0x9030, 0x9030)])
+        if self.has_fds:
+            capture_ranges.append((0x4040, 0x408A))
+        if self.has_mmc5:
+            capture_ranges.append((0x5000, 0x5015))
+        if self.has_n163:
+            capture_ranges.extend([(0x4800, 0x4800), (0xF800, 0xF800)])
+        if self.has_5b:
+            capture_ranges.extend([(0xC000, 0xC000), (0xE000, 0xE000)])
 
-            def __init__(self, mem):
+        class CaptureMemory:
+            """Memory wrapper that preserves ordered APU/expansion writes per frame."""
+
+            def __init__(self, mem, ranges):
                 self._mem = mem
+                self._ranges = ranges
                 self.current_writes = []
 
             def __getitem__(self, key):
@@ -162,8 +194,10 @@ class NsfEmulator:
 
             def __setitem__(self, key, value):
                 self._mem[key] = value
-                if 0x4000 <= key <= 0x4017:
-                    self.current_writes.append((key, value))
+                for lo, hi in self._ranges:
+                    if lo <= key <= hi:
+                        self.current_writes.append((key, value))
+                        break
 
             def __len__(self):
                 return len(self._mem)
@@ -171,7 +205,7 @@ class NsfEmulator:
             def __iter__(self):
                 return iter(self._mem)
 
-        cpu.memory = CaptureMemory(base_memory)
+        cpu.memory = CaptureMemory(base_memory, capture_ranges)
 
         def call(addr, a=0, max_cyc=50000):
             cpu.sp = 0xFD
@@ -956,6 +990,8 @@ def main():
     emu = NsfEmulator(args.nsf)
     print(f"NSF: {emu.title} by {emu.artist}")
     print(f"Songs: {emu.total_songs}")
+    if emu.expansion_chips:
+        print(f"Expansion: {', '.join(emu.expansion_chips)} (0x{emu.expansion_flags:02x})")
 
     if args.all or args.song == '--all':
         if args.names_json:

@@ -27,6 +27,8 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = REPO_ROOT / "output"
 DATA_DIR = REPO_ROOT / "data"
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from fetch_nsf import name_to_slug
 
 # Driver family classification thresholds (from driver survey research)
 FAMILY_THRESHOLDS = {
@@ -178,8 +180,8 @@ def build_state():
         title = extract_title(filename)
         publishers = extract_publisher(filename)
 
-        # Generate slug (same logic as fetch_nsf.name_to_slug)
-        slug = re.sub(r'[^\w\s-]', '', title).replace(' ', '_').strip('_')
+        # Generate slug using the canonical name_to_slug from fetch_nsf
+        slug = name_to_slug(title)
         if not slug:
             continue
 

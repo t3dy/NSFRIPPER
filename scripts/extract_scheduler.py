@@ -28,6 +28,7 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
     sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = REPO_ROOT / "data"
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 from fetch_nsf import fetch_full_index, fuzzy_match, download_and_extract, name_to_slug

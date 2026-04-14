@@ -891,7 +891,7 @@ def render_wav(channels, output_path, num_frames):
 def process_song(emu, song_num, song_name, duration_sec, output_dir):
     """Process one song: emulate, extract MIDI, build REAPER project, render WAV."""
     # Sanitize for Windows filenames: strip all illegal chars + Unicode replacement char
-    _bad = str.maketrans('', '', '[]:\ufffd?*"<>|/\\')
+    _bad = str.maketrans('', '', '[]:\ufffd?*"<>|/\\\x00')
     game_slug = emu.title.replace(' ', '_').translate(_bad)
     song_slug = song_name.replace(' ', '_').translate(_bad).replace("'", "")
 

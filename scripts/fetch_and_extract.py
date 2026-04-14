@@ -82,10 +82,12 @@ def run_nsf_to_reaper(nsf_path, game_slug, track_names=None, songs=None):
     ]
 
     if track_names:
-        cmd.extend(["--names", ",".join(track_names)])
+        # Strip commas from track names since --names uses comma as delimiter
+        safe_names = [n.replace(',', '') for n in track_names]
+        cmd.extend(["--names", ",".join(safe_names)])
 
     print(f"\n  Running nsf_to_reaper.py...")
-    result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=600)
+    result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=3600)
 
     if result.returncode != 0:
         print(f"  Error: {result.stderr[:2000]}")

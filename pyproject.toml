@@ -22,4 +22,4 @@ nesml = "extraction/src/nesml"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["extraction/src", "scripts", "tools"]
+pythonpath = [".", "extraction/src", "scripts", "tools"]

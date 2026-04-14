@@ -45,9 +45,15 @@ from extraction.drivers.konami.parser import (
     EndMarker, SubroutineCall, pitch_to_midi, PITCH_NAMES,
 )
 
-CPU_CLK = 1789773
+# Import core types from chip-agnostic module and re-export them.
+# All downstream code that imports from this module continues to work.
+from extraction.frame_ir import (  # noqa: F401 — re-exported
+    FrameState, ChannelIR, SongIR,
+    CPU_CLK, period_to_freq, freq_to_midi_note,
+    MIDI_CHANNEL_MAP,
+)
 
-# Period table from ROM at $079A (base octave E4)
+# Period table from ROM at $079A (base octave E4) — Konami-specific
 PERIOD_TABLE = [1710, 1614, 1524, 1438, 1358, 1281, 1209, 1142, 1078, 1017, 960, 906]
 
 
@@ -56,95 +62,6 @@ def pitch_octave_to_period(pitch: int, octave: int) -> int:
     base = PERIOD_TABLE[pitch]
     shifts = max(0, 4 - min(4, octave))
     return base >> shifts
-
-
-def period_to_freq(period: int, channel: str = "pulse") -> float:
-    """Convert NES timer period to frequency in Hz."""
-    if period < 2:
-        return 0.0
-    divisor = 16 if channel == "pulse" else 32
-    return CPU_CLK / (divisor * (period + 1))
-
-
-def freq_to_midi_note(freq: float, octave_offset: int = 0) -> int:
-    """Convert frequency to nearest MIDI note.
-
-    octave_offset: additional semitones to add. Use +12 for pulse channels
-    to match the Konami driver's MIDI mapping convention (BASE_MIDI_OCTAVE4
-    = 36). Triangle does NOT get the offset because the 32-step sequencer
-    already produces the correct octave.
-    """
-    if freq < 20:
-        return 0
-    m = round(69 + 12 * math.log2(freq / 440)) + octave_offset
-    return m if 21 <= m <= 120 else 0
-
-
-# ---------------------------------------------------------------------------
-# Frame-level data structures
-# ---------------------------------------------------------------------------
-
-@dataclass
-class FrameState:
-    """State of one channel at one frame.
-
-    Extended (2026-04-13) with non-note event types to handle sound
-    events that are not note-triggered:
-    - DAC writes ($4011): algorithmic percussion (Battletoads drums)
-    - Sweep updates: continuous pitch transforms on pulse channels
-    - Noise mode changes: tonal vs noise LFSR mode ($400E bit 7)
-    - Frame counter sync: $4017 writes that reset APU sequencer
-
-    See architecture.md Rule 21 for rationale.
-    """
-    frame: int
-    period: int = 0       # NES timer period (0 = silent)
-    midi_note: int = 0    # MIDI note (0 = silent)
-    volume: int = 0       # 0-15 (after envelope)
-    duty: int = 0         # 0-3 (pulse only)
-    sounding: bool = False  # whether audio is being produced
-
-    # Non-note event extensions (architecture.md Rule 21)
-    event_type: str = "note"  # note | envelope | duty | dac | sweep | noise_mode
-    dac_value: int | None = None        # $4011 write value (0-127, DMC DAC)
-    sweep_enabled: bool = False          # $4001/$4005 bit 7
-    sweep_period: int = 0                # sweep divider period
-    sweep_negate: bool = False           # sweep direction
-    sweep_shift: int = 0                 # sweep shift count
-    noise_mode: int = 0                  # 0 = long LFSR (hissy), 1 = short (tonal)
-    noise_period_index: int = 0          # 0-15 noise period index (pre-inversion)
-    const_vol: bool = True               # $4000 bit 4: True = constant volume mode
-                                         # (software envelope), False = hardware decay
-
-
-@dataclass
-class ChannelIR:
-    """Frame-accurate representation of one channel."""
-    name: str
-    channel_type: str     # "pulse1", "pulse2", "triangle"
-    frames: dict[int, FrameState] = field(default_factory=dict)
-
-    def get_frame(self, f: int) -> FrameState:
-        return self.frames.get(f, FrameState(frame=f))
-
-    @property
-    def total_frames(self) -> int:
-        return max(self.frames.keys()) + 1 if self.frames else 0
-
-    @property
-    def sounding_frames(self) -> int:
-        return sum(1 for fs in self.frames.values() if fs.sounding)
-
-
-@dataclass
-class SongIR:
-    """Frame-accurate representation of the entire song."""
-    track_number: int
-    channels: list[ChannelIR] = field(default_factory=list)
-
-    @property
-    def total_frames(self) -> int:
-        return max(ch.total_frames for ch in self.channels) if self.channels else 0
 
 
 # ---------------------------------------------------------------------------

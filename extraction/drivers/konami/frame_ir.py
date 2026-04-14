@@ -86,13 +86,35 @@ def freq_to_midi_note(freq: float, octave_offset: int = 0) -> int:
 
 @dataclass
 class FrameState:
-    """State of one channel at one frame."""
+    """State of one channel at one frame.
+
+    Extended (2026-04-13) with non-note event types to handle sound
+    events that are not note-triggered:
+    - DAC writes ($4011): algorithmic percussion (Battletoads drums)
+    - Sweep updates: continuous pitch transforms on pulse channels
+    - Noise mode changes: tonal vs noise LFSR mode ($400E bit 7)
+    - Frame counter sync: $4017 writes that reset APU sequencer
+
+    See architecture.md Rule 21 for rationale.
+    """
     frame: int
     period: int = 0       # NES timer period (0 = silent)
     midi_note: int = 0    # MIDI note (0 = silent)
     volume: int = 0       # 0-15 (after envelope)
     duty: int = 0         # 0-3 (pulse only)
     sounding: bool = False  # whether audio is being produced
+
+    # Non-note event extensions (architecture.md Rule 21)
+    event_type: str = "note"  # note | envelope | duty | dac | sweep | noise_mode
+    dac_value: int | None = None        # $4011 write value (0-127, DMC DAC)
+    sweep_enabled: bool = False          # $4001/$4005 bit 7
+    sweep_period: int = 0                # sweep divider period
+    sweep_negate: bool = False           # sweep direction
+    sweep_shift: int = 0                 # sweep shift count
+    noise_mode: int = 0                  # 0 = long LFSR (hissy), 1 = short (tonal)
+    noise_period_index: int = 0          # 0-15 noise period index (pre-inversion)
+    const_vol: bool = True               # $4000 bit 4: True = constant volume mode
+                                         # (software envelope), False = hardware decay
 
 
 @dataclass

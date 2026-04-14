@@ -113,9 +113,31 @@ use trace pipeline. Battletoads and Mario are confirmed trace-required games.
 
 - Per-game output: `output/<Game>/` — midi, reaper, wav, nsf
 - Manifests: `extraction/manifests/*.json`
+- Driver families: `docs/DRIVER_FAMILIES_AND_GAMES.md` (5 families, 30 game profiles)
+- Web research: `docs/research/` (ARCHIVES, NESDEV, ENGINES, RIPPING_STATE_OF_ART)
 - Priorities: this file
 - Mistake narratives: @docs/MISTAKEBAKED.md
 - Handover (legacy): @docs/HANDOVER.md
+
+## Driver Families (CC11/CC12 density classification)
+
+| Family | CC11/note | CC12/note | Envelope Mode | NSF Trust | Example Games |
+|--------|-----------|-----------|---------------|-----------|---------------|
+| 1: Hardware Envelope | 0.0-2.8 | < 0.5 | HW decay | High | Mega Man, DuckTales, W&W |
+| 2: Standard Envelope | 2.8-5.6 | < 0.5 | SW per-frame | High | CV1, Contra, Battletoads |
+| 3: Duty Animators | 3.7-4.9 | 0.7-1.0 | SW vol+duty | High | SMB1, CV3 US, Kirby |
+| 4: Dense Automators | 5.1-14.9 | < 0.5 | SW obsessive | Medium | FF, Blaster Master, Batman |
+| 5: Full Animation | > 7.0 | > 1.0 | SW both axes | Medium | SMB3 (sole member) |
+
+Classify at ingest: `python scripts/driver_survey.py --game <slug>`
+
+## New Tools (2026-04-13 research sprint)
+
+| Tool | Purpose |
+|------|---------|
+| `scripts/vgm_to_frame_state.py` | VGM → per-frame APU state, cross-validate vs NSF MIDI |
+| `scripts/nsfe_metadata.py` | Parse NSFE files for track names, durations, composer |
+| `scripts/driver_survey.py` | Classify games into driver families (updated with new names) |
 
 ## Game Extraction Status
 
@@ -133,14 +155,43 @@ verified or trusted.
 
 ## Rules & Validation
 
-See `.claude/rules/architecture.md` for the 17 architectural rules.
+See `.claude/rules/architecture.md` for the 22 architectural rules.
 See `.claude/rules/session_protocol.md` for workflow, validation ladder, and delivery gates.
+See `docs/DRIVER_FAMILIES_AND_GAMES.md` for 30 game profiles and 5 driver family specs.
 
 Key principles (details in rules files):
 - **Never skip Frame IR** between trace and MIDI (architecture.md Rule 9)
 - **Zero parse errors ≠ musical correctness** — execution semantics validation required (Rules 13-14)
 - **Different ROMs use different music engines** — no universal decoder (Rule 10)
+- **Driver family is first-class infrastructure** — classify at ingest, drives downstream behavior (Rule 18)
+- **Three validation axes** — Mesen trace + VGM logs + NES-MDB for triangulation (Rule 19)
+- **Non-linear APU mixing** — pulse channels compress each other (Rule 20)
+- **Non-note sound events** — DAC writes, sweep, noise mode need explicit IR types (Rule 21)
 - **Three layers: Observed → Intent → Projection** — never conflate (Rule 12)
+
+## Known Gaps (from 2026-04-13 gap analysis)
+
+See `docs/NES_AUDIO_GAPS_AND_NEXT_STEPS.md` for full analysis.
+
+| Gap | Impact | Status |
+|-----|--------|--------|
+| Expansion audio (VRC6/FDS/5B/N163/VRC7/MMC5) | ~250 games silently losing channels | Not started |
+| DPCM/DAC conflation ($4011) | Battletoads drums, Sunsoft bass misrepresented | Schema designed, not implemented |
+| Missing APU events (phase reset, $4015, sweep) | Same-pitch retriggers merge, unexplained silences | Schema designed, not implemented |
+| No cross-validation pipeline | Can't auto-compare NSF vs VGM vs NES-MDB | vgm_to_frame_state.py built, cross_validate.py not |
+| ROM parsing coverage (~80 games vs 1577) | Capcom 6C80 is highest-ROI next parser | Format doc exists (RH #274), parser not built |
+
+### Implementation Plan (Hiro Plantagenet 7-Layer)
+
+| Layer | Purpose | Depends On | Status |
+|-------|---------|-----------|--------|
+| 1: Audit & Schema | Scan expansion flags, design multi-chip Frame IR | None | Not started |
+| 2: Frame IR Extensions | Implement all missing event types + chip types | Layer 1 | Not started |
+| 3: Capture Pipeline | Update nsf_to_reaper.py for expansion + DPCM + phase reset | Layer 2 | Not started |
+| 4: Validation Infrastructure | cross_validate.py + nsf_trust_scorer.py | Layer 3 | Not started |
+| 5: ROM Parsers | Capcom 6C80 + Sunsoft (parallel with 3-4) | Layer 2 | Not started |
+| 6: Synth Fidelity | Non-linear mixing + expansion audio in JSFX | Layer 3 | Not started |
+| 7: Classification Refinement | Sub-family patterns, secondary metrics | Layer 4 | Not started |
 
 ## Key Commands
 

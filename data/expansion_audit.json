@@ -1,0 +1,1751 @@
+{
+  "scan_date": "2026-04-13",
+  "total_nsfs_scanned": 297,
+  "total_songs_across_all_games": 9369,
+  "standard_only_count": 262,
+  "expansion_count": 35,
+  "multi_chip_count": 2,
+  "summary": {
+    "VRC6": {
+      "count": 5,
+      "manufacturer": "Konami",
+      "channels": "2 pulse (8 duty) + 1 sawtooth",
+      "cc12_compat": "breaks (8 duty settings vs 4)"
+    },
+    "VRC7": {
+      "count": 3,
+      "manufacturer": "Konami",
+      "channels": "6 FM (OPLL/YM2413)",
+      "cc12_compat": "breaks (FM synthesis)"
+    },
+    "FDS": {
+      "count": 30,
+      "manufacturer": "Nintendo",
+      "channels": "1 wavetable (64×6-bit) + modulation",
+      "cc12_compat": "N/A (wavetable, no duty)"
+    },
+    "MMC5": {
+      "count": 0,
+      "manufacturer": "Nintendo",
+      "channels": "2 pulse (mirrors APU) + 1 PCM",
+      "cc12_compat": "compatible (same duty model)"
+    },
+    "N163": {
+      "count": 0,
+      "manufacturer": "Namco",
+      "channels": "1-8 wavetable (shared 128B RAM)",
+      "cc12_compat": "N/A (wavetable, no duty)"
+    },
+    "5B": {
+      "count": 1,
+      "manufacturer": "Sunsoft",
+      "channels": "3 square + noise + HW envelope (YM2149)",
+      "cc12_compat": "N/A (square only, no duty)"
+    }
+  },
+  "per_chip": {
+    "5B": [
+      {
+        "game_slug": "Gimmick",
+        "game_name": "Gimmick!",
+        "total_songs": 106,
+        "expansion_byte": "0x20",
+        "all_chips": [
+          "5B"
+        ]
+      }
+    ],
+    "FDS": [
+      {
+        "game_slug": "Ai_Senshi_Nicol",
+        "game_name": "Ai Senshi Nicol",
+        "total_songs": 63,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Akai_Yousai_Final_Commando",
+        "game_name": "Akai Yousai",
+        "total_songs": 9,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Almana_no_Kiseki",
+        "game_name": "Almana no Kiseki",
+        "total_songs": 52,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Apple_Town_Monogatari_Little_Computer_People",
+        "game_name": "Apple Town Story",
+        "total_songs": 13,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Bio_Miracle_Bokutte_Upa",
+        "game_name": "Bio Miracle Bokutte UPA",
+        "total_songs": 56,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Chinou_Game_Series_1_Adian_no_Tsue",
+        "game_name": "Adian no Tsue",
+        "total_songs": 10,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Chinou_Game_Series_2_Super_Boy_Allan",
+        "game_name": "Super Boy Allan",
+        "total_songs": 10,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Chinou_Game_Series_3_Chisoko_Tairiku_Orudora",
+        "game_name": "Chitei Tairiku Orudoora",
+        "total_songs": 13,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Cleopatra_no_Mahou",
+        "game_name": "Cleopatra no Mahou",
+        "total_songs": 16,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Dead_Zone",
+        "game_name": "Dead Zone",
+        "total_songs": 15,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Esper_Dream",
+        "game_name": "Esper Dream",
+        "total_songs": 64,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Exciting_Baseball",
+        "game_name": "Exciting Baseball",
+        "total_songs": 11,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Exciting_Basketball",
+        "game_name": "Exciting Basket",
+        "total_songs": 5,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Exciting_Billiard",
+        "game_name": "Exciting Billiard",
+        "total_songs": 9,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Exciting_Soccer_Konami_Cup",
+        "game_name": "Exciting Soccer - Konami Cup",
+        "total_songs": 8,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Falsion",
+        "game_name": "Falsion",
+        "total_songs": 10,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Gyruss",
+        "game_name": "Gyruss",
+        "total_songs": 39,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Kid_Icarus",
+        "game_name": "Partena no Kagami",
+        "total_songs": 34,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Maerchen_Veil",
+        "game_name": "Marchen Veil",
+        "total_songs": 12,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Meikyuu_Jiin_Dababa",
+        "game_name": "Meikyuu Jiin Dababa",
+        "total_songs": 14,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Nankin_no_Adventure",
+        "game_name": "Nankin no Adventure",
+        "total_songs": 12,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Nazo_no_Kabe_Block_Kuzushi",
+        "game_name": "Nazo no Kabe",
+        "total_songs": 9,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Nazo_no_Magazine_Disk_Nazoler_Land_Dai_2_Gou",
+        "game_name": "Nazora Land Dai 2 Gou",
+        "total_songs": 46,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Nazo_no_Magazine_Disk_Nazoler_Land_Dai_3_Gou",
+        "game_name": "Nazora Land Dai 3 Gou",
+        "total_songs": 34,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Platoon",
+        "game_name": "Platoon",
+        "total_songs": 18,
+        "expansion_byte": "0x07",
+        "all_chips": [
+          "VRC6",
+          "VRC7",
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Power_Blade",
+        "game_name": "Power Blade",
+        "total_songs": 84,
+        "expansion_byte": "0x07",
+        "all_chips": [
+          "VRC6",
+          "VRC7",
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Risa_no_Yousei_Densetsu",
+        "game_name": "Risa no Yousei Densetsu",
+        "total_songs": 31,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Samurai_Sword",
+        "game_name": "Samurai Sword",
+        "total_songs": 11,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Suishou_no_Ryuu",
+        "game_name": "Suishou no Dragon",
+        "total_songs": 2,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Tobidase_Daisakusen",
+        "game_name": "Tobidase Daisakusen",
+        "total_songs": 8,
+        "expansion_byte": "0x04",
+        "all_chips": [
+          "FDS"
+        ]
+      }
+    ],
+    "VRC6": [
+      {
+        "game_slug": "Castlevania_3___Draculas_Curse_JP",
+        "game_name": "Akumajou Densetsu",
+        "total_songs": 28,
+        "expansion_byte": "0x01",
+        "all_chips": [
+          "VRC6"
+        ]
+      },
+      {
+        "game_slug": "Esper_Dream_2_Aratanaru_Tatakai",
+        "game_name": "Esper Dream 2",
+        "total_songs": 36,
+        "expansion_byte": "0x01",
+        "all_chips": [
+          "VRC6"
+        ]
+      },
+      {
+        "game_slug": "Mouryou_Senki_Madara",
+        "game_name": "Madara",
+        "total_songs": 39,
+        "expansion_byte": "0x01",
+        "all_chips": [
+          "VRC6"
+        ]
+      },
+      {
+        "game_slug": "Platoon",
+        "game_name": "Platoon",
+        "total_songs": 18,
+        "expansion_byte": "0x07",
+        "all_chips": [
+          "VRC6",
+          "VRC7",
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Power_Blade",
+        "game_name": "Power Blade",
+        "total_songs": 84,
+        "expansion_byte": "0x07",
+        "all_chips": [
+          "VRC6",
+          "VRC7",
+          "FDS"
+        ]
+      }
+    ],
+    "VRC7": [
+      {
+        "game_slug": "Lagrange_Point",
+        "game_name": "Lagrange Point",
+        "total_songs": 31,
+        "expansion_byte": "0x02",
+        "all_chips": [
+          "VRC7"
+        ]
+      },
+      {
+        "game_slug": "Platoon",
+        "game_name": "Platoon",
+        "total_songs": 18,
+        "expansion_byte": "0x07",
+        "all_chips": [
+          "VRC6",
+          "VRC7",
+          "FDS"
+        ]
+      },
+      {
+        "game_slug": "Power_Blade",
+        "game_name": "Power Blade",
+        "total_songs": 84,
+        "expansion_byte": "0x07",
+        "all_chips": [
+          "VRC6",
+          "VRC7",
+          "FDS"
+        ]
+      }
+    ]
+  },
+  "multi_chip_games": [
+    {
+      "game_slug": "Platoon",
+      "game_name": "Platoon",
+      "chips": [
+        "VRC6",
+        "VRC7",
+        "FDS"
+      ]
+    },
+    {
+      "game_slug": "Power_Blade",
+      "game_name": "Power Blade",
+      "chips": [
+        "VRC6",
+        "VRC7",
+        "FDS"
+      ]
+    }
+  ],
+  "standard_only_games": [
+    {
+      "game_slug": "1942",
+      "game_name": "1942",
+      "total_songs": 14
+    },
+    {
+      "game_slug": "1943_The_Battle_of_Midway",
+      "game_name": "1943: The Battle of Midway",
+      "total_songs": 45
+    },
+    {
+      "game_slug": "3_D_Battles_of_WorldRunner",
+      "game_name": "3-D Battles of WorldRunner",
+      "total_songs": 8
+    },
+    {
+      "game_slug": "720",
+      "game_name": "720�",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "8_Eyes",
+      "game_name": "8 Eyes",
+      "total_songs": 28
+    },
+    {
+      "game_slug": "Abadox_The_Deadly_Inner_War",
+      "game_name": "AbadoX",
+      "total_songs": 29
+    },
+    {
+      "game_slug": "Addams_Family",
+      "game_name": "Addams Family",
+      "total_songs": 6
+    },
+    {
+      "game_slug": "Adventures_in_the_Magic_Kingdom",
+      "game_name": "Adventures in the Magic Kingdom",
+      "total_songs": 14
+    },
+    {
+      "game_slug": "Adventures_of_Bayou_Billy,_The",
+      "game_name": "The Adventures of Bayou Billy",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "After_Burner",
+      "game_name": "After Burner II",
+      "total_songs": 29
+    },
+    {
+      "game_slug": "Akumajou_Special_Boku_Dracula_kun",
+      "game_name": "Boku Dracula kun",
+      "total_songs": 138
+    },
+    {
+      "game_slug": "Alien_Syndrome",
+      "game_name": "Alien Syndrome",
+      "total_songs": 76
+    },
+    {
+      "game_slug": "Anticipation",
+      "game_name": "Anticipation",
+      "total_songs": 17
+    },
+    {
+      "game_slug": "Arch_Rivals_A_Basketbrawl",
+      "game_name": "Arch Rivals",
+      "total_songs": 8
+    },
+    {
+      "game_slug": "Arctic",
+      "game_name": "Arctic",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Atlantis_no_Nazo",
+      "game_name": "Atlantis no Nazo",
+      "total_songs": 13
+    },
+    {
+      "game_slug": "Barcode_World",
+      "game_name": "Barcode World",
+      "total_songs": 47
+    },
+    {
+      "game_slug": "Base_Wars_Cyber_Stadium_Series",
+      "game_name": "Base Wars: Cyber Stadium Series",
+      "total_songs": 55
+    },
+    {
+      "game_slug": "Batman",
+      "game_name": "Batman",
+      "total_songs": 11
+    },
+    {
+      "game_slug": "Batman_Returns",
+      "game_name": "Batman Returns",
+      "total_songs": 96
+    },
+    {
+      "game_slug": "Battletoads",
+      "game_name": "Battletoads",
+      "total_songs": 21
+    },
+    {
+      "game_slug": "Beetlejuice",
+      "game_name": "Beetlejuice",
+      "total_songs": 11
+    },
+    {
+      "game_slug": "Bill_Elliotts_NASCAR_Challenge",
+      "game_name": "Bill Elliott's NASCAR Challenge",
+      "total_songs": 5
+    },
+    {
+      "game_slug": "Bionic_Commando",
+      "game_name": "Bionic Commando",
+      "total_songs": 20
+    },
+    {
+      "game_slug": "Blades_of_Steel",
+      "game_name": "Blades of Steel",
+      "total_songs": 51
+    },
+    {
+      "game_slug": "Blaster_Master",
+      "game_name": "Blaster Master",
+      "total_songs": 16
+    },
+    {
+      "game_slug": "Bucky_OHare",
+      "game_name": "Bucky O'Hare",
+      "total_songs": 21
+    },
+    {
+      "game_slug": "California_Games",
+      "game_name": "California Games",
+      "total_songs": 11
+    },
+    {
+      "game_slug": "Capcoms_Gold_Medal_Challenge_92",
+      "game_name": "Capcom's Gold Medal Challenge",
+      "total_songs": 23
+    },
+    {
+      "game_slug": "Captain_Skyhawk",
+      "game_name": "Captain Skyhawk",
+      "total_songs": 8
+    },
+    {
+      "game_slug": "Captain_Tsubasa_II_Super_Striker",
+      "game_name": "Captain Tsubasa Vol.2",
+      "total_songs": 105
+    },
+    {
+      "game_slug": "Castlevania",
+      "game_name": "Castlevania",
+      "total_songs": 54
+    },
+    {
+      "game_slug": "Castlevania_2___Simons_Quest",
+      "game_name": "Castlevania 2",
+      "total_songs": 51
+    },
+    {
+      "game_slug": "Castlevania_3___Draculas_Curse",
+      "game_name": "Castlevania 3",
+      "total_songs": 28
+    },
+    {
+      "game_slug": "Chaos_World",
+      "game_name": "Chaos World",
+      "total_songs": 59
+    },
+    {
+      "game_slug": "Chip_n_Dale_Rescue_Rangers",
+      "game_name": "Chip 'N Dale's Rescue Rangers",
+      "total_songs": 16
+    },
+    {
+      "game_slug": "Choujin_Sentai_Jetman",
+      "game_name": "Choujin Sentai Jetman",
+      "total_songs": 18
+    },
+    {
+      "game_slug": "Chuugoku_Janshi_Story_Tonpuu",
+      "game_name": "Chugoku Jangshi Story Tongpoo",
+      "total_songs": 22
+    },
+    {
+      "game_slug": "Circus_Charlie",
+      "game_name": "Circus Charlie",
+      "total_songs": 15
+    },
+    {
+      "game_slug": "Cobra_Triangle",
+      "game_name": "Cobra Triangle",
+      "total_songs": 19
+    },
+    {
+      "game_slug": "Code_Name_Viper",
+      "game_name": "Code Name: Viper",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Commando",
+      "game_name": "Commando",
+      "total_songs": 30
+    },
+    {
+      "game_slug": "Contra",
+      "game_name": "Contra",
+      "total_songs": 11
+    },
+    {
+      "game_slug": "Contra_Force",
+      "game_name": "Contra Force",
+      "total_songs": 17
+    },
+    {
+      "game_slug": "Cosmic_Wars",
+      "game_name": "Cosmic Wars",
+      "total_songs": 46
+    },
+    {
+      "game_slug": "Crackout",
+      "game_name": "Crackout (Prototype)",
+      "total_songs": 9
+    },
+    {
+      "game_slug": "Crisis_Force",
+      "game_name": "Crisis Force",
+      "total_songs": 13
+    },
+    {
+      "game_slug": "Danny_Sullivans_Indy_Heat",
+      "game_name": "Danny Sullivan's Indy Heat",
+      "total_songs": 14
+    },
+    {
+      "game_slug": "Darkwing_Duck",
+      "game_name": "Darkwing Duck",
+      "total_songs": 64
+    },
+    {
+      "game_slug": "Deep_Dungeon_III_Yuushi_he_no_Tabi",
+      "game_name": "Deep Dungeon 3-Yuushi heno Tabi",
+      "total_songs": 25
+    },
+    {
+      "game_slug": "Defender_of_the_Crown",
+      "game_name": "Defender of the Crown",
+      "total_songs": 8
+    },
+    {
+      "game_slug": "Destiny_of_an_Emperor",
+      "game_name": "Destiny of an Emperor",
+      "total_songs": 51
+    },
+    {
+      "game_slug": "Digger_T._Rock_The_Legend_of_the_Lost_City",
+      "game_name": "Digger T. Rock",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Don_Doko_Don_2",
+      "game_name": "Don Doko Don 2",
+      "total_songs": 79
+    },
+    {
+      "game_slug": "Double_Dare",
+      "game_name": "Double Dare",
+      "total_songs": 19
+    },
+    {
+      "game_slug": "Double_Dribble",
+      "game_name": "Double Dribble",
+      "total_songs": 19
+    },
+    {
+      "game_slug": "Dragon_Fighter",
+      "game_name": "Dragon Fighter",
+      "total_songs": 50
+    },
+    {
+      "game_slug": "Dragon_Scroll_Yomigaerishi_Maryuu",
+      "game_name": "Dragon Scroll",
+      "total_songs": 96
+    },
+    {
+      "game_slug": "Dragon_Warrior",
+      "game_name": "Dragon Quest",
+      "total_songs": 48
+    },
+    {
+      "game_slug": "Dream_Master",
+      "game_name": "Dream Master",
+      "total_songs": 36
+    },
+    {
+      "game_slug": "DuckTales",
+      "game_name": "Duck Tales",
+      "total_songs": 45
+    },
+    {
+      "game_slug": "DuckTales_2",
+      "game_name": "Duck Tales 2",
+      "total_songs": 20
+    },
+    {
+      "game_slug": "Dungeon_Magic_Sword_of_the_Elements",
+      "game_name": "Dungeon Magic",
+      "total_songs": 13
+    },
+    {
+      "game_slug": "Dungeon_Magic_Sword_of_the_Elements_JP",
+      "game_name": "Dungeon&Magic Swords of Element",
+      "total_songs": 61
+    },
+    {
+      "game_slug": "Exciting_Boxing",
+      "game_name": "Exciting Boxing",
+      "total_songs": 17
+    },
+    {
+      "game_slug": "Exed_Exes",
+      "game_name": "Exed Exes",
+      "total_songs": 25
+    },
+    {
+      "game_slug": "F_1_Sensation",
+      "game_name": "F1 Sensation",
+      "total_songs": 15
+    },
+    {
+      "game_slug": "Fantasy_Zone",
+      "game_name": "Fantasy Zone",
+      "total_songs": 29
+    },
+    {
+      "game_slug": "Fantasy_Zone_2_Opa_Opa_no_Namida",
+      "game_name": "Fantasy Zone 2",
+      "total_songs": 54
+    },
+    {
+      "game_slug": "Faxanadu",
+      "game_name": "Faxanadu",
+      "total_songs": 44
+    },
+    {
+      "game_slug": "Festers_Quest",
+      "game_name": "Fester's Quest",
+      "total_songs": 9
+    },
+    {
+      "game_slug": "Final_Fantasy",
+      "game_name": "Final Fantasy 1",
+      "total_songs": 23
+    },
+    {
+      "game_slug": "Final_Fantasy_II",
+      "game_name": "Final Fantasy 2",
+      "total_songs": 28
+    },
+    {
+      "game_slug": "Final_Fantasy_III",
+      "game_name": "Final Fantasy 3",
+      "total_songs": 65
+    },
+    {
+      "game_slug": "Firen_Ice",
+      "game_name": "Solomon's Key 2",
+      "total_songs": 88
+    },
+    {
+      "game_slug": "Freedom_Force",
+      "game_name": "Freedom Force",
+      "total_songs": 48
+    },
+    {
+      "game_slug": "G.I._Joe_The_Atlantis_Factor",
+      "game_name": "G.I.Joe - The Atlantis Factor",
+      "total_songs": 29
+    },
+    {
+      "game_slug": "Ganbare_Goemon_2",
+      "game_name": "Ganbare Goemon 2",
+      "total_songs": 90
+    },
+    {
+      "game_slug": "Ganbare_Goemon_Gaiden_2_Tenka_no_Zaihou",
+      "game_name": "Ganbare Goemon Gaiden 2",
+      "total_songs": 88
+    },
+    {
+      "game_slug": "Ganbare_Goemon_Gaiden_Kieta_Ougon_Kiseru",
+      "game_name": "Ganbare Goemon Gaiden",
+      "total_songs": 62
+    },
+    {
+      "game_slug": "Ganbare_Goemon_Karakuri_Douchuu",
+      "game_name": "Ganbare Goemon Karakuri Doutyuu",
+      "total_songs": 57
+    },
+    {
+      "game_slug": "Ganbare_Pennant_Race",
+      "game_name": "Ganbare Pennant Race",
+      "total_songs": 44
+    },
+    {
+      "game_slug": "Gargoyles_Quest_II",
+      "game_name": "Gargoyle's Quest II",
+      "total_songs": 21
+    },
+    {
+      "game_slug": "Getsufuu_Maden",
+      "game_name": "Getsufuu Maden",
+      "total_songs": 15
+    },
+    {
+      "game_slug": "Ghosts_n_Goblins",
+      "game_name": "Ghosts'n'Goblins",
+      "total_songs": 39
+    },
+    {
+      "game_slug": "Goonies,_The",
+      "game_name": "Goonies 1",
+      "total_songs": 14
+    },
+    {
+      "game_slug": "Goonies_II,_The",
+      "game_name": "The Goonies II",
+      "total_songs": 56
+    },
+    {
+      "game_slug": "Goonies_II_The",
+      "game_name": "The Goonies II",
+      "total_songs": 56
+    },
+    {
+      "game_slug": "Gradius",
+      "game_name": "Gradius",
+      "total_songs": 32
+    },
+    {
+      "game_slug": "Gradius_II",
+      "game_name": "Gradius 2",
+      "total_songs": 65
+    },
+    {
+      "game_slug": "Gremlins_2_The_New_Batch",
+      "game_name": "Gremlins 2: The New Batch",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Gun.Smoke",
+      "game_name": "Gun Smoke",
+      "total_songs": 18
+    },
+    {
+      "game_slug": "Hanjuku_Hero",
+      "game_name": "Hanjuku Hero",
+      "total_songs": 21
+    },
+    {
+      "game_slug": "Hi_no_Tori_Houou_hen_Gaou_no_Bouken",
+      "game_name": "Hinotori",
+      "total_songs": 55
+    },
+    {
+      "game_slug": "Higemaru_Makaijima_Nanatsu_no_Shima_Daibouken",
+      "game_name": "Higemaru",
+      "total_songs": 16
+    },
+    {
+      "game_slug": "High_Speed",
+      "game_name": "High Speed",
+      "total_songs": 46
+    },
+    {
+      "game_slug": "Hollywood_Squares",
+      "game_name": "Hollywood Squares",
+      "total_songs": 13
+    },
+    {
+      "game_slug": "Honoo_no_Toukyuuji_Dodge_Danpei",
+      "game_name": "Dodge Danpei",
+      "total_songs": 35
+    },
+    {
+      "game_slug": "Honoo_no_Toukyuuji_Dodge_Danpei_2",
+      "game_name": "Dodge Danpei 2",
+      "total_songs": 42
+    },
+    {
+      "game_slug": "Hyper_Sports",
+      "game_name": "Hyper Sports",
+      "total_songs": 29
+    },
+    {
+      "game_slug": "Ide_Yousuke_Meijin_no_Jissen_Mahjong",
+      "game_name": "Ide Yousuke Meijin no Jissen",
+      "total_songs": 15
+    },
+    {
+      "game_slug": "Ide_Yousuke_Meijin_no_Jissen_Mahjong_II",
+      "game_name": "IdeYousukeMeijin-JissenMahjong2",
+      "total_songs": 21
+    },
+    {
+      "game_slug": "Idol_Hakkenden",
+      "game_name": "Idol Hakkenden",
+      "total_songs": 49
+    },
+    {
+      "game_slug": "Ikki",
+      "game_name": "Ikki",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Ivan_Ironman_Stewarts_Super_Off_Road",
+      "game_name": "Super Offroad",
+      "total_songs": 19
+    },
+    {
+      "game_slug": "Jack_Nicklaus_Greatest_18_Holes_of_Major_Championship_Golf_Konami)",
+      "game_name": "Jack Nicklaus Greatest 18 Holes",
+      "total_songs": 2
+    },
+    {
+      "game_slug": "Jackal",
+      "game_name": "Jackal",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Jarinko_Chie_Bakudan_Musume_no_Shiawase_Sagashi",
+      "game_name": "Jarinko Chie Bakudan Musume",
+      "total_songs": 20
+    },
+    {
+      "game_slug": "Jeopardy",
+      "game_name": "Jeopardy!",
+      "total_songs": 8
+    },
+    {
+      "game_slug": "Jeopardy_25th_Anniversary_Edition",
+      "game_name": "Jeopady! 25th Anniversary",
+      "total_songs": 9
+    },
+    {
+      "game_slug": "Jeopardy_Junior_Edition",
+      "game_name": "Jeopardy! Junior Edition",
+      "total_songs": 8
+    },
+    {
+      "game_slug": "Jetsons,_The_Cogswells_Caper",
+      "game_name": "The Jetsons",
+      "total_songs": 21
+    },
+    {
+      "game_slug": "JJ_Tobidase_Daisakusen_Part_2",
+      "game_name": "JJ - Tobidase Daisakusen Part 2",
+      "total_songs": 8
+    },
+    {
+      "game_slug": "John_Elways_Quarterback",
+      "game_name": "John Elway's Quarterback",
+      "total_songs": 9
+    },
+    {
+      "game_slug": "Jordan_vs_Bird_One_on_One",
+      "game_name": "Jordan vs Bird - One on One",
+      "total_songs": 7
+    },
+    {
+      "game_slug": "Journey_to_Silius",
+      "game_name": "Journey to Silius",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Kanshakudama_Nage_Kantarou_no_Toukaidou_Gojuusan_Tsugi",
+      "game_name": "Tokaido 53 Tsugi",
+      "total_songs": 32
+    },
+    {
+      "game_slug": "King_Kong_2_Ikari_no_Megaton_Punch",
+      "game_name": "King Kong 2",
+      "total_songs": 54
+    },
+    {
+      "game_slug": "Kings_Knight",
+      "game_name": "Kings Knight",
+      "total_songs": 18
+    },
+    {
+      "game_slug": "Kings_of_the_Beach",
+      "game_name": "Kings of the Beach",
+      "total_songs": 5
+    },
+    {
+      "game_slug": "Kings_Quest_V",
+      "game_name": "Kings Quest V",
+      "total_songs": 32
+    },
+    {
+      "game_slug": "Kirbys_Adventure",
+      "game_name": "Kirby's Adventure",
+      "total_songs": 58
+    },
+    {
+      "game_slug": "Konami_Hyper_Soccer",
+      "game_name": "Konami Hyper Soccer",
+      "total_songs": 9
+    },
+    {
+      "game_slug": "Koufuku_wo_Yobu_Game_Dora_Dora_Dora",
+      "game_name": "Mahjong RPG Dora Dora Dora",
+      "total_songs": 31
+    },
+    {
+      "game_slug": "Kyattou_Ninden_Teyandee",
+      "game_name": "Kyattou Ninden Teyande",
+      "total_songs": 29
+    },
+    {
+      "game_slug": "Laser_Invasion",
+      "game_name": "Laser Invasion",
+      "total_songs": 19
+    },
+    {
+      "game_slug": "Legend_of_Zelda,_The",
+      "game_name": "The Legend of Zelda",
+      "total_songs": 37
+    },
+    {
+      "game_slug": "Legendary_Wings",
+      "game_name": "Legendary Wings",
+      "total_songs": 36
+    },
+    {
+      "game_slug": "Lemmings",
+      "game_name": "Lemmings",
+      "total_songs": 10
+    },
+    {
+      "game_slug": "Life_Force",
+      "game_name": "Lifeforce",
+      "total_songs": 45
+    },
+    {
+      "game_slug": "Little_Mermaid,_The",
+      "game_name": "The Little Mermaid",
+      "total_songs": 36
+    },
+    {
+      "game_slug": "Lone_Ranger,_The",
+      "game_name": "Lone Ranger",
+      "total_songs": 119
+    },
+    {
+      "game_slug": "Madoola_no_Tsubasa",
+      "game_name": "The Wing of Madoola",
+      "total_songs": 32
+    },
+    {
+      "game_slug": "Maharaja",
+      "game_name": "Maharaja",
+      "total_songs": 28
+    },
+    {
+      "game_slug": "Majou_Densetsu_2_Daimashikyou_Galious",
+      "game_name": "Daimashikyou Galious",
+      "total_songs": 76
+    },
+    {
+      "game_slug": "Marble_Madness",
+      "game_name": "Marble Madness",
+      "total_songs": 9
+    },
+    {
+      "game_slug": "Marusa_no_Onna",
+      "game_name": "Marusa no Onna",
+      "total_songs": 9
+    },
+    {
+      "game_slug": "Mega_Man",
+      "game_name": "Mega Man",
+      "total_songs": 16
+    },
+    {
+      "game_slug": "Mega_Man_1",
+      "game_name": "Mega Man",
+      "total_songs": 16
+    },
+    {
+      "game_slug": "Mega_Man_2",
+      "game_name": "Mega Man 2",
+      "total_songs": 24
+    },
+    {
+      "game_slug": "Mega_Man_3",
+      "game_name": "Mega Man III",
+      "total_songs": 57
+    },
+    {
+      "game_slug": "Mega_Man_4",
+      "game_name": "Mega Man IV",
+      "total_songs": 71
+    },
+    {
+      "game_slug": "Metal_Gear",
+      "game_name": "Metal Gear",
+      "total_songs": 56
+    },
+    {
+      "game_slug": "Metroid",
+      "game_name": "Metroid",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Mighty_Bomb_Jack",
+      "game_name": "Mighty Bombjack",
+      "total_songs": 14
+    },
+    {
+      "game_slug": "Mighty_Final_Fight",
+      "game_name": "Mighty Final Fight",
+      "total_songs": 54
+    },
+    {
+      "game_slug": "Mission_Impossible",
+      "game_name": "Mission: Impossible",
+      "total_songs": 26
+    },
+    {
+      "game_slug": "Mitsume_ga_Tooru",
+      "game_name": "Mitsume ga Tooru",
+      "total_songs": 14
+    },
+    {
+      "game_slug": "Mizushima_Shinji_no_Dai_Koushien",
+      "game_name": "Mizushima Shinji no Daikoushien",
+      "total_songs": 56
+    },
+    {
+      "game_slug": "Moai_kun",
+      "game_name": "Moai Kun",
+      "total_songs": 4
+    },
+    {
+      "game_slug": "Monster_in_My_Pocket",
+      "game_name": "Monster in my Pocket",
+      "total_songs": 22
+    },
+    {
+      "game_slug": "Motorcross_Champion",
+      "game_name": "Motorcross Champion",
+      "total_songs": 6
+    },
+    {
+      "game_slug": "Nantettatte_Baseball",
+      "game_name": "Nantettatte Baseball",
+      "total_songs": 54
+    },
+    {
+      "game_slug": "Nantettatte_Baseball_91_Kaimaku_hen",
+      "game_name": "Nantettatte!! Baseball '91",
+      "total_songs": 14
+    },
+    {
+      "game_slug": "NARC",
+      "game_name": "NARC",
+      "total_songs": 5
+    },
+    {
+      "game_slug": "Nightmare_on_Elm_Street,_A",
+      "game_name": "Nightmare on Elm Street",
+      "total_songs": 19
+    },
+    {
+      "game_slug": "Ninja_Gaiden",
+      "game_name": "Ninja Gaiden",
+      "total_songs": 65
+    },
+    {
+      "game_slug": "Ninja_Gaiden__[Shadow_Warriors]",
+      "game_name": "Ninja Gaiden",
+      "total_songs": 65
+    },
+    {
+      "game_slug": "Ninja_Gaiden_II___The_Dark_Sword_of_Chaos",
+      "game_name": "Ninja Gaiden 2",
+      "total_songs": 84
+    },
+    {
+      "game_slug": "Ninja_Gaiden_III___The_Ancient_Ship_of_Doom",
+      "game_name": "Ninja Gaiden 3",
+      "total_songs": 93
+    },
+    {
+      "game_slug": "Noahs_Ark",
+      "game_name": "Noah's Ark",
+      "total_songs": 20
+    },
+    {
+      "game_slug": "Obocchama_kun",
+      "game_name": "Obocchama Kun",
+      "total_songs": 29
+    },
+    {
+      "game_slug": "Palamedes",
+      "game_name": "Palamedes",
+      "total_songs": 11
+    },
+    {
+      "game_slug": "Palamedes_II_Star_Twinkles",
+      "game_name": "Palamedes 2 - Star Twinkles",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Parodius",
+      "game_name": "Parodius",
+      "total_songs": 22
+    },
+    {
+      "game_slug": "Pin_Bot",
+      "game_name": "Pinbot",
+      "total_songs": 18
+    },
+    {
+      "game_slug": "Pirates",
+      "game_name": "Pirates!",
+      "total_songs": 22
+    },
+    {
+      "game_slug": "Pooyan",
+      "game_name": "Pooyan",
+      "total_songs": 11
+    },
+    {
+      "game_slug": "Pro_Yakyuu_Satsujin_Jiken",
+      "game_name": "Pro Yakyuu? Satsujin Jiken!",
+      "total_songs": 43
+    },
+    {
+      "game_slug": "Punch_Out!!",
+      "game_name": "Punch-Out!!",
+      "total_songs": 17
+    },
+    {
+      "game_slug": "Pyokotan_no_Dai_Meiro",
+      "game_name": "Pyokotan no Dai Meiro",
+      "total_songs": 8
+    },
+    {
+      "game_slug": "Q_bert",
+      "game_name": "Q*Bert",
+      "total_songs": 72
+    },
+    {
+      "game_slug": "Quarter_Back_Scramble",
+      "game_name": "Quarter Back Scramble",
+      "total_songs": 15
+    },
+    {
+      "game_slug": "Quarth",
+      "game_name": "Quarth",
+      "total_songs": 26
+    },
+    {
+      "game_slug": "R.C._Pro_Am",
+      "game_name": "R.C. Pro-Am",
+      "total_songs": 25
+    },
+    {
+      "game_slug": "R.C._Pro_Am_II",
+      "game_name": "R.C. Pro-Am 2",
+      "total_songs": 7
+    },
+    {
+      "game_slug": "Racer_Mini_Yonku_Japan_Cup",
+      "game_name": "Racer Mini Yonku Japan Cup",
+      "total_songs": 18
+    },
+    {
+      "game_slug": "Rad_Racer",
+      "game_name": "Rad Racer",
+      "total_songs": 6
+    },
+    {
+      "game_slug": "Rad_Racer_II",
+      "game_name": "Rad Racer 2",
+      "total_songs": 6
+    },
+    {
+      "game_slug": "Radia_Senki_Reimei_hen",
+      "game_name": "Radia Senki",
+      "total_songs": 37
+    },
+    {
+      "game_slug": "Rampart",
+      "game_name": "Rampart",
+      "total_songs": 84
+    },
+    {
+      "game_slug": "Ripple_Island",
+      "game_name": "Lipple Island",
+      "total_songs": 25
+    },
+    {
+      "game_slug": "Road_Fighter",
+      "game_name": "Road Fighter",
+      "total_songs": 18
+    },
+    {
+      "game_slug": "Rollergames",
+      "game_name": "Rollergames",
+      "total_songs": 14
+    },
+    {
+      "game_slug": "Route_16_Turbo",
+      "game_name": "Route-16 Turbo",
+      "total_songs": 16
+    },
+    {
+      "game_slug": "Rushn_Attack",
+      "game_name": "Rush'n'Attack",
+      "total_songs": 63
+    },
+    {
+      "game_slug": "Rygar",
+      "game_name": "Rygar",
+      "total_songs": 16
+    },
+    {
+      "game_slug": "SCAT_Special_Cybernetic_Attack_Team",
+      "game_name": "SCAT",
+      "total_songs": 13
+    },
+    {
+      "game_slug": "Section_Z",
+      "game_name": "Section Z",
+      "total_songs": 34
+    },
+    {
+      "game_slug": "Sekiryuuou",
+      "game_name": "Sekiryuuou",
+      "total_songs": 17
+    },
+    {
+      "game_slug": "Shadow_of_the_Ninja",
+      "game_name": "Shadow of the Ninja",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Shanghai",
+      "game_name": "Shanghai",
+      "total_songs": 11
+    },
+    {
+      "game_slug": "Shanghai_II",
+      "game_name": "Shanghai 2",
+      "total_songs": 20
+    },
+    {
+      "game_slug": "Shatterhand",
+      "game_name": "Shatterhand",
+      "total_songs": 13
+    },
+    {
+      "game_slug": "Silent_Service",
+      "game_name": "Silent Service",
+      "total_songs": 10
+    },
+    {
+      "game_slug": "Silver_Surfer",
+      "game_name": "Silver Surfer C: Stephen Ruddy",
+      "total_songs": 24
+    },
+    {
+      "game_slug": "Skate_or_Die",
+      "game_name": "Skate or Die!",
+      "total_songs": 57
+    },
+    {
+      "game_slug": "Ski_or_Die",
+      "game_name": "Ski or Die",
+      "total_songs": 147
+    },
+    {
+      "game_slug": "Slalom",
+      "game_name": "Slalom",
+      "total_songs": 10
+    },
+    {
+      "game_slug": "Smash_T.V",
+      "game_name": "Smash T.V.",
+      "total_songs": 20
+    },
+    {
+      "game_slug": "Snake_Rattlen_Roll",
+      "game_name": "Snake Rattle & Roll",
+      "total_songs": 9
+    },
+    {
+      "game_slug": "Snakes_Revenge",
+      "game_name": "Metal Gear - Snake's Revenge",
+      "total_songs": 52
+    },
+    {
+      "game_slug": "Soccer",
+      "game_name": "Soccer",
+      "total_songs": 16
+    },
+    {
+      "game_slug": "Solomons_Key",
+      "game_name": "Solomon's Key",
+      "total_songs": 26
+    },
+    {
+      "game_slug": "Son_Son",
+      "game_name": "Son Son",
+      "total_songs": 17
+    },
+    {
+      "game_slug": "Spy_Hunter",
+      "game_name": "Spy Hunter",
+      "total_songs": 28
+    },
+    {
+      "game_slug": "Square_no_Tom_Sawyer",
+      "game_name": "Square no Tom Sawyer",
+      "total_songs": 30
+    },
+    {
+      "game_slug": "Star_Trek_25th_Anniversary",
+      "game_name": "Star Trek - 25th Anniversary",
+      "total_songs": 15
+    },
+    {
+      "game_slug": "Stinger",
+      "game_name": "Moero Twinbee",
+      "total_songs": 100
+    },
+    {
+      "game_slug": "Street_Fighter_2010_Final_Fight",
+      "game_name": "Street Fighter 2010:Final Fight",
+      "total_songs": 22
+    },
+    {
+      "game_slug": "Strider",
+      "game_name": "Strider Hiryu",
+      "total_songs": 15
+    },
+    {
+      "game_slug": "Super_Arabian",
+      "game_name": "Super Arabian",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Super_Glove_Ball",
+      "game_name": "Super Glove Ball",
+      "total_songs": 11
+    },
+    {
+      "game_slug": "Super_Mario_Bros",
+      "game_name": "Super Mario Bros.",
+      "total_songs": 18
+    },
+    {
+      "game_slug": "Super_Mario_Bros._2",
+      "game_name": "Super Mario Bros. 2 Prototype",
+      "total_songs": 34
+    },
+    {
+      "game_slug": "Super_Mario_Bros._3",
+      "game_name": "Super Mario Bros. 3",
+      "total_songs": 60
+    },
+    {
+      "game_slug": "Super_Star_Force_Jikuureki_no_Himitsu",
+      "game_name": "Super Star Force",
+      "total_songs": 37
+    },
+    {
+      "game_slug": "Sweet_Home",
+      "game_name": "Sweet Home",
+      "total_songs": 72
+    },
+    {
+      "game_slug": "Taboo_The_Sixth_Sense",
+      "game_name": "Taboo: The Sixth Sense",
+      "total_songs": 29
+    },
+    {
+      "game_slug": "TaleSpin",
+      "game_name": "Tale Spin",
+      "total_songs": 45
+    },
+    {
+      "game_slug": "Tecmo_Baseball",
+      "game_name": "Tecmo Baseball",
+      "total_songs": 15
+    },
+    {
+      "game_slug": "Tecmo_Bowl",
+      "game_name": "Tecmo Bowl",
+      "total_songs": 45
+    },
+    {
+      "game_slug": "Tecmo_NBA_Basketball",
+      "game_name": "Tecmo NBA Basketball",
+      "total_songs": 4
+    },
+    {
+      "game_slug": "Tecmo_Super_Bowl",
+      "game_name": "Tecmo Super Bowl",
+      "total_songs": 62
+    },
+    {
+      "game_slug": "Tecmo_World_Cup_Soccer",
+      "game_name": "Tecmo World Cup Soccer",
+      "total_songs": 9
+    },
+    {
+      "game_slug": "Tecmo_World_Wrestling",
+      "game_name": "Tecmo World Wrestling",
+      "total_songs": 46
+    },
+    {
+      "game_slug": "Teenage_Mutant_Ninja_Turtles",
+      "game_name": "Teenage Mutant Ninja Turtles",
+      "total_songs": 16
+    },
+    {
+      "game_slug": "Teenage_Mutant_Ninja_Turtles_Tournament_Fighters",
+      "game_name": "TMNT: Tournament Fighters",
+      "total_songs": 88
+    },
+    {
+      "game_slug": "Tenchi_wo_Kurau_II_Shokatsu_Koumei_Den",
+      "game_name": "Tenchi o Kurau 2 - Zhuge Kon",
+      "total_songs": 44
+    },
+    {
+      "game_slug": "Tenka_no_Goikenban_Mito_Koumon",
+      "game_name": "Mitokoumon",
+      "total_songs": 42
+    },
+    {
+      "game_slug": "Tetsuwan_Atom",
+      "game_name": "Tetsuwan Atom",
+      "total_songs": 89
+    },
+    {
+      "game_slug": "Thexder",
+      "game_name": "Thexder",
+      "total_songs": 1
+    },
+    {
+      "game_slug": "Time_Lord",
+      "game_name": "Time Lord",
+      "total_songs": 9
+    },
+    {
+      "game_slug": "Tiny_Toon_Adventures",
+      "game_name": "Tiny Toon Adventures 1",
+      "total_songs": 101
+    },
+    {
+      "game_slug": "Tiny_Toon_Adventures_2",
+      "game_name": "Tiny Toon Adventures 2",
+      "total_songs": 198
+    },
+    {
+      "game_slug": "Tiny_Toon_Adventures_Cartoon_Workshop",
+      "game_name": "Tiny Tune Adventures CW",
+      "total_songs": 13
+    },
+    {
+      "game_slug": "Top_Gun",
+      "game_name": "Top Gun",
+      "total_songs": 25
+    },
+    {
+      "game_slug": "Touhou_Kenbun_Roku",
+      "game_name": "Touhou Kenbun Roku",
+      "total_songs": 60
+    },
+    {
+      "game_slug": "Toukon_Club",
+      "game_name": "Toukon Club",
+      "total_songs": 15
+    },
+    {
+      "game_slug": "Trojan",
+      "game_name": "Tatakai no Banka",
+      "total_songs": 35
+    },
+    {
+      "game_slug": "Tsuppari_Oozumou",
+      "game_name": "Tsuppari Oozumou",
+      "total_songs": 25
+    },
+    {
+      "game_slug": "TwinBee",
+      "game_name": "Twinbee",
+      "total_songs": 6
+    },
+    {
+      "game_slug": "TwinBee_3_Poko_Poko_Dai_Maou",
+      "game_name": "Twinbee 3",
+      "total_songs": 30
+    },
+    {
+      "game_slug": "U_four_ia_The_Saga",
+      "game_name": "Hebereke",
+      "total_songs": 48
+    },
+    {
+      "game_slug": "Ultima_-_Exodus",
+      "game_name": "Ultima - Exodus",
+      "total_songs": 11
+    },
+    {
+      "game_slug": "Ultima_-_Quest_of_the_Avatar",
+      "game_name": "Ultima: Quest of the Avatar",
+      "total_songs": 30
+    },
+    {
+      "game_slug": "Wai_Wai_World",
+      "game_name": "Wai Wai World",
+      "total_songs": 22
+    },
+    {
+      "game_slug": "Wai_Wai_World_2_SOS_Paseri_Jou",
+      "game_name": "Wai Wai World 2",
+      "total_songs": 48
+    },
+    {
+      "game_slug": "Wheel_of_Fortune",
+      "game_name": "Wheel of Fortune",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Wheel_of_Fortune_Family_Edition",
+      "game_name": "Wheel of Fortune - FE",
+      "total_songs": 14
+    },
+    {
+      "game_slug": "Wheel_of_Fortune_Junior_Edition",
+      "game_name": "Wheel of Fortune - JE",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "Who_Framed_Roger_Rabbit",
+      "game_name": "Who Framed Roger Rabbit",
+      "total_songs": 19
+    },
+    {
+      "game_slug": "Willow",
+      "game_name": "Willow",
+      "total_songs": 19
+    },
+    {
+      "game_slug": "World_Boxing",
+      "game_name": "World Boxing",
+      "total_songs": 58
+    },
+    {
+      "game_slug": "WWF_WrestleMania",
+      "game_name": "Wrestlemania",
+      "total_songs": 12
+    },
+    {
+      "game_slug": "WWF_WrestleMania_Challenge",
+      "game_name": "Wrestling Challenge",
+      "total_songs": 18
+    },
+    {
+      "game_slug": "Xenophobe",
+      "game_name": "Xenophobe",
+      "total_songs": 33
+    },
+    {
+      "game_slug": "Yie_Ar_Kung_Fu",
+      "game_name": "Yie Ar Kung-Fu",
+      "total_songs": 3
+    },
+    {
+      "game_slug": "Yo_Noid",
+      "game_name": "Yo! Noid",
+      "total_songs": 50
+    },
+    {
+      "game_slug": "Yume_Penguin_Monogatari",
+      "game_name": "Yume Penguin Monogatari",
+      "total_songs": 14
+    },
+    {
+      "game_slug": "Zelda_II___The_Adventure_of_Link",
+      "game_name": "Zelda 2: The Adventure of Link",
+      "total_songs": 51
+    },
+    {
+      "game_slug": "Zen_Intergalactic_Ninja",
+      "game_name": "Zen Intergalactic Ninja",
+      "total_songs": 17
+    }
+  ]
+}

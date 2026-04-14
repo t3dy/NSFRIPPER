@@ -806,6 +806,19 @@ def main():
     csv_path = os.path.join(args.output, f'{game_name}_{song_name}.csv')
     frames_to_mesen_csv(all_frames, csv_path)
 
+    # V2 Hook Integration
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "ANTIRIPPER" / "scripts"))
+        from pipeline_hooks_v2 import V2PipelineHook
+        db_path = str(Path(__file__).resolve().parent.parent / "ANTIRIPPER" / "antiripper_v2.db")
+        hook = V2PipelineHook(db_path)
+        hook.register_evidence(game_name, "trace", str(Path(csv_path).resolve()), {"total_writes": total_writes, "active_frames": active_frames})
+        # Record pipeline routing decision
+        hook.log_decision(game_name, "extraction_route", "Direct NES emulation execution via nes_rom_capture", "success")
+        print(f"Registered trace evidence to V2 Graph for {game_name}")
+    except Exception as e:
+        print(f"V2 integration skipped (CSV): {e}")
+
     # Also run mesen_to_midi if available
     try:
         sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -837,6 +850,15 @@ def main():
             notes = sum(1 for m in t if m.type == 'note_on')
             print(f"  Track {i}: {notes} notes")
         print(f"Saved MIDI: {midi_path}")
+
+        # V2 Hook Integration for MIDI
+        try:
+            from pipeline_hooks_v2 import V2PipelineHook
+            hook = V2PipelineHook(db_path)
+            hook.register_evidence(game_name, "parser_output", str(Path(midi_path).resolve()), {"tracks": len(mid.tracks)-1, "music_start": music_start})
+            print(f"Registered MIDI parser evidence to V2 Graph for {game_name}")
+        except Exception as e:
+            pass
 
     except Exception as e:
         print(f"MIDI conversion skipped: {e}")

@@ -949,6 +949,7 @@ def main():
     parser.add_argument('-o', '--output', default='output', help='Output directory')
     parser.add_argument('--all', action='store_true', help='Process all songs')
     parser.add_argument('--names', help='Comma-separated track names')
+    parser.add_argument('--names-json', help='Path to JSON file with track names array')
     args = parser.parse_args()
 
     emu = NsfEmulator(args.nsf)
@@ -956,7 +957,13 @@ def main():
     print(f"Songs: {emu.total_songs}")
 
     if args.all or args.song == '--all':
-        names = args.names.split(',') if args.names else [f"Song {i}" for i in range(1, emu.total_songs + 1)]
+        if args.names_json:
+            with open(args.names_json, 'r', encoding='utf-8') as f:
+                names = json.load(f)
+        elif args.names:
+            names = args.names.split(',')
+        else:
+            names = [f"Song {i}" for i in range(1, emu.total_songs + 1)]
 
         for i in range(emu.total_songs):
             song_num = i + 1

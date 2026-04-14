@@ -80,16 +80,23 @@ def find_games_to_process(force: bool = False) -> list[dict]:
         if midi_files and not force:
             continue
 
-        # Find M3U for track names
+        # Find M3U for track names, fallback to NSF header
         m3u_files = list(nsf_dir.glob("*.m3u"))
         tracks = parse_m3u(m3u_files[0]) if m3u_files else []
+
+        # Read NSF header for total songs when no M3U
+        nsf_total = None
+        with open(nsf_files[0], 'rb') as f:
+            header = f.read(128)
+            if len(header) >= 7:
+                nsf_total = header[6]
 
         games.append({
             'name': game_dir.name,
             'dir': game_dir,
             'nsf': nsf_files[0],
             'tracks': tracks,
-            'total_songs': len(tracks) if tracks else None,
+            'total_songs': len(tracks) if tracks else nsf_total,
         })
 
     return games
@@ -127,8 +134,12 @@ def process_game(game: dict) -> bool:
     print(f"Duration cap: {max_dur}s")
     print(f"{'='*60}")
 
+    # Scale timeout with track count: 60s per track, min 600s, max 3600s
+    num_tracks = game['total_songs'] or 20  # assume 20 if unknown
+    timeout = min(3600, max(600, num_tracks * 60))
+
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
         if result.returncode == 0:
             print(result.stdout[-500:] if len(result.stdout) > 500 else result.stdout)
             return True
@@ -136,7 +147,7 @@ def process_game(game: dict) -> bool:
             print(f"FAILED: {result.stderr[-300:]}")
             return False
     except subprocess.TimeoutExpired:
-        print(f"TIMEOUT: {game['name']} took >600s")
+        print(f"TIMEOUT: {game['name']} took >{timeout}s ({num_tracks} tracks)")
         return False
     except Exception as e:
         print(f"ERROR: {e}")
@@ -157,7 +168,7 @@ def main():
 
     print(f"Games to process: {len(games)}")
     for g in games:
-        track_info = f"{len(g['tracks'])} tracks" if g['tracks'] else "unknown tracks"
+        track_info = f"{len(g['tracks'])} tracks" if g['tracks'] else f"{g['total_songs']} tracks (NSF header)" if g['total_songs'] else "unknown tracks"
         print(f"  {g['name']:<45s} {track_info}")
 
     if args.dry_run:

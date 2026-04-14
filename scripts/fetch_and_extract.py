@@ -16,6 +16,11 @@ import subprocess
 import sys
 from pathlib import Path
 
+# Fix Windows cp1252 encoding errors with non-ASCII NSF metadata
+if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
@@ -52,9 +57,11 @@ def read_track_names(m3u_path):
             if line.startswith('#') or not line:
                 continue
             # Format: file::NSF,song_num,title,duration,...
-            parts = line.split(',')
+            # Handle escaped commas (\,) in track names by temporarily replacing them
+            line_clean = line.replace('\\,', '\x00')
+            parts = line_clean.split(',')
             if len(parts) >= 3:
-                title = parts[2].strip()
+                title = parts[2].replace('\x00', ',').strip()
                 if ' - ' in title:
                     segments = title.split(' - ')
                     title = segments[-1] if len(segments) > 2 else title
@@ -78,10 +85,10 @@ def run_nsf_to_reaper(nsf_path, game_slug, track_names=None, songs=None):
         cmd.extend(["--names", ",".join(track_names)])
 
     print(f"\n  Running nsf_to_reaper.py...")
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+    result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=600)
 
     if result.returncode != 0:
-        print(f"  Error: {result.stderr[:500]}")
+        print(f"  Error: {result.stderr[:2000]}")
         return False
 
     # Count output files
@@ -156,20 +163,67 @@ def find_games_needing_nsf():
     return needing
 
 
+def find_publisher_games(index, publisher):
+    """Find all games from a publisher in the joshw index, excluding already-extracted ones."""
+    import re
+    output = REPO_ROOT / "output"
+    games = []
+    for filename, url in index.items():
+        if f"({publisher})" not in filename:
+            continue
+        # Extract game title (before first parenthesis)
+        m = re.match(r'^(.+?)\s*\(', filename)
+        if not m:
+            continue
+        title = m.group(1).strip()
+        slug = name_to_slug(title)
+        # Skip if already extracted
+        midi_dir = output / slug / "midi"
+        if midi_dir.exists() and list(midi_dir.glob("*.mid")):
+            continue
+        games.append((title, slug, filename, url))
+    return games
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Fetch NSF + extract all songs to MIDI/REAPER")
     parser.add_argument("game", nargs="?", help="Game name (fuzzy match)")
     parser.add_argument("--songs", help="Song range, e.g. '1-5' or '3'")
     parser.add_argument("--batch", help="Process N games missing MIDI ('all' or number)")
+    parser.add_argument("--publisher", help="Process all unextracted games from a publisher (e.g. Capcom, Konami, Sunsoft)")
     parser.add_argument("--dry-run", action="store_true", help="Show what would be processed")
     args = parser.parse_args()
 
-    if not args.game and not args.batch:
+    if not args.game and not args.batch and not args.publisher:
         parser.print_help()
         return
 
     index = fetch_full_index()
+
+    if args.publisher:
+        games = find_publisher_games(index, args.publisher)
+        print(f"\n{args.publisher}: {len(games)} games to extract")
+
+        success = 0
+        failed = 0
+        for title, slug, filename, url in games:
+            if args.dry_run:
+                print(f"  Would process: {title} -> {slug}")
+                continue
+
+            try:
+                if process_game(title, index):
+                    success += 1
+                else:
+                    failed += 1
+            except Exception as e:
+                print(f"  Error processing {title}: {e}")
+                failed += 1
+
+        print(f"\n{'='*60}")
+        print(f"{args.publisher} batch complete: {success} success, {failed} failed")
+        return
 
     if args.batch:
         games = find_games_needing_nsf()

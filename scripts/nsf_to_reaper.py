@@ -25,6 +25,11 @@ import mido
 from pathlib import Path
 from py65.devices.mpu6502 import MPU
 
+# Fix Windows cp1252 encoding errors with non-ASCII NSF metadata
+if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 SAMPLE_RATE = 44100
 SPF = SAMPLE_RATE // 60
 TICKS_PER_BEAT = 480
@@ -372,12 +377,16 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
         note_boundary_map[ch_name] = set(note_boundaries.get(ch_name, set())) if note_boundaries is not None else set()
     mid = mido.MidiFile(ticks_per_beat=TICKS_PER_BEAT)
 
+    # Sanitize text for MIDI meta fields (mido uses latin-1 encoding)
+    def _midi_safe(s):
+        return s.encode('latin-1', errors='replace').decode('latin-1')
+
     # Track 0: metadata
     meta_track = mido.MidiTrack()
     meta_track.append(mido.MetaMessage('set_tempo', tempo=mido.bpm2tempo(128.6)))
     meta_track.append(mido.MetaMessage('time_signature', numerator=4, denominator=4))
-    meta_track.append(mido.MetaMessage('text', text=f'Game: {game_title}'))
-    meta_track.append(mido.MetaMessage('text', text=f'Song: {song_name}'))
+    meta_track.append(mido.MetaMessage('text', text=_midi_safe(f'Game: {game_title}')))
+    meta_track.append(mido.MetaMessage('text', text=_midi_safe(f'Song: {song_name}')))
     meta_track.append(mido.MetaMessage('text', text=f'Source: {source_text}'))
     meta_track.append(mido.MetaMessage('text', text=f'Track: {song_num}'))
     mid.tracks.append(meta_track)
@@ -882,7 +891,7 @@ def render_wav(channels, output_path, num_frames):
 def process_song(emu, song_num, song_name, duration_sec, output_dir):
     """Process one song: emulate, extract MIDI, build REAPER project, render WAV."""
     # Sanitize for Windows filenames: strip all illegal chars + Unicode replacement char
-    _bad = str.maketrans('', '', '[]:\ufffd?*"<>|/')
+    _bad = str.maketrans('', '', '[]:\ufffd?*"<>|/\\')
     game_slug = emu.title.replace(' ', '_').translate(_bad)
     song_slug = song_name.replace(' ', '_').translate(_bad).replace("'", "")
 

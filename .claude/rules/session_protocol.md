@@ -4,8 +4,9 @@
 
 1. Environment validity (session_startup_check.py)
 2. Source identity and track mapping (DB + track_names)
-3. Ground-truth comparison (Mesen vs NSF if both exist)
-4. Route choice (nsf / trace / hybrid / apu2_sysex)
+3. **Driver family classification** (run driver_survey.py --game <slug>)
+4. Ground-truth comparison (Mesen vs NSF vs VGM if available)
+5. Route choice (nsf / trace / hybrid / apu2_sysex), informed by family
 5. Run kitchen_sink.py — generates ALL routes, validates, compares
 6. Inspect report — test fidelity route (SysEx/APU2) FIRST
 7. If fidelity route sounds wrong: inspect Frame IR, then raw frame state
@@ -44,10 +45,30 @@ Frame IR is the interpreted musical representation.
 MIDI is a downstream projection, not the canonical form.
 Debug by inspecting frame state and Frame IR, not MIDI events.
 
+## Three Validation Axes (triangulation, not escalation)
+
+Three independent sources of ground truth, each with different methodology:
+
+1. **Mesen trace** — APU register dumps from gameplay (behavior capture).
+   Highest fidelity. Frame-level. Limited to manually captured games.
+2. **VGM logs** — timestamped register write logs from VGMRips (event stream).
+   Independent of our pipeline. Covers hundreds of games.
+   Tool: `scripts/vgm_to_frame_state.py --compare <nsf_midi>`.
+   Caveat: VGMs logged from NSFs inherit NSF inaccuracies.
+   VGMs logged from MAME/gameplay are fully independent.
+3. **NES-MDB** — Stanford dataset, 5278 songs (static code parsing).
+   Different methodology. 24 Hz resolution (lower than our 60 Hz).
+   Cross-reference for bulk validation across 397 games.
+
+Cross-validation moves from "which is right?" to "where do they disagree,
+and why?" When two independent sources agree and one disagrees, the
+disagreeing source likely has a systemic issue. When all three disagree,
+the game may have genuine NSF-vs-ROM divergence (e.g., Battletoads, Mario).
+
 ## Three Layers (never conflate)
 
 1. **Observed** (ground truth): raw register writes, per-frame channel state.
-   Authoritative. From Mesen trace or NSF emulation.
+   Authoritative. From Mesen trace, VGM log, or NSF emulation.
 2. **Intent** (parser interpretation): parsed events, simulated driver state,
    Frame IR. HYPOTHESIS until validated against Observed.
 3. **Projection** (generated output): MIDI, CC, SysEx, RPP, synth, musical
@@ -61,6 +82,26 @@ If the gate is not passed, all Projection outputs are **hypothesis output**.
 1. **Archival fidelity**: SysEx/register replay for ROM-accurate playback
 2. **Editable project**: CC-driven REAPER project for DAW work
 3. **Live keyboard**: ADSR-based synth for modern composing
+
+## Driver Family-Aware Validation
+
+Different families require different validation intensity:
+
+| Family | Trust NSF? | Validation Level | Key Risks |
+|--------|-----------|-----------------|-----------|
+| 1: Hardware Envelope | Yes | Basic | Low automation → little to go wrong |
+| 2: Standard Envelope | Yes | Standard | Check CC11 envelope shape per note |
+| 3: Duty Animators | Yes | Standard | Check CC12 changes, verify duty animation |
+| 4: Dense Automators | Maybe | Thorough | Many CC events → MIDI size explosion, NSF may diverge |
+| 5: Full Animation | Maybe | Thorough | Both axes dense → highest risk of extraction artifacts |
+
+For Families 4-5, prefer Mesen trace or VGM cross-validation when available.
+NSF emulation is sufficient for Families 1-3 in most cases.
+
+Run `scripts/driver_survey.py --game <slug>` at ingest to assign family.
+Family assignment drives: synth preset selection, validation depth,
+MIDI post-processing expectations, and whether to seek independent
+ground truth.
 
 ## Data Tier Rules
 

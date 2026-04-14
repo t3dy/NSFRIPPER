@@ -242,26 +242,102 @@ def analyze_game(game_slug):
 
 
 def classify_driver_family(profile):
-    """Classify a game into a driver family based on its characteristics."""
+    """Classify a game into a driver family based on CC11/CC12 density.
+
+    Five families identified by CC density analysis and validated against
+    VGMPF driver attribution research (2026-04-13):
+
+    Family 1: Hardware Envelope  — CC11/note 0.0-2.8, CC12/note < 0.5
+              APU $4000 bit 5 often 0 (hardware decay) or set-once.
+              Drivers: Capcom Sakaguchi, Rare early, early Konami Fujio.
+
+    Family 2: Standard Envelope  — CC11/note 2.8-5.6, CC12/note < 0.5
+              Software volume envelope via lookup table, 3-6 writes/note.
+              Drivers: Konami Maezawa, Tecmo Yamagishi, Rare Battletoads-era.
+
+    Family 3: Duty Animators     — CC11/note 3.7-4.9, CC12/note 0.7-1.0
+              Both volume AND duty animated per note. Rare technique.
+              Drivers: Nintendo Kondo (SMB1), HAL Suga, Konami VRC6-aware.
+
+    Family 4: Dense Automators   — CC11/note 5.1-14.9, CC12/note < 0.5
+              Per-frame volume writes, obsessive automation, static duty.
+              Drivers: Square Imai, Sunsoft Takeuchi/Seya, Nintendo Tanaka.
+
+    Family 5: Full Animation     — CC11/note > 7.0, CC12/note > 1.0
+              High density on BOTH axes. Currently only SMB3.
+              Drivers: Nintendo Kondo (SMB3 variant).
+
+    Note: Company attribution does NOT predict family. Same driver can
+    span families depending on composer technique (e.g., Rare: W&W is
+    Family 1, Battletoads is Family 2).
+    """
     dp = profile['driver_profile']
-    env = dp['envelope_type']
     cc11 = dp['avg_cc11_per_note']
     cc12 = dp['avg_cc12_per_note']
 
-    if env == 'dense' and cc12 > 1.0:
-        return "Konami-style (per-frame volume + duty animation)"
-    elif env == 'detailed' and cc12 > 0.5:
-        return "Capcom-style (detailed envelopes, moderate duty switching)"
-    elif env == 'detailed' and cc12 <= 0.5:
-        return "Sunsoft-style (detailed volume, static duty)"
-    elif env == 'moderate':
-        return "Standard (basic envelope shaping)"
-    elif env == 'sparse':
-        return "Minimal (simple on/off, little automation)"
-    elif env == 'none':
-        return "Raw (no CC automation — velocity only)"
+    # Classification uses CC density directly, not envelope_type string
+    if cc11 > 7.0 and cc12 > 1.0:
+        return "Family 5: Full Animation"
+    elif cc11 > 5.0 and cc12 < 0.5:
+        return "Family 4: Dense Automators"
+    elif 3.5 <= cc11 <= 5.0 and cc12 >= 0.5:
+        return "Family 3: Duty Animators"
+    elif 2.8 <= cc11 <= 5.6 and cc12 < 0.5:
+        return "Family 2: Standard Envelope"
+    elif cc11 < 2.8:
+        return "Family 1: Hardware Envelope"
     else:
         return "Unclassified"
+
+
+# Mapping from family to operational behavior
+FAMILY_BEHAVIOR = {
+    "Family 1: Hardware Envelope": {
+        "trust_nsf": True,       # Minimal automation → NSF output is reliable
+        "expect_duty_anim": False,
+        "midi_size": "small",    # Few CC events per note
+        "synth_mode": "adsr",    # ADSR keyboard preset works well
+        "validation": "basic",   # Less data to validate
+        "envelope_mode": "hardware",  # $4000 bit 5 = 0 (hw decay)
+    },
+    "Family 2: Standard Envelope": {
+        "trust_nsf": True,       # Moderate automation → NSF usually reliable
+        "expect_duty_anim": False,
+        "midi_size": "medium",
+        "synth_mode": "cc11",    # CC11 drives volume, ADSR bypassed
+        "validation": "standard",
+        "envelope_mode": "software",  # $4000 bit 5 = 1 (per-frame writes)
+    },
+    "Family 3: Duty Animators": {
+        "trust_nsf": True,
+        "expect_duty_anim": True,  # CC12 changes expected per note
+        "midi_size": "medium",
+        "synth_mode": "cc11+cc12",
+        "validation": "standard",
+        "envelope_mode": "software",
+    },
+    "Family 4: Dense Automators": {
+        "trust_nsf": "maybe",    # Dense automation → NSF may diverge from game
+        "expect_duty_anim": False,
+        "midi_size": "large",    # Many CC events → large MIDI files
+        "synth_mode": "cc11",
+        "validation": "thorough",  # More data to validate, more can go wrong
+        "envelope_mode": "software",
+    },
+    "Family 5: Full Animation": {
+        "trust_nsf": "maybe",
+        "expect_duty_anim": True,
+        "midi_size": "large",
+        "synth_mode": "cc11+cc12",
+        "validation": "thorough",
+        "envelope_mode": "software",
+    },
+}
+
+
+def get_family_behavior(family_name):
+    """Get operational behavior profile for a driver family."""
+    return FAMILY_BEHAVIOR.get(family_name, FAMILY_BEHAVIOR["Family 2: Standard Envelope"])
 
 
 def generate_report(profiles):

@@ -108,3 +108,69 @@ before the period changes. This is correct NES behavior.
 - Ignore CC12 duty changes (they contribute to the per-frame timbre)
 - Truncate notes based on volume (duration = period change, not volume=0)
 - Use a flat synth (no envelope) for keyboard play (sounds lifeless)
+- Use linear mixing when non-linear mixing is achievable (see Rule 7)
+
+## 7. Non-Linear APU Mixing (from FamiTracker source, NESDev wiki)
+
+The NES APU uses impedance-based non-linear mixing:
+
+```
+Pulse output:  95.88 / ((8128.0 / (sq1 + sq2)) + 100.0)
+TND output:    159.79 / ((1.0 / ((tri/8227) + (noise/12241) + (dpcm/22638))) + 100.0)
+```
+
+Where sq1/sq2 are pulse channel amplitudes (0-15), tri is triangle
+amplitude (0-15), noise is noise amplitude (0-15), dpcm is DMC
+output (0-127).
+
+Key implications:
+- Two pulses at max volume (15+15) produce ~0.278, not 2× one pulse
+- Adding a second pulse at volume 15 reduces the first from ~0.184 to ~0.148
+- Triangle/noise/DPCM interact similarly on the TND pin
+- Linear mixing (current JSFX) makes simultaneous channels too loud
+
+The synth SHOULD implement these formulas for ROM-accurate output.
+At minimum, document that linear mixing diverges from hardware.
+
+## 8. Driver Family Presets for Keyboard Mode (ADSR)
+
+The NES APU has two envelope modes ($4000 bit 5):
+- Bit 5 = 0: Hardware envelope (linear decay from max to zero)
+- Bit 5 = 1: Constant volume (driver writes volume every frame)
+
+The ADSR keyboard mode should offer presets matching both:
+
+**Hardware Envelope preset** (for Family 1: Hardware Envelope games):
+- Attack: instant (1 frame)
+- Decay: linear to zero over 8-15 frames
+- Sustain: 0 (no sustain — decays completely)
+- Release: immediate
+- Sounds like: Mega Man, DuckTales, early Capcom
+
+**Software Envelope preset** (for Families 2-5):
+- Attack: instant at vol 15
+- Decay: 3-4 frames to sustain level
+- Sustain: vol 4-8 (game-specific)
+- Release: 2-3 frames to zero
+- Sounds like: Castlevania, Contra, Ninja Gaiden
+
+**Dense Envelope preset** (for Family 4: Dense Automators):
+- Per-frame volume table with tremolo/vibrato character
+- Multiple volume updates per note
+- Sounds like: Sunsoft (Batman, Blaster Master), Final Fantasy
+
+## 9. Noise Channel Period Inversion (from FamiTracker source)
+
+Noise period index is inverted before writing to APU register $400E:
+the index is XORed with 0x0F. This means:
+- Period index 0 → longest period (lowest pitch noise)
+- Period index 15 → shortest period (highest pitch noise)
+
+This is the opposite convention from melodic channels where lower
+period = higher pitch. MIDI note mapping for noise should account
+for this inversion.
+
+NTSC noise periods (16 entries):
+4, 8, 16, 32, 64, 96, 128, 160, 202, 254, 380, 508, 762, 1016, 2034, 4068
+
+Noise mode bit ($400E bit 7): 0 = long LFSR (hissy), 1 = short (tonal/metallic).

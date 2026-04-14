@@ -226,3 +226,94 @@ State the scope: which channels, which songs, which frame range.
 Trust does not extend beyond validated scope.
 
 See `session_protocol.md` for the Validation Ladder.
+
+## 18. Driver Family Is First-Class Infrastructure (2026-04-13)
+
+Every game must be classified into a driver family at ingest time.
+Classification uses CC11/note and CC12/note density from the first
+extraction pass. The family assignment drives downstream behavior:
+
+| Family | CC11/note | CC12/note | Trust NSF? | MIDI Size | Synth Mode |
+|--------|-----------|-----------|------------|-----------|------------|
+| 1: Hardware Envelope | 0.0-2.8 | < 0.5 | Yes | Small | ADSR |
+| 2: Standard Envelope | 2.8-5.6 | < 0.5 | Yes | Medium | CC11 |
+| 3: Duty Animators | 3.7-4.9 | 0.7-1.0 | Yes | Medium | CC11+CC12 |
+| 4: Dense Automators | 5.1-14.9 | < 0.5 | Maybe | Large | CC11 |
+| 5: Full Animation | > 7.0 | > 1.0 | Maybe | Large | CC11+CC12 |
+
+Family assignment is probabilistic — boundary games may shift with
+re-extraction. Company attribution does NOT predict family (proven:
+Rare spans 1-2, Konami spans 1-3, Tecmo spans 2-4).
+
+Implementation: `scripts/driver_survey.py` classify_driver_family().
+
+Why: The CC11 density metric measures something real about the
+hardware — the ratio of software-driven frames ($4000 bit 5 = 1)
+to hardware-envelope frames ($4000 bit 5 = 0) per note. This is
+an architectural decision baked into each driver, not a statistical
+artifact.
+
+## 19. Three Independent Validation Axes
+
+The pipeline supports three independent sources of ground truth:
+
+1. **Mesen trace** — APU register dumps from gameplay. Frame-level.
+   Highest fidelity. Limited to games we've manually captured.
+2. **VGM logs** — timestamped register write logs from VGMRips.
+   Independent of our pipeline. Covers hundreds of games.
+   Caveat: VGMs logged from NSFs inherit NSF inaccuracies.
+3. **NES-MDB** — Stanford dataset (5278 songs, assembly-parsed).
+   Different methodology (static code parsing vs our emulation
+   capture). Lower resolution (24 Hz vs our 60 Hz).
+
+Cross-validation between these sources moves from "which is right?"
+to "where do they disagree, and why?" — a research-grade pipeline.
+
+Implementation: `scripts/vgm_to_frame_state.py` for VGM axis.
+
+## 20. Non-Linear APU Mixing
+
+The NES APU uses impedance-based non-linear mixing (from FamiTracker
+source and NESDev wiki):
+
+Pulse pin:   `95.88 / ((8128.0 / (sq1 + sq2)) + 100.0)`
+TND pin:     `159.79 / ((1.0 / ((tri/8227) + (noise/12241) + (dpcm/22638))) + 100.0)`
+
+Simultaneous pulse channels compress each other's effective volume.
+Linear mixing (our current JSFX approach) makes simultaneous pulses
+louder than real hardware. For ROM-accurate reproduction, the synth
+should implement these formulas.
+
+## 21. Non-Note Sound Events
+
+Not all NES sound is note-triggered. The pipeline must handle:
+
+- **$4011 DAC writes**: Algorithmic percussion (Battletoads drums
+  are computed ramp waveforms, not stored DPCM samples — confirmed
+  by NESDev forum thread t=15586)
+- **Sweep unit**: Continuous pitch transforms on pulse channels
+- **Noise mode bit**: Tonal vs noise LFSR mode ($400E bit 7)
+- **Frame counter sync**: $4017 writes that reset the APU sequencer
+
+These require event types beyond note/envelope/duty in the Frame IR.
+Current schema only supports note-centric events. Extend with:
+  event_type: note | envelope | duty | dac | sweep | noise_mode
+
+## 22. Period-to-Note Canonical Formula
+
+From FamiTracker source (confirmed against NESDev wiki):
+
+```
+BASE_FREQ = 32.7032 Hz  (C1)
+NTSC_CLOCK = 1,789,773 Hz
+period = round(NTSC_CLOCK / (16 * freq)) - 1   (pulse, 16-step)
+period = round(NTSC_CLOCK / (32 * freq)) - 1   (triangle, 32-step)
+```
+
+Triangle produces frequency at half the rate of pulse for the same
+period value (32-step vs 16-step sequencer). The octave offset is
+inherent in hardware, not an explicit correction.
+
+Our `pitch_to_midi()` correctly subtracts 12 for triangle. FamiTracker
+shares the same period lookup table for both — composer is expected
+to know triangle sounds one octave lower.

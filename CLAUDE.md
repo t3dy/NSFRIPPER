@@ -185,9 +185,9 @@ See `docs/NES_AUDIO_GAPS_AND_NEXT_STEPS.md` for full analysis.
 
 | Layer | Purpose | Depends On | Status |
 |-------|---------|-----------|--------|
-| 1: Audit & Schema | Scan expansion flags, design multi-chip Frame IR | None | Not started |
-| 2: Frame IR Extensions | Implement all missing event types + chip types | Layer 1 | Not started |
-| 3: Capture Pipeline | Update nsf_to_reaper.py for expansion + DPCM + phase reset | Layer 2 | Not started |
+| 1: Audit & Schema | Scan expansion flags, design multi-chip Frame IR | None | **Complete** (297 NSFs, 35 expansion) |
+| 2: Frame IR Extensions | Implement all missing event types + chip types | Layer 1 | **Complete** (38 tests, all chips) |
+| 3: Capture Pipeline | Update nsf_to_reaper.py for expansion + DPCM + phase reset | Layer 2 | **Partial** (capture done, processing TBD) |
 | 4: Validation Infrastructure | cross_validate.py + nsf_trust_scorer.py | Layer 3 | Not started |
 | 5: ROM Parsers | Capcom 6C80 + Sunsoft (parallel with 3-4) | Layer 2 | Not started |
 | 6: Synth Fidelity | Non-linear mixing + expansion audio in JSFX | Layer 3 | Not started |

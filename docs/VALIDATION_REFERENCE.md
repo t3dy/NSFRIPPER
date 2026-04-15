@@ -5,6 +5,9 @@ and detailed delivery requirements. Read this file when doing ROM
 parsing, trace validation, or preparing deliveries.
 
 Core protocol (always loaded): `.claude/rules/session_protocol.md`
+Gate checklists (A-F): `docs/VALIDATION.md`
+Architecture rules: `.claude/rules/architecture.md` + `docs/ARCHITECTURE_REFERENCE.md`
+Oracle knowledge base: `docs/AGENT_ORACLE.md`
 
 ---
 

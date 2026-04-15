@@ -1,16 +1,25 @@
 # Session Protocol (Core)
 
 ROM-parsing gates, validation ladder, execution semantics checklist:
-see `docs/VALIDATION_REFERENCE.md`.
+see `docs/VALIDATION_REFERENCE.md`. Gate checklists: `docs/VALIDATION.md`.
+Oracle API: `docs/AGENT_ORACLE.md`.
 
 ## Working Order (mandatory)
 
 1. Environment validity (session_startup_check.py)
-2. Source identity and track mapping (DB + track_names)
-3. **Driver family classification** (run driver_survey.py --game <slug>)
-4. Ground-truth comparison (Mesen vs NSF vs VGM if available)
-5. Route choice (nsf / trace / hybrid / apu2_sysex), informed by family
-6. **Check oracle inventory first**: `oracle.get_game_inventory(slug)` — see all versions, what's been tried
+2. **Oracle preflight** (NON-NEGOTIABLE for serious work):
+   ```python
+   from ANTIRIPPER.agent_oracle import AgentOracle
+   oracle = AgentOracle()
+   ctx = oracle.get_preflight_context("game_slug", "nsf_extraction")
+   print(oracle.get_game_inventory("game_slug"))
+   ```
+   This returns: driver family, prevention patterns, hardware facts,
+   claims, prior decisions, what output already exists.
+3. Source identity and track mapping (DB + track_names)
+4. **Driver family classification** (run driver_survey.py --game <slug>)
+5. Ground-truth comparison (Mesen vs NSF vs VGM if available)
+6. Route choice (nsf / trace / hybrid / apu2_sysex), informed by family
 7. Extract: `nsf_to_reaper.py` (NSF) or `trace_to_midi.py` (trace)
 8. If fidelity route sounds wrong: inspect Frame IR, then raw frame state
 9. If fidelity route sounds right: compare CC/Console route for playability
@@ -55,6 +64,25 @@ MIDI is downstream projection. Debug frame state, not MIDI.
 
 1. Mesen trace > 2. ROM music data > 3. NSF extraction > 4. Frame IR > 5. MIDI/CC > 6. Synth
 
+## Oracle Recording (mandatory for significant work)
+
+Before risky code changes or analysis:
+```python
+attempt_id = oracle.record_attempt("slug", "task_type", "hypothesis", "planned_change")
+```
+
+After completing work:
+```python
+oracle.record_outcome(attempt_id, "success|failure", evidence_refs=[...], lessons="...")
+oracle.log_decision("slug", "extraction_route", rationale="...", outcome="...")
+```
+
+Important discoveries must be promoted (see CLAUDE.md "Knowledge Hardening"):
+- Code fix alone is not enough
+- Add/update a rule file
+- Record in oracle (attempt/outcome, decision, claim, or prevention pattern)
+- Update MISTAKEBAKED.md if the mistake cost 2+ prompts
+
 ## Delivery Gate (summary)
 
 Nothing is "ready to test" unless:
@@ -64,5 +92,7 @@ Nothing is "ready to test" unless:
 - Every artifact labeled with Validation Ladder rung
 - Below Rung 3 = "hypothesis output"
 - Run session_startup_check.py + sync_jsfx.py before delivery
+- Decision record logged via oracle for new or changed extraction routes
 
 Full delivery checklist and validation ladder: `docs/VALIDATION_REFERENCE.md`
+Gate checklists (A-F): `docs/VALIDATION.md`

@@ -20,6 +20,14 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = REPO_ROOT / "output"
 
+# Pipeline hooks — decision recording after each game
+try:
+    sys.path.insert(0, str(REPO_ROOT))
+    from ANTIRIPPER.scripts.pipeline_hooks_v2 import PipelineHooks
+    _hooks = PipelineHooks()
+except Exception:
+    _hooks = None
+
 
 def parse_m3u(m3u_path: Path) -> list[dict]:
     """Parse M3U file to extract track names and durations."""
@@ -177,10 +185,38 @@ def main():
 
     results = {'ok': [], 'fail': []}
     for game in games:
-        if process_game(game):
+        success = process_game(game)
+        if success:
             results['ok'].append(game['name'])
+            # Pipeline hook: log game extraction decision
+            if _hooks:
+                # Count MIDI files produced to determine success/total
+                midi_dir = game['dir'] / "midi"
+                midi_count = len(list(midi_dir.glob("*.mid"))) if midi_dir.exists() else 0
+                total = game['total_songs'] or midi_count
+                # Check if bankswitched by reading NSF header
+                bankswitched = False
+                try:
+                    with open(game['nsf'], 'rb') as f:
+                        hdr = f.read(128)
+                    bankswitched = any(b != 0 for b in hdr[0x70:0x78])
+                except Exception:
+                    pass
+                _hooks.on_game_completed(
+                    game['name'], midi_count, total,
+                    bankswitched=bankswitched,
+                )
         else:
             results['fail'].append(game['name'])
+            if _hooks:
+                _hooks.on_game_failed(game['name'], reason="process_game returned False")
+
+    # Pipeline hook: batch summary
+    if _hooks:
+        _hooks.on_batch_summary(
+            len(results['ok']), len(results['fail']),
+            results['ok'], results['fail'],
+        )
 
     print(f"\n{'='*60}")
     print(f"BATCH COMPLETE")

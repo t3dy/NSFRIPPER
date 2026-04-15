@@ -55,7 +55,7 @@ For games where NSF output is inadequate or deeper fidelity is required:
 python scripts/generate_site.py          # regenerate per-game pages from output/
 ```
 
-Site: https://t3dy.github.io/ReapNES/
+Site: https://t3dy.github.io/NSFRIPPER/
 
 ## Hard Invariants
 
@@ -78,7 +78,8 @@ Site: https://t3dy.github.io/ReapNES/
   MIDI routing, synth settings — everything baked into the RPP file.
 - **Parser output is hypothesis, not music.** Structural parsing gives
   event structure. Trusted musical output requires execution semantics
-  validation against ground truth. See `.claude/rules/architecture.md` Rules 13-17.
+  validation against ground truth. See `docs/ARCHITECTURE_REFERENCE.md` Rules 13-16,
+  `.claude/rules/architecture.md` Rule 17.
 - **Noise is a separate semantic domain.** Do not force noise channels
   through melodic assumptions. Noise has different encoding, validation
   criteria, and runtime behavior. Document noise status separately.
@@ -117,7 +118,9 @@ use trace pipeline. Battletoads and Mario are confirmed trace-required games.
 - Web research: `docs/research/` (ARCHIVES, NESDEV, ENGINES, RIPPING_STATE_OF_ART)
 - Priorities: this file
 - Mistake narratives: @docs/MISTAKEBAKED.md
-- Handover (legacy): @docs/HANDOVER.md
+- Oracle knowledge base: `ANTIRIPPER/antiripper_v2.db` via `docs/AGENT_ORACLE.md`
+- Oracle API: `ANTIRIPPER/ORACLE_API.md` (cheatsheet)
+- Handover archive: `docs/HANDOVER_2026_04_14_FINAL.md` (latest)
 
 ## Driver Families (CC11/CC12 density classification)
 
@@ -147,7 +150,7 @@ Classify at ingest: `python scripts/driver_survey.py --game <slug>`
 | Contra | 4 (trusted) | Validated | Validated | Proven pipeline. |
 | Wizards & Warriors | 2-3 (partial) | Rung 2 all 16 songs (512f), Rung 3 title (2169f) | Rung 1 (structural) + partial Rung 2 (3 active songs) | Strong milestone, not final. See W&W validation record. |
 | Battletoads | 1 (parser-aligned) | Structural only | Structural only | Execution semantics validation in progress. |
-| Super Mario Bros | NSF only | N/A | N/A | NSF pipeline, no ROM parser. |
+| Super Mario Bros | NSF only | N/A | N/A | NSF pipeline, no ROM parser. Known NSF/trace divergence — trace-required for fidelity but no parser built. |
 
 Existing MIDI/RPP output for games below Rung 3 is **hypothesis output** —
 usable for practical work (listening, arrangement) but not claimable as
@@ -155,7 +158,7 @@ verified or trusted.
 
 ## Rules & Validation
 
-See `.claude/rules/architecture.md` for the core architectural rules (15 in rules file, extended rules 13-16/19-21 in `docs/ARCHITECTURE_REFERENCE.md`).
+See `.claude/rules/architecture.md` for the core architectural rules (Rules 1-12, 17-18, 22, 26 in rules file; Rules 13-16, 19-21, 23-25 in `docs/ARCHITECTURE_REFERENCE.md`).
 See `.claude/rules/session_protocol.md` for workflow, validation ladder, and delivery gates.
 See `docs/DRIVER_FAMILIES_AND_GAMES.md` for 30 game profiles and 5 driver family specs.
 
@@ -169,17 +172,20 @@ Key principles (details in rules files):
 - **Non-note sound events** — DAC writes, sweep, noise mode need explicit IR types (Rule 21)
 - **Three layers: Observed → Intent → Projection** — never conflate (Rule 12)
 
-## Known Gaps (from 2026-04-13 gap analysis)
+## Known Gaps (updated 2026-04-14)
 
 See `docs/NES_AUDIO_GAPS_AND_NEXT_STEPS.md` for full analysis.
 
 | Gap | Impact | Status |
 |-----|--------|--------|
+| Bankswitch emulation | 39 games failed extraction | **FIXED** (Rule 26, session 415) |
+| Pipeline hooks not wired | 47% of games had no DB records | **FIXED** (docs/PIPELINEHOOKS.md) |
 | Expansion audio (VRC6/FDS/5B/N163/VRC7/MMC5) | ~250 games silently losing channels | Not started |
 | DPCM/DAC conflation ($4011) | Battletoads drums, Sunsoft bass misrepresented | Schema designed, not implemented |
 | Missing APU events (phase reset, $4015, sweep) | Same-pitch retriggers merge, unexplained silences | Schema designed, not implemented |
 | No cross-validation pipeline | Can't auto-compare NSF vs VGM vs NES-MDB | vgm_to_frame_state.py built, cross_validate.py not |
 | ROM parsing coverage (~80 games vs 1577) | Capcom 6C80 is highest-ROI next parser | Format doc exists (RH #274), parser not built |
+| 140/321 games unclassified by driver survey | CC density unknown for batch | Run: `python scripts/driver_survey.py --report --json` |
 
 ### Implementation Plan (Hiro Plantagenet 7-Layer)
 
@@ -218,6 +224,153 @@ python scripts/expansion_detect.py --json -o data/expansion_audit.json
 # ORACLE: game inventory before starting work
 python -c "from ANTIRIPPER.agent_oracle import AgentOracle; print(AgentOracle().get_game_inventory('Game_Name'))"
 
+# ORACLE: preflight before any serious work
+python -c "from ANTIRIPPER.agent_oracle import AgentOracle; o=AgentOracle(); print(o.get_preflight_context('Game_Name', 'nsf_extraction'))"
+
 # SITE
 python scripts/generate_site.py                                     # rebuild website
 ```
+
+## Knowledge Hardening (NON-NEGOTIABLE)
+
+A discovery is NOT baked into the system until it appears in ALL of:
+1. **Code** — the fix is implemented and tested
+2. **Rule/reference file** — a future session can find it without reading code
+3. **Oracle-facing record** — the knowledge is queryable via `get_preflight_context`
+
+Code patches alone are not enough. A fix that lives only in code comments
+or handover docs will be invisible to future sessions and WILL be rediscovered
+at cost. The bankswitch fix (Rule 26) is the model: it was a 2-line code
+change that recovered 233 songs across 16 games, but without the architecture
+rule and prevention pattern, a future session could break it or fail to
+apply the same principle to a new emulator edge case.
+
+### When a session makes an important discovery, it must:
+
+1. **Fix the code** (the immediate patch)
+2. **Add or update a rule** in the appropriate file:
+   - Hardware behavior → `.claude/rules/architecture.md` or `synth_fidelity.md`
+   - Validation/gate change → `docs/VALIDATION_REFERENCE.md`
+   - Emulation behavior → `.claude/rules/architecture.md` (see Rule 26)
+   - Parser pattern → `extraction/CLAUDE_EXTRACTION.md`
+3. **Record in the oracle** via one or more of:
+   - `record_attempt` + `record_outcome` (what was tried, what happened)
+   - `propose_claim` (if the finding is game-specific or provisional)
+   - `log_decision` (if it changes extraction route or trust level)
+   - Prevention pattern (if it's a repeatable failure mode — requires human review)
+4. **Update MISTAKEBAKED.md** if the discovery cost 2+ prompts to reach
+
+### Discovery Promotion Pathway
+
+| Discovery Type | Rule/Reference Target | Oracle Target |
+|----------------|----------------------|---------------|
+| Hardware fact (e.g. triangle octave) | architecture.md (immutable rule) | `hardware_facts` (locked) |
+| Recurring failure mode (e.g. bankswitch page offset) | architecture.md + MISTAKEBAKED.md | `prevention_patterns` |
+| Route/trust rationale (e.g. NSF diverges from trace) | session_protocol.md fidelity hierarchy | `decision_records` via `log_decision` |
+| Provisional interpretation (e.g. driver uses DX=3 bytes) | extraction manifest (hypothesis) | `claims` via `propose_claim` |
+| Game/family behavior (e.g. new CC density pattern) | DRIVER_FAMILIES_AND_GAMES.md | `driver_families` + `evidence_items` |
+| Emulator bug/fix (e.g. bankswitch range) | architecture.md rule | `prevention_patterns` + `record_outcome` |
+
+### Example: Bankswitch Fix Promotion (2026-04-14)
+
+This is how a discovery should flow through the system:
+
+1. **Code fix**: `nsf_to_reaper.py` — virtual padded bank array + $5FF6-$5FFF range
+2. **Architecture rule**: Rule 26 in `.claude/rules/architecture.md` — explains both bugs,
+   lists affected games, states impact (233/240 songs recovered)
+3. **Prevention pattern**: in oracle DB — "NSF bankswitch: always handle $5FF6-$5FFF,
+   always account for load_addr page offset"
+4. **Decision record**: extraction route for 16 games changed from "partial/failed" to
+   "NSF emulation (bankswitched)"
+5. **Mistake narrative**: in MISTAKEBAKED.md — cost, root cause, where warnings now live
+
+## Oracle Workflow (Mandatory for Serious Work)
+
+The oracle at `ANTIRIPPER/antiripper_v2.db` is the project's institutional
+memory. It is not optional tooling — it is how discoveries become reusable
+across sessions. See `docs/AGENT_ORACLE.md` for the full API.
+
+### Before starting work on any game:
+
+```python
+from ANTIRIPPER.agent_oracle import AgentOracle
+oracle = AgentOracle()
+
+# 1. Preflight: what do we already know?
+ctx = oracle.get_preflight_context("game_slug", "nsf_extraction")
+# Returns: driver_family, prevention_patterns, hardware_facts, claims, decisions
+
+# 2. Inventory: what output already exists?
+print(oracle.get_game_inventory("game_slug"))
+# Returns: all directories, versions, MIDI counts, best version recommendation
+```
+
+### Before making risky code changes:
+
+```python
+# 3. Record intent BEFORE the change
+attempt_id = oracle.record_attempt(
+    "game_slug", "nsf_extraction",
+    hypothesis="Bankswitch handler missing $5FF6-$5FF7 range",
+    planned_change="Extend range to $5FF6-$5FFF, add page offset",
+)
+
+# 4. Check guardrails for the subsystem you're editing
+guards = oracle.get_edit_guardrails("routing")
+```
+
+### After completing work:
+
+```python
+# 5. Record what happened
+oracle.record_outcome(
+    attempt_id, result="success",
+    evidence_refs=["output/Ninja_Gaiden/midi/"],
+    lessons="Non-page-aligned load_addr shifts all bank boundaries. $5FF6-$5FF7 must be handled.",
+)
+
+# 6. Log the decision if it changes a game's extraction route
+oracle.log_decision(
+    "ninja_gaiden", "extraction_route",
+    rationale="Bankswitch fix recovered all 65 tracks via NSF emulation",
+    outcome="nsf_emulation_bankswitched",
+)
+```
+
+### What the oracle tables are for:
+
+| Table | Contains | When to write |
+|-------|----------|---------------|
+| `hardware_facts` | Immutable APU/NES behavior | Never (human-curated, locked) |
+| `prevention_patterns` | Learned failure modes | After a mistake costs 2+ prompts |
+| `driver_families` | CC11/CC12 classification | At ingest via driver_survey.py |
+| `evidence_items` | File paths, metrics, observations | Pipeline hooks (auto) or manual |
+| `claims` | Provisional hypotheses | When a finding is game-specific |
+| `decision_records` | Route/trust/method choices | After resolving extraction route |
+| `attempts` | What was tried and why | Before risky changes |
+
+### Current gaps (from 2026-04-14 audit):
+
+- 105/225 BESTOUTPUT games have no decision record (47%)
+- attempts/claims tables are empty (pipeline hooks not wired)
+- 140/321 games unclassified by driver survey
+
+## Where to Find Things (Cross-Reference Index)
+
+| What you need | Where to look |
+|---------------|---------------|
+| Core architecture rules (1-12, 17-18, 22, 26) | `.claude/rules/architecture.md` |
+| Extended rules (13-16, 19-25) | `docs/ARCHITECTURE_REFERENCE.md` |
+| Session workflow, fix order, debug order | `.claude/rules/session_protocol.md` |
+| Gate checklists (A-F) | `docs/VALIDATION.md` |
+| Validation ladder, execution semantics | `docs/VALIDATION_REFERENCE.md` |
+| Synth fidelity, CC semantics, mixing | `.claude/rules/synth_fidelity.md` |
+| RPP generation rules | `.claude/rules/reaper_projects.md` |
+| JSFX deployment, pre-delivery | `.claude/rules/jsfx_deploy.md` |
+| Driver families (5 families, 30+ profiles) | `docs/DRIVER_FAMILIES_AND_GAMES.md` |
+| Oracle API (full) | `docs/AGENT_ORACLE.md` |
+| Oracle API (cheatsheet) | `ANTIRIPPER/ORACLE_API.md` |
+| Mistake inventory (what burned prompts) | `docs/MISTAKEBAKED.md` |
+| Pipeline hooks (auto evidence/decisions) | `docs/PIPELINEHOOKS.md` |
+| Expansion audio schema | `docs/MULTI_CHIP_SCHEMA.md` |
+| Known gaps + Hiro Plantagenet layers | This file (Known Gaps section) |

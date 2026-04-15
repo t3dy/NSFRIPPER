@@ -114,7 +114,7 @@ def generate_game_page(game_name, tracks, slug):
         "",
         "## Downloads",
         "",
-        "MIDI files and REAPER projects are available in the [GitHub repository](https://github.com/t3dy/ReapNES).",
+        "MIDI files and REAPER projects are available in the [GitHub repository](https://github.com/t3dy/NSFRIPPER).",
         "",
         "[← Back to Game Library](../)",
     ])

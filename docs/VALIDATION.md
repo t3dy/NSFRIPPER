@@ -3,7 +3,9 @@
 A build is not deliverable until it passes every gate.
 
 **Validation gates and ladder:** `.claude/rules/session_protocol.md`
-**Architecture rules:** `.claude/rules/architecture.md` (Rules 13-17)
+**Architecture rules:** `.claude/rules/architecture.md` (Rules 1-12, 17-18, 22, 26)
+**Extended rules (ROM parsing, execution semantics):** `docs/ARCHITECTURE_REFERENCE.md` (Rules 13-16, 19-25)
+**Validation ladder + execution semantics checklist:** `docs/VALIDATION_REFERENCE.md`
 **Per-game template:** `templates/reports/GAME_VALIDATION_TEMPLATE.md`
 
 All output below Rung 3 on the Validation Ladder is **hypothesis output** —

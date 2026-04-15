@@ -4,6 +4,12 @@ Task-specific rules not loaded into every session. Read this file
 when working on ROM parsing, validation, expansion audio, or DPCM.
 
 Core rules (always loaded): `.claude/rules/architecture.md`
+Gate checklists: `docs/VALIDATION.md` (A-F) + `docs/VALIDATION_REFERENCE.md` (ladder)
+Oracle knowledge base: `docs/AGENT_ORACLE.md`
+
+**Knowledge capture:** When work in this file's domain produces a new
+discovery, promote it per CLAUDE.md "Knowledge Hardening" — code fix
+alone is not enough. Add a rule here AND record in the oracle.
 
 ---
 

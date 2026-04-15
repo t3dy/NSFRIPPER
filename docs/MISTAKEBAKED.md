@@ -7,7 +7,8 @@ of every session — the warnings are positioned to intercept the mistake
 BEFORE it happens.
 
 **Validation gates:** `.claude/rules/session_protocol.md` (Gates 1-3, Validation Ladder)
-**Architecture rules:** `.claude/rules/architecture.md` (Rules 13-17)
+**Architecture rules:** `.claude/rules/architecture.md` (Rules 1-12, 17-18, 22, 26)
+**Extended rules:** `docs/ARCHITECTURE_REFERENCE.md` (Rules 13-16, 19-25)
 
 ## Where the Warnings Live
 
@@ -99,3 +100,34 @@ The warnings are positioned at decision points:
 
 Each warning includes the specific incident that caused it, so a
 future session can understand WHY the rule exists, not just what it says.
+
+### NSF Emulation — Bankswitch Bugs (session 415, 2026-04-14)
+
+Two bankswitch emulation bugs that together blocked 39 games:
+
+| Rule | Mistake It Prevents | Prompts It Cost |
+|------|---------------------|-----------------|
+| Account for load_addr page offset in bank mapping | Assumed ROM data was padded to page boundary; non-aligned games (Ninja Gaiden $FC00, Zelda $8D60) had all banks shifted | 3+ (entire diagnosis) |
+| Handle full $5FF6-$5FFF bankswitch range | Only intercepted $5FF8-$5FFF; drivers that bankswitch into $6000-$7FFF via $5FF6-$5FF7 read zeros and hung | included in above |
+
+These are now in `.claude/rules/architecture.md` Rule 26.
+
+**Impact:** 233/240 songs recovered across 16 games. 84% of all NSF
+extraction failures were bankswitch-related.
+
+**Decision point:** "Game fails NSF extraction" → Before investigating
+driver bugs, check: (1) is the game bankswitched? (2) does load_addr
+have a non-zero page offset? (3) does the driver write to $5FF6-$5FF7?
+
+### Meta-Rule: Discovery Promotion
+
+The bankswitch fix also exposed a systemic gap: important discoveries
+were living only in code comments and handover docs, invisible to future
+sessions. This led to the Knowledge Hardening protocol in CLAUDE.md:
+
+A discovery is only operationally real when it is:
+1. Fixed in code
+2. Recorded in a rule/reference file
+3. Captured in the oracle DB (prevention pattern, decision, or claim)
+
+See CLAUDE.md "Knowledge Hardening" section for the full pathway.

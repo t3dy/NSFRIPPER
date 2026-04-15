@@ -9,6 +9,8 @@ globs:
 
 Universal invariants. For ROM-parsing rules (13-16), validation axes
 (19), expansion/DPCM details (21-25), see `docs/ARCHITECTURE_REFERENCE.md`.
+For gate checklists, see `docs/VALIDATION.md` (Gates A-F) and
+`docs/VALIDATION_REFERENCE.md` (ladder, execution semantics).
 
 ## 1. Parsers Emit Full-Duration Events
 
@@ -75,3 +77,29 @@ Run `scripts/driver_survey.py --game <slug>`. See CLAUDE.md for family table.
 
 Pulse: `CPU / (16 × (P+1))`. Triangle: `CPU / (32 × (P+1))`. CPU = 1,789,773 Hz.
 Triangle octave offset is hardware, not convention.
+
+## 26. NSF Bankswitch Emulation (Two Bugs, Both Proven)
+
+The py65 NSF emulator must handle bankswitched NSFs correctly. Two bugs
+burned an entire session before being caught (2026-04-14):
+
+**Bug 1: Non-page-aligned load addresses shift bank boundaries.**
+When `load_addr & 0xFFF != 0` (e.g. Ninja Gaiden $FC00, Zelda $8D60),
+the ROM data is NOT padded to the page boundary. Bank N starts at
+`rom_data[N * 4096 - padding]` where `padding = load_addr & 0xFFF`.
+The emulator must build a virtual padded array before indexing banks.
+Without this, higher bank numbers read past the end of ROM data into
+zeros — INIT jumps to zeroed memory and hangs.
+
+**Bug 2: $5FF6-$5FF7 bankswitch range.**
+The full NSF bankswitch range is $5FF6-$5FFF, not just $5FF8-$5FFF.
+$5FF6 → $6000-$6FFF, $5FF7 → $7000-$7FFF. Many drivers bankswitch
+music data into $6000-$7FFF at runtime. Missing these writes caused
+drivers to read zeros and hang.
+
+**Impact:** Fixed 233/240 songs across 16 previously-failing games.
+84% of NSF extraction failures were bankswitch-related.
+
+Games proven affected: Ninja Gaiden (1→65), Zelda (2→37), CV3 (19→28),
+Ninja Gaiden II/III, Zelda II, Captain Tsubasa, Lagrange Point,
+Ganbare Goemon, Double Dribble, Kings Quest V, Mission Impossible.

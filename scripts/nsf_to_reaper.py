@@ -23,6 +23,13 @@ import argparse
 import numpy as np
 import mido
 from pathlib import Path
+
+# Pipeline hooks — evidence recording after each song extraction
+try:
+    from ANTIRIPPER.scripts.pipeline_hooks_v2 import PipelineHooks
+    _hooks = PipelineHooks()
+except Exception:
+    _hooks = None
 from py65.devices.mpu6502 import MPU
 
 # Fix Windows cp1252 encoding errors with non-ASCII NSF metadata
@@ -86,41 +93,64 @@ class NsfEmulator:
                     cpu.memory[addr] = byte
         else:
             # Bankswitched NSF: ROM data is organized as 4KB pages.
-            # The bankswitch table at $70-$77 maps 8 slots to ROM pages:
-            #   slot 0 → $8000-$8FFF, slot 1 → $9000-$9FFF, ...
-            #   slot 7 → $F000-$FFFF
+            #
+            # CRITICAL: The ROM data in the file starts at load_addr, NOT at
+            # the page boundary. For non-page-aligned load addresses (e.g.
+            # $FC00, $8D60), there is an implicit padding of (load_addr & $FFF)
+            # bytes before the actual data within bank 0. The file does NOT
+            # contain this padding — bank boundaries must be offset.
+            #
+            # Bank N data in rom_data starts at: N * 4096 - padding
+            # (with bank 0 having its first `padding` bytes as implicit zeros)
             page_size = 0x1000  # 4KB
-            num_pages = (len(self.rom_data) + page_size - 1) // page_size
+            padding = self.load_addr & 0xFFF
+            # Total virtual size = padding + actual data
+            virtual_size = padding + len(self.rom_data)
+            num_pages = (virtual_size + page_size - 1) // page_size
+            # Precompute: store pages as a flat virtual array with padding
+            self._bank_pages = bytearray(num_pages * page_size)
+            self._bank_pages[padding:padding + len(self.rom_data)] = self.rom_data
+            self._num_pages = num_pages
+            # Determine base address: $6000 if load_addr < $8000, else $8000
+            base_addr = 0x6000 if self.load_addr < 0x8000 else 0x8000
             for slot in range(8):
                 page_num = self.bankswitch[slot]
                 if page_num >= num_pages:
                     continue
-                dest_addr = 0x8000 + slot * page_size
+                dest_addr = base_addr + slot * page_size
+                if dest_addr >= 0x10000:
+                    continue
                 src_offset = page_num * page_size
                 for i in range(page_size):
-                    if src_offset + i < len(self.rom_data):
-                        cpu.memory[dest_addr + i] = self.rom_data[src_offset + i]
+                    cpu.memory[dest_addr + i] = self._bank_pages[src_offset + i]
 
     def _install_bankswitch_handler(self, cpu):
-        """Install write handler for NSF bankswitch registers $5FF8-$5FFF.
+        """Install write handler for NSF bankswitch registers $5FF6-$5FFF.
 
-        When the driver writes to $5FF8+slot, swap the corresponding 4KB
-        page at $8000+slot*$1000 from the ROM data.
+        The full NSF bankswitch range:
+          $5FF6 → $6000-$6FFF (work RAM / FDS)
+          $5FF7 → $7000-$7FFF (work RAM / FDS)
+          $5FF8 → $8000-$8FFF
+          ...
+          $5FFF → $F000-$FFFF
+
+        Many drivers bankswitch music data into $6000-$7FFF at runtime,
+        even for standard (non-FDS) NSFs. Missing $5FF6-$5FF7 caused
+        39 bankswitched games to hang.
         """
         if not self.uses_bankswitch:
             return
 
         page_size = 0x1000
-        rom_data = self.rom_data
-        num_pages = (len(rom_data) + page_size - 1) // page_size
+        bank_pages = self._bank_pages
+        num_pages = self._num_pages
 
         # py65 doesn't have write hooks, so we override the __setitem__
         # on the memory object to intercept bankswitch writes.
         original_memory = cpu.memory
-        emu_self = self
 
         class BankswitchMemory:
-            """Memory wrapper that intercepts writes to $5FF8-$5FFF."""
+            """Memory wrapper that intercepts writes to $5FF6-$5FFF."""
             def __init__(self, mem):
                 self._mem = mem
 
@@ -129,17 +159,14 @@ class NsfEmulator:
 
             def __setitem__(self, key, value):
                 self._mem[key] = value
-                if 0x5FF8 <= key <= 0x5FFF:
-                    slot = key - 0x5FF8
+                if 0x5FF6 <= key <= 0x5FFF:
+                    # $5FF6 → $6000, $5FF7 → $7000, $5FF8 → $8000, etc.
+                    dest = 0x6000 + (key - 0x5FF6) * page_size
                     page_num = value
-                    if page_num < num_pages:
-                        dest = 0x8000 + slot * page_size
+                    if page_num < num_pages and dest + page_size <= 0x10000:
                         src = page_num * page_size
                         for i in range(page_size):
-                            if src + i < len(rom_data):
-                                self._mem[dest + i] = rom_data[src + i]
-                            else:
-                                self._mem[dest + i] = 0
+                            self._mem[dest + i] = bank_pages[src + i]
 
             def __len__(self):
                 return len(self._mem)
@@ -1079,6 +1106,19 @@ def process_song(emu, song_num, song_name, duration_sec, output_dir, skip_wav=Fa
         wav_path = os.path.join(wav_dir, f"{game_slug}_{song_num:02d}_{song_slug}_v1.wav")
         dur = render_wav(channels, wav_path, duration_frames)
         print(f"  WAV: {wav_path} ({dur:.1f}s)")
+
+    # Pipeline hook: record evidence for this song
+    if _hooks:
+        _bad_slug = str.maketrans('', '', '[]:\ufffd?*"<>|/\\' + _ctrl)
+        _hooks.on_song_extracted(
+            game_slug=game_slug,
+            song_num=song_num,
+            midi_path=midi_path,
+            note_counts=note_counts,
+            cc_counts=cc_counts,
+            frame_count=len(frames),
+            expansion_chips=emu.expansion_chips if emu.expansion_chips else None,
+        )
 
     return midi_path, rpp_path, wav_path
 

@@ -10,8 +10,8 @@ see `docs/VALIDATION_REFERENCE.md`.
 3. **Driver family classification** (run driver_survey.py --game <slug>)
 4. Ground-truth comparison (Mesen vs NSF vs VGM if available)
 5. Route choice (nsf / trace / hybrid / apu2_sysex), informed by family
-6. Run kitchen_sink.py — generates ALL routes, validates, compares
-7. Inspect report — test fidelity route (SysEx/APU2) FIRST
+6. **Check oracle inventory first**: `oracle.get_game_inventory(slug)` — see all versions, what's been tried
+7. Extract: `nsf_to_reaper.py` (NSF) or `trace_to_midi.py` (trace)
 8. If fidelity route sounds wrong: inspect Frame IR, then raw frame state
 9. If fidelity route sounds right: compare CC/Console route for playability
 10. Batch build (only after one song passes all gates)
@@ -58,7 +58,7 @@ MIDI is downstream projection. Debug frame state, not MIDI.
 ## Delivery Gate (summary)
 
 Nothing is "ready to test" unless:
-- kitchen_sink.py ran successfully
+- Extraction pipeline ran successfully (nsf_to_reaper.py or trace_to_midi.py)
 - At least one fidelity route passed blocking validations
 - SysEx/APU2 route evaluated, Frame IR inspected
 - Every artifact labeled with Validation Ladder rung

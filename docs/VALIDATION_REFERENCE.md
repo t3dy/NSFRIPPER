@@ -75,7 +75,7 @@ Partial trust is normal. Noise documented separately. Always state scope.
 
 ## Delivery Gate (full)
 
-- kitchen_sink.py ran successfully
+- Extraction pipeline ran successfully (nsf_to_reaper.py or trace_to_midi.py)
 - At least one fidelity route passed all blocking validations
 - Report artifacts produced, route assumptions explicit
 - SysEx/APU2 evaluated, Frame IR inspected

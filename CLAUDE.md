@@ -155,7 +155,7 @@ verified or trusted.
 
 ## Rules & Validation
 
-See `.claude/rules/architecture.md` for the 22 architectural rules.
+See `.claude/rules/architecture.md` for the core architectural rules (15 in rules file, extended rules 13-16/19-21 in `docs/ARCHITECTURE_REFERENCE.md`).
 See `.claude/rules/session_protocol.md` for workflow, validation ladder, and delivery gates.
 See `docs/DRIVER_FAMILIES_AND_GAMES.md` for 30 game profiles and 5 driver family specs.
 
@@ -196,15 +196,28 @@ See `docs/NES_AUDIO_GAPS_AND_NEXT_STEPS.md` for full analysis.
 ## Key Commands
 
 ```bash
-# PRIMARY: kitchen_sink.py generates all routes, validates, compares, blocks on failure
-python scripts/kitchen_sink.py \
-  --capture <trace.csv> --game <Game> --name <Song> -o output/<Game>/
+# BATCH: extract all games with NSF files (skip-wav, early-exit, scaled timeouts)
+python scripts/batch_nsf_all.py                                    # all unprocessed games
+python scripts/batch_nsf_all.py --force                            # re-process everything
 
-# Legacy single-route (being replaced by kitchen_sink.py):
-python scripts/batch_nsf_all.py                                    # batch all games
-python scripts/nsf_to_reaper.py <nsf> --all -o output/X/          # single game NSF pipeline
-python scripts/trace_to_midi.py <capture.csv> -o output/X/ --auto-segment  # trace pipeline
-python scripts/generate_project.py --midi <f> --nes-native -o <out>  # REAPER from MIDI
-PYTHONPATH=. python scripts/trace_compare.py --frames 1792         # validate CV1 parser
+# SINGLE GAME: NSF emulation pipeline
+python scripts/nsf_to_reaper.py <nsf> --all -o output/X/          # all tracks
+python scripts/nsf_to_reaper.py <nsf> 2 90 -o output/X/           # single track
+
+# TRACE PIPELINE: ROM-parsed games (CV1, Contra, W&W)
+python scripts/trace_to_midi.py <capture.csv> -o output/X/ --auto-segment
+
+# REAPER: generate project from MIDI
+python scripts/generate_project.py --midi <f> --nes-native -o <out>
+
+# VALIDATION + CLASSIFICATION
+PYTHONPATH=. python scripts/trace_compare.py --frames 1792         # validate parser
+python scripts/driver_survey.py --report --json                    # classify all games
+python scripts/expansion_detect.py --json -o data/expansion_audit.json
+
+# ORACLE: game inventory before starting work
+python -c "from ANTIRIPPER.agent_oracle import AgentOracle; print(AgentOracle().get_game_inventory('Game_Name'))"
+
+# SITE
 python scripts/generate_site.py                                     # rebuild website
 ```

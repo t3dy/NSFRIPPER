@@ -214,22 +214,45 @@ class NsfEmulator:
             cyc = 0
             while cyc < max_cyc and cpu.pc not in (0x46FF, 0x4700):
                 cpu.step(); cyc += 1
+            return cyc < max_cyc  # True = returned normally, False = hit cycle limit
 
         # INIT
         call(self.init_addr, a=song_num - 1)
 
         # PLAY each frame, capture APU state
         frames = []
+        silence_count = 0
+        stuck_count = 0
+        SILENCE_THRESHOLD = 120  # 2 seconds of no APU activity = song ended
+        STUCK_THRESHOLD = 30     # 30 consecutive max-cyc calls = driver stuck
         for frame in range(duration_frames):
             cpu.memory.current_writes = []
-            call(self.play_addr, max_cyc=30000)
+            completed = call(self.play_addr, max_cyc=30000)
             writes = list(cpu.memory.current_writes)
+
+            # Detect stuck driver: play routine didn't return normally
+            if not completed:
+                stuck_count += 1
+                if stuck_count >= STUCK_THRESHOLD:
+                    break  # driver is in an infinite loop
+            else:
+                stuck_count = 0
             if frame == 0:
                 existing = {reg for reg, _ in writes}
                 for reg in range(0x4000, 0x4018):
                     if reg not in existing:
                         writes.append((reg, cpu.memory[reg]))
             frames.append({"writes": writes})
+
+            # Early exit: if no APU writes for SILENCE_THRESHOLD consecutive
+            # frames, the song has ended or the driver is stuck in a loop.
+            # This prevents py65 from burning CPU on silent/crashed songs.
+            if len(writes) == 0:
+                silence_count += 1
+                if silence_count >= SILENCE_THRESHOLD and frame > 60:
+                    break
+            else:
+                silence_count = 0
 
         return frames
 
@@ -1004,8 +1027,8 @@ def render_wav(channels, output_path, num_frames):
     return len(audio) / SAMPLE_RATE
 
 
-def process_song(emu, song_num, song_name, duration_sec, output_dir):
-    """Process one song: emulate, extract MIDI, build REAPER project, render WAV."""
+def process_song(emu, song_num, song_name, duration_sec, output_dir, skip_wav=False):
+    """Process one song: emulate, extract MIDI, build REAPER project, optionally render WAV."""
     # Sanitize for Windows filenames: strip all illegal/control chars + Unicode replacement char
     _ctrl = ''.join(chr(c) for c in range(32))  # all control chars (0x00-0x1F)
     _bad = str.maketrans('', '', '[]:\ufffd?*"<>|/\\' + _ctrl)
@@ -1048,12 +1071,14 @@ def process_song(emu, song_num, song_name, duration_sec, output_dir):
     ], check=True)
     print(f"  REAPER: {rpp_path}")
 
-    # WAV preview
-    wav_dir = os.path.join(output_dir, "wav")
-    os.makedirs(wav_dir, exist_ok=True)
-    wav_path = os.path.join(wav_dir, f"{game_slug}_{song_num:02d}_{song_slug}_v1.wav")
-    dur = render_wav(channels, wav_path, duration_frames)
-    print(f"  WAV: {wav_path} ({dur:.1f}s)")
+    # WAV preview (optional — skip in batch mode for speed)
+    wav_path = None
+    if not skip_wav:
+        wav_dir = os.path.join(output_dir, "wav")
+        os.makedirs(wav_dir, exist_ok=True)
+        wav_path = os.path.join(wav_dir, f"{game_slug}_{song_num:02d}_{song_slug}_v1.wav")
+        dur = render_wav(channels, wav_path, duration_frames)
+        print(f"  WAV: {wav_path} ({dur:.1f}s)")
 
     return midi_path, rpp_path, wav_path
 
@@ -1067,6 +1092,7 @@ def main():
     parser.add_argument('--all', action='store_true', help='Process all songs')
     parser.add_argument('--names', help='Comma-separated track names')
     parser.add_argument('--names-json', help='Path to JSON file with track names array')
+    parser.add_argument('--skip-wav', action='store_true', help='Skip WAV preview render (faster batch)')
     args = parser.parse_args()
 
     emu = NsfEmulator(args.nsf)
@@ -1090,7 +1116,7 @@ def main():
             dur = args.seconds
 
             print(f"\n=== Song {song_num}: {name} ===")
-            process_song(emu, song_num, name, dur, args.output)
+            process_song(emu, song_num, name, dur, args.output, skip_wav=args.skip_wav)
     else:
         song_num = int(args.song)
         name = f"Song {song_num}"

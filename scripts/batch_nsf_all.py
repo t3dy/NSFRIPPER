@@ -123,6 +123,7 @@ def process_game(game: dict) -> bool:
         "--all",
         str(max_dur),
         "-o", str(output_dir),
+        "--skip-wav",  # WAV renders are unnecessary for batch extraction
     ]
     if names:
         cmd.extend(["--names", names])

@@ -4,17 +4,27 @@ Technical reference for the ReapNES Studio extraction pipeline.
 Synthesizes VGMPF driver attribution, NESDev APU hardware research,
 FamiTracker source analysis, and CC11/CC12 density survey data.
 
-**Research date:** 2026-04-13
-**Games profiled:** 30 (from 65-game survey + ROM parsing sessions)
-**Driver families:** 5 (renamed from original survey labels)
+**Research date:** 2026-04-13 (initial), **revised 2026-04-14** (271-game census)
+**Games profiled:** 271 (automated census of all extracted games)
+**Driver families:** 4 (revised from 5; Family 5 eliminated, zero members)
+
+> **2026-04-14 revision notes:**
+> - Renamed Family 1 "Hardware Envelope" → "Sparse Envelope" (better describes the spectrum)
+> - Renamed Family 2 "Standard Envelope" → "Active Envelope"
+> - Eliminated Family 5 "Full Animation" — zero games met the threshold (CC11>7 AND CC12>1.0).
+>   SMB3 (CC11=4.62, CC12=1.24) is properly Family 3.
+> - Family 3 redefined: CC12 >= 0.7 is the sole axis (previously required CC11 3.7-4.9 too)
+> - Added sub-groups 1A (ultra-sparse, CC11<=0.5) and 1B (moderate-sparse, CC11 0.5-2.8)
+> - Added fuzzy zone tracking: 13 games with CC12 0.3-0.7 flagged for ear-check
+> - See `docs/NEWDRIVERFAMILIES414.md` for full census methodology and findings
 
 ---
 
 # NES Sound Driver Families: Technical Reference (Part 1)
 
 A taxonomy of NES sound driver behavior derived from CC11/CC12 density
-analysis of 65 games, cross-referenced against VGMPF driver attribution,
-NESDev hardware documentation, and ROM disassembly research. The five
+analysis of 271 games, cross-referenced against VGMPF driver attribution,
+NESDev hardware documentation, and ROM disassembly research. The four
 families classify games not by publisher but by how aggressively the
 sound driver talks to the APU per frame.
 
@@ -27,7 +37,7 @@ software, frame by frame.
 
 ---
 
-## Family 1: Hardware Envelope
+## Family 1: Sparse Envelope (formerly Hardware Envelope)
 
 **25 games in survey. CC11/note: 0.1--2.8. CC12/note: 0.0--0.6.**
 
@@ -173,7 +183,7 @@ to these mixing artifacts than software-controlled families.
 
 ---
 
-## Family 2: Standard Envelope
+## Family 2: Active Envelope (formerly Standard Envelope)
 
 **18 games in survey. CC11/note: 3.5--5.6. CC12/note: < 0.5.**
 
@@ -624,9 +634,16 @@ while producing distinctive percussion.
 
 ---
 
-## Family 5: Full Animation
+## Family 5: Full Animation — ELIMINATED (2026-04-14)
 
-**1 game in survey. CC11/note: 7.7. CC12/note: 1.3.**
+> **This family has been eliminated.** The 271-game census found zero games
+> meeting the threshold (CC11>7.0 AND CC12>=1.0). SMB3, the theoretical sole
+> member, actually measures CC11=4.62, CC12=1.24 across all tracks — it belongs
+> in Family 3 (Duty Animators). The original 65-game survey measured a single
+> track at CC11=7.7, CC12=1.3, which was not representative of the game overall.
+> The content below is retained as historical reference.
+
+**1 game in original survey. CC11/note: 7.7. CC12/note: 1.3.**
 
 High-density automation on both axes simultaneously. Volume and duty
 cycle are both written aggressively every frame, producing the richest
@@ -750,15 +767,17 @@ original's per-frame behavior.
 
 ---
 
-## Cross-Family Summary
+## Cross-Family Summary (Revised 2026-04-14, 271-game census)
 
 | Family | Name | Games | CC11/note | CC12/note | $4000 bit 5 | Envelope Source | CPU Cost |
 |--------|------|-------|-----------|-----------|-------------|-----------------|----------|
-| 1 | Hardware Envelope | 25 | 0.1--2.8 | 0.0--0.6 | Often 0 (hardware) or set-once 1 | APU hardware decay | Minimal |
-| 2 | Standard Envelope | 18 | 3.5--5.6 | < 0.5 | Always 1 (constant) | Software lookup table, per-frame | Moderate |
-| 3 | Duty Animators | 5 | 3.7--4.9 | 0.7--1.0 | Always 1 (constant) | Software, volume + duty per-frame | Moderate-high |
-| 4 | Dense Automators | 16 | 5.1--14.9 | 0.0--0.3 | Always 1 (constant) | Software, obsessive per-frame volume | High |
-| 5 | Full Animation | 1 | 7.7 | 1.3 | Always 1 (constant) | Software, per-frame volume + duty | Highest |
+| 1 | Sparse Envelope | 156 | 0.0--2.8 | < 0.7 | Often 0 (hardware) or set-once 1 | APU HW decay / set-once | Minimal |
+| 1A | *(sub) Ultra-Sparse* | 53 | 0.0--0.5 | < 0.3 | Usually 0 (hardware) | Pure HW decay | Minimal |
+| 1B | *(sub) Moderate-Sparse* | 103 | 0.5--2.8 | < 0.3 | Usually 1 (constant) | Occasional SW vol | Low |
+| 2 | Active Envelope | 79 | 2.8--5.6 | < 0.7 | Always 1 (constant) | Software lookup table, per-frame | Moderate |
+| 3 | Duty Animators | 20 | any (1.5--5.8) | >= 0.7 | Always 1 (constant) | Software, volume + duty per-frame | Moderate-high |
+| 4 | Dense Automators | 16 | > 5.6 | < 0.7 | Always 1 (constant) | Software, obsessive per-frame volume | High |
+| ~~5~~ | ~~Full Animation~~ | ~~0~~ | — | — | — | *Eliminated: zero members in census* | — |
 
 **Key principle:** Company attribution does not predict family membership.
 Konami spans Families 1, 2, and 3. Nintendo spans 3, 4, and 5. Tecmo

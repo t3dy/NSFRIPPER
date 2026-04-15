@@ -124,23 +124,31 @@ use trace pipeline. Battletoads and Mario are confirmed trace-required games.
 
 ## Driver Families (CC11/CC12 density classification)
 
-| Family | CC11/note | CC12/note | Envelope Mode | NSF Trust | Example Games |
-|--------|-----------|-----------|---------------|-----------|---------------|
-| 1: Hardware Envelope | 0.0-2.8 | < 0.5 | HW decay | High | Mega Man, DuckTales, W&W |
-| 2: Standard Envelope | 2.8-5.6 | < 0.5 | SW per-frame | High | CV1, Contra, Battletoads |
-| 3: Duty Animators | 3.7-4.9 | 0.7-1.0 | SW vol+duty | High | SMB1, CV3 US, Kirby |
-| 4: Dense Automators | 5.1-14.9 | < 0.5 | SW obsessive | Medium | FF, Blaster Master, Batman |
-| 5: Full Animation | > 7.0 | > 1.0 | SW both axes | Medium | SMB3 (sole member) |
+Revised 2026-04-14 based on 271-game census. Family 5 eliminated (zero members).
+See `docs/NEWDRIVERFAMILIES414.md` for full analysis.
+
+| Family | CC11/note | CC12/note | Envelope Mode | NSF Trust | Count | Example Games |
+|--------|-----------|-----------|---------------|-----------|-------|---------------|
+| 1: Sparse Envelope | 0.0-2.8 | < 0.7 | HW decay / set-once | High | 156 | Mega Man, DuckTales, W&W |
+| 1A *(sub)* | 0.0-0.5 | < 0.3 | Truly HW-only | High | 53 | Marble Madness, Section Z, Trojan |
+| 1B *(sub)* | 0.5-2.8 | < 0.3 | Occasional SW vol | High | 103 | Mega Man 3, Castlevania, Battletoads |
+| 2: Active Envelope | 2.8-5.6 | < 0.7 | SW per-frame | High | 79 | Contra, Ninja Gaiden, Zelda II |
+| 3: Duty Animators | any | >= 0.7 | SW vol+duty | High | 20 | SMB3, Konami Hyper Soccer, Snakes Revenge |
+| 4: Dense Automators | > 5.6 | < 0.7 | SW obsessive | Medium | 16 | Metroid, Kid Icarus, Rad Racer II |
+
+Fuzzy zone: 13 games with CC12 0.3-0.7 need ear-check classification.
 
 Classify at ingest: `python scripts/driver_survey.py --game <slug>`
+Full census: `python scripts/family_census.py` (data in `data/family_census_v2.json`)
 
-## New Tools (2026-04-13 research sprint)
+## New Tools (2026-04-13/14 research sprints)
 
 | Tool | Purpose |
 |------|---------|
 | `scripts/vgm_to_frame_state.py` | VGM → per-frame APU state, cross-validate vs NSF MIDI |
 | `scripts/nsfe_metadata.py` | Parse NSFE files for track names, durations, composer |
-| `scripts/driver_survey.py` | Classify games into driver families (updated with new names) |
+| `scripts/driver_survey.py` | Classify games into driver families (revised 4-family model) |
+| `scripts/family_census.py` | Fast CC density census across all games (271-game dataset) |
 
 ## Game Extraction Status
 

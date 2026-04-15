@@ -83,7 +83,7 @@
   MASTER_FX 1
   MASTER_SEL 0
   <MASTERPLAYSPEEDENV
-    EGUID {3F9E0AB3-CA7C-4AAC-A184-7C3F24B50483}
+    EGUID {40F5205F-BDB4-4CB3-87A0-187CF9D2C9D4}
     ACT 0 -1
     VIS 0 1 1
     LANEHEIGHT 0 0
@@ -91,7 +91,7 @@
     DEFSHAPE 0 -1 -1
   >
   <TEMPOENVEX
-    EGUID {0940A537-039C-4EC3-8972-A02ABBC7E0F4}
+    EGUID {D653C39C-6E36-439F-8264-8531773A7D53}
     ACT 1 -1
     VIS 1 0 1
     LANEHEIGHT 0 0
@@ -100,8 +100,8 @@
   >
   <PROJBAY
   >
-  <TRACK {E91CADF1-CE64-4B51-B615-AE12FC8E0E71}
-    NAME "NES - Pulse 1"
+  <TRACK {F9BABAEE-C56B-4E6C-B100-A677393B09DD}
+    NAME "NES - Pulse 1 [ch0]"
     PEAKCOL 16576606
     BEAT -1
     AUTOMODE 0
@@ -121,7 +121,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {E91CADF1-CE64-4B51-B615-AE12FC8E0E71}
+    TRACKID {F9BABAEE-C56B-4E6C-B100-A677393B09DD}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -135,12 +135,144 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 0 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {43142B34-4453-46E1-88CE-37EBB79C7F91}
+      FXID {321E6134-F597-4063-BF51-37D4D56D48E5}
       WAK 0 0
     >
+    <ITEM
+      POSITION 0
+      LENGTH 7.1073097
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {80E0E937-CC87-43DD-AD40-585FEF761ACE}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 c0 50
+        E 0 b0 0c 20
+        E 0 b0 0b 38
+        E 0 90 40 38
+        E 64 b0 0b 30
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 32 b0 0b 38
+        E 0 80 40 00
+        E 0 90 45 38
+        E 64 b0 0b 30
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 32 b0 0b 38
+        E 0 80 45 00
+        E 0 90 48 38
+        E 64 b0 0b 30
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 32 b0 0b 38
+        E 0 80 48 00
+        E 0 90 4c 38
+        E 64 b0 0b 30
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 32 b0 0b 38
+        E 0 80 4c 00
+        E 0 90 4a 38
+        E 64 b0 0b 30
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 48 b0 0b 18
+        E 48 b0 0b 10
+        E 32 b0 0b 38
+        E 0 80 4a 00
+        E 0 90 48 38
+        E 64 b0 0b 30
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 32 b0 0b 38
+        E 0 80 48 00
+        E 0 90 46 38
+        E 64 b0 0b 30
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 32 b0 0b 38
+        E 0 80 46 00
+        E 0 90 45 38
+        E 64 b0 0b 30
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 32 b0 0b 38
+        E 0 80 45 00
+        E 0 90 4a 38
+        E 64 b0 0b 30
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 32 b0 0b 38
+        E 0 80 4a 00
+        E 0 90 4d 38
+        E 64 b0 0b 30
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 32 b0 0b 38
+        E 0 80 4d 00
+        E 0 90 51 38
+        E 64 b0 0b 30
+        E 64 b0 0b 28
+        E 64 b0 0b 20
+        E 32 b0 0b 38
+        E 0 80 51 00
+        E 0 90 4f 38
+        E 64 b0 0b 30
+        E 48 b0 0b 38
+        E 0 80 4f 00
+        E 0 90 51 38
+        E 64 b0 0b 30
+        E 48 b0 0b 38
+        E 0 80 51 00
+        E 0 90 4f 38
+        E 64 b0 0b 30
+        E 48 b0 0b 38
+        E 0 80 4f 00
+        E 0 90 51 38
+        E 64 b0 0b 30
+        E 48 b0 0b 38
+        E 0 80 51 00
+        E 0 90 4f 38
+        E 64 b0 0b 30
+        E 48 b0 0b 38
+        E 0 80 4f 00
+        E 0 90 51 38
+        E 64 b0 0b 30
+        E 48 b0 0b 38
+        E 0 80 51 00
+        E 0 90 4f 38
+        E 64 b0 0b 30
+        E 32 b0 0b 38
+        E 0 80 4f 00
+        E 0 90 4d 38
+        E 64 b0 0b 30
+        E 32 b0 0b 38
+        E 0 80 4d 00
+        E 0 90 4f 38
+        E 64 b0 0b 30
+        E 32 b0 0b 48
+        E 0 80 4f 00
+        E 0 90 51 48
+        E 16 b0 0b 40
+        E 16 b0 0b 38
+        E 16 b0 0b 30
+        E 16 b0 0b 28
+        E 1248 b0 0b 10
+        E 416 80 51 00
+        E 0 ff 2f 00
+      >
+    >
   >
-  <TRACK {E1B3CA73-FA04-4C00-9AED-2EA4CB4590B0}
-    NAME "NES - Pulse 2"
+  <TRACK {7003A449-B11D-45A5-9FFA-5470355B98D3}
+    NAME "NES - Pulse 2 [ch1]"
     PEAKCOL 10092441
     BEAT -1
     AUTOMODE 0
@@ -160,7 +292,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {E1B3CA73-FA04-4C00-9AED-2EA4CB4590B0}
+    TRACKID {7003A449-B11D-45A5-9FFA-5470355B98D3}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -174,12 +306,114 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 1 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {D9C462B6-B47A-4013-84D5-D0F7A3269B26}
+      FXID {27D95013-EC57-44E1-9825-B4726A3A0A97}
       WAK 0 0
     >
+    <ITEM
+      POSITION 0
+      LENGTH 7.1073097
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {E3EB6885-5188-48AE-BF9B-43553A41BA0E}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 c1 51
+        E 0 b1 0c 10
+        E 0 b1 0b 48
+        E 0 91 3c 48
+        E 16 b1 0c 20
+        E 0 b1 0b 40
+        E 16 b1 0b 38
+        E 16 b1 0b 30
+        E 16 b1 0b 28
+        E 16 b1 0b 20
+        E 368 b1 0c 10
+        E 0 b1 0b 48
+        E 0 81 3c 00
+        E 0 91 40 48
+        E 16 b1 0c 20
+        E 0 b1 0b 40
+        E 16 b1 0b 38
+        E 16 b1 0b 30
+        E 16 b1 0b 28
+        E 16 b1 0b 20
+        E 352 b1 0b 18
+        E 16 b1 0c 10
+        E 0 b1 0b 48
+        E 0 81 40 00
+        E 0 91 41 48
+        E 16 b1 0c 20
+        E 0 b1 0b 40
+        E 16 b1 0b 38
+        E 16 b1 0b 30
+        E 16 b1 0b 28
+        E 16 b1 0b 20
+        E 368 b1 0c 10
+        E 0 b1 0b 48
+        E 16 b1 0c 20
+        E 0 b1 0b 40
+        E 16 b1 0b 38
+        E 16 b1 0b 30
+        E 16 b1 0b 28
+        E 16 b1 0b 20
+        E 144 b1 0c 10
+        E 0 b1 0b 48
+        E 0 81 41 00
+        E 0 91 43 48
+        E 16 b1 0c 20
+        E 0 b1 0b 40
+        E 16 b1 0b 38
+        E 16 b1 0b 30
+        E 16 b1 0b 28
+        E 16 b1 0b 20
+        E 144 b1 0c 10
+        E 0 b1 0b 48
+        E 0 81 43 00
+        E 0 91 45 48
+        E 16 b1 0c 20
+        E 0 b1 0b 40
+        E 16 b1 0b 38
+        E 16 b1 0b 30
+        E 16 b1 0b 28
+        E 16 b1 0b 20
+        E 736 b1 0b 18
+        E 64 b1 0b 10
+        E 16 b1 0c 10
+        E 0 b1 0b 48
+        E 0 81 45 00
+        E 0 91 47 48
+        E 16 b1 0c 20
+        E 0 b1 0b 40
+        E 16 b1 0b 38
+        E 16 b1 0b 30
+        E 16 b1 0b 28
+        E 16 b1 0b 20
+        E 832 b1 0b 18
+        E 48 b1 0c 10
+        E 0 b1 0b 48
+        E 0 81 47 00
+        E 0 91 49 48
+        E 16 b1 0c 20
+        E 0 b1 0b 40
+        E 16 b1 0b 38
+        E 16 b1 0b 30
+        E 16 b1 0b 28
+        E 16 b1 0b 20
+        E 1472 b1 0b 18
+        E 64 b1 0b 10
+        E 64 b1 0b 08
+        E 48 81 49 00
+        E 0 ff 2f 00
+      >
+    >
   >
-  <TRACK {C33B6BD8-6672-42A7-8EA4-68B7CC17D5E0}
-    NAME "NES - Triangle"
+  <TRACK {E89E58A5-B798-4BE1-A445-9FD85BDDA4A7}
+    NAME "NES - Triangle [ch2]"
     PEAKCOL 16744192
     BEAT -1
     AUTOMODE 0
@@ -199,7 +433,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {C33B6BD8-6672-42A7-8EA4-68B7CC17D5E0}
+    TRACKID {E89E58A5-B798-4BE1-A445-9FD85BDDA4A7}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -213,11 +447,55 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 2 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {00210F33-ED12-4DB2-A094-9EBFAED4954B}
+      FXID {877E716D-8F56-41F5-B559-687947C295C9}
       WAK 0 0
     >
+    <ITEM
+      POSITION 0
+      LENGTH 7.1073097
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {6387501C-2D99-4157-ABE0-22CDB8BE5FCE}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 c2 26
+        E 0 b2 0b 7f
+        E 0 92 2d 7f
+        E 448 82 2d 00
+        E 0 b2 0b 7f
+        E 0 92 39 7f
+        E 448 82 39 00
+        E 0 b2 0b 7f
+        E 0 92 3a 7f
+        E 672 82 3a 00
+        E 0 b2 0b 7f
+        E 0 92 3c 7f
+        E 224 82 3c 00
+        E 0 b2 0b 7f
+        E 0 92 3e 7f
+        E 448 82 3e 00
+        E 0 b2 0b 7f
+        E 0 92 32 7f
+        E 448 82 32 00
+        E 0 b2 0b 7f
+        E 0 92 34 7f
+        E 832 82 34 00
+        E 32 b2 0b 7f
+        E 0 92 28 7f
+        E 96 82 28 00
+        E 0 b2 0b 7f
+        E 0 92 2d 7f
+        E 1728 82 2d 00
+        E 0 ff 2f 00
+      >
+    >
   >
-  <TRACK {D75FA0BD-3C23-488D-962C-668B77700E0D}
+  <TRACK {6E26EA5F-6D24-4C58-9A20-CF2F75E507EE}
     NAME "NES - Noise / Drums"
     PEAKCOL 11184810
     BEAT -1
@@ -238,7 +516,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {D75FA0BD-3C23-488D-962C-668B77700E0D}
+    TRACKID {6E26EA5F-6D24-4C58-9A20-CF2F75E507EE}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -252,7 +530,7 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 3 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {5F8E3F47-5AE7-419A-BA64-4717CF186276}
+      FXID {3C1A8B8C-B18D-4865-B3A7-D17A63786B44}
       WAK 0 0
     >
   >

@@ -6,6 +6,7 @@ Usage:
     python scripts/generate_site.py
 """
 
+import json
 import os
 import mido
 from pathlib import Path
@@ -13,6 +14,16 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = REPO_ROOT / "output"
 GAMES_DIR = REPO_ROOT / "games"
+
+
+def load_census():
+    """Load family census data for per-game classification."""
+    census_path = REPO_ROOT / "data" / "family_census_v2.json"
+    if not census_path.exists():
+        return {}
+    with open(census_path) as f:
+        data = json.load(f)
+    return {g['game']: g for g in data.get('games', [])}
 
 
 def slugify(name):
@@ -79,7 +90,7 @@ def get_game_info(game_dir):
     return tracks
 
 
-def generate_game_page(game_name, tracks, slug):
+def generate_game_page(game_name, tracks, slug, census_entry=None):
     """Generate a Jekyll markdown page for one game."""
     clean_name = game_name.replace("_", " ").replace("  ", " ").strip()
 
@@ -93,13 +104,31 @@ def generate_game_page(game_name, tracks, slug):
         "",
         f"**{len(tracks)} tracks** extracted via NSF emulation with per-frame APU register capture.",
         "",
+    ]
+
+    if census_entry:
+        fam = census_entry.get('family_name', 'Unknown')
+        fid = census_entry.get('family_id', '?')
+        cc11 = census_entry.get('cc11_per_note', 0)
+        cc12 = census_entry.get('cc12_per_note', 0)
+        sub = census_entry.get('sub_group', '')
+        fuzzy = census_entry.get('fuzzy_zone', False)
+        fam_label = f"Family {fid}: {fam}"
+        if sub:
+            fam_label += f" (sub-group {sub})"
+        if fuzzy:
+            fam_label += " *(fuzzy zone)*"
+        lines.append(f"**Driver family:** {fam_label} — CC11/note: {cc11}, CC12/note: {cc12}")
+        lines.append("")
+
+    lines.extend([
         "Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.",
         "",
         "## Track List",
         "",
         "| # | Track | Notes | CCs | Duration |",
         "|---|-------|-------|-----|----------|",
-    ]
+    ])
 
     for i, t in enumerate(tracks):
         dur_str = f"{int(t['duration'])}s" if t['duration'] > 0 else "—"
@@ -125,9 +154,11 @@ def generate_game_page(game_name, tracks, slug):
 def main():
     GAMES_DIR.mkdir(exist_ok=True)
 
+    census = load_census()
     game_dirs = sorted([d for d in OUTPUT_DIR.iterdir() if d.is_dir() and (d / "midi").exists()])
 
     print(f"Found {len(game_dirs)} games with MIDI output")
+    print(f"Census data available for {len(census)} games")
 
     for game_dir in game_dirs:
         tracks = get_game_info(game_dir)
@@ -135,7 +166,8 @@ def main():
             continue
 
         slug = slugify(game_dir.name)
-        page_content = generate_game_page(game_dir.name, tracks, slug)
+        census_entry = census.get(game_dir.name)
+        page_content = generate_game_page(game_dir.name, tracks, slug, census_entry)
 
         page_path = GAMES_DIR / f"{slug}.md"
         with open(page_path, "w", encoding="utf-8") as f:

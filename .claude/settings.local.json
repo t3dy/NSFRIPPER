@@ -52,7 +52,8 @@
       "WebFetch(domain:gdri.smspower.org)",
       "Bash([ -f \"scripts/$script\" ])",
       "Bash(taskkill //F //PID 46928 //PID 47796 //PID 6568)",
-      "Bash(rm -f C:/Dev/NSFRIPPER/.git/index.lock)"
+      "Bash(rm -f C:/Dev/NSFRIPPER/.git/index.lock)",
+      "Read(//c/Users/PC/AppData/Local/Temp/claude/C--Dev-NSFRIPPER/bc7538e3-229b-4153-b70c-e18b6dbbd392/tasks/**)"
     ]
   }
 }

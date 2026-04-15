@@ -28,15 +28,15 @@ The NSF emulation pipeline runs each game's original 6502 sound driver,
 captures APU register writes per frame (~60 Hz), and converts them to
 MIDI with CC automation that preserves the original envelope shapes.
 
-Five driver families have been identified based on CC11/CC12 density:
+Four driver families have been identified based on CC11/CC12 density
+analysis of 271 games (revised 2026-04-14):
 
-| Family | CC11/note | Behavior | Example Games |
-|--------|-----------|----------|---------------|
-| Hardware Envelope | 0.1-2.8 | APU hardware decay | Mega Man, DuckTales |
-| Standard Envelope | 3.5-5.6 | Per-frame volume | Castlevania, Contra |
-| Duty Animators | 3.7-4.9 | Volume + duty | Super Mario Bros, Kirby |
-| Dense Automators | 5.1-14.9 | Obsessive volume | Final Fantasy, Batman |
-| Full Animation | >7.0 both | Both axes | Super Mario Bros 3 |
+| Family | Count | CC11/note | Behavior | Example Games |
+|--------|-------|-----------|----------|---------------|
+| 1: Sparse Envelope | 156 | 0.0-2.8 | HW decay or set-once | Mega Man, DuckTales, W&W |
+| 2: Active Envelope | 79 | 2.8-5.6 | Per-frame volume | Contra, Ninja Gaiden, Zelda II |
+| 3: Duty Animators | 20 | any | Volume + duty animation | SMB3, Konami Hyper Soccer |
+| 4: Dense Automators | 16 | >5.6 | Obsessive per-frame volume | Metroid, Kid Icarus |
 
 ## Repository
 

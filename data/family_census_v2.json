@@ -1,0 +1,2671 @@
+{
+  "total_games": 271,
+  "family_distribution": {
+    "1": {
+      "name": "Sparse Envelope",
+      "count": 156,
+      "cc11_range": [
+        0.0,
+        2.78
+      ],
+      "cc12_range": [
+        0.0,
+        0.56
+      ],
+      "cc11_mean": 1.31,
+      "cc12_mean": 0.04
+    },
+    "2": {
+      "name": "Active Envelope",
+      "count": 79,
+      "cc11_range": [
+        2.81,
+        5.47
+      ],
+      "cc12_range": [
+        0.0,
+        0.63
+      ],
+      "cc11_mean": 3.7,
+      "cc12_mean": 0.06
+    },
+    "3": {
+      "name": "Duty Animators",
+      "count": 20,
+      "cc11_range": [
+        1.54,
+        5.79
+      ],
+      "cc12_range": [
+        0.7,
+        1.49
+      ],
+      "cc11_mean": 3.21,
+      "cc12_mean": 1.03
+    },
+    "4": {
+      "name": "Dense Automators",
+      "count": 16,
+      "cc11_range": [
+        5.67,
+        16.25
+      ],
+      "cc12_range": [
+        0.0,
+        0.56
+      ],
+      "cc11_mean": 9.14,
+      "cc12_mean": 0.1
+    }
+  },
+  "games": [
+    {
+      "game": "1942",
+      "total_midis": 14,
+      "cc11_per_note": 0.5,
+      "cc12_per_note": 0.5,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 2,
+      "sub_group": "1A",
+      "fuzzy_zone": true
+    },
+    {
+      "game": "1943_The_Battle_of_Midway",
+      "total_midis": 45,
+      "cc11_per_note": 0.63,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "3_D_Battles_of_WorldRunner",
+      "total_midis": 8,
+      "cc11_per_note": 2.56,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "8_Eyes",
+      "total_midis": 54,
+      "cc11_per_note": 0.23,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Abadox_The_Deadly_Inner_War",
+      "total_midis": 30,
+      "cc11_per_note": 1.27,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Addams_Family",
+      "total_midis": 6,
+      "cc11_per_note": 3.25,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Adventures_in_the_Magic_Kingdom",
+      "total_midis": 28,
+      "cc11_per_note": 2.19,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Adventures_of_Bayou_Billy,_The",
+      "total_midis": 22,
+      "cc11_per_note": 0.5,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "After_Burner",
+      "total_midis": 29,
+      "cc11_per_note": 7.05,
+      "cc12_per_note": 0.56,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 4,
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Ai_Senshi_Nicol",
+      "total_midis": 63,
+      "cc11_per_note": 3.46,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Akai_Yousai_Final_Commando",
+      "total_midis": 9,
+      "cc11_per_note": 2.25,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Akumajou_Special_Boku_Dracula_kun",
+      "total_midis": 157,
+      "cc11_per_note": 3.28,
+      "cc12_per_note": 0.13,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Alien_Syndrome",
+      "total_midis": 76,
+      "cc11_per_note": 3.03,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Anticipation",
+      "total_midis": 34,
+      "cc11_per_note": 0.3,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Arch_Rivals_A_Basketbrawl",
+      "total_midis": 8,
+      "cc11_per_note": 5.47,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Arctic",
+      "total_midis": 12,
+      "cc11_per_note": 3.09,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Atlantis_no_Nazo",
+      "total_midis": 13,
+      "cc11_per_note": 0.28,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Barcode_World",
+      "total_midis": 47,
+      "cc11_per_note": 5.79,
+      "cc12_per_note": 0.99,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Base_Wars_Cyber_Stadium_Series",
+      "total_midis": 55,
+      "cc11_per_note": 2.78,
+      "cc12_per_note": 0.56,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B",
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Batman",
+      "total_midis": 11,
+      "cc11_per_note": 1.19,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Batman_Returns",
+      "total_midis": 96,
+      "cc11_per_note": 2.85,
+      "cc12_per_note": 0.18,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Battletoads",
+      "total_midis": 21,
+      "cc11_per_note": 2.39,
+      "cc12_per_note": 0.06,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Battletoads_Level1",
+      "total_midis": 1,
+      "cc11_per_note": 3.64,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Battletoads_trace",
+      "total_midis": 4,
+      "cc11_per_note": 3.33,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Battletoads_trace_v2",
+      "total_midis": 1,
+      "cc11_per_note": 3.42,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Battletoads_trace_v3",
+      "total_midis": 1,
+      "cc11_per_note": 3.02,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Battletoads_trace_v4",
+      "total_midis": 1,
+      "cc11_per_note": 3.46,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Battletoads_trace_v5",
+      "total_midis": 1,
+      "cc11_per_note": 3.02,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Battletoads_trace_v6",
+      "total_midis": 1,
+      "cc11_per_note": 3.45,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Battletoads_trace_v7",
+      "total_midis": 1,
+      "cc11_per_note": 3.26,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Battletoads_trace_v8",
+      "total_midis": 1,
+      "cc11_per_note": 3.38,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Battletoads_trace_v9",
+      "total_midis": 1,
+      "cc11_per_note": 3.38,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Beetlejuice",
+      "total_midis": 11,
+      "cc11_per_note": 3.12,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Bill_Elliotts_NASCAR_Challenge",
+      "total_midis": 5,
+      "cc11_per_note": 3.13,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Bio_Miracle_Bokutte_Upa",
+      "total_midis": 56,
+      "cc11_per_note": 2.1,
+      "cc12_per_note": 0.06,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Bionic_Commando",
+      "total_midis": 22,
+      "cc11_per_note": 0.42,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Blades_of_Steel",
+      "total_midis": 51,
+      "cc11_per_note": 7.97,
+      "cc12_per_note": 0.13,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 4
+    },
+    {
+      "game": "Blaster_Master",
+      "total_midis": 16,
+      "cc11_per_note": 1.4,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Bucky_OHare",
+      "total_midis": 23,
+      "cc11_per_note": 2.63,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "California_Games",
+      "total_midis": 11,
+      "cc11_per_note": 0.32,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Captain_Skyhawk",
+      "total_midis": 8,
+      "cc11_per_note": 0.22,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Captain_Tsubasa_II_Super_Striker",
+      "total_midis": 42,
+      "cc11_per_note": 1.49,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Castlevania",
+      "total_midis": 54,
+      "cc11_per_note": 2.0,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Castlevania_2___Simons_Quest",
+      "total_midis": 51,
+      "cc11_per_note": 2.96,
+      "cc12_per_note": 0.63,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4,
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Castlevania_3___Draculas_Curse",
+      "total_midis": 27,
+      "cc11_per_note": 3.14,
+      "cc12_per_note": 0.39,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4,
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Castlevania_3___Draculas_Curse_JP",
+      "total_midis": 15,
+      "cc11_per_note": 0.26,
+      "cc12_per_note": 0.11,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Castlevania_APU2",
+      "total_midis": 1,
+      "cc11_per_note": 2.41,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Castlevania_II",
+      "total_midis": 8,
+      "cc11_per_note": 1.0,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 1,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Castlevania_III",
+      "total_midis": 10,
+      "cc11_per_note": 0.99,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Chaos_World",
+      "total_midis": 59,
+      "cc11_per_note": 2.59,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Chinou_Game_Series_1_Adian_no_Tsue",
+      "total_midis": 10,
+      "cc11_per_note": 0.53,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Chinou_Game_Series_2_Super_Boy_Allan",
+      "total_midis": 10,
+      "cc11_per_note": 0.38,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Chinou_Game_Series_3_Chisoko_Tairiku_Orudora",
+      "total_midis": 13,
+      "cc11_per_note": 0.1,
+      "cc12_per_note": 0.04,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Chip_n_Dale_Rescue_Rangers",
+      "total_midis": 16,
+      "cc11_per_note": 4.03,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Choujin_Sentai_Jetman",
+      "total_midis": 18,
+      "cc11_per_note": 1.93,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Chuugoku_Janshi_Story_Tonpuu",
+      "total_midis": 22,
+      "cc11_per_note": 0.08,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Circus_Charlie",
+      "total_midis": 15,
+      "cc11_per_note": 5.29,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 2
+    },
+    {
+      "game": "Cleopatra_no_Mahou",
+      "total_midis": 32,
+      "cc11_per_note": 1.07,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Cobra_Triangle",
+      "total_midis": 19,
+      "cc11_per_note": 0.34,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Code_Name_Viper",
+      "total_midis": 12,
+      "cc11_per_note": 0.82,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Commando",
+      "total_midis": 30,
+      "cc11_per_note": 0.5,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Contra",
+      "total_midis": 2,
+      "cc11_per_note": 2.9,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 2
+    },
+    {
+      "game": "Contra_Force",
+      "total_midis": 24,
+      "cc11_per_note": 1.54,
+      "cc12_per_note": 0.71,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Contra_v2",
+      "total_midis": 11,
+      "cc11_per_note": 6.2,
+      "cc12_per_note": 0.08,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 3
+    },
+    {
+      "game": "Contra_v5",
+      "total_midis": 3,
+      "cc11_per_note": 2.48,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Contra_v6",
+      "total_midis": 11,
+      "cc11_per_note": 2.72,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Contra_v7",
+      "total_midis": 11,
+      "cc11_per_note": 2.72,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Contra_v8",
+      "total_midis": 11,
+      "cc11_per_note": 2.81,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Cosmic_Wars",
+      "total_midis": 47,
+      "cc11_per_note": 2.85,
+      "cc12_per_note": 0.18,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Crackout",
+      "total_midis": 9,
+      "cc11_per_note": 2.3,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Crisis_Force",
+      "total_midis": 13,
+      "cc11_per_note": 2.23,
+      "cc12_per_note": 0.22,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Darkwing_Duck",
+      "total_midis": 64,
+      "cc11_per_note": 2.82,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Dead_Zone",
+      "total_midis": 15,
+      "cc11_per_note": 0.41,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Deep_Dungeon_III_Yuushi_he_no_Tabi",
+      "total_midis": 25,
+      "cc11_per_note": 0.26,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Destiny_of_an_Emperor",
+      "total_midis": 51,
+      "cc11_per_note": 0.83,
+      "cc12_per_note": 0.17,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 2,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Digger_T._Rock_The_Legend_of_the_Lost_City",
+      "total_midis": 12,
+      "cc11_per_note": 3.15,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Don_Doko_Don_2",
+      "total_midis": 79,
+      "cc11_per_note": 2.86,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Double_Dare",
+      "total_midis": 19,
+      "cc11_per_note": 0.75,
+      "cc12_per_note": 0.24,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Dragon_Fighter",
+      "total_midis": 50,
+      "cc11_per_note": 0.17,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Dragon_Scroll_Yomigaerishi_Maryuu",
+      "total_midis": 96,
+      "cc11_per_note": 4.06,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Dragon_Warrior",
+      "total_midis": 48,
+      "cc11_per_note": 0.36,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "DuckTales",
+      "total_midis": 45,
+      "cc11_per_note": 1.05,
+      "cc12_per_note": 0.05,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "DuckTales_2",
+      "total_midis": 20,
+      "cc11_per_note": 3.32,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Dungeon_Magic_Sword_of_the_Elements",
+      "total_midis": 13,
+      "cc11_per_note": 1.37,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Dungeon_Magic_Sword_of_the_Elements_JP",
+      "total_midis": 61,
+      "cc11_per_note": 1.37,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Esper_Dream",
+      "total_midis": 64,
+      "cc11_per_note": 2.34,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Esper_Dream_2_Aratanaru_Tatakai",
+      "total_midis": 30,
+      "cc11_per_note": 14.46,
+      "cc12_per_note": 0.01,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 3
+    },
+    {
+      "game": "Exciting_Basketball",
+      "total_midis": 5,
+      "cc11_per_note": 4.22,
+      "cc12_per_note": 0.11,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Exed_Exes",
+      "total_midis": 24,
+      "cc11_per_note": 0.02,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "F_1_Sensation",
+      "total_midis": 30,
+      "cc11_per_note": 2.24,
+      "cc12_per_note": 0.81,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Falsion",
+      "total_midis": 10,
+      "cc11_per_note": 2.72,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Fantasy_Zone",
+      "total_midis": 29,
+      "cc11_per_note": 1.46,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Fantasy_Zone_2_Opa_Opa_no_Namida",
+      "total_midis": 54,
+      "cc11_per_note": 7.14,
+      "cc12_per_note": 0.0,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 4
+    },
+    {
+      "game": "Faxanadu",
+      "total_midis": 44,
+      "cc11_per_note": 2.11,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Festers_Quest",
+      "total_midis": 9,
+      "cc11_per_note": 4.45,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 2
+    },
+    {
+      "game": "Final_Fantasy",
+      "total_midis": 23,
+      "cc11_per_note": 8.0,
+      "cc12_per_note": 0.0,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 2
+    },
+    {
+      "game": "Final_Fantasy_II",
+      "total_midis": 28,
+      "cc11_per_note": 5.0,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 2
+    },
+    {
+      "game": "Final_Fantasy_III",
+      "total_midis": 65,
+      "cc11_per_note": 9.16,
+      "cc12_per_note": 0.06,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 3
+    },
+    {
+      "game": "Firen_Ice",
+      "total_midis": 88,
+      "cc11_per_note": 1.96,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Freedom_Force",
+      "total_midis": 48,
+      "cc11_per_note": 0.39,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "G.I._Joe_The_Atlantis_Factor",
+      "total_midis": 7,
+      "cc11_per_note": 4.52,
+      "cc12_per_note": 1.45,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Ganbare_Goemon_2",
+      "total_midis": 90,
+      "cc11_per_note": 2.72,
+      "cc12_per_note": 0.5,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B",
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Ganbare_Goemon_Gaiden_2_Tenka_no_Zaihou",
+      "total_midis": 55,
+      "cc11_per_note": 3.41,
+      "cc12_per_note": 0.7,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Ganbare_Goemon_Gaiden_Kieta_Ougon_Kiseru",
+      "total_midis": 62,
+      "cc11_per_note": 4.15,
+      "cc12_per_note": 1.16,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Ganbare_Goemon_Karakuri_Douchuu",
+      "total_midis": 57,
+      "cc11_per_note": 4.06,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Gargoyles_Quest_II",
+      "total_midis": 21,
+      "cc11_per_note": 2.87,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Getsufuu_Maden",
+      "total_midis": 29,
+      "cc11_per_note": 1.43,
+      "cc12_per_note": 0.21,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Ghosts_n_Goblins",
+      "total_midis": 39,
+      "cc11_per_note": 0.5,
+      "cc12_per_note": 0.12,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Gimmick",
+      "total_midis": 106,
+      "cc11_per_note": 1.73,
+      "cc12_per_note": 0.05,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Goonies,_The",
+      "total_midis": 23,
+      "cc11_per_note": 2.4,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Goonies_II,_The",
+      "total_midis": 68,
+      "cc11_per_note": 1.54,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Goonies_II_The",
+      "total_midis": 56,
+      "cc11_per_note": 1.54,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Gradius",
+      "total_midis": 32,
+      "cc11_per_note": 5.67,
+      "cc12_per_note": 0.13,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 3
+    },
+    {
+      "game": "Gradius_II",
+      "total_midis": 81,
+      "cc11_per_note": 1.96,
+      "cc12_per_note": 0.79,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Gremlins_2_The_New_Batch",
+      "total_midis": 12,
+      "cc11_per_note": 5.15,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 2
+    },
+    {
+      "game": "Gun.Smoke",
+      "total_midis": 18,
+      "cc11_per_note": 1.6,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Hanjuku_Hero",
+      "total_midis": 21,
+      "cc11_per_note": 2.94,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Hi_no_Tori_Houou_hen_Gaou_no_Bouken",
+      "total_midis": 55,
+      "cc11_per_note": 3.94,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Higemaru_Makaijima_Nanatsu_no_Shima_Daibouken",
+      "total_midis": 16,
+      "cc11_per_note": 1.73,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "High_Speed",
+      "total_midis": 46,
+      "cc11_per_note": 2.38,
+      "cc12_per_note": 0.08,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Hollywood_Squares",
+      "total_midis": 13,
+      "cc11_per_note": 0.39,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Honoo_no_Toukyuuji_Dodge_Danpei",
+      "total_midis": 35,
+      "cc11_per_note": 2.65,
+      "cc12_per_note": 0.83,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Honoo_no_Toukyuuji_Dodge_Danpei_2",
+      "total_midis": 42,
+      "cc11_per_note": 2.59,
+      "cc12_per_note": 0.26,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Hyper_Sports",
+      "total_midis": 29,
+      "cc11_per_note": 4.33,
+      "cc12_per_note": 0.11,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Ide_Yousuke_Meijin_no_Jissen_Mahjong",
+      "total_midis": 15,
+      "cc11_per_note": 1.24,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Ide_Yousuke_Meijin_no_Jissen_Mahjong_II",
+      "total_midis": 21,
+      "cc11_per_note": 1.73,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Idol_Hakkenden",
+      "total_midis": 49,
+      "cc11_per_note": 2.77,
+      "cc12_per_note": 0.05,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Ikki",
+      "total_midis": 12,
+      "cc11_per_note": 0.23,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Ivan_Ironman_Stewarts_Super_Off_Road",
+      "total_midis": 19,
+      "cc11_per_note": 3.16,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Jackal",
+      "total_midis": 12,
+      "cc11_per_note": 3.33,
+      "cc12_per_note": 0.11,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Jeopardy",
+      "total_midis": 8,
+      "cc11_per_note": 0.31,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Jeopardy_25th_Anniversary_Edition",
+      "total_midis": 9,
+      "cc11_per_note": 0.21,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Jeopardy_Junior_Edition",
+      "total_midis": 6,
+      "cc11_per_note": 0.21,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Jetsons,_The_Cogswells_Caper",
+      "total_midis": 21,
+      "cc11_per_note": 1.9,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "JJ_Tobidase_Daisakusen_Part_2",
+      "total_midis": 8,
+      "cc11_per_note": 5.16,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "John_Elways_Quarterback",
+      "total_midis": 9,
+      "cc11_per_note": 0.47,
+      "cc12_per_note": 0.04,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Jordan_vs_Bird_One_on_One",
+      "total_midis": 7,
+      "cc11_per_note": 0.32,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Journey_to_Silius",
+      "total_midis": 12,
+      "cc11_per_note": 1.74,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Kanshakudama_Nage_Kantarou_no_Toukaidou_Gojuusan_Tsugi",
+      "total_midis": 32,
+      "cc11_per_note": 0.46,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Kid_Icarus",
+      "total_midis": 35,
+      "cc11_per_note": 7.38,
+      "cc12_per_note": 0.0,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 4
+    },
+    {
+      "game": "Kings_Knight",
+      "total_midis": 18,
+      "cc11_per_note": 0.65,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Kirbys_Adventure",
+      "total_midis": 58,
+      "cc11_per_note": 2.06,
+      "cc12_per_note": 0.42,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B",
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Konami_Hyper_Soccer",
+      "total_midis": 9,
+      "cc11_per_note": 4.34,
+      "cc12_per_note": 1.49,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Koufuku_wo_Yobu_Game_Dora_Dora_Dora",
+      "total_midis": 31,
+      "cc11_per_note": 1.86,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Kyattou_Ninden_Teyandee",
+      "total_midis": 29,
+      "cc11_per_note": 5.15,
+      "cc12_per_note": 0.05,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Laser_Invasion",
+      "total_midis": 33,
+      "cc11_per_note": 2.48,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Legendary_Wings",
+      "total_midis": 36,
+      "cc11_per_note": 0.33,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Lemmings",
+      "total_midis": 10,
+      "cc11_per_note": 3.31,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Life_Force",
+      "total_midis": 55,
+      "cc11_per_note": 2.45,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Little_Mermaid,_The",
+      "total_midis": 36,
+      "cc11_per_note": 4.11,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Lone_Ranger,_The",
+      "total_midis": 119,
+      "cc11_per_note": 3.23,
+      "cc12_per_note": 1.29,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Madoola_no_Tsubasa",
+      "total_midis": 32,
+      "cc11_per_note": 0.41,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Maerchen_Veil",
+      "total_midis": 12,
+      "cc11_per_note": 0.39,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Maharaja",
+      "total_midis": 28,
+      "cc11_per_note": 14.27,
+      "cc12_per_note": 0.0,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 2
+    },
+    {
+      "game": "Majou_Densetsu_2_Daimashikyou_Galious",
+      "total_midis": 76,
+      "cc11_per_note": 2.78,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Marble_Madness",
+      "total_midis": 9,
+      "cc11_per_note": 0.06,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Marusa_no_Onna",
+      "total_midis": 9,
+      "cc11_per_note": 0.72,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Mega_Man",
+      "total_midis": 16,
+      "cc11_per_note": 0.15,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Mega_Man_1",
+      "total_midis": 24,
+      "cc11_per_note": 0.15,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Mega_Man_2",
+      "total_midis": 24,
+      "cc11_per_note": 1.12,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Mega_Man_3",
+      "total_midis": 57,
+      "cc11_per_note": 2.25,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Mega_Man_4",
+      "total_midis": 71,
+      "cc11_per_note": 3.22,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Meikyuu_Jiin_Dababa",
+      "total_midis": 14,
+      "cc11_per_note": 4.64,
+      "cc12_per_note": 0.06,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Metal_Gear",
+      "total_midis": 56,
+      "cc11_per_note": 1.74,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Metroid",
+      "total_midis": 11,
+      "cc11_per_note": 11.5,
+      "cc12_per_note": 0.01,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 4
+    },
+    {
+      "game": "Mighty_Bomb_Jack",
+      "total_midis": 14,
+      "cc11_per_note": 3.78,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Mighty_Final_Fight",
+      "total_midis": 54,
+      "cc11_per_note": 1.31,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Mitsume_ga_Tooru",
+      "total_midis": 8,
+      "cc11_per_note": 1.48,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Mizushima_Shinji_no_Dai_Koushien",
+      "total_midis": 56,
+      "cc11_per_note": 1.7,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Moai_kun",
+      "total_midis": 4,
+      "cc11_per_note": 3.33,
+      "cc12_per_note": 0.55,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4,
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Monster_in_My_Pocket",
+      "total_midis": 38,
+      "cc11_per_note": 2.95,
+      "cc12_per_note": 0.13,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Motorcross_Champion",
+      "total_midis": 6,
+      "cc11_per_note": 0.69,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Nankin_no_Adventure",
+      "total_midis": 12,
+      "cc11_per_note": 6.7,
+      "cc12_per_note": 0.01,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 3
+    },
+    {
+      "game": "Nantettatte_Baseball",
+      "total_midis": 54,
+      "cc11_per_note": 4.26,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Nantettatte_Baseball_91_Kaimaku_hen",
+      "total_midis": 14,
+      "cc11_per_note": 4.26,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "NARC",
+      "total_midis": 5,
+      "cc11_per_note": 9.65,
+      "cc12_per_note": 0.02,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 4
+    },
+    {
+      "game": "Nazo_no_Kabe_Block_Kuzushi",
+      "total_midis": 9,
+      "cc11_per_note": 2.48,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Nightmare_on_Elm_Street,_A",
+      "total_midis": 37,
+      "cc11_per_note": 2.58,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Ninja_Gaiden_II___The_Dark_Sword_of_Chaos",
+      "total_midis": 1,
+      "cc11_per_note": 5.0,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Ninja_Gaiden_III___The_Ancient_Ship_of_Doom",
+      "total_midis": 10,
+      "cc11_per_note": 5.08,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Palamedes",
+      "total_midis": 11,
+      "cc11_per_note": 4.24,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Palamedes_II_Star_Twinkles",
+      "total_midis": 12,
+      "cc11_per_note": 1.85,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Pin_Bot",
+      "total_midis": 36,
+      "cc11_per_note": 1.81,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Pirates",
+      "total_midis": 22,
+      "cc11_per_note": 3.6,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Platoon",
+      "total_midis": 18,
+      "cc11_per_note": 1.01,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Pooyan",
+      "total_midis": 11,
+      "cc11_per_note": 1.03,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Pro_Yakyuu_Satsujin_Jiken",
+      "total_midis": 43,
+      "cc11_per_note": 2.38,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Punch_Out!!",
+      "total_midis": 17,
+      "cc11_per_note": 2.92,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Q_bert",
+      "total_midis": 72,
+      "cc11_per_note": 1.27,
+      "cc12_per_note": 0.38,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B",
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Quarth",
+      "total_midis": 26,
+      "cc11_per_note": 2.98,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "R.C._Pro_Am",
+      "total_midis": 50,
+      "cc11_per_note": 0.34,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "R.C._Pro_Am_II",
+      "total_midis": 7,
+      "cc11_per_note": 3.17,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Rad_Racer",
+      "total_midis": 6,
+      "cc11_per_note": 2.11,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Rad_Racer_II",
+      "total_midis": 6,
+      "cc11_per_note": 16.25,
+      "cc12_per_note": 0.5,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 2,
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Radia_Senki_Reimei_hen",
+      "total_midis": 37,
+      "cc11_per_note": 1.63,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Rampart",
+      "total_midis": 84,
+      "cc11_per_note": 1.82,
+      "cc12_per_note": 0.87,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 2
+    },
+    {
+      "game": "Road_Fighter",
+      "total_midis": 18,
+      "cc11_per_note": 3.62,
+      "cc12_per_note": 0.05,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Rollergames",
+      "total_midis": 28,
+      "cc11_per_note": 2.21,
+      "cc12_per_note": 0.71,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Route_16_Turbo",
+      "total_midis": 16,
+      "cc11_per_note": 0.37,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Rushn_Attack",
+      "total_midis": 79,
+      "cc11_per_note": 2.65,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Rygar",
+      "total_midis": 32,
+      "cc11_per_note": 4.19,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 2
+    },
+    {
+      "game": "Samurai_Sword",
+      "total_midis": 11,
+      "cc11_per_note": 2.63,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Section_Z",
+      "total_midis": 19,
+      "cc11_per_note": 0.09,
+      "cc12_per_note": 0.09,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 1,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Sekiryuuou",
+      "total_midis": 17,
+      "cc11_per_note": 5.26,
+      "cc12_per_note": 0.12,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Shanghai",
+      "total_midis": 11,
+      "cc11_per_note": 2.63,
+      "cc12_per_note": 0.08,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Shanghai_II",
+      "total_midis": 20,
+      "cc11_per_note": 1.7,
+      "cc12_per_note": 0.27,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Silent_Service",
+      "total_midis": 10,
+      "cc11_per_note": 3.64,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Silver_Surfer",
+      "total_midis": 24,
+      "cc11_per_note": 0.55,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Skate_or_Die",
+      "total_midis": 65,
+      "cc11_per_note": 3.08,
+      "cc12_per_note": 1.13,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 3
+    },
+    {
+      "game": "Ski_or_Die",
+      "total_midis": 156,
+      "cc11_per_note": 3.16,
+      "cc12_per_note": 1.07,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Slalom",
+      "total_midis": 10,
+      "cc11_per_note": 0.48,
+      "cc12_per_note": 0.09,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Smash_T.V",
+      "total_midis": 1,
+      "cc11_per_note": 0.35,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Snake_Rattlen_Roll",
+      "total_midis": 9,
+      "cc11_per_note": 2.28,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Snakes_Revenge",
+      "total_midis": 52,
+      "cc11_per_note": 4.37,
+      "cc12_per_note": 1.4,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Soccer",
+      "total_midis": 16,
+      "cc11_per_note": 0.37,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Solomons_Key",
+      "total_midis": 26,
+      "cc11_per_note": 4.48,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Son_Son",
+      "total_midis": 17,
+      "cc11_per_note": 0.28,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Spy_Hunter",
+      "total_midis": 28,
+      "cc11_per_note": 0.32,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Street_Fighter_2010_Final_Fight",
+      "total_midis": 22,
+      "cc11_per_note": 4.33,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Strider",
+      "total_midis": 15,
+      "cc11_per_note": 0.42,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Suishou_no_Ryuu",
+      "total_midis": 2,
+      "cc11_per_note": 0.25,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Super_Arabian",
+      "total_midis": 12,
+      "cc11_per_note": 0.0,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 1,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Super_C",
+      "total_midis": 9,
+      "cc11_per_note": 2.54,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Super_Glove_Ball",
+      "total_midis": 11,
+      "cc11_per_note": 2.34,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Super_Mario_Bros",
+      "total_midis": 19,
+      "cc11_per_note": 3.6,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Super_Mario_Bros._2",
+      "total_midis": 34,
+      "cc11_per_note": 6.92,
+      "cc12_per_note": 0.01,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 4
+    },
+    {
+      "game": "Super_Mario_Bros._3",
+      "total_midis": 60,
+      "cc11_per_note": 4.62,
+      "cc12_per_note": 1.24,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Super_Mario_Bros_v2",
+      "total_midis": 19,
+      "cc11_per_note": 2.07,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Super_Mario_Bros_v3",
+      "total_midis": 3,
+      "cc11_per_note": 3.19,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Super_Star_Force_Jikuureki_no_Himitsu",
+      "total_midis": 37,
+      "cc11_per_note": 1.68,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Sweet_Home",
+      "total_midis": 72,
+      "cc11_per_note": 1.22,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Taboo_The_Sixth_Sense",
+      "total_midis": 58,
+      "cc11_per_note": 0.31,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "TaleSpin",
+      "total_midis": 45,
+      "cc11_per_note": 3.72,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Tecmo_Bowl",
+      "total_midis": 45,
+      "cc11_per_note": 1.43,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Tecmo_Super_Bowl",
+      "total_midis": 62,
+      "cc11_per_note": 2.53,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Tecmo_World_Cup_Soccer",
+      "total_midis": 9,
+      "cc11_per_note": 2.46,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Tecmo_World_Wrestling",
+      "total_midis": 66,
+      "cc11_per_note": 2.29,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Teenage_Mutant_Ninja_Turtles",
+      "total_midis": 16,
+      "cc11_per_note": 1.59,
+      "cc12_per_note": 0.38,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B",
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Teenage_Mutant_Ninja_Turtles_Tournament_Fighters",
+      "total_midis": 88,
+      "cc11_per_note": 2.55,
+      "cc12_per_note": 0.44,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B",
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Tenchi_wo_Kurau_II_Shokatsu_Koumei_Den",
+      "total_midis": 44,
+      "cc11_per_note": 2.48,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Tetsuwan_Atom",
+      "total_midis": 89,
+      "cc11_per_note": 2.99,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Thexder",
+      "total_midis": 1,
+      "cc11_per_note": 0.0,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 2,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Time_Lord",
+      "total_midis": 9,
+      "cc11_per_note": 2.96,
+      "cc12_per_note": 0.06,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Tiny_Toon_Adventures",
+      "total_midis": 102,
+      "cc11_per_note": 3.41,
+      "cc12_per_note": 0.46,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4,
+      "fuzzy_zone": true
+    },
+    {
+      "game": "Tiny_Toon_Adventures_2",
+      "total_midis": 199,
+      "cc11_per_note": 2.0,
+      "cc12_per_note": 0.23,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Tiny_Toon_Adventures_Cartoon_Workshop",
+      "total_midis": 13,
+      "cc11_per_note": 1.27,
+      "cc12_per_note": 0.15,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Tobidase_Daisakusen",
+      "total_midis": 8,
+      "cc11_per_note": 1.04,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Top_Gun",
+      "total_midis": 25,
+      "cc11_per_note": 1.57,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Touhou_Kenbun_Roku",
+      "total_midis": 60,
+      "cc11_per_note": 2.27,
+      "cc12_per_note": 0.09,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 2,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Toukon_Club",
+      "total_midis": 30,
+      "cc11_per_note": 2.0,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Trojan",
+      "total_midis": 35,
+      "cc11_per_note": 0.46,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Tsuppari_Oozumou",
+      "total_midis": 25,
+      "cc11_per_note": 3.11,
+      "cc12_per_note": 0.06,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "TwinBee",
+      "total_midis": 6,
+      "cc11_per_note": 1.65,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "TwinBee_3_Poko_Poko_Dai_Maou",
+      "total_midis": 30,
+      "cc11_per_note": 3.7,
+      "cc12_per_note": 1.48,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 3
+    },
+    {
+      "game": "U_four_ia_The_Saga",
+      "total_midis": 48,
+      "cc11_per_note": 2.91,
+      "cc12_per_note": 0.06,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Ultima_-_Exodus",
+      "total_midis": 11,
+      "cc11_per_note": 4.85,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Ultima_-_Quest_of_the_Avatar",
+      "total_midis": 60,
+      "cc11_per_note": 5.46,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Wai_Wai_World",
+      "total_midis": 43,
+      "cc11_per_note": 3.87,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Wai_Wai_World_2_SOS_Paseri_Jou",
+      "total_midis": 24,
+      "cc11_per_note": 3.01,
+      "cc12_per_note": 0.85,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 3
+    },
+    {
+      "game": "Who_Framed_Roger_Rabbit",
+      "total_midis": 19,
+      "cc11_per_note": 0.35,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Willow",
+      "total_midis": 19,
+      "cc11_per_note": 0.99,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Wizards_and_Warriors",
+      "total_midis": 29,
+      "cc11_per_note": 0.15,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "Wizards_and_Warriors_trace",
+      "total_midis": 1,
+      "cc11_per_note": 0.15,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "World_Boxing",
+      "total_midis": 58,
+      "cc11_per_note": 1.57,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "ww_title_triangle_fix",
+      "total_midis": 1,
+      "cc11_per_note": 0.16,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 3,
+      "sub_group": "1A"
+    },
+    {
+      "game": "WWF_WrestleMania_Challenge",
+      "total_midis": 35,
+      "cc11_per_note": 1.39,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Sparse Envelope",
+      "channels": 4,
+      "sub_group": "1B"
+    },
+    {
+      "game": "Yie_Ar_Kung_Fu",
+      "total_midis": 3,
+      "cc11_per_note": 7.87,
+      "cc12_per_note": 0.02,
+      "family_id": 4,
+      "family_name": "Dense Automators",
+      "channels": 2
+    },
+    {
+      "game": "Yo_Noid",
+      "total_midis": 50,
+      "cc11_per_note": 4.5,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 3
+    },
+    {
+      "game": "Yume_Penguin_Monogatari",
+      "total_midis": 27,
+      "cc11_per_note": 2.64,
+      "cc12_per_note": 0.92,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 4
+    },
+    {
+      "game": "Zelda_II___The_Adventure_of_Link",
+      "total_midis": 74,
+      "cc11_per_note": 3.42,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Active Envelope",
+      "channels": 4
+    },
+    {
+      "game": "Zen_Intergalactic_Ninja",
+      "total_midis": 18,
+      "cc11_per_note": 1.78,
+      "cc12_per_note": 0.74,
+      "family_id": 3,
+      "family_name": "Duty Animators",
+      "channels": 3
+    }
+  ]
+}

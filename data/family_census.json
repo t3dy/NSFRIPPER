@@ -1,0 +1,2897 @@
+{
+  "total_games": 282,
+  "family_distribution": {
+    "0": {
+      "name": "Unclassified",
+      "count": 1,
+      "cc11_range": [
+        6.25,
+        6.25
+      ],
+      "cc12_range": [
+        1.24,
+        1.24
+      ],
+      "cc11_mean": 6.25,
+      "cc12_mean": 1.24
+    },
+    "1": {
+      "name": "Hardware Envelope",
+      "count": 169,
+      "cc11_range": [
+        0.0,
+        2.8
+      ],
+      "cc12_range": [
+        0.0,
+        0.68
+      ],
+      "cc11_mean": 1.47,
+      "cc12_mean": 0.06
+    },
+    "2": {
+      "name": "Standard Envelope",
+      "count": 84,
+      "cc11_range": [
+        2.81,
+        5.52
+      ],
+      "cc12_range": [
+        0.0,
+        0.69
+      ],
+      "cc11_mean": 3.48,
+      "cc12_mean": 0.08
+    },
+    "3": {
+      "name": "Duty Animators",
+      "count": 14,
+      "cc11_range": [
+        2.09,
+        4.46
+      ],
+      "cc12_range": [
+        0.7,
+        1.23
+      ],
+      "cc11_mean": 2.88,
+      "cc12_mean": 0.87
+    },
+    "4": {
+      "name": "Dense Automators",
+      "count": 14,
+      "cc11_range": [
+        5.64,
+        10.42
+      ],
+      "cc12_range": [
+        0.0,
+        0.61
+      ],
+      "cc11_mean": 6.97,
+      "cc12_mean": 0.14
+    }
+  },
+  "games": [
+    {
+      "game": "1942",
+      "tracks_analyzed": 13,
+      "total_midis": 14,
+      "notes": 119,
+      "cc11_per_note": 0.5,
+      "cc12_per_note": 0.09,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "1943_The_Battle_of_Midway",
+      "tracks_analyzed": 45,
+      "total_midis": 45,
+      "notes": 15749,
+      "cc11_per_note": 1.0,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "3_D_Battles_of_WorldRunner",
+      "tracks_analyzed": 8,
+      "total_midis": 8,
+      "notes": 7140,
+      "cc11_per_note": 2.68,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "720",
+      "tracks_analyzed": 10,
+      "total_midis": 12,
+      "notes": 4731,
+      "cc11_per_note": 0.5,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "8_Eyes",
+      "tracks_analyzed": 54,
+      "total_midis": 54,
+      "notes": 27234,
+      "cc11_per_note": 1.49,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Abadox_The_Deadly_Inner_War",
+      "tracks_analyzed": 30,
+      "total_midis": 30,
+      "notes": 20645,
+      "cc11_per_note": 1.63,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Addams_Family",
+      "tracks_analyzed": 6,
+      "total_midis": 6,
+      "notes": 2411,
+      "cc11_per_note": 3.72,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Adventures_in_the_Magic_Kingdom",
+      "tracks_analyzed": 28,
+      "total_midis": 28,
+      "notes": 37240,
+      "cc11_per_note": 3.36,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Adventures_of_Bayou_Billy,_The",
+      "tracks_analyzed": 22,
+      "total_midis": 22,
+      "notes": 35204,
+      "cc11_per_note": 1.91,
+      "cc12_per_note": 0.09,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "After_Burner",
+      "tracks_analyzed": 25,
+      "total_midis": 29,
+      "notes": 4132,
+      "cc11_per_note": 7.91,
+      "cc12_per_note": 0.61,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Ai_Senshi_Nicol",
+      "tracks_analyzed": 58,
+      "total_midis": 63,
+      "notes": 8019,
+      "cc11_per_note": 2.39,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Akai_Yousai_Final_Commando",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 7283,
+      "cc11_per_note": 4.08,
+      "cc12_per_note": 0.09,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Akumajou_Special_Boku_Dracula_kun",
+      "tracks_analyzed": 150,
+      "total_midis": 157,
+      "notes": 71974,
+      "cc11_per_note": 2.49,
+      "cc12_per_note": 0.31,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Alien_Syndrome",
+      "tracks_analyzed": 56,
+      "total_midis": 76,
+      "notes": 4827,
+      "cc11_per_note": 2.59,
+      "cc12_per_note": 0.05,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Almana_no_Kiseki",
+      "tracks_analyzed": 50,
+      "total_midis": 54,
+      "notes": 9330,
+      "cc11_per_note": 2.43,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Anticipation",
+      "tracks_analyzed": 34,
+      "total_midis": 34,
+      "notes": 10558,
+      "cc11_per_note": 0.25,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Apple_Town_Monogatari_Little_Computer_People",
+      "tracks_analyzed": 13,
+      "total_midis": 14,
+      "notes": 3965,
+      "cc11_per_note": 0.15,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Arch_Rivals_A_Basketbrawl",
+      "tracks_analyzed": 8,
+      "total_midis": 8,
+      "notes": 4286,
+      "cc11_per_note": 3.75,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Arctic",
+      "tracks_analyzed": 12,
+      "total_midis": 12,
+      "notes": 7527,
+      "cc11_per_note": 4.84,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Atlantis_no_Nazo",
+      "tracks_analyzed": 13,
+      "total_midis": 13,
+      "notes": 3357,
+      "cc11_per_note": 0.31,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Barcode_World",
+      "tracks_analyzed": 46,
+      "total_midis": 47,
+      "notes": 6064,
+      "cc11_per_note": 5.64,
+      "cc12_per_note": 0.4,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Base_Wars_Cyber_Stadium_Series",
+      "tracks_analyzed": 43,
+      "total_midis": 55,
+      "notes": 12124,
+      "cc11_per_note": 3.23,
+      "cc12_per_note": 0.79,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Batman",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 7642,
+      "cc11_per_note": 4.11,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Batman_Returns",
+      "tracks_analyzed": 94,
+      "total_midis": 96,
+      "notes": 17770,
+      "cc11_per_note": 3.23,
+      "cc12_per_note": 0.7,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Battletoads",
+      "tracks_analyzed": 21,
+      "total_midis": 21,
+      "notes": 17554,
+      "cc11_per_note": 3.24,
+      "cc12_per_note": 0.1,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Battletoads_Level1",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 1094,
+      "cc11_per_note": 3.64,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Battletoads_trace",
+      "tracks_analyzed": 4,
+      "total_midis": 4,
+      "notes": 3115,
+      "cc11_per_note": 2.72,
+      "cc12_per_note": 0.04,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Battletoads_trace_v2",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 2059,
+      "cc11_per_note": 3.42,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Battletoads_trace_v3",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 2331,
+      "cc11_per_note": 3.02,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Battletoads_trace_v4",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 2032,
+      "cc11_per_note": 3.46,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Battletoads_trace_v5",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 2331,
+      "cc11_per_note": 3.02,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Battletoads_trace_v6",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 2041,
+      "cc11_per_note": 3.45,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Battletoads_trace_v7",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 1907,
+      "cc11_per_note": 3.26,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Battletoads_trace_v8",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 885,
+      "cc11_per_note": 3.38,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Battletoads_trace_v9",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 885,
+      "cc11_per_note": 3.38,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Beetlejuice",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 8326,
+      "cc11_per_note": 2.61,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Bill_Elliotts_NASCAR_Challenge",
+      "tracks_analyzed": 5,
+      "total_midis": 5,
+      "notes": 5230,
+      "cc11_per_note": 3.27,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Bio_Miracle_Bokutte_Upa",
+      "tracks_analyzed": 56,
+      "total_midis": 56,
+      "notes": 16760,
+      "cc11_per_note": 1.74,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Bionic_Commando",
+      "tracks_analyzed": 22,
+      "total_midis": 22,
+      "notes": 20112,
+      "cc11_per_note": 0.98,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Blades_of_Steel",
+      "tracks_analyzed": 44,
+      "total_midis": 51,
+      "notes": 4411,
+      "cc11_per_note": 4.26,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Blaster_Master",
+      "tracks_analyzed": 16,
+      "total_midis": 16,
+      "notes": 17993,
+      "cc11_per_note": 3.75,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Bucky_OHare",
+      "tracks_analyzed": 23,
+      "total_midis": 23,
+      "notes": 23361,
+      "cc11_per_note": 3.18,
+      "cc12_per_note": 0.4,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "California_Games",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 4469,
+      "cc11_per_note": 0.36,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Captain_Skyhawk",
+      "tracks_analyzed": 8,
+      "total_midis": 8,
+      "notes": 3421,
+      "cc11_per_note": 1.34,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Captain_Tsubasa_II_Super_Striker",
+      "tracks_analyzed": 42,
+      "total_midis": 42,
+      "notes": 71296,
+      "cc11_per_note": 1.91,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Castlevania",
+      "tracks_analyzed": 53,
+      "total_midis": 54,
+      "notes": 13121,
+      "cc11_per_note": 2.98,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Castlevania_2___Simons_Quest",
+      "tracks_analyzed": 51,
+      "total_midis": 51,
+      "notes": 12446,
+      "cc11_per_note": 3.07,
+      "cc12_per_note": 0.67,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Castlevania_3___Draculas_Curse",
+      "tracks_analyzed": 27,
+      "total_midis": 27,
+      "notes": 42099,
+      "cc11_per_note": 2.82,
+      "cc12_per_note": 0.46,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Castlevania_3___Draculas_Curse_JP",
+      "tracks_analyzed": 15,
+      "total_midis": 15,
+      "notes": 15564,
+      "cc11_per_note": 2.4,
+      "cc12_per_note": 0.76,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Castlevania_APU2",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 814,
+      "cc11_per_note": 2.41,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Castlevania_II",
+      "tracks_analyzed": 7,
+      "total_midis": 8,
+      "notes": 1401,
+      "cc11_per_note": 1.48,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Castlevania_III",
+      "tracks_analyzed": 10,
+      "total_midis": 10,
+      "notes": 349,
+      "cc11_per_note": 2.07,
+      "cc12_per_note": 0.07,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Chaos_World",
+      "tracks_analyzed": 58,
+      "total_midis": 59,
+      "notes": 41616,
+      "cc11_per_note": 1.84,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Chinou_Game_Series_1_Adian_no_Tsue",
+      "tracks_analyzed": 10,
+      "total_midis": 10,
+      "notes": 2200,
+      "cc11_per_note": 0.26,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Chinou_Game_Series_2_Super_Boy_Allan",
+      "tracks_analyzed": 10,
+      "total_midis": 10,
+      "notes": 3815,
+      "cc11_per_note": 0.26,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Chinou_Game_Series_3_Chisoko_Tairiku_Orudora",
+      "tracks_analyzed": 13,
+      "total_midis": 13,
+      "notes": 3517,
+      "cc11_per_note": 0.38,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Chip_n_Dale_Rescue_Rangers",
+      "tracks_analyzed": 16,
+      "total_midis": 16,
+      "notes": 21767,
+      "cc11_per_note": 3.39,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Choujin_Sentai_Jetman",
+      "tracks_analyzed": 18,
+      "total_midis": 18,
+      "notes": 25396,
+      "cc11_per_note": 2.2,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Chuugoku_Janshi_Story_Tonpuu",
+      "tracks_analyzed": 22,
+      "total_midis": 22,
+      "notes": 17260,
+      "cc11_per_note": 2.23,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Circus_Charlie",
+      "tracks_analyzed": 15,
+      "total_midis": 15,
+      "notes": 1961,
+      "cc11_per_note": 4.57,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Cleopatra_no_Mahou",
+      "tracks_analyzed": 32,
+      "total_midis": 32,
+      "notes": 22140,
+      "cc11_per_note": 2.16,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Cobra_Triangle",
+      "tracks_analyzed": 19,
+      "total_midis": 19,
+      "notes": 10854,
+      "cc11_per_note": 0.29,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Code_Name_Viper",
+      "tracks_analyzed": 12,
+      "total_midis": 12,
+      "notes": 12612,
+      "cc11_per_note": 0.98,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Commando",
+      "tracks_analyzed": 30,
+      "total_midis": 30,
+      "notes": 7267,
+      "cc11_per_note": 0.33,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Contra",
+      "tracks_analyzed": 2,
+      "total_midis": 2,
+      "notes": 199,
+      "cc11_per_note": 2.69,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Contra_Force",
+      "tracks_analyzed": 24,
+      "total_midis": 24,
+      "notes": 45289,
+      "cc11_per_note": 1.92,
+      "cc12_per_note": 0.56,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Contra_v2",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 4987,
+      "cc11_per_note": 4.67,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Contra_v5",
+      "tracks_analyzed": 3,
+      "total_midis": 3,
+      "notes": 3909,
+      "cc11_per_note": 2.48,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Contra_v6",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 7646,
+      "cc11_per_note": 2.93,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Contra_v7",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 7594,
+      "cc11_per_note": 2.91,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Contra_v8",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 7496,
+      "cc11_per_note": 2.95,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Cosmic_Wars",
+      "tracks_analyzed": 40,
+      "total_midis": 47,
+      "notes": 24051,
+      "cc11_per_note": 3.01,
+      "cc12_per_note": 0.63,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Crackout",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 6473,
+      "cc11_per_note": 2.31,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Crisis_Force",
+      "tracks_analyzed": 13,
+      "total_midis": 13,
+      "notes": 23192,
+      "cc11_per_note": 2.11,
+      "cc12_per_note": 0.41,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Darkwing_Duck",
+      "tracks_analyzed": 62,
+      "total_midis": 64,
+      "notes": 16320,
+      "cc11_per_note": 2.97,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Dead_Zone",
+      "tracks_analyzed": 6,
+      "total_midis": 15,
+      "notes": 618,
+      "cc11_per_note": 0.22,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Deep_Dungeon_III_Yuushi_he_no_Tabi",
+      "tracks_analyzed": 25,
+      "total_midis": 25,
+      "notes": 12786,
+      "cc11_per_note": 0.33,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Destiny_of_an_Emperor",
+      "tracks_analyzed": 51,
+      "total_midis": 51,
+      "notes": 19363,
+      "cc11_per_note": 1.31,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Digger_T._Rock_The_Legend_of_the_Lost_City",
+      "tracks_analyzed": 12,
+      "total_midis": 12,
+      "notes": 7778,
+      "cc11_per_note": 3.62,
+      "cc12_per_note": 0.05,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Don_Doko_Don_2",
+      "tracks_analyzed": 79,
+      "total_midis": 79,
+      "notes": 39143,
+      "cc11_per_note": 2.11,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Double_Dare",
+      "tracks_analyzed": 19,
+      "total_midis": 19,
+      "notes": 2664,
+      "cc11_per_note": 1.91,
+      "cc12_per_note": 0.05,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Dragon_Fighter",
+      "tracks_analyzed": 50,
+      "total_midis": 50,
+      "notes": 26101,
+      "cc11_per_note": 1.71,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Dragon_Scroll_Yomigaerishi_Maryuu",
+      "tracks_analyzed": 96,
+      "total_midis": 96,
+      "notes": 25498,
+      "cc11_per_note": 3.76,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Dragon_Warrior",
+      "tracks_analyzed": 47,
+      "total_midis": 48,
+      "notes": 12146,
+      "cc11_per_note": 0.41,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "DuckTales",
+      "tracks_analyzed": 45,
+      "total_midis": 45,
+      "notes": 16137,
+      "cc11_per_note": 0.75,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "DuckTales_2",
+      "tracks_analyzed": 19,
+      "total_midis": 20,
+      "notes": 17391,
+      "cc11_per_note": 2.35,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Dungeon_Magic_Sword_of_the_Elements",
+      "tracks_analyzed": 13,
+      "total_midis": 13,
+      "notes": 13996,
+      "cc11_per_note": 3.59,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Dungeon_Magic_Sword_of_the_Elements_JP",
+      "tracks_analyzed": 61,
+      "total_midis": 61,
+      "notes": 15477,
+      "cc11_per_note": 3.29,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Esper_Dream",
+      "tracks_analyzed": 63,
+      "total_midis": 64,
+      "notes": 13267,
+      "cc11_per_note": 2.34,
+      "cc12_per_note": 0.04,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Esper_Dream_2_Aratanaru_Tatakai",
+      "tracks_analyzed": 29,
+      "total_midis": 30,
+      "notes": 25023,
+      "cc11_per_note": 2.27,
+      "cc12_per_note": 0.62,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Exciting_Basketball",
+      "tracks_analyzed": 5,
+      "total_midis": 5,
+      "notes": 4524,
+      "cc11_per_note": 2.81,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Exciting_Billiard",
+      "tracks_analyzed": 1,
+      "total_midis": 9,
+      "notes": 34,
+      "cc11_per_note": 4.76,
+      "cc12_per_note": 0.06,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Exciting_Soccer_Konami_Cup",
+      "tracks_analyzed": 4,
+      "total_midis": 8,
+      "notes": 2588,
+      "cc11_per_note": 1.73,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Exed_Exes",
+      "tracks_analyzed": 23,
+      "total_midis": 24,
+      "notes": 3861,
+      "cc11_per_note": 0.08,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "F_1_Sensation",
+      "tracks_analyzed": 30,
+      "total_midis": 30,
+      "notes": 55518,
+      "cc11_per_note": 1.84,
+      "cc12_per_note": 0.68,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Falsion",
+      "tracks_analyzed": 10,
+      "total_midis": 10,
+      "notes": 15739,
+      "cc11_per_note": 2.88,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Fantasy_Zone",
+      "tracks_analyzed": 29,
+      "total_midis": 29,
+      "notes": 24176,
+      "cc11_per_note": 2.31,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Fantasy_Zone_2_Opa_Opa_no_Namida",
+      "tracks_analyzed": 54,
+      "total_midis": 54,
+      "notes": 8580,
+      "cc11_per_note": 5.38,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Faxanadu",
+      "tracks_analyzed": 44,
+      "total_midis": 44,
+      "notes": 13909,
+      "cc11_per_note": 2.01,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Festers_Quest",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 5570,
+      "cc11_per_note": 3.06,
+      "cc12_per_note": 0.22,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Final_Fantasy",
+      "tracks_analyzed": 23,
+      "total_midis": 23,
+      "notes": 13889,
+      "cc11_per_note": 8.65,
+      "cc12_per_note": 0.0,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Final_Fantasy_II",
+      "tracks_analyzed": 28,
+      "total_midis": 28,
+      "notes": 18683,
+      "cc11_per_note": 5.77,
+      "cc12_per_note": 0.01,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Final_Fantasy_III",
+      "tracks_analyzed": 65,
+      "total_midis": 65,
+      "notes": 50835,
+      "cc11_per_note": 4.12,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Firen_Ice",
+      "tracks_analyzed": 88,
+      "total_midis": 88,
+      "notes": 41505,
+      "cc11_per_note": 2.49,
+      "cc12_per_note": 0.2,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Freedom_Force",
+      "tracks_analyzed": 48,
+      "total_midis": 48,
+      "notes": 23789,
+      "cc11_per_note": 0.16,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "G.I._Joe_The_Atlantis_Factor",
+      "tracks_analyzed": 7,
+      "total_midis": 7,
+      "notes": 7679,
+      "cc11_per_note": 4.46,
+      "cc12_per_note": 1.23,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Ganbare_Goemon_2",
+      "tracks_analyzed": 88,
+      "total_midis": 90,
+      "notes": 28556,
+      "cc11_per_note": 2.95,
+      "cc12_per_note": 0.51,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Ganbare_Goemon_Gaiden_2_Tenka_no_Zaihou",
+      "tracks_analyzed": 55,
+      "total_midis": 55,
+      "notes": 75238,
+      "cc11_per_note": 2.76,
+      "cc12_per_note": 0.41,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Ganbare_Goemon_Gaiden_Kieta_Ougon_Kiseru",
+      "tracks_analyzed": 62,
+      "total_midis": 62,
+      "notes": 68615,
+      "cc11_per_note": 2.61,
+      "cc12_per_note": 0.5,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Ganbare_Goemon_Karakuri_Douchuu",
+      "tracks_analyzed": 54,
+      "total_midis": 57,
+      "notes": 12301,
+      "cc11_per_note": 3.55,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Gargoyles_Quest_II",
+      "tracks_analyzed": 21,
+      "total_midis": 21,
+      "notes": 22739,
+      "cc11_per_note": 2.81,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Getsufuu_Maden",
+      "tracks_analyzed": 29,
+      "total_midis": 29,
+      "notes": 37678,
+      "cc11_per_note": 2.66,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Ghosts_n_Goblins",
+      "tracks_analyzed": 38,
+      "total_midis": 39,
+      "notes": 5805,
+      "cc11_per_note": 0.34,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Gimmick",
+      "tracks_analyzed": 71,
+      "total_midis": 106,
+      "notes": 52381,
+      "cc11_per_note": 1.62,
+      "cc12_per_note": 0.14,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Goonies,_The",
+      "tracks_analyzed": 23,
+      "total_midis": 23,
+      "notes": 12387,
+      "cc11_per_note": 2.43,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Goonies_II,_The",
+      "tracks_analyzed": 68,
+      "total_midis": 68,
+      "notes": 28918,
+      "cc11_per_note": 2.04,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Goonies_II_The",
+      "tracks_analyzed": 56,
+      "total_midis": 56,
+      "notes": 14918,
+      "cc11_per_note": 2.03,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Gradius",
+      "tracks_analyzed": 32,
+      "total_midis": 32,
+      "notes": 13415,
+      "cc11_per_note": 2.94,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Gradius_II",
+      "tracks_analyzed": 72,
+      "total_midis": 81,
+      "notes": 59492,
+      "cc11_per_note": 2.39,
+      "cc12_per_note": 1.03,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Gremlins_2_The_New_Batch",
+      "tracks_analyzed": 12,
+      "total_midis": 12,
+      "notes": 21737,
+      "cc11_per_note": 1.79,
+      "cc12_per_note": 0.16,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Gun.Smoke",
+      "tracks_analyzed": 18,
+      "total_midis": 18,
+      "notes": 18492,
+      "cc11_per_note": 1.5,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Gyruss",
+      "tracks_analyzed": 33,
+      "total_midis": 39,
+      "notes": 7315,
+      "cc11_per_note": 2.3,
+      "cc12_per_note": 0.86,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Hanjuku_Hero",
+      "tracks_analyzed": 21,
+      "total_midis": 21,
+      "notes": 16223,
+      "cc11_per_note": 3.73,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Hi_no_Tori_Houou_hen_Gaou_no_Bouken",
+      "tracks_analyzed": 55,
+      "total_midis": 55,
+      "notes": 9922,
+      "cc11_per_note": 3.15,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Higemaru_Makaijima_Nanatsu_no_Shima_Daibouken",
+      "tracks_analyzed": 16,
+      "total_midis": 16,
+      "notes": 16692,
+      "cc11_per_note": 1.57,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "High_Speed",
+      "tracks_analyzed": 45,
+      "total_midis": 46,
+      "notes": 6361,
+      "cc11_per_note": 3.0,
+      "cc12_per_note": 0.04,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Hollywood_Squares",
+      "tracks_analyzed": 13,
+      "total_midis": 13,
+      "notes": 1031,
+      "cc11_per_note": 0.25,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Honoo_no_Toukyuuji_Dodge_Danpei",
+      "tracks_analyzed": 35,
+      "total_midis": 35,
+      "notes": 19996,
+      "cc11_per_note": 2.59,
+      "cc12_per_note": 0.86,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Honoo_no_Toukyuuji_Dodge_Danpei_2",
+      "tracks_analyzed": 41,
+      "total_midis": 42,
+      "notes": 26272,
+      "cc11_per_note": 2.16,
+      "cc12_per_note": 0.12,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Hyper_Sports",
+      "tracks_analyzed": 29,
+      "total_midis": 29,
+      "notes": 40366,
+      "cc11_per_note": 0.11,
+      "cc12_per_note": 0.05,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Ide_Yousuke_Meijin_no_Jissen_Mahjong",
+      "tracks_analyzed": 15,
+      "total_midis": 15,
+      "notes": 9584,
+      "cc11_per_note": 1.31,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Ide_Yousuke_Meijin_no_Jissen_Mahjong_II",
+      "tracks_analyzed": 21,
+      "total_midis": 21,
+      "notes": 14964,
+      "cc11_per_note": 2.8,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Idol_Hakkenden",
+      "tracks_analyzed": 48,
+      "total_midis": 49,
+      "notes": 40144,
+      "cc11_per_note": 3.02,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Ikki",
+      "tracks_analyzed": 10,
+      "total_midis": 12,
+      "notes": 927,
+      "cc11_per_note": 0.34,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Ivan_Ironman_Stewarts_Super_Off_Road",
+      "tracks_analyzed": 19,
+      "total_midis": 19,
+      "notes": 11957,
+      "cc11_per_note": 3.69,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Jackal",
+      "tracks_analyzed": 12,
+      "total_midis": 12,
+      "notes": 9624,
+      "cc11_per_note": 4.16,
+      "cc12_per_note": 0.09,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Jeopardy",
+      "tracks_analyzed": 8,
+      "total_midis": 8,
+      "notes": 1088,
+      "cc11_per_note": 0.3,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Jeopardy_25th_Anniversary_Edition",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 1208,
+      "cc11_per_note": 0.31,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Jeopardy_Junior_Edition",
+      "tracks_analyzed": 6,
+      "total_midis": 6,
+      "notes": 1071,
+      "cc11_per_note": 0.3,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Jetsons,_The_Cogswells_Caper",
+      "tracks_analyzed": 21,
+      "total_midis": 21,
+      "notes": 35936,
+      "cc11_per_note": 1.94,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "JJ_Tobidase_Daisakusen_Part_2",
+      "tracks_analyzed": 8,
+      "total_midis": 8,
+      "notes": 8157,
+      "cc11_per_note": 3.05,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "John_Elways_Quarterback",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 811,
+      "cc11_per_note": 0.3,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Jordan_vs_Bird_One_on_One",
+      "tracks_analyzed": 7,
+      "total_midis": 7,
+      "notes": 2155,
+      "cc11_per_note": 0.91,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Journey_to_Silius",
+      "tracks_analyzed": 12,
+      "total_midis": 12,
+      "notes": 22137,
+      "cc11_per_note": 1.85,
+      "cc12_per_note": 0.06,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Kanshakudama_Nage_Kantarou_no_Toukaidou_Gojuusan_Tsugi",
+      "tracks_analyzed": 26,
+      "total_midis": 32,
+      "notes": 3214,
+      "cc11_per_note": 0.56,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Kid_Icarus",
+      "tracks_analyzed": 28,
+      "total_midis": 35,
+      "notes": 9850,
+      "cc11_per_note": 3.99,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Kings_Knight",
+      "tracks_analyzed": 17,
+      "total_midis": 18,
+      "notes": 4874,
+      "cc11_per_note": 0.23,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Kirbys_Adventure",
+      "tracks_analyzed": 56,
+      "total_midis": 58,
+      "notes": 78992,
+      "cc11_per_note": 2.01,
+      "cc12_per_note": 0.4,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Konami_Hyper_Soccer",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 10036,
+      "cc11_per_note": 2.85,
+      "cc12_per_note": 0.75,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Koufuku_wo_Yobu_Game_Dora_Dora_Dora",
+      "tracks_analyzed": 31,
+      "total_midis": 31,
+      "notes": 38785,
+      "cc11_per_note": 1.73,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Kyattou_Ninden_Teyandee",
+      "tracks_analyzed": 29,
+      "total_midis": 29,
+      "notes": 37517,
+      "cc11_per_note": 2.99,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Lagrange_Point",
+      "tracks_analyzed": 9,
+      "total_midis": 11,
+      "notes": 5482,
+      "cc11_per_note": 0.48,
+      "cc12_per_note": 0.08,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Laser_Invasion",
+      "tracks_analyzed": 33,
+      "total_midis": 33,
+      "notes": 48395,
+      "cc11_per_note": 2.66,
+      "cc12_per_note": 0.51,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Legendary_Wings",
+      "tracks_analyzed": 36,
+      "total_midis": 36,
+      "notes": 23474,
+      "cc11_per_note": 0.46,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Lemmings",
+      "tracks_analyzed": 10,
+      "total_midis": 10,
+      "notes": 13057,
+      "cc11_per_note": 0.86,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Life_Force",
+      "tracks_analyzed": 55,
+      "total_midis": 55,
+      "notes": 33985,
+      "cc11_per_note": 2.18,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Little_Mermaid,_The",
+      "tracks_analyzed": 31,
+      "total_midis": 36,
+      "notes": 14095,
+      "cc11_per_note": 2.93,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Lone_Ranger,_The",
+      "tracks_analyzed": 108,
+      "total_midis": 119,
+      "notes": 63520,
+      "cc11_per_note": 2.27,
+      "cc12_per_note": 0.16,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Madoola_no_Tsubasa",
+      "tracks_analyzed": 32,
+      "total_midis": 32,
+      "notes": 4553,
+      "cc11_per_note": 0.46,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Maerchen_Veil",
+      "tracks_analyzed": 12,
+      "total_midis": 12,
+      "notes": 7577,
+      "cc11_per_note": 0.32,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Maharaja",
+      "tracks_analyzed": 28,
+      "total_midis": 28,
+      "notes": 19921,
+      "cc11_per_note": 10.42,
+      "cc12_per_note": 0.0,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Majou_Densetsu_2_Daimashikyou_Galious",
+      "tracks_analyzed": 76,
+      "total_midis": 76,
+      "notes": 22804,
+      "cc11_per_note": 2.46,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Marble_Madness",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 4224,
+      "cc11_per_note": 0.34,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Marusa_no_Onna",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 9648,
+      "cc11_per_note": 1.1,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Mega_Man",
+      "tracks_analyzed": 16,
+      "total_midis": 16,
+      "notes": 18520,
+      "cc11_per_note": 0.48,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Mega_Man_1",
+      "tracks_analyzed": 24,
+      "total_midis": 24,
+      "notes": 23337,
+      "cc11_per_note": 0.41,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Mega_Man_2",
+      "tracks_analyzed": 24,
+      "total_midis": 24,
+      "notes": 41291,
+      "cc11_per_note": 0.76,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Mega_Man_3",
+      "tracks_analyzed": 57,
+      "total_midis": 57,
+      "notes": 36803,
+      "cc11_per_note": 2.36,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Mega_Man_4",
+      "tracks_analyzed": 70,
+      "total_midis": 71,
+      "notes": 39179,
+      "cc11_per_note": 2.25,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Meikyuu_Jiin_Dababa",
+      "tracks_analyzed": 8,
+      "total_midis": 14,
+      "notes": 7050,
+      "cc11_per_note": 2.45,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Metal_Gear",
+      "tracks_analyzed": 56,
+      "total_midis": 56,
+      "notes": 18288,
+      "cc11_per_note": 1.79,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Metroid",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 9423,
+      "cc11_per_note": 2.52,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Mighty_Bomb_Jack",
+      "tracks_analyzed": 14,
+      "total_midis": 14,
+      "notes": 11084,
+      "cc11_per_note": 4.1,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Mighty_Final_Fight",
+      "tracks_analyzed": 52,
+      "total_midis": 54,
+      "notes": 21536,
+      "cc11_per_note": 1.95,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Mitsume_ga_Tooru",
+      "tracks_analyzed": 8,
+      "total_midis": 8,
+      "notes": 20254,
+      "cc11_per_note": 1.47,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Mizushima_Shinji_no_Dai_Koushien",
+      "tracks_analyzed": 56,
+      "total_midis": 56,
+      "notes": 26678,
+      "cc11_per_note": 2.01,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Moai_kun",
+      "tracks_analyzed": 4,
+      "total_midis": 4,
+      "notes": 2598,
+      "cc11_per_note": 3.35,
+      "cc12_per_note": 0.97,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Monster_in_My_Pocket",
+      "tracks_analyzed": 33,
+      "total_midis": 38,
+      "notes": 52241,
+      "cc11_per_note": 2.64,
+      "cc12_per_note": 0.24,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Motorcross_Champion",
+      "tracks_analyzed": 6,
+      "total_midis": 6,
+      "notes": 5060,
+      "cc11_per_note": 1.27,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Nankin_no_Adventure",
+      "tracks_analyzed": 12,
+      "total_midis": 12,
+      "notes": 7320,
+      "cc11_per_note": 6.55,
+      "cc12_per_note": 0.48,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Nantettatte_Baseball",
+      "tracks_analyzed": 53,
+      "total_midis": 54,
+      "notes": 14005,
+      "cc11_per_note": 5.11,
+      "cc12_per_note": 0.07,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Nantettatte_Baseball_91_Kaimaku_hen",
+      "tracks_analyzed": 14,
+      "total_midis": 14,
+      "notes": 8302,
+      "cc11_per_note": 6.48,
+      "cc12_per_note": 0.11,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "NARC",
+      "tracks_analyzed": 5,
+      "total_midis": 5,
+      "notes": 5960,
+      "cc11_per_note": 3.51,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Nazo_no_Kabe_Block_Kuzushi",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 5570,
+      "cc11_per_note": 2.38,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Nazo_no_Magazine_Disk_Nazoler_Land_Dai_2_Gou",
+      "tracks_analyzed": 30,
+      "total_midis": 46,
+      "notes": 3801,
+      "cc11_per_note": 0.45,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Nazo_no_Magazine_Disk_Nazoler_Land_Dai_3_Gou",
+      "tracks_analyzed": 27,
+      "total_midis": 34,
+      "notes": 14922,
+      "cc11_per_note": 0.8,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Nightmare_on_Elm_Street,_A",
+      "tracks_analyzed": 37,
+      "total_midis": 37,
+      "notes": 33468,
+      "cc11_per_note": 2.6,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Ninja_Gaiden_II___The_Dark_Sword_of_Chaos",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 1464,
+      "cc11_per_note": 5.0,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Ninja_Gaiden_III___The_Ancient_Ship_of_Doom",
+      "tracks_analyzed": 10,
+      "total_midis": 10,
+      "notes": 16836,
+      "cc11_per_note": 2.62,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Palamedes",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 10531,
+      "cc11_per_note": 1.9,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Palamedes_II_Star_Twinkles",
+      "tracks_analyzed": 12,
+      "total_midis": 12,
+      "notes": 13188,
+      "cc11_per_note": 1.76,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Pin_Bot",
+      "tracks_analyzed": 36,
+      "total_midis": 36,
+      "notes": 19064,
+      "cc11_per_note": 1.33,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Pirates",
+      "tracks_analyzed": 22,
+      "total_midis": 22,
+      "notes": 10273,
+      "cc11_per_note": 2.86,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Platoon",
+      "tracks_analyzed": 18,
+      "total_midis": 18,
+      "notes": 6148,
+      "cc11_per_note": 2.65,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Pooyan",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 5095,
+      "cc11_per_note": 2.59,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Power_Blade",
+      "tracks_analyzed": 95,
+      "total_midis": 101,
+      "notes": 15753,
+      "cc11_per_note": 3.06,
+      "cc12_per_note": 0.51,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Pro_Yakyuu_Satsujin_Jiken",
+      "tracks_analyzed": 43,
+      "total_midis": 43,
+      "notes": 21694,
+      "cc11_per_note": 1.71,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Punch_Out!!",
+      "tracks_analyzed": 17,
+      "total_midis": 17,
+      "notes": 1381,
+      "cc11_per_note": 3.77,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Q_bert",
+      "tracks_analyzed": 72,
+      "total_midis": 72,
+      "notes": 19420,
+      "cc11_per_note": 2.5,
+      "cc12_per_note": 0.36,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Quarth",
+      "tracks_analyzed": 26,
+      "total_midis": 26,
+      "notes": 11255,
+      "cc11_per_note": 2.65,
+      "cc12_per_note": 0.43,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "R.C._Pro_Am",
+      "tracks_analyzed": 50,
+      "total_midis": 50,
+      "notes": 2288,
+      "cc11_per_note": 0.32,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "R.C._Pro_Am_II",
+      "tracks_analyzed": 7,
+      "total_midis": 7,
+      "notes": 4207,
+      "cc11_per_note": 2.62,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Rad_Racer",
+      "tracks_analyzed": 6,
+      "total_midis": 6,
+      "notes": 5393,
+      "cc11_per_note": 1.9,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Rad_Racer_II",
+      "tracks_analyzed": 6,
+      "total_midis": 6,
+      "notes": 6673,
+      "cc11_per_note": 3.34,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Radia_Senki_Reimei_hen",
+      "tracks_analyzed": 37,
+      "total_midis": 37,
+      "notes": 49007,
+      "cc11_per_note": 2.9,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Rampart",
+      "tracks_analyzed": 79,
+      "total_midis": 84,
+      "notes": 28743,
+      "cc11_per_note": 2.73,
+      "cc12_per_note": 0.34,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Road_Fighter",
+      "tracks_analyzed": 18,
+      "total_midis": 18,
+      "notes": 6104,
+      "cc11_per_note": 0.17,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Rollergames",
+      "tracks_analyzed": 28,
+      "total_midis": 28,
+      "notes": 44850,
+      "cc11_per_note": 2.05,
+      "cc12_per_note": 0.64,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Route_16_Turbo",
+      "tracks_analyzed": 16,
+      "total_midis": 16,
+      "notes": 3208,
+      "cc11_per_note": 0.09,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Rushn_Attack",
+      "tracks_analyzed": 79,
+      "total_midis": 79,
+      "notes": 40505,
+      "cc11_per_note": 2.87,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Rygar",
+      "tracks_analyzed": 32,
+      "total_midis": 32,
+      "notes": 50992,
+      "cc11_per_note": 2.11,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Samurai_Sword",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 6821,
+      "cc11_per_note": 2.84,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Section_Z",
+      "tracks_analyzed": 19,
+      "total_midis": 19,
+      "notes": 6953,
+      "cc11_per_note": 0.49,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Sekiryuuou",
+      "tracks_analyzed": 17,
+      "total_midis": 17,
+      "notes": 10871,
+      "cc11_per_note": 8.33,
+      "cc12_per_note": 0.06,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Shanghai",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 3886,
+      "cc11_per_note": 3.03,
+      "cc12_per_note": 0.05,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Shanghai_II",
+      "tracks_analyzed": 20,
+      "total_midis": 20,
+      "notes": 14602,
+      "cc11_per_note": 2.23,
+      "cc12_per_note": 0.16,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Silent_Service",
+      "tracks_analyzed": 10,
+      "total_midis": 10,
+      "notes": 6950,
+      "cc11_per_note": 3.24,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Silver_Surfer",
+      "tracks_analyzed": 24,
+      "total_midis": 24,
+      "notes": 33142,
+      "cc11_per_note": 0.56,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Skate_or_Die",
+      "tracks_analyzed": 63,
+      "total_midis": 65,
+      "notes": 23626,
+      "cc11_per_note": 2.98,
+      "cc12_per_note": 0.74,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Ski_or_Die",
+      "tracks_analyzed": 154,
+      "total_midis": 156,
+      "notes": 21561,
+      "cc11_per_note": 3.1,
+      "cc12_per_note": 0.69,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Slalom",
+      "tracks_analyzed": 10,
+      "total_midis": 10,
+      "notes": 2360,
+      "cc11_per_note": 0.53,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Smash_T.V",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 1520,
+      "cc11_per_note": 0.35,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Snake_Rattlen_Roll",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 11065,
+      "cc11_per_note": 3.33,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Snakes_Revenge",
+      "tracks_analyzed": 52,
+      "total_midis": 52,
+      "notes": 19918,
+      "cc11_per_note": 3.35,
+      "cc12_per_note": 1.14,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Soccer",
+      "tracks_analyzed": 16,
+      "total_midis": 16,
+      "notes": 2665,
+      "cc11_per_note": 1.62,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Solomons_Key",
+      "tracks_analyzed": 24,
+      "total_midis": 26,
+      "notes": 23577,
+      "cc11_per_note": 1.57,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Son_Son",
+      "tracks_analyzed": 17,
+      "total_midis": 17,
+      "notes": 2038,
+      "cc11_per_note": 0.25,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Spy_Hunter",
+      "tracks_analyzed": 26,
+      "total_midis": 28,
+      "notes": 6028,
+      "cc11_per_note": 0.14,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Stinger",
+      "tracks_analyzed": 89,
+      "total_midis": 100,
+      "notes": 22995,
+      "cc11_per_note": 2.68,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Street_Fighter_2010_Final_Fight",
+      "tracks_analyzed": 22,
+      "total_midis": 22,
+      "notes": 26765,
+      "cc11_per_note": 6.34,
+      "cc12_per_note": 0.01,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Strider",
+      "tracks_analyzed": 15,
+      "total_midis": 15,
+      "notes": 21744,
+      "cc11_per_note": 0.72,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Suishou_no_Ryuu",
+      "tracks_analyzed": 2,
+      "total_midis": 2,
+      "notes": 1006,
+      "cc11_per_note": 0.22,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Super_Arabian",
+      "tracks_analyzed": 12,
+      "total_midis": 12,
+      "notes": 1230,
+      "cc11_per_note": 0.02,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Super_C",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 2038,
+      "cc11_per_note": 5.77,
+      "cc12_per_note": 0.02,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Super_Glove_Ball",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 9760,
+      "cc11_per_note": 2.31,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Super_Mario_Bros",
+      "tracks_analyzed": 19,
+      "total_midis": 19,
+      "notes": 15510,
+      "cc11_per_note": 3.33,
+      "cc12_per_note": 0.19,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Super_Mario_Bros._2",
+      "tracks_analyzed": 24,
+      "total_midis": 34,
+      "notes": 7153,
+      "cc11_per_note": 6.32,
+      "cc12_per_note": 0.26,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Super_Mario_Bros._3",
+      "tracks_analyzed": 60,
+      "total_midis": 60,
+      "notes": 15875,
+      "cc11_per_note": 6.25,
+      "cc12_per_note": 1.24,
+      "family_id": 0,
+      "family_name": "Unclassified"
+    },
+    {
+      "game": "Super_Mario_Bros_v2",
+      "tracks_analyzed": 19,
+      "total_midis": 19,
+      "notes": 16806,
+      "cc11_per_note": 3.15,
+      "cc12_per_note": 0.18,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Super_Mario_Bros_v3",
+      "tracks_analyzed": 3,
+      "total_midis": 3,
+      "notes": 4187,
+      "cc11_per_note": 3.37,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Super_Star_Force_Jikuureki_no_Himitsu",
+      "tracks_analyzed": 37,
+      "total_midis": 37,
+      "notes": 14050,
+      "cc11_per_note": 1.52,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Sweet_Home",
+      "tracks_analyzed": 72,
+      "total_midis": 72,
+      "notes": 27009,
+      "cc11_per_note": 1.3,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Taboo_The_Sixth_Sense",
+      "tracks_analyzed": 58,
+      "total_midis": 58,
+      "notes": 24086,
+      "cc11_per_note": 0.5,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "TaleSpin",
+      "tracks_analyzed": 42,
+      "total_midis": 45,
+      "notes": 26303,
+      "cc11_per_note": 3.13,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Tecmo_Bowl",
+      "tracks_analyzed": 38,
+      "total_midis": 45,
+      "notes": 16475,
+      "cc11_per_note": 1.17,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Tecmo_Super_Bowl",
+      "tracks_analyzed": 58,
+      "total_midis": 62,
+      "notes": 50938,
+      "cc11_per_note": 2.91,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Tecmo_World_Cup_Soccer",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 15331,
+      "cc11_per_note": 2.97,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Tecmo_World_Wrestling",
+      "tracks_analyzed": 66,
+      "total_midis": 66,
+      "notes": 57879,
+      "cc11_per_note": 2.16,
+      "cc12_per_note": 0.04,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Teenage_Mutant_Ninja_Turtles",
+      "tracks_analyzed": 16,
+      "total_midis": 16,
+      "notes": 24253,
+      "cc11_per_note": 2.81,
+      "cc12_per_note": 0.71,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Teenage_Mutant_Ninja_Turtles_Tournament_Fighters",
+      "tracks_analyzed": 68,
+      "total_midis": 88,
+      "notes": 35929,
+      "cc11_per_note": 2.45,
+      "cc12_per_note": 0.33,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Tenchi_wo_Kurau_II_Shokatsu_Koumei_Den",
+      "tracks_analyzed": 43,
+      "total_midis": 44,
+      "notes": 30723,
+      "cc11_per_note": 2.4,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Tetsuwan_Atom",
+      "tracks_analyzed": 89,
+      "total_midis": 89,
+      "notes": 6309,
+      "cc11_per_note": 5.76,
+      "cc12_per_note": 0.01,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Thexder",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 532,
+      "cc11_per_note": 0.0,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Time_Lord",
+      "tracks_analyzed": 9,
+      "total_midis": 9,
+      "notes": 8419,
+      "cc11_per_note": 3.43,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Tiny_Toon_Adventures",
+      "tracks_analyzed": 92,
+      "total_midis": 102,
+      "notes": 31431,
+      "cc11_per_note": 3.09,
+      "cc12_per_note": 0.14,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Tiny_Toon_Adventures_2",
+      "tracks_analyzed": 177,
+      "total_midis": 199,
+      "notes": 91710,
+      "cc11_per_note": 1.7,
+      "cc12_per_note": 0.16,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Tiny_Toon_Adventures_Cartoon_Workshop",
+      "tracks_analyzed": 13,
+      "total_midis": 13,
+      "notes": 6698,
+      "cc11_per_note": 0.91,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Tobidase_Daisakusen",
+      "tracks_analyzed": 8,
+      "total_midis": 8,
+      "notes": 5538,
+      "cc11_per_note": 1.51,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Top_Gun",
+      "tracks_analyzed": 24,
+      "total_midis": 25,
+      "notes": 9297,
+      "cc11_per_note": 1.81,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Touhou_Kenbun_Roku",
+      "tracks_analyzed": 60,
+      "total_midis": 60,
+      "notes": 33559,
+      "cc11_per_note": 0.82,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Toukon_Club",
+      "tracks_analyzed": 30,
+      "total_midis": 30,
+      "notes": 55682,
+      "cc11_per_note": 2.26,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Trojan",
+      "tracks_analyzed": 35,
+      "total_midis": 35,
+      "notes": 7635,
+      "cc11_per_note": 0.44,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Tsuppari_Oozumou",
+      "tracks_analyzed": 25,
+      "total_midis": 25,
+      "notes": 4735,
+      "cc11_per_note": 2.71,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "TwinBee",
+      "tracks_analyzed": 6,
+      "total_midis": 6,
+      "notes": 5498,
+      "cc11_per_note": 3.11,
+      "cc12_per_note": 0.0,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "TwinBee_3_Poko_Poko_Dai_Maou",
+      "tracks_analyzed": 23,
+      "total_midis": 30,
+      "notes": 37540,
+      "cc11_per_note": 2.26,
+      "cc12_per_note": 0.84,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "U_four_ia_The_Saga",
+      "tracks_analyzed": 48,
+      "total_midis": 48,
+      "notes": 17965,
+      "cc11_per_note": 2.08,
+      "cc12_per_note": 0.03,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Ultima_-_Exodus",
+      "tracks_analyzed": 11,
+      "total_midis": 11,
+      "notes": 10217,
+      "cc11_per_note": 5.52,
+      "cc12_per_note": 0.14,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Ultima_-_Quest_of_the_Avatar",
+      "tracks_analyzed": 60,
+      "total_midis": 60,
+      "notes": 35512,
+      "cc11_per_note": 5.73,
+      "cc12_per_note": 0.03,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Wai_Wai_World",
+      "tracks_analyzed": 43,
+      "total_midis": 43,
+      "notes": 68908,
+      "cc11_per_note": 3.72,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Wai_Wai_World_2_SOS_Paseri_Jou",
+      "tracks_analyzed": 24,
+      "total_midis": 24,
+      "notes": 50604,
+      "cc11_per_note": 2.3,
+      "cc12_per_note": 0.28,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Who_Framed_Roger_Rabbit",
+      "tracks_analyzed": 19,
+      "total_midis": 19,
+      "notes": 13205,
+      "cc11_per_note": 0.31,
+      "cc12_per_note": 0.02,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Willow",
+      "tracks_analyzed": 19,
+      "total_midis": 19,
+      "notes": 20364,
+      "cc11_per_note": 1.91,
+      "cc12_per_note": 0.0,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Wizards_and_Warriors",
+      "tracks_analyzed": 29,
+      "total_midis": 29,
+      "notes": 15646,
+      "cc11_per_note": 0.42,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "Wizards_and_Warriors_trace",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 399,
+      "cc11_per_note": 0.15,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "World_Boxing",
+      "tracks_analyzed": 39,
+      "total_midis": 58,
+      "notes": 20021,
+      "cc11_per_note": 1.66,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "ww_title_triangle_fix",
+      "tracks_analyzed": 1,
+      "total_midis": 1,
+      "notes": 405,
+      "cc11_per_note": 0.16,
+      "cc12_per_note": 0.01,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    },
+    {
+      "game": "WWF_WrestleMania_Challenge",
+      "tracks_analyzed": 35,
+      "total_midis": 35,
+      "notes": 11180,
+      "cc11_per_note": 4.03,
+      "cc12_per_note": 0.03,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Yie_Ar_Kung_Fu",
+      "tracks_analyzed": 3,
+      "total_midis": 3,
+      "notes": 676,
+      "cc11_per_note": 7.92,
+      "cc12_per_note": 0.03,
+      "family_id": 4,
+      "family_name": "Dense Automators"
+    },
+    {
+      "game": "Yo_Noid",
+      "tracks_analyzed": 50,
+      "total_midis": 50,
+      "notes": 27357,
+      "cc11_per_note": 4.31,
+      "cc12_per_note": 0.02,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Yume_Penguin_Monogatari",
+      "tracks_analyzed": 27,
+      "total_midis": 27,
+      "notes": 50760,
+      "cc11_per_note": 2.09,
+      "cc12_per_note": 0.74,
+      "family_id": 3,
+      "family_name": "Duty Animators"
+    },
+    {
+      "game": "Zelda_II___The_Adventure_of_Link",
+      "tracks_analyzed": 74,
+      "total_midis": 74,
+      "notes": 27844,
+      "cc11_per_note": 3.04,
+      "cc12_per_note": 0.01,
+      "family_id": 2,
+      "family_name": "Standard Envelope"
+    },
+    {
+      "game": "Zen_Intergalactic_Ninja",
+      "tracks_analyzed": 18,
+      "total_midis": 18,
+      "notes": 43360,
+      "cc11_per_note": 1.91,
+      "cc12_per_note": 0.23,
+      "family_id": 1,
+      "family_name": "Hardware Envelope"
+    }
+  ]
+}

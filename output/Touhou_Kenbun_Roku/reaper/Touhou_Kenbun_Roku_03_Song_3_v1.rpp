@@ -83,7 +83,7 @@
   MASTER_FX 1
   MASTER_SEL 0
   <MASTERPLAYSPEEDENV
-    EGUID {FE9BDA30-0A62-451D-AFDD-EDB6D5C91A33}
+    EGUID {8E083091-BD41-4E51-9FD5-A8DB1591D2DF}
     ACT 0 -1
     VIS 0 1 1
     LANEHEIGHT 0 0
@@ -91,7 +91,7 @@
     DEFSHAPE 0 -1 -1
   >
   <TEMPOENVEX
-    EGUID {7F8C6016-C048-4FC6-8863-0487EC72E636}
+    EGUID {AACA02A1-4E56-46C3-BCFF-6E6D5C192D1F}
     ACT 1 -1
     VIS 1 0 1
     LANEHEIGHT 0 0
@@ -100,7 +100,7 @@
   >
   <PROJBAY
   >
-  <TRACK {7ACF91A9-9395-4AE6-8364-CA149A6B5EE5}
+  <TRACK {7E94CFF0-2349-4372-9008-A27373CE7B98}
     NAME "NES - Pulse 1 [ch0]"
     PEAKCOL 16576606
     BEAT -1
@@ -121,7 +121,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {7ACF91A9-9395-4AE6-8364-CA149A6B5EE5}
+    TRACKID {7E94CFF0-2349-4372-9008-A27373CE7B98}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -135,19 +135,19 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 0 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {733011EA-3EB1-4315-A587-72CAF00169C0}
+      FXID {BC709732-8482-4E15-9E5D-145C88BD01D4}
       WAK 0 0
     >
     <ITEM
       POSITION 0
-      LENGTH 83.98134
+      LENGTH 81.5863166
       LOOP 0
       ALLTAKES 0
       FADEIN 0 0 0 0 0 0 0
       FADEOUT 0 0 0 0 0 0 0
       MUTE 0 0
       SEL 0
-      IGUID {30FD5B02-609D-4DD1-A37E-8E884DDEB44A}
+      IGUID {E61F24BA-60CF-4F41-B6BD-19D5E10657BE}
       <SOURCE MIDI
         HASDATA 1 480 QN
         CCINTERP 32
@@ -329,18 +329,11 @@
         E 0 90 48 30
         E 832 b0 0b 08
         E 1664 80 48 00
-        E 3456 b0 0b 30
-        E 0 90 48 30
-        E 832 b0 0b 08
-        E 832 b0 0b 30
-        E 0 80 48 00
-        E 0 90 45 30
-        E 416 80 45 00
         E 0 ff 2f 00
       >
     >
   >
-  <TRACK {698C74FD-0778-41C7-9F28-737450ED9154}
+  <TRACK {3FC206EB-D646-4C14-993D-F748D9B9E4DD}
     NAME "NES - Pulse 2"
     PEAKCOL 10092441
     BEAT -1
@@ -361,7 +354,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {698C74FD-0778-41C7-9F28-737450ED9154}
+    TRACKID {3FC206EB-D646-4C14-993D-F748D9B9E4DD}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -375,11 +368,11 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 1 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {1843AB3B-5FEC-40F0-B302-ED7331F86079}
+      FXID {BE33C455-86C5-4A89-A646-87C5204753EE}
       WAK 0 0
     >
   >
-  <TRACK {D3833715-0625-4A4E-8182-EBD3E72172AE}
+  <TRACK {7DFFA656-19C2-45AB-B761-F433FA1ABC59}
     NAME "NES - Triangle [ch2]"
     PEAKCOL 16744192
     BEAT -1
@@ -400,7 +393,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {D3833715-0625-4A4E-8182-EBD3E72172AE}
+    TRACKID {7DFFA656-19C2-45AB-B761-F433FA1ABC59}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -414,19 +407,19 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 2 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {CEBAC99B-E5D4-4B03-BE1E-D2D4FE473969}
+      FXID {198F655E-E6CA-426B-9D03-89A5C3BE3379}
       WAK 0 0
     >
     <ITEM
       POSITION 0
-      LENGTH 83.98134
+      LENGTH 81.5863166
       LOOP 0
       ALLTAKES 0
       FADEIN 0 0 0 0 0 0 0
       FADEOUT 0 0 0 0 0 0 0
       MUTE 0 0
       SEL 0
-      IGUID {504E56F6-C1B9-4694-968F-86C924279E81}
+      IGUID {B1C15D16-DE95-4F44-8FC3-D0E4A1645D08}
       <SOURCE MIDI
         HASDATA 1 480 QN
         CCINTERP 32
@@ -512,14 +505,11 @@
         E 2496 b2 0b 7f
         E 0 92 42 7f
         E 832 82 42 00
-        E 2496 b2 0b 7f
-        E 0 92 42 7f
-        E 832 82 42 00
         E 0 ff 2f 00
       >
     >
   >
-  <TRACK {D3075402-7D78-4AAC-8FF6-E72AD8234C02}
+  <TRACK {B519269C-3A2A-49D3-A3B1-A7339AA82579}
     NAME "NES - Noise / Drums [ch3]"
     PEAKCOL 11184810
     BEAT -1
@@ -540,7 +530,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {D3075402-7D78-4AAC-8FF6-E72AD8234C02}
+    TRACKID {B519269C-3A2A-49D3-A3B1-A7339AA82579}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -554,178 +544,24 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 3 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {3EC19B22-BB01-4BEC-A4C2-9C412BFDD703}
+      FXID {5B3105B5-6623-438C-9EBD-2F521115A1EA}
       WAK 0 0
     >
     <ITEM
       POSITION 0
-      LENGTH 83.98134
+      LENGTH 81.5863166
       LOOP 0
       ALLTAKES 0
       FADEIN 0 0 0 0 0 0 0
       FADEOUT 0 0 0 0 0 0 0
       MUTE 0 0
       SEL 0
-      IGUID {BF3A262B-4060-460D-B40D-71FF57FCABE5}
+      IGUID {6D8ACE81-45C2-441F-89B4-641AAD6F59C7}
       <SOURCE MIDI
         HASDATA 1 480 QN
         CCINTERP 32
         E 16 93 2a 10
         E 208 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
-        E 16 83 2a 00
         E 16 83 2a 00
         E 16 83 2a 00
         E 16 83 2a 00

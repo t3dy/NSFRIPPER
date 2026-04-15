@@ -134,30 +134,47 @@ At minimum, document that linear mixing diverges from hardware.
 
 ## 8. Driver Family Presets for Keyboard Mode (ADSR)
 
+Revised 2026-04-14: 4-family model (Family 5 eliminated, zero members).
+See `docs/NEWDRIVERFAMILIES414.md` for census methodology.
+
 The NES APU has two envelope modes ($4000 bit 5):
 - Bit 5 = 0: Hardware envelope (linear decay from max to zero)
 - Bit 5 = 1: Constant volume (driver writes volume every frame)
 
-The ADSR keyboard mode should offer presets matching both:
+The ADSR keyboard mode should offer presets matching all four families:
 
-**Hardware Envelope preset** (for Family 1: Hardware Envelope games):
-- Attack: instant (1 frame)
-- Decay: linear to zero over 8-15 frames
-- Sustain: 0 (no sustain — decays completely)
-- Release: immediate
-- Sounds like: Mega Man, DuckTales, early Capcom
+**Sparse Envelope preset** (Family 1: 156 games):
+- Sub-group 1A (CC11 <= 0.5, 53 games): pure HW decay or constant vol
+  - Attack: instant (1 frame)
+  - Decay: linear to zero over 8-15 frames
+  - Sustain: 0 (no sustain — decays completely)
+  - Release: immediate
+  - Sounds like: Mega Man 1, Marble Madness, Section Z, early Capcom
+- Sub-group 1B (CC11 0.5-2.8, 103 games): occasional SW volume writes
+  - Attack: instant (1 frame)
+  - Decay: 4-6 frames to sustain level
+  - Sustain: vol 3-6
+  - Release: 2-3 frames
+  - Sounds like: Mega Man 2-3, Castlevania, DuckTales, Battletoads
 
-**Software Envelope preset** (for Families 2-5):
+**Active Envelope preset** (Family 2: 79 games):
 - Attack: instant at vol 15
 - Decay: 3-4 frames to sustain level
 - Sustain: vol 4-8 (game-specific)
 - Release: 2-3 frames to zero
-- Sounds like: Castlevania, Contra, Ninja Gaiden
+- Sounds like: Contra, Ninja Gaiden, Zelda II, TaleSpin
 
-**Dense Envelope preset** (for Family 4: Dense Automators):
+**Duty Animator preset** (Family 3: 20 games):
+- Same ADSR as Active Envelope for volume
+- Additionally: duty cycle animates per-frame (12.5% → 25% → 50% typical)
+- CC12 changes produce timbral sweep within each note
+- Sounds like: Super Mario Bros 3, Konami Hyper Soccer, Snakes Revenge
+
+**Dense Envelope preset** (Family 4: 16 games):
 - Per-frame volume table with tremolo/vibrato character
-- Multiple volume updates per note
-- Sounds like: Sunsoft (Batman, Blaster Master), Final Fantasy
+- Multiple volume updates per note (6-16 CC11 events per note)
+- Often has characteristic "shimmer" or "throb" from rapid vol changes
+- Sounds like: Metroid, Kid Icarus, Rad Racer II, Maharaja
 
 ## 9. Noise Channel Period Inversion (from FamiTracker source)
 

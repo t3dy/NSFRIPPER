@@ -7,6 +7,8 @@ title: 1943 The Battle of Midway
 
 **45 tracks** extracted via NSF emulation with per-frame APU register capture.
 
+**Driver family:** Family 1: Sparse Envelope (sub-group 1B) — CC11/note: 0.63, CC12/note: 0.01
+
 Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.
 
 ## Track List
@@ -63,6 +65,6 @@ Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11
 
 ## Downloads
 
-MIDI files and REAPER projects are available in the [GitHub repository](https://github.com/t3dy/ReapNES).
+MIDI files and REAPER projects are available in the [GitHub repository](https://github.com/t3dy/NSFRIPPER).
 
 [← Back to Game Library](../)

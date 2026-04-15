@@ -32,6 +32,6 @@ Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11
 
 ## Downloads
 
-MIDI files and REAPER projects are available in the [GitHub repository](https://github.com/t3dy/ReapNES).
+MIDI files and REAPER projects are available in the [GitHub repository](https://github.com/t3dy/NSFRIPPER).
 
 [← Back to Game Library](../)

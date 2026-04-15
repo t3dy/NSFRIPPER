@@ -234,14 +234,27 @@ class NsfEmulator:
         return frames
 
 
-def frames_to_channel_data(frames):
-    """Convert per-frame APU state to per-channel note/volume/duty data."""
+def frames_to_channel_data(frames, expansion_chips=None):
+    """Convert per-frame APU state to per-channel note/volume/duty data.
+
+    Args:
+        frames: list of {"writes": [(reg, val), ...]} per frame
+        expansion_chips: list of chip names (e.g. ["vrc6", "fds"]) or None
+    """
+    expansion_chips = expansion_chips or []
     channels = {
         "pulse1": {"period": 0, "vol": 0, "duty": 1, "const_vol": 0, "env_loop": 0, "env_period": 0, "notes": []},
         "pulse2": {"period": 0, "vol": 0, "duty": 1, "const_vol": 0, "env_loop": 0, "env_period": 0, "notes": []},
         "triangle": {"period": 0, "linear": 0, "linear_reload": 0, "linear_control": 0, "notes": []},
         "noise": {"vol": 0, "period": 0, "mode": 0, "notes": []},
     }
+    # Add expansion channel state
+    if "vrc6" in expansion_chips:
+        channels["vrc6_pulse1"] = {"period": 0, "vol": 0, "duty": 0, "enable": 0, "notes": []}
+        channels["vrc6_pulse2"] = {"period": 0, "vol": 0, "duty": 0, "enable": 0, "notes": []}
+        channels["vrc6_saw"] = {"period": 0, "accum_rate": 0, "enable": 0, "notes": []}
+    if "fds" in expansion_chips:
+        channels["fds_wave"] = {"period": 0, "vol_gain": 0, "master_vol": 0, "mod_freq": 0, "notes": []}
 
     for frame_idx, frame_packet in enumerate(frames):
         state = frame_packet["writes"]
@@ -280,6 +293,45 @@ def frames_to_channel_data(frames):
             elif reg == 0x400E:
                 channels["noise"]["period"] = value & 0x0F
                 channels["noise"]["mode"] = (value >> 7) & 1
+            # VRC6 registers
+            elif reg == 0x9000 and "vrc6_pulse1" in channels:
+                channels["vrc6_pulse1"]["duty"] = (value >> 4) & 0x07
+                channels["vrc6_pulse1"]["vol"] = value & 0x0F
+                channels["vrc6_pulse1"]["enable"] = (value >> 7) & 1
+            elif reg == 0x9001 and "vrc6_pulse1" in channels:
+                channels["vrc6_pulse1"]["period"] = (channels["vrc6_pulse1"]["period"] & 0xF00) | value
+            elif reg == 0x9002 and "vrc6_pulse1" in channels:
+                channels["vrc6_pulse1"]["period"] = (channels["vrc6_pulse1"]["period"] & 0xFF) | ((value & 0x0F) << 8)
+                channels["vrc6_pulse1"]["enable"] = (value >> 7) & 1
+            elif reg == 0xA000 and "vrc6_pulse2" in channels:
+                channels["vrc6_pulse2"]["duty"] = (value >> 4) & 0x07
+                channels["vrc6_pulse2"]["vol"] = value & 0x0F
+                channels["vrc6_pulse2"]["enable"] = (value >> 7) & 1
+            elif reg == 0xA001 and "vrc6_pulse2" in channels:
+                channels["vrc6_pulse2"]["period"] = (channels["vrc6_pulse2"]["period"] & 0xF00) | value
+            elif reg == 0xA002 and "vrc6_pulse2" in channels:
+                channels["vrc6_pulse2"]["period"] = (channels["vrc6_pulse2"]["period"] & 0xFF) | ((value & 0x0F) << 8)
+                channels["vrc6_pulse2"]["enable"] = (value >> 7) & 1
+            elif reg == 0xB000 and "vrc6_saw" in channels:
+                channels["vrc6_saw"]["accum_rate"] = value & 0x3F
+            elif reg == 0xB001 and "vrc6_saw" in channels:
+                channels["vrc6_saw"]["period"] = (channels["vrc6_saw"]["period"] & 0xF00) | value
+            elif reg == 0xB002 and "vrc6_saw" in channels:
+                channels["vrc6_saw"]["period"] = (channels["vrc6_saw"]["period"] & 0xFF) | ((value & 0x0F) << 8)
+                channels["vrc6_saw"]["enable"] = (value >> 7) & 1
+            # FDS registers
+            elif reg == 0x4080 and "fds_wave" in channels:
+                channels["fds_wave"]["vol_gain"] = value & 0x3F
+            elif reg == 0x4082 and "fds_wave" in channels:
+                channels["fds_wave"]["period"] = (channels["fds_wave"].get("period", 0) & 0xF00) | value
+            elif reg == 0x4083 and "fds_wave" in channels:
+                channels["fds_wave"]["period"] = (channels["fds_wave"].get("period", 0) & 0xFF) | ((value & 0x0F) << 8)
+            elif reg == 0x4084 and "fds_wave" in channels:
+                channels["fds_wave"]["mod_freq"] = (channels["fds_wave"].get("mod_freq", 0) & 0xF00) | value
+            elif reg == 0x4085 and "fds_wave" in channels:
+                channels["fds_wave"]["mod_freq"] = (channels["fds_wave"].get("mod_freq", 0) & 0xFF) | ((value & 0x0F) << 8)
+            elif reg == 0x4089 and "fds_wave" in channels:
+                channels["fds_wave"]["master_vol"] = value & 0x03
 
         # Record per-frame state for each channel
         for ch_name in ["pulse1", "pulse2"]:
@@ -310,6 +362,36 @@ def frames_to_channel_data(frames):
             "period": ch["period"],
             "mode": ch["mode"],
         })
+
+        # VRC6 per-frame state
+        if "vrc6_pulse1" in channels:
+            for ch_name in ["vrc6_pulse1", "vrc6_pulse2"]:
+                ch = channels[ch_name]
+                ch["notes"].append({
+                    "frame": frame_idx,
+                    "period": ch["period"],
+                    "vol": ch["vol"],
+                    "duty": ch["duty"],
+                    "enable": ch["enable"],
+                })
+            ch = channels["vrc6_saw"]
+            ch["notes"].append({
+                "frame": frame_idx,
+                "period": ch["period"],
+                "accum_rate": ch["accum_rate"],
+                "enable": ch["enable"],
+            })
+
+        # FDS per-frame state
+        if "fds_wave" in channels:
+            ch = channels["fds_wave"]
+            ch["notes"].append({
+                "frame": frame_idx,
+                "period": ch.get("period", 0),
+                "vol_gain": ch["vol_gain"],
+                "master_vol": ch["master_vol"],
+                "mod_freq": ch.get("mod_freq", 0),
+            })
 
     return channels
 
@@ -936,7 +1018,7 @@ def process_song(emu, song_num, song_name, duration_sec, output_dir):
     print(f" done")
 
     print(f"  Extracting channel data...", end="", flush=True)
-    channels = frames_to_channel_data(frames)
+    channels = frames_to_channel_data(frames, expansion_chips=emu.expansion_chips)
     print(f" done")
 
     # MIDI

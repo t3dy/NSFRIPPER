@@ -521,6 +521,157 @@ class AgentOracle:
         finally:
             conn.close()
 
+    def get_game_inventory(self, game_slug: str) -> dict:
+        """Full inventory of everything known about a game.
+
+        Combines filesystem scan + DB records to show:
+        - All output directories and versions
+        - MIDI/REAPER/WAV counts per directory
+        - NSF header info (songs, expansion, bankswitch)
+        - Driver family classification
+        - DB evidence, decisions, claims, attempts
+        - Best version recommendation
+
+        This is the "before you touch this game, read this" function.
+        """
+        import glob
+        from pathlib import Path
+
+        output_root = Path(self.db_path).parent.parent / "output"
+        result: dict[str, Any] = {
+            "game_slug": game_slug,
+            "directories": [],
+            "nsf_info": None,
+            "driver_family": None,
+            "db_evidence_count": 0,
+            "db_decisions": [],
+            "db_claims": [],
+            "db_attempts": [],
+            "best_version": None,
+            "extraction_completeness": None,
+        }
+
+        # Scan all matching directories
+        for d in sorted(output_root.iterdir()):
+            if not d.is_dir():
+                continue
+            # Match game_slug exactly, or versioned variants (game_slug_vN,
+            # game_slug_rom, game_slug_APU2). Exclude different games that
+            # happen to start with the same prefix (e.g. Contra vs Contra_Force).
+            dname = d.name
+            if dname == game_slug:
+                pass  # exact match
+            elif dname.startswith(game_slug + "_"):
+                suffix = dname[len(game_slug) + 1:]
+                # Version suffixes: v1-v99, rom, APU2, trace, nsf, etc.
+                if not (suffix.startswith("v") and suffix[1:].isdigit()
+                        or suffix in ("rom", "APU2", "trace", "nsf", "mesen")):
+                    continue
+            else:
+                continue
+            dir_info = {
+                "path": str(d),
+                "name": dname,
+                "midi_count": len(list(d.glob("midi/*.mid"))),
+                "reaper_count": len(list(d.glob("reaper/*.rpp"))),
+                "wav_count": len(list(d.glob("wav/*.wav"))),
+                "has_nsf": bool(list(d.glob("nsf/*.nsf"))),
+                "has_rom_capture": (d / "rom_capture").is_dir(),
+            }
+            result["directories"].append(dir_info)
+
+        # NSF header info (from first directory with NSF)
+        for d_info in result["directories"]:
+            if d_info["has_nsf"]:
+                nsf_files = list(Path(d_info["path"]).glob("nsf/*.nsf"))
+                if nsf_files:
+                    with open(nsf_files[0], "rb") as f:
+                        header = f.read(128)
+                    if len(header) >= 128:
+                        exp = header[0x7B]
+                        chips = []
+                        if exp & 0x01: chips.append("VRC6")
+                        if exp & 0x02: chips.append("VRC7")
+                        if exp & 0x04: chips.append("FDS")
+                        if exp & 0x08: chips.append("MMC5")
+                        if exp & 0x10: chips.append("N163")
+                        if exp & 0x20: chips.append("5B")
+                        result["nsf_info"] = {
+                            "total_songs": header[6],
+                            "title": header[14:46].decode("ascii", errors="replace").rstrip("\x00"),
+                            "artist": header[46:78].decode("ascii", errors="replace").rstrip("\x00"),
+                            "expansion_flags": exp,
+                            "expansion_chips": chips,
+                            "bankswitch": any(header[0x70 + i] != 0 for i in range(8)),
+                        }
+                    break
+
+        # DB lookups
+        conn = self._get_connection()
+        try:
+            result["driver_family"] = self._get_driver_family(conn, game_slug)
+
+            if self._table_exists(conn, "evidence_items"):
+                cur = conn.execute(
+                    "SELECT COUNT(*) FROM evidence_items WHERE game_slug = ?",
+                    (game_slug,),
+                )
+                result["db_evidence_count"] = cur.fetchone()[0]
+
+            if self._table_exists(conn, "decision_records"):
+                cur = conn.execute(
+                    """SELECT decision_type, rationale, outcome, created_at
+                       FROM decision_records WHERE game_slug = ?
+                       ORDER BY created_at DESC""",
+                    (game_slug,),
+                )
+                result["db_decisions"] = [dict(r) for r in cur.fetchall()]
+
+            if self._table_exists(conn, "claims"):
+                cur = conn.execute(
+                    """SELECT statement, status, confidence, created_at
+                       FROM claims WHERE subject_id = ?
+                       ORDER BY created_at DESC""",
+                    (game_slug,),
+                )
+                result["db_claims"] = [dict(r) for r in cur.fetchall()]
+
+            if self._table_exists(conn, "attempts"):
+                cur = conn.execute(
+                    """SELECT task_type, hypothesis, planned_change, result, lessons, created_at
+                       FROM attempts WHERE game_slug = ?
+                       ORDER BY created_at DESC""",
+                    (game_slug,),
+                )
+                result["db_attempts"] = [dict(r) for r in cur.fetchall()]
+        finally:
+            conn.close()
+
+        # Determine best version: highest MIDI count relative to NSF total
+        nsf_total = result["nsf_info"]["total_songs"] if result["nsf_info"] else 0
+        best = None
+        best_score = -1
+        for d_info in result["directories"]:
+            mc = d_info["midi_count"]
+            if mc == 0:
+                continue
+            # Primary sort: MIDI count. Tiebreakers: REAPER, then ROM capture.
+            score = mc * 1000
+            if d_info["reaper_count"] > 0:
+                score += 100
+            if d_info["has_rom_capture"]:
+                score += 10
+            if score > best_score:
+                best_score = score
+                best = d_info["name"]
+        result["best_version"] = best
+
+        if nsf_total > 0 and best:
+            best_dir = next(d for d in result["directories"] if d["name"] == best)
+            result["extraction_completeness"] = f"{best_dir['midi_count']}/{nsf_total}"
+
+        return result
+
     # ---------------------------------------------------------
     # READ: Evidence registration (for pipeline hooks)
     # ---------------------------------------------------------

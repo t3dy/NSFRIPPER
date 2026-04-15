@@ -49,7 +49,10 @@
       "WebFetch(domain:rainwarrior.ca)",
       "WebFetch(domain:www.hooktheory.com)",
       "WebFetch(domain:www.loc.gov)",
-      "WebFetch(domain:gdri.smspower.org)"
+      "WebFetch(domain:gdri.smspower.org)",
+      "Bash([ -f \"scripts/$script\" ])",
+      "Bash(taskkill //F //PID 46928 //PID 47796 //PID 6568)",
+      "Bash(rm -f C:/Dev/NSFRIPPER/.git/index.lock)"
     ]
   }
 }

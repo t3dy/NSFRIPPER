@@ -36,6 +36,10 @@ COLORS = {
     "pulse2": 10092441,
     "triangle": 16744192,
     "noise": 11184810,
+    "vrc6_pulse1": 5592575,
+    "vrc6_pulse2": 3381555,
+    "vrc6_saw": 16750950,
+    "fds_wave": 10066329,
 }
 
 CHANNEL_LABELS = {
@@ -43,9 +47,16 @@ CHANNEL_LABELS = {
     "pulse2": "NES - Pulse 2",
     "triangle": "NES - Triangle",
     "noise": "NES - Noise / Drums",
+    "vrc6_pulse1": "VRC6 - Pulse 1",
+    "vrc6_pulse2": "VRC6 - Pulse 2",
+    "vrc6_saw": "VRC6 - Sawtooth",
+    "fds_wave": "FDS - Wavetable",
 }
 
-MIDI_CHANNELS = {"pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3}
+MIDI_CHANNELS = {
+    "pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3,
+    "vrc6_pulse1": 5, "vrc6_pulse2": 6, "vrc6_saw": 7, "fds_wave": 7,
+}
 
 # ReapNES_Console slider defaults (sequential 1-38):
 #  1-8:   P1 Duty, Vol, Enable, Attack, Decay, Sustain, Release, Duty End
@@ -78,7 +89,10 @@ CONSOLE_DEFAULTS = [
 CONSOLE_CH_MODE_IDX = 32
 
 # Per-channel mode values for slider33
-CHANNEL_MODES = {"pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3}
+CHANNEL_MODES = {
+    "pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3,
+    "vrc6_pulse1": 4, "vrc6_pulse2": 4, "vrc6_saw": 4, "fds_wave": 4,
+}
 
 # ---------------------------------------------------------------------------
 #  APU2 synth (hardware-accurate register replay + ADSR keyboard fallback)
@@ -748,12 +762,22 @@ def generate_midi_project(midi_path: Path, output_path: Path,
             ss = json.load(f)
         title = f"{ss['game']['title']} - {ss['song']['title']}"
 
-    nes_ch = {"pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3}
+    nes_ch = {"pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3,
+              "vrc6_pulse1": 5, "vrc6_pulse2": 6, "vrc6_saw": 7, "fds_wave": 7}
 
     if nes_native:
-        # NES-native MIDI: channels already at 0-3, no remapping needed
+        # NES-native MIDI: channels already at 0-3 (+ expansion 5-7), no remapping needed
         role_map = {"pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3}
-        ch_remap = {0: 0, 1: 1, 2: 2, 3: 3}  # identity
+        # Detect expansion channels from MIDI stats
+        if 5 in stats and 6 in stats:
+            # VRC6: channels 5 (pulse1), 6 (pulse2), 7 (saw)
+            role_map["vrc6_pulse1"] = 5
+            role_map["vrc6_pulse2"] = 6
+            role_map["vrc6_saw"] = 7
+        elif 7 in stats and 5 not in stats:
+            # FDS: channel 7 only (no channels 5/6)
+            role_map["fds_wave"] = 7
+        ch_remap = {ch: ch for ch in range(16)}  # identity for all channels
         remapped_path = midi_path  # use original file directly
     else:
         role_map = auto_map_channels(midi_info)
@@ -803,6 +827,10 @@ def generate_midi_project(midi_path: Path, output_path: Path,
         return
 
     roles = ["pulse1", "pulse2", "triangle", "noise"]
+    # Add expansion roles if detected in role_map
+    for exp_role in ("vrc6_pulse1", "vrc6_pulse2", "vrc6_saw", "fds_wave"):
+        if exp_role in role_map:
+            roles.append(exp_role)
     for i, role in enumerate(roles):
         orig_ch = role_map.get(role)
         name = CHANNEL_LABELS[role]

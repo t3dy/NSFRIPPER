@@ -83,7 +83,7 @@
   MASTER_FX 1
   MASTER_SEL 0
   <MASTERPLAYSPEEDENV
-    EGUID {2F33618C-35E2-4435-BF27-6F77162EBA3B}
+    EGUID {42EEC5A4-D87A-42DD-B576-4BEBB9824613}
     ACT 0 -1
     VIS 0 1 1
     LANEHEIGHT 0 0
@@ -91,7 +91,7 @@
     DEFSHAPE 0 -1 -1
   >
   <TEMPOENVEX
-    EGUID {3E44BE26-6B28-422A-B93E-1F727BCC1B40}
+    EGUID {CECE5C44-F677-4579-8D26-8DCEF7A8C027}
     ACT 1 -1
     VIS 1 0 1
     LANEHEIGHT 0 0
@@ -100,7 +100,7 @@
   >
   <PROJBAY
   >
-  <TRACK {239843AE-0A68-4DAB-ABE4-5255C84934E0}
+  <TRACK {E58ADE7B-2A19-4A0E-8808-7A74858BA1E0}
     NAME "NES - Pulse 1 [ch0]"
     PEAKCOL 16576606
     BEAT -1
@@ -121,7 +121,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {239843AE-0A68-4DAB-ABE4-5255C84934E0}
+    TRACKID {E58ADE7B-2A19-4A0E-8808-7A74858BA1E0}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -135,7 +135,7 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 0 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {A9B72BE0-50AD-4F4C-8C4C-FC2249499B8E}
+      FXID {A77C194D-50EF-4F8C-B1DB-F100C0B4E2B3}
       WAK 0 0
     >
     <ITEM
@@ -147,7 +147,7 @@
       FADEOUT 0 0 0 0 0 0 0
       MUTE 0 0
       SEL 0
-      IGUID {0DA3B446-FCC6-464D-A57D-D42C2CB0D178}
+      IGUID {1BA52B7A-AB1C-4E67-B6BD-4C1F1CA014F7}
       <SOURCE MIDI
         HASDATA 1 480 QN
         CCINTERP 32
@@ -777,7 +777,7 @@
       >
     >
   >
-  <TRACK {F6BAB4AC-6245-4D08-983C-CEBCAB381413}
+  <TRACK {333DEB20-96BA-46DB-9E51-71C3304D654B}
     NAME "NES - Pulse 2 [ch1]"
     PEAKCOL 10092441
     BEAT -1
@@ -798,7 +798,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {F6BAB4AC-6245-4D08-983C-CEBCAB381413}
+    TRACKID {333DEB20-96BA-46DB-9E51-71C3304D654B}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -812,7 +812,7 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 1 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {64FC4E9A-A721-4068-A830-6D0C48C25FA7}
+      FXID {BC1C1607-9621-4F9C-A968-62E4F822D493}
       WAK 0 0
     >
     <ITEM
@@ -824,7 +824,7 @@
       FADEOUT 0 0 0 0 0 0 0
       MUTE 0 0
       SEL 0
-      IGUID {A99072BC-50C3-41CB-AE8D-864CEAB7BA90}
+      IGUID {8D06FD9F-0BCE-4073-9AA6-75B6FF84607B}
       <SOURCE MIDI
         HASDATA 1 480 QN
         CCINTERP 32
@@ -1200,7 +1200,7 @@
       >
     >
   >
-  <TRACK {0F2F7D4F-98A7-40F3-8102-DE5579F04157}
+  <TRACK {2BF86190-CF9E-442F-B576-2C8608F72DE8}
     NAME "NES - Triangle [ch2]"
     PEAKCOL 16744192
     BEAT -1
@@ -1221,7 +1221,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {0F2F7D4F-98A7-40F3-8102-DE5579F04157}
+    TRACKID {2BF86190-CF9E-442F-B576-2C8608F72DE8}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -1235,7 +1235,7 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 2 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {5BCC91ED-EFE9-4637-8CA4-DB1C6519455C}
+      FXID {7E8B6BFE-470F-43A6-A300-F68ABCA64E09}
       WAK 0 0
     >
     <ITEM
@@ -1247,7 +1247,7 @@
       FADEOUT 0 0 0 0 0 0 0
       MUTE 0 0
       SEL 0
-      IGUID {8A619FDA-8A1C-41C3-92EB-D5C123A7CB8A}
+      IGUID {1BA7E162-7512-446B-81E6-727368E1B697}
       <SOURCE MIDI
         HASDATA 1 480 QN
         CCINTERP 32
@@ -1502,7 +1502,7 @@
       >
     >
   >
-  <TRACK {525E2A05-CD7C-4E6C-868C-9225DDC30FFE}
+  <TRACK {3322F699-F6A0-425E-92E5-85E723B9FC6F}
     NAME "NES - Noise / Drums [ch3]"
     PEAKCOL 11184810
     BEAT -1
@@ -1523,7 +1523,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {525E2A05-CD7C-4E6C-868C-9225DDC30FFE}
+    TRACKID {3322F699-F6A0-425E-92E5-85E723B9FC6F}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -1537,7 +1537,7 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 3 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {F9155450-C558-4C37-8E57-70952EA2CDD9}
+      FXID {9F3680B5-6053-4144-BA9D-C11A548511CF}
       WAK 0 0
     >
     <ITEM
@@ -1549,7 +1549,7 @@
       FADEOUT 0 0 0 0 0 0 0
       MUTE 0 0
       SEL 0
-      IGUID {E54BF7EB-6330-463D-9CE1-3669CA17AB7D}
+      IGUID {FEE69696-37D4-42E5-A1A1-460738F1CFEC}
       <SOURCE MIDI
         HASDATA 1 480 QN
         CCINTERP 32
@@ -2027,6 +2027,676 @@
         E 96 83 24 00
         E 272 93 24 50
         E 96 83 24 00
+        E 0 ff 2f 00
+      >
+    >
+  >
+  <TRACK {DA1212B5-BADE-40E8-BEDE-FF5B80106D35}
+    NAME "FDS - Wavetable [ch7]"
+    PEAKCOL 10066329
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 5088 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {DA1212B5-BADE-40E8-BEDE-FF5B80106D35}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 24 52 700 560
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <JS "ReapNES Studio/ReapNES_Console.jsfx" ""
+        2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 4 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
+      >
+      FLOATPOS 0 0 0 0
+      FXID {0D1B992F-BFBA-432D-9010-676FBC8D6957}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      LENGTH 83.98134
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {6195001A-DC9F-49CF-AB27-724A0DBDA43A}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 c7 2e
+        E 32 b7 0b 06
+        E 0 97 29 06
+        E 16 b7 0b 22
+        E 32 87 29 00
+        E 16 b7 0b 06
+        E 0 97 04 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 176 87 04 00
+        E 16 b7 0b 06
+        E 0 97 05 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 05 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 09 00
+        E 1632 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 09 00
+        E 1632 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 208 87 08 00
+        E 16 b7 0b 06
+        E 0 97 04 06
+        E 16 b7 0b 22
+        E 32 87 04 00
+        E 16 b7 0b 06
+        E 0 97 05 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 05 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 09 00
+        E 1632 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 16 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 16 87 09 00
+        E 16 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 16 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 0c 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0c 00
+        E 16 b7 0b 06
+        E 0 97 0f 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0f 00
+        E 16 b7 0b 06
+        E 0 97 10 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 10 00
+        E 4320 b7 0b 06
+        E 0 97 04 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 176 87 04 00
+        E 16 b7 0b 06
+        E 0 97 05 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 05 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 09 00
+        E 1632 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 09 00
+        E 1632 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 208 87 08 00
+        E 16 b7 0b 06
+        E 0 97 04 06
+        E 16 b7 0b 22
+        E 32 87 04 00
+        E 16 b7 0b 06
+        E 0 97 05 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 05 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 09 00
+        E 1632 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 16 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 16 87 09 00
+        E 16 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 16 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 0c 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0c 00
+        E 16 b7 0b 06
+        E 0 97 0f 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0f 00
+        E 16 b7 0b 06
+        E 0 97 10 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 10 00
+        E 4320 b7 0b 06
+        E 0 97 04 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 176 87 04 00
+        E 16 b7 0b 06
+        E 0 97 05 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 05 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 09 00
+        E 1632 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 09 00
+        E 1632 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 208 87 08 00
+        E 16 b7 0b 06
+        E 0 97 04 06
+        E 16 b7 0b 22
+        E 32 87 04 00
+        E 16 b7 0b 06
+        E 0 97 05 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 05 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 09 00
+        E 1632 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 16 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 16 87 09 00
+        E 16 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 16 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 0c 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0c 00
+        E 16 b7 0b 06
+        E 0 97 0f 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0f 00
+        E 16 b7 0b 06
+        E 0 97 10 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 10 00
+        E 4320 b7 0b 06
+        E 0 97 04 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 176 87 04 00
+        E 16 b7 0b 06
+        E 0 97 05 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 05 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 09 00
+        E 1632 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 08 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 320 b7 0b 2c
+        E 80 b7 0b 24
+        E 80 b7 0b 1a
+        E 208 b7 0b 0e
+        E 208 b7 0b 0c
+        E 208 b7 0b 08
+        E 208 b7 0b 06
+        E 208 b7 0b 04
+        E 208 87 09 00
+        E 1632 b7 0b 06
+        E 0 97 0b 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 0b 00
+        E 16 b7 0b 06
+        E 0 97 09 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 272 87 09 00
+        E 16 b7 0b 06
+        E 0 97 08 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 208 87 08 00
+        E 16 b7 0b 06
+        E 0 97 04 06
+        E 16 b7 0b 22
+        E 32 87 04 00
+        E 16 b7 0b 06
+        E 0 97 05 06
+        E 16 b7 0b 22
+        E 80 b7 0b 40
+        E 192 87 05 00
         E 0 ff 2f 00
       >
     >

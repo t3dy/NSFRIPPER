@@ -49,15 +49,23 @@ def get_game_info(game_dir):
         except Exception:
             continue
 
-        # Count notes per channel
+        # Count notes per channel and detect expansion tracks
         note_counts = []
         cc_counts = []
+        expansion_chip = None
         for t in mid.tracks:
             notes = sum(1 for m in t if m.type == "note_on")
             ccs = sum(1 for m in t if m.type == "control_change")
             if notes > 0 or ccs > 0:
                 note_counts.append(notes)
                 cc_counts.append(ccs)
+            # Detect expansion from track names
+            for m in t:
+                if m.type == "track_name":
+                    if "VRC6" in m.name:
+                        expansion_chip = "VRC6"
+                    elif "FDS" in m.name:
+                        expansion_chip = "FDS"
 
         total_notes = sum(note_counts)
         total_ccs = sum(cc_counts)
@@ -85,6 +93,7 @@ def get_game_info(game_dir):
             "ccs": total_ccs,
             "duration": dur_sec,
             "has_rpp": rpp_exists,
+            "expansion_chip": expansion_chip,
         })
 
     return tracks
@@ -121,8 +130,21 @@ def generate_game_page(game_name, tracks, slug, census_entry=None):
         lines.append(f"**Driver family:** {fam_label} — CC11/note: {cc11}, CC12/note: {cc12}")
         lines.append("")
 
+    # Detect expansion audio from track data
+    expansion_chips = set(t.get("expansion_chip") for t in tracks if t.get("expansion_chip"))
+    if "VRC6" in expansion_chips:
+        channel_desc = "7-channel MIDI (4 APU + 3 VRC6: Pulse 1, Pulse 2, Triangle, Noise, VRC6 Pulse 1, VRC6 Pulse 2, VRC6 Sawtooth)"
+        lines.append("**Expansion audio:** VRC6 (2 pulse + 1 sawtooth)")
+        lines.append("")
+    elif "FDS" in expansion_chips:
+        channel_desc = "5-channel MIDI (4 APU + 1 FDS: Pulse 1, Pulse 2, Triangle, Noise, FDS Wavetable)"
+        lines.append("**Expansion audio:** FDS (1 wavetable)")
+        lines.append("")
+    else:
+        channel_desc = "4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise)"
+
     lines.extend([
-        "Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.",
+        f"Each track includes {channel_desc} with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.",
         "",
         "## Track List",
         "",

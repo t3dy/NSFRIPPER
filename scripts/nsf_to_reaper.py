@@ -446,13 +446,32 @@ def frames_to_channel_data(frames, expansion_chips=None):
     return channels
 
 
-def period_to_midi(period, is_tri=False):
-    if period <= (2 if is_tri else 8):
-        return 0
-    div = 32 if is_tri else 16
-    freq = 1789773 / (div * (period + 1))
+def period_to_midi(period, is_tri=False, channel_type=None):
+    """Convert NES period register to MIDI note number.
+
+    Supports standard APU channels and expansion chips.
+    channel_type: None (standard APU), "vrc6_pulse", "vrc6_saw", "fds_wave"
+    """
+    if channel_type == "vrc6_pulse":
+        if period <= 8:
+            return 0
+        freq = 1789773 / (16 * (period + 1))
+    elif channel_type == "vrc6_saw":
+        if period <= 8:
+            return 0
+        freq = 1789773 / (14 * (period + 1))
+    elif channel_type == "fds_wave":
+        if period <= 2:
+            return 0
+        freq = 1789773 / (64 * (period + 1))
+    else:
+        # Standard APU
+        if period <= (2 if is_tri else 8):
+            return 0
+        div = 32 if is_tri else 16
+        freq = 1789773 / (div * (period + 1))
     midi = round(69 + 12 * math.log2(freq / 440))
-    return midi
+    return max(0, min(127, midi))
 
 
 def load_wizards_and_warriors_note_boundaries(nsf_path, song_num):
@@ -541,6 +560,10 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
     note_boundary_map = {}
     for ch_name in ("pulse1", "pulse2", "triangle", "noise"):
         note_boundary_map[ch_name] = set(note_boundaries.get(ch_name, set())) if note_boundaries is not None else set()
+    # Expansion channels get empty boundary sets
+    for ch_name in channels:
+        if ch_name not in note_boundary_map:
+            note_boundary_map[ch_name] = set()
     mid = mido.MidiFile(ticks_per_beat=TICKS_PER_BEAT)
 
     # Sanitize text for MIDI meta fields (mido uses latin-1 encoding)
@@ -564,6 +587,13 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
         ("triangle", "Triangle [bass]", 2, 38),
         ("noise", "Noise [drums]", 3, 0),
     ]
+    # Expansion track configs (only added when channels exist in data)
+    if "vrc6_pulse1" in channels:
+        track_configs.append(("vrc6_pulse1", "VRC6 Pulse 1", 5, 80))
+        track_configs.append(("vrc6_pulse2", "VRC6 Pulse 2", 6, 81))
+        track_configs.append(("vrc6_saw", "VRC6 Sawtooth", 7, 82))
+    if "fds_wave" in channels:
+        track_configs.append(("fds_wave", "FDS Wavetable", 7, 46))
 
     for ch_name, label, midi_ch, program in track_configs:
         track = mido.MidiTrack()
@@ -712,6 +742,97 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
                     prev_midi = drum_note if 'drum_note' in dir() else 42
                 prev_vol = vol
 
+            elif ch_name in ("vrc6_pulse1", "vrc6_pulse2"):
+                period = frame_data["period"]
+                vol = frame_data["vol"]
+                duty = frame_data["duty"]
+                enable = frame_data.get("enable", 0)
+                midi_note = period_fn(period, channel_type="vrc6_pulse") if period > 8 and vol > 0 and enable else 0
+
+                # CC12: VRC6 has 8 duty values (0-7), map to 0-127
+                if duty != prev_duty and midi_note > 0:
+                    cc_duty = min(127, duty * 16)
+                    track.append(mido.Message('control_change', channel=midi_ch,
+                                             control=12, value=cc_duty, time=ticks))
+                    ticks = 0
+                    prev_duty = duty
+
+                # CC11: volume (same 4-bit range as APU pulse)
+                if vol != prev_vol and midi_note > 0:
+                    cc_vol = min(127, vol * 8)
+                    track.append(mido.Message('control_change', channel=midi_ch,
+                                             control=11, value=cc_vol, time=ticks))
+                    ticks = 0
+                    prev_vol = vol
+
+                if midi_note != prev_midi:
+                    if prev_midi > 0:
+                        track.append(mido.Message('note_off', note=prev_midi,
+                                                  velocity=0, channel=midi_ch, time=ticks))
+                        ticks = 0
+                    if midi_note > 0:
+                        vel = min(127, vol * 8)
+                        track.append(mido.Message('note_on', note=midi_note,
+                                                  velocity=vel, channel=midi_ch, time=ticks))
+                        ticks = 0
+                    prev_midi = midi_note
+
+            elif ch_name == "vrc6_saw":
+                period = frame_data["period"]
+                accum_rate = frame_data["accum_rate"]
+                enable = frame_data.get("enable", 0)
+                midi_note = period_fn(period, channel_type="vrc6_saw") if period > 8 and accum_rate > 0 and enable else 0
+
+                # CC11: accum_rate (6-bit 0-63) scaled to 0-127
+                if accum_rate != prev_vol and midi_note > 0:
+                    cc_vol = min(127, accum_rate * 2)
+                    track.append(mido.Message('control_change', channel=midi_ch,
+                                             control=11, value=cc_vol, time=ticks))
+                    ticks = 0
+                    prev_vol = accum_rate
+
+                if midi_note != prev_midi:
+                    if prev_midi > 0:
+                        track.append(mido.Message('note_off', note=prev_midi,
+                                                  velocity=0, channel=midi_ch, time=ticks))
+                        ticks = 0
+                    if midi_note > 0:
+                        vel = min(127, accum_rate * 2)
+                        track.append(mido.Message('note_on', note=midi_note,
+                                                  velocity=vel, channel=midi_ch, time=ticks))
+                        ticks = 0
+                    prev_midi = midi_note
+
+            elif ch_name == "fds_wave":
+                period = frame_data.get("period", 0)
+                vol_gain = frame_data["vol_gain"]
+                master_vol = frame_data.get("master_vol", 0)
+                # FDS master volume: 0=1.0, 1=2/3, 2=1/2, 3=2/5
+                master_frac = [1.0, 2/3, 1/2, 2/5][min(master_vol, 3)]
+                # FDS vol_gain 0-63 (clamped at 32 on HW), scale to CC range
+                effective_vol = min(32, vol_gain) * master_frac
+                midi_note = period_fn(period, channel_type="fds_wave") if period > 2 and vol_gain > 0 else 0
+
+                # CC11: volume
+                cc_vol = min(127, int(effective_vol * 4))
+                if cc_vol != prev_vol and midi_note > 0:
+                    track.append(mido.Message('control_change', channel=midi_ch,
+                                             control=11, value=cc_vol, time=ticks))
+                    ticks = 0
+                    prev_vol = cc_vol
+
+                if midi_note != prev_midi:
+                    if prev_midi > 0:
+                        track.append(mido.Message('note_off', note=prev_midi,
+                                                  velocity=0, channel=midi_ch, time=ticks))
+                        ticks = 0
+                    if midi_note > 0:
+                        vel = max(1, cc_vol)
+                        track.append(mido.Message('note_on', note=midi_note,
+                                                  velocity=vel, channel=midi_ch, time=ticks))
+                        ticks = 0
+                    prev_midi = midi_note
+
             ticks += TICKS_PER_FRAME
 
         # Final note off
@@ -769,6 +890,13 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
         full_state = {}
         for r in range(0x4000, 0x4018):
             full_state[r] = 0
+        # Expansion register state
+        if "vrc6_pulse1" in channels:
+            for r in [0x9000, 0x9001, 0x9002, 0xA000, 0xA001, 0xA002, 0xB000, 0xB001, 0xB002]:
+                full_state[r] = 0
+        if "fds_wave" in channels:
+            for r in [0x4080, 0x4082, 0x4083, 0x4089]:
+                full_state[r] = 0
 
         def channel_period_and_level(ch_name):
             frame_note = channels[ch_name]["notes"][frame_idx]
@@ -960,6 +1088,35 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
                 ]
                 sysex_track.append(mido.Message('sysex', data=art_data, time=0))
                 sysex_count += 1
+
+            # Expansion chip SysEx (type 0x04)
+            exp_ch_regs = []
+            if "vrc6_pulse1" in channels:
+                exp_ch_regs.extend([
+                    (4, [0x9000, 0x9001, 0x9002]),
+                    (5, [0xA000, 0xA001, 0xA002]),
+                    (6, [0xB000, 0xB001, 0xB002]),
+                ])
+            if "fds_wave" in channels:
+                exp_ch_regs.append(
+                    (7, [0x4080, 0x4082, 0x4083, 0x4089])
+                )
+            for exp_ch, exp_regs in exp_ch_regs:
+                exp_data = [0x7D, 0x04, exp_ch]
+                exp_write_mask = 0
+                for bit_idx, reg in enumerate(exp_regs):
+                    val = full_state.get(reg, 0)
+                    exp_data.extend([val & 0x7F, (val >> 7) & 0x01])
+                    if reg in written_regs:
+                        exp_write_mask |= (1 << bit_idx)
+                # Pad to consistent length if fewer than 4 registers
+                while len(exp_regs) < 4:
+                    exp_data.extend([0, 0])
+                    exp_regs = list(exp_regs) + [0]
+                exp_data.append(exp_write_mask)
+                sysex_track.append(mido.Message('sysex', data=exp_data, time=0))
+                sysex_count += 1
+
             frame_count += 1
 
         mid.tracks.append(sysex_track)
@@ -1006,6 +1163,9 @@ def build_rpp(midi_path, song_name, duration_sec):
 
 def render_wav(channels, output_path, num_frames):
     """Render WAV from channel data (same synth as trace renderer)."""
+    # Clamp to actual captured frames (may be shorter due to silence detection)
+    actual_frames = len(channels["pulse1"]["notes"])
+    num_frames = min(num_frames, actual_frames)
     total_samples = num_frames * SPF
     mix = np.zeros(total_samples, dtype=np.float64)
     phase = {"p1": 0.0, "p2": 0.0, "tri": 0.0}

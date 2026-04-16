@@ -83,7 +83,7 @@
   MASTER_FX 1
   MASTER_SEL 0
   <MASTERPLAYSPEEDENV
-    EGUID {7B153DB1-8A31-4558-B97C-28FE6AE82ADC}
+    EGUID {CF7707BA-8B5A-4FF7-AFEE-D9F8AA95CFF1}
     ACT 0 -1
     VIS 0 1 1
     LANEHEIGHT 0 0
@@ -91,7 +91,7 @@
     DEFSHAPE 0 -1 -1
   >
   <TEMPOENVEX
-    EGUID {2F95E545-A759-486F-A023-5AB692A11EB3}
+    EGUID {37EC0657-9E3D-4B8E-B7A2-87BFCBCFAE06}
     ACT 1 -1
     VIS 1 0 1
     LANEHEIGHT 0 0
@@ -100,7 +100,7 @@
   >
   <PROJBAY
   >
-  <TRACK {8AE5B9A3-4100-46F3-9911-CCD9A48A0524}
+  <TRACK {7D44D690-DAF9-4A5C-B931-9A70A25658CF}
     NAME "NES - Pulse 1"
     PEAKCOL 16576606
     BEAT -1
@@ -121,7 +121,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {8AE5B9A3-4100-46F3-9911-CCD9A48A0524}
+    TRACKID {7D44D690-DAF9-4A5C-B931-9A70A25658CF}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -135,11 +135,11 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 0 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {CBB818D9-8464-40B9-82B9-22BCA7015CDC}
+      FXID {312CCA5C-E89B-4AE5-881B-0A2B2C4CF9B9}
       WAK 0 0
     >
   >
-  <TRACK {A3B6FE56-E39A-4F55-A397-43231E1331BF}
+  <TRACK {69C941C9-6F3C-4186-A40E-AF17704B11D4}
     NAME "NES - Pulse 2"
     PEAKCOL 10092441
     BEAT -1
@@ -160,7 +160,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {A3B6FE56-E39A-4F55-A397-43231E1331BF}
+    TRACKID {69C941C9-6F3C-4186-A40E-AF17704B11D4}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -174,11 +174,11 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 1 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {DE305D19-643F-48EC-A070-9651C9AE2683}
+      FXID {C8007955-9474-4D67-A1D7-3E4696FBA6D9}
       WAK 0 0
     >
   >
-  <TRACK {AD4A8A4B-1E2E-4BF0-B09B-36361D8CE8A2}
+  <TRACK {DFCB2650-4350-4751-8E18-3472C64F0AA7}
     NAME "NES - Triangle"
     PEAKCOL 16744192
     BEAT -1
@@ -199,7 +199,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {AD4A8A4B-1E2E-4BF0-B09B-36361D8CE8A2}
+    TRACKID {DFCB2650-4350-4751-8E18-3472C64F0AA7}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -213,11 +213,11 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 2 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {259E14C0-A330-47D3-A175-069BE70BDB8D}
+      FXID {B5E72E24-EFF4-40D1-B8FB-3B9D71C55986}
       WAK 0 0
     >
   >
-  <TRACK {4287BDFC-C2BD-4E7B-A9AA-7E91B0A2796F}
+  <TRACK {6FB6C665-88CC-4FA6-8DC4-8253327BE759}
     NAME "NES - Noise / Drums"
     PEAKCOL 11184810
     BEAT -1
@@ -238,7 +238,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {4287BDFC-C2BD-4E7B-A9AA-7E91B0A2796F}
+    TRACKID {6FB6C665-88CC-4FA6-8DC4-8253327BE759}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -252,8 +252,129 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 3 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {E143FCCA-9154-4CF4-BEF1-4C49D79FA946}
+      FXID {B5557D07-94D2-41DF-91E9-78FDC27F58D7}
       WAK 0 0
+    >
+  >
+  <TRACK {165D9371-EBE8-4FB1-8B37-3D774EB4CF8D}
+    NAME "FDS - Wavetable [ch7]"
+    PEAKCOL 10066329
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 5088 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {165D9371-EBE8-4FB1-8B37-3D774EB4CF8D}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 24 52 700 560
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <JS "ReapNES Studio/ReapNES_Console.jsfx" ""
+        2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 4 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
+      >
+      FLOATPOS 0 0 0 0
+      FXID {E9F12AA2-9373-47F4-95D8-CAC17F5D6A8F}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      LENGTH 83.98134
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {0C555A09-5EBC-4BF5-8E5F-691F33A1643D}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 c7 2e
+        E 0 b7 0b 05
+        E 0 97 0c 05
+        E 48 87 0c 00
+        E 0 97 14 05
+        E 48 87 14 00
+        E 0 97 0c 05
+        E 48 87 0c 00
+        E 0 97 14 05
+        E 48 87 14 00
+        E 0 97 0b 05
+        E 48 87 0b 00
+        E 0 97 13 05
+        E 48 87 13 00
+        E 0 97 0b 05
+        E 48 87 0b 00
+        E 0 97 13 05
+        E 48 87 13 00
+        E 0 97 0a 05
+        E 48 87 0a 00
+        E 0 97 12 05
+        E 48 87 12 00
+        E 0 97 0a 05
+        E 48 87 0a 00
+        E 0 97 12 05
+        E 48 87 12 00
+        E 0 97 09 05
+        E 48 87 09 00
+        E 0 97 12 05
+        E 48 87 12 00
+        E 0 97 09 05
+        E 48 87 09 00
+        E 0 97 12 05
+        E 48 87 12 00
+        E 0 97 08 05
+        E 48 87 08 00
+        E 0 97 11 05
+        E 48 87 11 00
+        E 0 97 08 05
+        E 48 87 08 00
+        E 0 97 11 05
+        E 48 87 11 00
+        E 0 97 08 05
+        E 48 87 08 00
+        E 0 97 11 05
+        E 48 87 11 00
+        E 0 97 08 05
+        E 48 87 08 00
+        E 0 97 11 05
+        E 48 87 11 00
+        E 0 97 08 05
+        E 48 87 08 00
+        E 0 97 11 05
+        E 48 87 11 00
+        E 0 97 08 05
+        E 48 87 08 00
+        E 0 97 11 05
+        E 48 87 11 00
+        E 0 97 08 05
+        E 48 87 08 00
+        E 0 97 11 05
+        E 48 87 11 00
+        E 0 97 08 05
+        E 48 87 08 00
+        E 0 97 11 05
+        E 48 87 11 00
+        E 0 ff 2f 00
+      >
     >
   >
 >

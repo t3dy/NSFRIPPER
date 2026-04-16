@@ -448,14 +448,32 @@ noi_en && slider23 ? (
   );
 ) : noi_out = 0;
 
-// --- Mix with per-channel weights ---
-mix = 0;
-p1_out > 0 ? mix += (p1_out / 15.0 - 0.5) * slider28;
-p2_out > 0 ? mix += (p2_out / 15.0 - 0.5) * slider29;
-tri_out > 0 ? mix += (tri_out / 15.0 - 0.5) * slider30;
-noi_out > 0 ? mix += (noi_out / 15.0 - 0.5) * slider31;
+// --- Non-linear APU mixing (NESDev wiki / FamiTracker) ---
+// The NES DAC uses impedance-based mixing. Two pulse channels share
+// one output pin; triangle, noise, and DPCM share another.
+// Pulse:  95.88 / ((8128 / (sq1 + sq2)) + 100)
+// TND:    159.79 / ((1 / (tri/8227 + noise/12241 + dpcm/22638)) + 100)
+// Mix sliders scale per-channel amplitude before the non-linear stage.
 
-out = mix * slider32;
+sq1_scaled = p1_out * slider28;
+sq2_scaled = p2_out * slider29;
+tri_scaled = tri_out * slider30;
+noi_scaled = noi_out * slider31;
+
+sq_sum = sq1_scaled + sq2_scaled;
+sq_sum > 0 ? (
+  pulse_mix = 95.88 / ((8128.0 / sq_sum) + 100.0);
+) : pulse_mix = 0;
+
+tnd_denom = 0;
+tri_scaled > 0 ? tnd_denom += tri_scaled / 8227.0;
+noi_scaled > 0 ? tnd_denom += noi_scaled / 12241.0;
+tnd_denom > 0 ? (
+  tnd_mix = 159.79 / ((1.0 / tnd_denom) + 100.0);
+) : tnd_mix = 0;
+
+// Combined output centered around zero (AC-coupled)
+out = (pulse_mix + tnd_mix - 0.5) * slider32;
 spl0 = out;
 spl1 = out;
 

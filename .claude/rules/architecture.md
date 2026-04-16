@@ -103,3 +103,25 @@ drivers to read zeros and hang.
 Games proven affected: Ninja Gaiden (1→65), Zelda (2→37), CV3 (19→28),
 Ninja Gaiden II/III, Zelda II, Captain Tsubasa, Lagrange Point,
 Ganbare Goemon, Double Dribble, Kings Quest V, Mission Impossible.
+
+## 27. Non-Linear APU Mixing Is Mandatory (Proven 2026-04-15)
+
+The NES DAC uses impedance-based non-linear mixing. Linear mixing
+(additive) is incorrect and makes simultaneous channels too loud.
+
+**Two separate output pins with different transfer functions:**
+- Pulse pin: `95.88 / ((8128.0 / (sq1 + sq2)) + 100.0)`
+- TND pin: `159.79 / ((1.0 / (tri/8227 + noise/12241 + dpcm/22638)) + 100.0)`
+
+**Key behavior:** Adding a second pulse compresses the first. Two pulses
+at vol 15 produce ~0.278, not 2× one pulse (~0.184). This is not a
+loudness cap — it's analog impedance interaction.
+
+**Where implemented:**
+- `render_wav()` via `_apu_nonlinear_mix()` — per-sample mixing
+- `ReapNES_Console.jsfx` lines 451-471 — JSFX non-linear mixer
+- `ReapNES_APU2.jsfx` lines 726-734 — already had this
+
+**Prevention:** Never use `mix += channel_a + channel_b` for NES audio.
+Always route through the non-linear formulas. If writing a new renderer,
+the formulas are in `synth_fidelity.md` Rule 7.

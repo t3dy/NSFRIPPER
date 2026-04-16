@@ -127,10 +127,16 @@ Key implications:
 - Two pulses at max volume (15+15) produce ~0.278, not 2× one pulse
 - Adding a second pulse at volume 15 reduces the first from ~0.184 to ~0.148
 - Triangle/noise/DPCM interact similarly on the TND pin
-- Linear mixing (current JSFX) makes simultaneous channels too loud
+- Linear mixing makes simultaneous channels too loud (was the Console
+  default before 2026-04-15; APU2 already had non-linear)
 
-The synth SHOULD implement these formulas for ROM-accurate output.
-At minimum, document that linear mixing diverges from hardware.
+**Implementation status (2026-04-15):**
+- `ReapNES_Console.jsfx`: non-linear mixing implemented (was linear)
+- `ReapNES_APU2.jsfx`: non-linear mixing already present
+- `render_wav()` in `nsf_to_reaper.py`: non-linear mixing implemented
+  via `_apu_nonlinear_mix()` function (was linear additive)
+- Mix slider knobs in Console scale per-channel amplitude BEFORE the
+  non-linear stage, preserving hardware interaction behavior
 
 ## 8. Driver Family Presets for Keyboard Mode (ADSR)
 

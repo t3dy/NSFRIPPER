@@ -1161,8 +1161,42 @@ def build_rpp(midi_path, song_name, duration_sec):
     return '\n'.join(rpp_lines)
 
 
+def _apu_nonlinear_mix(sq1, sq2, tri, noise, dpcm=0):
+    """NES APU non-linear mixing (from NESDev wiki / FamiTracker source).
+
+    The NES DAC uses impedance-based mixing where channels on the same
+    output pin interact non-linearly:
+      Pulse output:  95.88 / ((8128.0 / (sq1 + sq2)) + 100.0)
+      TND output:    159.79 / ((1.0 / (tri/8227 + noise/12241 + dpcm/22638)) + 100.0)
+
+    sq1/sq2 are 0-15, tri is 0-15, noise is 0-15, dpcm is 0-127.
+    Output range is approximately 0.0 to 1.0.
+    """
+    # Pulse pin: two pulse channels share one DAC
+    sq_sum = sq1 + sq2
+    if sq_sum > 0:
+        pulse_out = 95.88 / ((8128.0 / sq_sum) + 100.0)
+    else:
+        pulse_out = 0.0
+
+    # TND pin: triangle, noise, DPCM share another DAC
+    tnd_denom = 0.0
+    if tri > 0:
+        tnd_denom += tri / 8227.0
+    if noise > 0:
+        tnd_denom += noise / 12241.0
+    if dpcm > 0:
+        tnd_denom += dpcm / 22638.0
+    if tnd_denom > 0:
+        tnd_out = 159.79 / ((1.0 / tnd_denom) + 100.0)
+    else:
+        tnd_out = 0.0
+
+    return pulse_out + tnd_out
+
+
 def render_wav(channels, output_path, num_frames):
-    """Render WAV from channel data (same synth as trace renderer)."""
+    """Render WAV from channel data using hardware-accurate non-linear mixing."""
     # Clamp to actual captured frames (may be shorter due to silence detection)
     actual_frames = len(channels["pulse1"]["notes"])
     num_frames = min(num_frames, actual_frames)
@@ -1174,15 +1208,23 @@ def render_wav(channels, output_path, num_frames):
         s = frame * SPF
         e = s + SPF
 
-        for ch_name, ph_key in [("pulse1", "p1"), ("pulse2", "p2")]:
+        # Generate per-channel waveforms as amplitude values (0-15 scale)
+        p1_wave = np.zeros(SPF)
+        p2_wave = np.zeros(SPF)
+        tri_wave = np.zeros(SPF)
+        noise_wave = np.zeros(SPF)
+
+        for ch_name, ph_key, out_arr in [
+            ("pulse1", "p1", p1_wave), ("pulse2", "p2", p2_wave)
+        ]:
             fd = channels[ch_name]["notes"][frame]
             p, v, d = fd["period"], fd["vol"], fd["duty"]
             if p >= 8 and v > 0:
                 freq = 1789773 / (16 * (p + 1))
                 dv = [0.125, 0.25, 0.5, 0.75][d]
-                a = v / 15 * 0.25
                 pa = (np.arange(SPF) * freq / SAMPLE_RATE + phase[ph_key]) % 1.0
-                mix[s:e] += np.where(pa < dv, a, -a)
+                # Pulse output: v when high, 0 when low (NES pulse is unipolar 0-15)
+                out_arr[:] = np.where(pa < dv, v, 0)
                 phase[ph_key] = (phase[ph_key] + SPF * freq / SAMPLE_RATE) % 1.0
 
         fd = channels["triangle"]["notes"][frame]
@@ -1190,16 +1232,24 @@ def render_wav(channels, output_path, num_frames):
         lin = fd["linear"]
         if p >= 2 and lin > 0:
             freq = 1789773 / (32 * (p + 1))
-            a = 0.25
             pa = (np.arange(SPF) * freq / SAMPLE_RATE + phase["tri"]) % 1.0
-            mix[s:e] += np.where(pa < 0.5, a * (4 * pa - 1), a * (3 - 4 * pa))
+            # Triangle output: 0-15 ramp up, 15-0 ramp down (unipolar)
+            tri_wave[:] = np.where(pa < 0.5, pa * 30, (1.0 - pa) * 30)
             phase["tri"] = (phase["tri"] + SPF * freq / SAMPLE_RATE) % 1.0
 
         fd = channels["noise"]["notes"][frame]
         nv = fd["vol"]
         if nv > 0:
-            mix[s:e] += np.random.uniform(-nv / 15 * 0.12, nv / 15 * 0.12, SPF)
+            noise_wave[:] = np.random.uniform(0, nv, SPF)
 
+        # Apply non-linear mixing per sample
+        for i in range(SPF):
+            mix[s + i] = _apu_nonlinear_mix(
+                p1_wave[i], p2_wave[i], tri_wave[i], noise_wave[i]
+            )
+
+    # Center around zero (NES output is 0-1, audio needs AC coupling)
+    mix -= np.mean(mix)
     pk = np.max(np.abs(mix))
     if pk > 0:
         mix = mix / pk * 0.9

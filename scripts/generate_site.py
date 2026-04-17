@@ -49,23 +49,28 @@ def get_game_info(game_dir):
         except Exception:
             continue
 
-        # Count notes per channel and detect expansion tracks
+        # Count notes per channel and detect expansion/DMC tracks
         note_counts = []
         cc_counts = []
         expansion_chip = None
+        has_dmc = False
         for t in mid.tracks:
             notes = sum(1 for m in t if m.type == "note_on")
             ccs = sum(1 for m in t if m.type == "control_change")
             if notes > 0 or ccs > 0:
                 note_counts.append(notes)
                 cc_counts.append(ccs)
-            # Detect expansion from track names
+            # Detect expansion and DMC from track names
             for m in t:
                 if m.type == "track_name":
                     if "VRC6" in m.name:
                         expansion_chip = "VRC6"
                     elif "FDS" in m.name:
                         expansion_chip = "FDS"
+                    # Require more than trivial activity to count as DMC-active
+                    # (1 write during NSF init produces 1 note even for non-DMC games)
+                    if "DMC" in m.name and notes >= 3:
+                        has_dmc = True
 
         total_notes = sum(note_counts)
         total_ccs = sum(cc_counts)
@@ -94,6 +99,7 @@ def get_game_info(game_dir):
             "duration": dur_sec,
             "has_rpp": rpp_exists,
             "expansion_chip": expansion_chip,
+            "has_dmc": has_dmc,
         })
 
     return tracks
@@ -130,18 +136,35 @@ def generate_game_page(game_name, tracks, slug, census_entry=None):
         lines.append(f"**Driver family:** {fam_label} — CC11/note: {cc11}, CC12/note: {cc12}")
         lines.append("")
 
-    # Detect expansion audio from track data
+    # Detect expansion audio and DMC from track data
     expansion_chips = set(t.get("expansion_chip") for t in tracks if t.get("expansion_chip"))
+    dmc_tracks = sum(1 for t in tracks if t.get("has_dmc"))
+    has_dmc = dmc_tracks >= max(1, len(tracks) // 4)  # DMC counts if present in 25%+ of tracks
+
+    base_ch = "Pulse 1, Pulse 2, Triangle, Noise"
+    dmc_suffix = ", DMC (samples/DAC)" if has_dmc else ""
+    dmc_count = 1 if has_dmc else 0
+
     if "VRC6" in expansion_chips:
-        channel_desc = "7-channel MIDI (4 APU + 3 VRC6: Pulse 1, Pulse 2, Triangle, Noise, VRC6 Pulse 1, VRC6 Pulse 2, VRC6 Sawtooth)"
+        total = 7 + dmc_count
+        channel_desc = f"{total}-channel MIDI (4 APU + {dmc_count} DMC + 3 VRC6: {base_ch}{dmc_suffix}, VRC6 Pulse 1, VRC6 Pulse 2, VRC6 Sawtooth)"
         lines.append("**Expansion audio:** VRC6 (2 pulse + 1 sawtooth)")
+        if has_dmc:
+            lines.append("**DMC:** sample playback and/or DAC writes detected")
         lines.append("")
     elif "FDS" in expansion_chips:
-        channel_desc = "5-channel MIDI (4 APU + 1 FDS: Pulse 1, Pulse 2, Triangle, Noise, FDS Wavetable)"
+        total = 5 + dmc_count
+        channel_desc = f"{total}-channel MIDI (4 APU + {dmc_count} DMC + 1 FDS: {base_ch}{dmc_suffix}, FDS Wavetable)"
         lines.append("**Expansion audio:** FDS (1 wavetable)")
+        if has_dmc:
+            lines.append("**DMC:** sample playback and/or DAC writes detected")
+        lines.append("")
+    elif has_dmc:
+        channel_desc = f"5-channel MIDI (4 APU + 1 DMC: {base_ch}{dmc_suffix})"
+        lines.append("**DMC:** sample playback and/or DAC writes detected")
         lines.append("")
     else:
-        channel_desc = "4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise)"
+        channel_desc = f"4-channel MIDI ({base_ch})"
 
     lines.extend([
         f"Each track includes {channel_desc} with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.",

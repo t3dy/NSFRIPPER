@@ -83,7 +83,7 @@
   MASTER_FX 1
   MASTER_SEL 0
   <MASTERPLAYSPEEDENV
-    EGUID {244BF5A3-6F81-4B00-BC82-C97A5362DD82}
+    EGUID {66889570-570C-4C8B-9BE9-FAFE6DE5679B}
     ACT 0 -1
     VIS 0 1 1
     LANEHEIGHT 0 0
@@ -91,7 +91,7 @@
     DEFSHAPE 0 -1 -1
   >
   <TEMPOENVEX
-    EGUID {0B63FB45-070A-4A0F-A14E-5DDDF6B848AA}
+    EGUID {0112EA01-B8B5-4454-B96E-558D4CCE3F2E}
     ACT 1 -1
     VIS 1 0 1
     LANEHEIGHT 0 0
@@ -100,7 +100,7 @@
   >
   <PROJBAY
   >
-  <TRACK {AE01D926-D850-4202-88ED-3A59EAF5ADD5}
+  <TRACK {B2923D01-A8F3-409E-8308-6099EE28B8E1}
     NAME "NES - Pulse 1 [ch0]"
     PEAKCOL 16576606
     BEAT -1
@@ -121,7 +121,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {AE01D926-D850-4202-88ED-3A59EAF5ADD5}
+    TRACKID {B2923D01-A8F3-409E-8308-6099EE28B8E1}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -135,7 +135,7 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 0 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {6B145FC9-D316-49A2-BD75-12D31546606E}
+      FXID {B9D2052D-4F40-444F-800C-5B16E97D82A2}
       WAK 0 0
     >
     <ITEM
@@ -147,7 +147,7 @@
       FADEOUT 0 0 0 0 0 0 0
       MUTE 0 0
       SEL 0
-      IGUID {80888D15-75BE-42C9-8D8B-B957331D159D}
+      IGUID {89129B09-8139-4A40-84CA-DE099D1BE57F}
       <SOURCE MIDI
         HASDATA 1 480 QN
         CCINTERP 32
@@ -378,7 +378,7 @@
       >
     >
   >
-  <TRACK {8FE40D49-8872-4AC3-AE74-5484E5E7C6ED}
+  <TRACK {A42921D4-1B9B-44F1-BC1C-0D02819F47B4}
     NAME "NES - Pulse 2 [ch1]"
     PEAKCOL 10092441
     BEAT -1
@@ -399,7 +399,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {8FE40D49-8872-4AC3-AE74-5484E5E7C6ED}
+    TRACKID {A42921D4-1B9B-44F1-BC1C-0D02819F47B4}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -413,7 +413,7 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 1 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {BECD7FE6-EF4C-42B0-AFA8-CCFBE3A97835}
+      FXID {8E10C946-8E9F-4F4F-87B2-7D054E204B36}
       WAK 0 0
     >
     <ITEM
@@ -425,7 +425,7 @@
       FADEOUT 0 0 0 0 0 0 0
       MUTE 0 0
       SEL 0
-      IGUID {3E12AEC2-2660-40B5-98B1-7A42EDFB3B0F}
+      IGUID {9E37905C-F47C-4D82-B5B7-679BBCAC8590}
       <SOURCE MIDI
         HASDATA 1 480 QN
         CCINTERP 32
@@ -568,7 +568,7 @@
       >
     >
   >
-  <TRACK {D2CEC548-323B-4EA2-9F5D-03CDDD630A06}
+  <TRACK {7F9565C6-492D-4D8A-A5C8-6DA2ACB0107C}
     NAME "NES - Triangle [ch2]"
     PEAKCOL 16744192
     BEAT -1
@@ -589,7 +589,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {D2CEC548-323B-4EA2-9F5D-03CDDD630A06}
+    TRACKID {7F9565C6-492D-4D8A-A5C8-6DA2ACB0107C}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -603,7 +603,7 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 2 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {FF6F306A-C804-4979-93F1-8365385C303E}
+      FXID {0654C9FE-CE09-4C68-8BA9-081FF40E708F}
       WAK 0 0
     >
     <ITEM
@@ -615,7 +615,7 @@
       FADEOUT 0 0 0 0 0 0 0
       MUTE 0 0
       SEL 0
-      IGUID {7F59BDA2-3495-43D4-B0E6-81E836DD76D4}
+      IGUID {735EA715-82DE-4D91-8183-DB3F5CF04440}
       <SOURCE MIDI
         HASDATA 1 480 QN
         CCINTERP 32
@@ -648,7 +648,7 @@
       >
     >
   >
-  <TRACK {B5CD00B4-76F0-4CB6-9959-B917FE076CA7}
+  <TRACK {61A550A7-73AE-4057-A08A-C0A4044F1697}
     NAME "NES - Noise / Drums [ch3]"
     PEAKCOL 11184810
     BEAT -1
@@ -669,7 +669,7 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {B5CD00B4-76F0-4CB6-9959-B917FE076CA7}
+    TRACKID {61A550A7-73AE-4057-A08A-C0A4044F1697}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
@@ -683,7 +683,7 @@
         2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 3 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
       >
       FLOATPOS 0 0 0 0
-      FXID {B9BD0AC1-7738-47AE-A525-EE86A949F5A1}
+      FXID {B3D955FA-F6C4-4196-8118-872B99E2DF09}
       WAK 0 0
     >
     <ITEM
@@ -695,7 +695,7 @@
       FADEOUT 0 0 0 0 0 0 0
       MUTE 0 0
       SEL 0
-      IGUID {6A801143-94CE-4EC3-909E-77D84856B582}
+      IGUID {59727DBE-AD30-4C21-AF6C-345988076509}
       <SOURCE MIDI
         HASDATA 1 480 QN
         CCINTERP 32
@@ -846,6 +846,169 @@
         E 208 93 2a 48
         E 64 83 2a 00
         E 16 83 2a 00
+        E 0 ff 2f 00
+      >
+    >
+  >
+  <TRACK {4FB3A026-F619-44BB-93E4-B024A6965B4E}
+    NAME "NES - DMC / DAC [ch4]"
+    PEAKCOL 13395456
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 5088 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {4FB3A026-F619-44BB-93E4-B024A6965B4E}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 24 52 700 560
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <JS "ReapNES Studio/ReapNES_Console.jsfx" ""
+        2 15 1 10 80 10 100 2 1 15 1 5 60 10 80 1 1 0 50 0 0 15 1 0 100 0 0 0.500000 0.500000 0.400000 0.300000 0.800000 4 1 0 0 0 0 - - - - - - - - - - - - - - - - - - - - - - - - - -
+      >
+      FLOATPOS 0 0 0 0
+      FXID {64D5B85C-E322-4134-BA4E-4251FF906222}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      LENGTH 20.357698900000003
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {B35B9FE6-1FB0-4AFC-AB8C-5E11127C755E}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 560 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 128 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
+        E 272 94 4b 01
+        E 16 84 4b 00
         E 0 ff 2f 00
       >
     >

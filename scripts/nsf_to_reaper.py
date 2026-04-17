@@ -297,6 +297,19 @@ def frames_to_channel_data(frames, expansion_chips=None):
         "pulse2": {"period": 0, "vol": 0, "duty": 1, "const_vol": 0, "env_loop": 0, "env_period": 0, "notes": []},
         "triangle": {"period": 0, "linear": 0, "linear_reload": 0, "linear_control": 0, "notes": []},
         "noise": {"vol": 0, "period": 0, "mode": 0, "notes": []},
+        # DMC: tracks both DPCM sample playback and direct DAC writes
+        # $4010 = rate index + loop flag + IRQ enable
+        # $4011 = 7-bit DAC value (direct write OR current DMA output)
+        # $4012 = sample address (stored as $C000 + A*64)
+        # $4013 = sample length (stored as L*16+1 bytes)
+        # Distinguishing dpcm_trigger vs dac_write:
+        #   - dpcm_trigger: $4012 and/or $4013 written in this frame (sample setup)
+        #   - dac_write: only $4011 written, no $4012/$4013 activity
+        "dmc": {
+            "dac": 0, "rate_idx": 0, "loop": 0, "sample_addr": 0xC000,
+            "sample_len": 1, "trigger_frame": False, "dac_written_frame": False,
+            "notes": [],
+        },
     }
     # Add expansion channel state
     if "vrc6" in expansion_chips:
@@ -343,6 +356,21 @@ def frames_to_channel_data(frames, expansion_chips=None):
             elif reg == 0x400E:
                 channels["noise"]["period"] = value & 0x0F
                 channels["noise"]["mode"] = (value >> 7) & 1
+            # DMC registers (proven 2026-04-16)
+            elif reg == 0x4010:
+                # bit 7 = IRQ enable (ignored here), bit 6 = loop, bits 0-3 = rate
+                channels["dmc"]["loop"] = (value >> 6) & 1
+                channels["dmc"]["rate_idx"] = value & 0x0F
+            elif reg == 0x4011:
+                # Direct DAC value (7-bit)
+                channels["dmc"]["dac"] = value & 0x7F
+                channels["dmc"]["dac_written_frame"] = True
+            elif reg == 0x4012:
+                channels["dmc"]["sample_addr"] = 0xC000 + (value * 64)
+                channels["dmc"]["trigger_frame"] = True
+            elif reg == 0x4013:
+                channels["dmc"]["sample_len"] = (value * 16) + 1
+                channels["dmc"]["trigger_frame"] = True
             # VRC6 registers
             elif reg == 0x9000 and "vrc6_pulse1" in channels:
                 channels["vrc6_pulse1"]["duty"] = (value >> 4) & 0x07
@@ -442,6 +470,29 @@ def frames_to_channel_data(frames, expansion_chips=None):
                 "master_vol": ch["master_vol"],
                 "mod_freq": ch.get("mod_freq", 0),
             })
+
+        # DMC per-frame state (always present)
+        ch = channels["dmc"]
+        ch["notes"].append({
+            "frame": frame_idx,
+            "dac": ch["dac"],
+            "rate_idx": ch["rate_idx"],
+            "loop": ch["loop"],
+            "sample_addr": ch["sample_addr"],
+            "sample_len": ch["sample_len"],
+            # event_type distinguishes the two mechanisms:
+            #   "dpcm_trigger" - sample playback started (4012/4013 written)
+            #   "dac_write"    - standalone $4011 write (no sample trigger)
+            #   "idle"         - nothing happened this frame
+            "event_type": (
+                "dpcm_trigger" if ch["trigger_frame"]
+                else "dac_write" if ch["dac_written_frame"]
+                else "idle"
+            ),
+        })
+        # Reset transient flags for next frame
+        ch["trigger_frame"] = False
+        ch["dac_written_frame"] = False
 
     return channels
 
@@ -587,6 +638,12 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
         ("triangle", "Triangle [bass]", 2, 38),
         ("noise", "Noise [drums]", 3, 0),
     ]
+    # DMC track (only if there was any DMC activity — trigger or DAC write)
+    dmc_has_activity = "dmc" in channels and any(
+        n["event_type"] != "idle" for n in channels["dmc"]["notes"]
+    )
+    if dmc_has_activity:
+        track_configs.append(("dmc", "DMC [samples/DAC]", 4, 0))
     # Expansion track configs (only added when channels exist in data)
     if "vrc6_pulse1" in channels:
         track_configs.append(("vrc6_pulse1", "VRC6 Pulse 1", 5, 80))
@@ -777,6 +834,52 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
                         ticks = 0
                     prev_midi = midi_note
 
+            elif ch_name == "dmc":
+                # DMC encodes two mechanisms on the same channel:
+                #   dpcm_trigger: MIDI note-on at trigger frame, pitched by rate_idx
+                #   dac_write:    MIDI note-on while $4011 is being written, pitched
+                #                 by DAC value (bass/ramp synthesis)
+                event_type = frame_data["event_type"]
+                dac = frame_data["dac"]
+                rate_idx = frame_data["rate_idx"]
+
+                if event_type == "dpcm_trigger":
+                    # End any ongoing DAC note
+                    if prev_midi > 0:
+                        track.append(mido.Message('note_off', note=prev_midi,
+                                                  velocity=0, channel=midi_ch, time=ticks))
+                        ticks = 0
+                    # Emit a trigger note: note = 60 + rate_idx (middle C + offset)
+                    sample_note = 60 + rate_idx
+                    # Velocity from DAC value (scaled 0-127 -> 1-127)
+                    vel = max(1, min(127, dac))
+                    track.append(mido.Message('note_on', note=sample_note,
+                                              velocity=vel, channel=midi_ch, time=ticks))
+                    ticks = 0
+                    prev_midi = sample_note
+                elif event_type == "dac_write":
+                    # Map 7-bit DAC value to MIDI pitch range (40-100, bass-mid range)
+                    # This gives Sunsoft bass a usable pitch and Battletoads ramps
+                    # produce characteristic descending/ascending note sequences
+                    dac_note = 40 + (dac * 60 // 127)
+                    if dac_note != prev_midi:
+                        if prev_midi > 0:
+                            track.append(mido.Message('note_off', note=prev_midi,
+                                                      velocity=0, channel=midi_ch, time=ticks))
+                            ticks = 0
+                        vel = max(1, min(127, dac))
+                        track.append(mido.Message('note_on', note=dac_note,
+                                                  velocity=vel, channel=midi_ch, time=ticks))
+                        ticks = 0
+                        prev_midi = dac_note
+                else:
+                    # idle frame — if a DAC note is sustaining, close it after silence
+                    if prev_midi > 0:
+                        track.append(mido.Message('note_off', note=prev_midi,
+                                                  velocity=0, channel=midi_ch, time=ticks))
+                        ticks = 0
+                        prev_midi = 0
+
             elif ch_name == "vrc6_saw":
                 period = frame_data["period"]
                 accum_rate = frame_data["accum_rate"]
@@ -853,6 +956,7 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
             (0x4004, 0x4005, 0x4006, 0x4007),  # Pulse 2
             (0x4008, 0x4009, 0x400A, 0x400B),  # Triangle
             (0x400C, 0x400D, 0x400E, 0x400F),  # Noise
+            (0x4010, 0x4011, 0x4012, 0x4013),  # DMC (channel index 4 in SysEx type 0x02)
         ]
 
         release_ir_map = {}
@@ -904,6 +1008,9 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
                 return frame_note["period"], frame_note["linear"]
             if ch_name == "noise":
                 return frame_note["period"], frame_note["vol"]
+            if ch_name == "dmc":
+                # DMC "period" = sample_addr (identity), "level" = dac value
+                return frame_note["sample_addr"], frame_note["dac"]
             return frame_note["period"], frame_note["vol"]
 
         def classify_release(ch_name, frame_idx, period, level, prev_period, prev_level, parser_boundary, hidden_retrigger, visible_period_attack, sounding, prev_sounding):
@@ -973,21 +1080,31 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
                 enable |= 4
             if (full_state[0x400C] & 0x0F) > 0:  # Noise vol > 0
                 enable |= 8
+            # DMC enable: non-zero DAC value or recent trigger write
+            if full_state.get(0x4011, 0) > 0 or full_state.get(0x4013, 0) > 0:
+                enable |= 16  # bit 4 = DMC
 
             # Build frame-level articulation flags from note boundaries plus
             # write-aware hidden re-attacks. This is the first playback-facing
             # audible-state layer above raw register replay.
             art_flags = {}
             hidden_channels = set()
-            channel_names = ("pulse1", "pulse2", "triangle", "noise")
+            channel_names = ("pulse1", "pulse2", "triangle", "noise", "dmc")
             for ch_name, regs in zip(channel_names, ch_regs):
                 period, level = channel_period_and_level(ch_name)
                 prev_period, prev_level = period, level
                 if frame_idx > 0:
-                    prev_period, prev_level = (
-                        channels[ch_name]["notes"][frame_idx - 1]["period"],
-                        channels[ch_name]["notes"][frame_idx - 1]["linear"] if ch_name == "triangle" else channels[ch_name]["notes"][frame_idx - 1]["vol"],
-                    )
+                    prev_note = channels[ch_name]["notes"][frame_idx - 1]
+                    if ch_name == "triangle":
+                        prev_period = prev_note["period"]
+                        prev_level = prev_note["linear"]
+                    elif ch_name == "dmc":
+                        # DMC: "period" = sample_addr, "level" = dac
+                        prev_period = prev_note["sample_addr"]
+                        prev_level = prev_note["dac"]
+                    else:
+                        prev_period = prev_note["period"]
+                        prev_level = prev_note["vol"]
                 sounding = (period > 2 and level > 0) if ch_name == "triangle" else (period > 0 and level > 0)
                 prev_sounding = (prev_period > 2 and prev_level > 0) if ch_name == "triangle" else (prev_period > 0 and prev_level > 0)
                 parser_boundary = frame_idx in note_boundary_map[ch_name]

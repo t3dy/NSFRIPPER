@@ -192,10 +192,18 @@ FrameState:
   accum_rate: int     # 0-63
 ```
 
-### 2.2 DPCM/DAC ($4011) — Poorly Modeled
+### 2.2 DPCM/DAC ($4011) — IMPLEMENTED (2026-04-16)
 
-The DMC channel is the pipeline's weakest point. Current handling: captured
-in SysEx register replay but not interpreted in Frame IR or CC encoding.
+Status: DONE for NSF→MIDI extraction. The pipeline now distinguishes
+`dpcm_trigger` (sample playback via $4012/$4013) from `dac_write`
+(direct $4011 writes). Both map to MIDI track 5 on channel 4. See
+`architecture.md` Rule 28 and `MULTI_CHIP_SCHEMA.md` Section 3.
+
+Historical context (pre-2026-04-16):
+The DMC channel was the pipeline's weakest point. Register writes were
+captured via SysEx but never interpreted in Frame IR or CC encoding —
+Sunsoft bass, Battletoads algorithmic drums, and all sample-based
+percussion were silently dropped from MIDI/RPP output.
 
 #### Two distinct mechanisms conflated
 

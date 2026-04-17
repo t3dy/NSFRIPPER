@@ -36,6 +36,7 @@ COLORS = {
     "pulse2": 10092441,
     "triangle": 16744192,
     "noise": 11184810,
+    "dmc": 13395456,  # dark orange (samples/DAC)
     "vrc6_pulse1": 5592575,
     "vrc6_pulse2": 3381555,
     "vrc6_saw": 16750950,
@@ -47,6 +48,7 @@ CHANNEL_LABELS = {
     "pulse2": "NES - Pulse 2",
     "triangle": "NES - Triangle",
     "noise": "NES - Noise / Drums",
+    "dmc": "NES - DMC / DAC",
     "vrc6_pulse1": "VRC6 - Pulse 1",
     "vrc6_pulse2": "VRC6 - Pulse 2",
     "vrc6_saw": "VRC6 - Sawtooth",
@@ -55,6 +57,7 @@ CHANNEL_LABELS = {
 
 MIDI_CHANNELS = {
     "pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3,
+    "dmc": 4,
     "vrc6_pulse1": 5, "vrc6_pulse2": 6, "vrc6_saw": 7, "fds_wave": 7,
 }
 
@@ -91,6 +94,7 @@ CONSOLE_CH_MODE_IDX = 32
 # Per-channel mode values for slider33
 CHANNEL_MODES = {
     "pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3,
+    "dmc": 4,  # Full APU placeholder — synth doesn't yet render DMC specifically
     "vrc6_pulse1": 4, "vrc6_pulse2": 4, "vrc6_saw": 4, "fds_wave": 4,
 }
 
@@ -762,12 +766,15 @@ def generate_midi_project(midi_path: Path, output_path: Path,
             ss = json.load(f)
         title = f"{ss['game']['title']} - {ss['song']['title']}"
 
-    nes_ch = {"pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3,
+    nes_ch = {"pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3, "dmc": 4,
               "vrc6_pulse1": 5, "vrc6_pulse2": 6, "vrc6_saw": 7, "fds_wave": 7}
 
     if nes_native:
-        # NES-native MIDI: channels already at 0-3 (+ expansion 5-7), no remapping needed
+        # NES-native MIDI: channels already at 0-3 (+ DMC on 4, expansion 5-7)
         role_map = {"pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3}
+        # DMC: channel 4 if present (any NSF with DMC activity)
+        if 4 in stats:
+            role_map["dmc"] = 4
         # Detect expansion channels from MIDI stats
         if 5 in stats and 6 in stats:
             # VRC6: channels 5 (pulse1), 6 (pulse2), 7 (saw)
@@ -827,6 +834,9 @@ def generate_midi_project(midi_path: Path, output_path: Path,
         return
 
     roles = ["pulse1", "pulse2", "triangle", "noise"]
+    # Add DMC if present
+    if "dmc" in role_map:
+        roles.append("dmc")
     # Add expansion roles if detected in role_map
     for exp_role in ("vrc6_pulse1", "vrc6_pulse2", "vrc6_saw", "fds_wave"):
         if exp_role in role_map:

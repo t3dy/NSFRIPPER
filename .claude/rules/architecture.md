@@ -125,3 +125,41 @@ loudness cap — it's analog impedance interaction.
 **Prevention:** Never use `mix += channel_a + channel_b` for NES audio.
 Always route through the non-linear formulas. If writing a new renderer,
 the formulas are in `synth_fidelity.md` Rule 7.
+
+## 28. DMC Is Two Mechanisms, Not One (Proven 2026-04-16)
+
+The NES 2A03 DMC channel serves two distinct uses that must be
+distinguished in the extraction pipeline:
+
+**Mechanism 1: DPCM sample playback**
+- Trigger registers: $4010 (rate+loop), $4012 (sample addr/64), $4013 (len/16+1)
+- $4015 bit 4 enables
+- Hardware DMA reads sample bytes from $C000+ and delta-decodes to 7-bit DAC
+- Used for drum samples, speech clips, vocal effects
+
+**Mechanism 2: Direct DAC writes**
+- Software writes $4011 directly (7-bit value)
+- No DMA, no sample
+- Used for Sunsoft DPCM bass (Batman, Blaster Master, Journey to Silius,
+  Gremlins 2), Battletoads algorithmic drums, and mixer bias adjustment
+
+**Distinguishing rule** (implemented in `frames_to_channel_data`):
+- If $4012 OR $4013 was written this frame → `event_type = "dpcm_trigger"`
+- Else if $4011 was written this frame → `event_type = "dac_write"`
+- Else → `event_type = "idle"`
+
+**MIDI encoding** (MIDI channel 4 on track 5 "DMC [samples/DAC]"):
+- dpcm_trigger: note_on at note 60 + rate_idx, velocity = DAC value
+- dac_write: note_on at note 40 + (dac*60//127), re-triggered on DAC changes
+- idle: any sustaining note is closed
+
+**Impact when missing (prior state 2026-04-15):** All DPCM samples and
+DAC-synthesized sounds silently dropped from MIDI and RPP output.
+Sunsoft signature bass sound and Battletoads drums were absent.
+
+**Prevention:** Any NSF extraction that reads $4000-$4017 must handle
+$4010-$4013. The capture range already includes them — the bug is
+forgetting to process them in `frames_to_channel_data()`. The `channels`
+dict must include a `"dmc"` key and per-frame event_type classification.
+
+See `docs/MULTI_CHIP_SCHEMA.md` Section 3 for the full event model.

@@ -150,6 +150,14 @@ Channel count C (1-8) is configured at runtime.
 
 ## 3. DPCM Event Model
 
+**IMPLEMENTATION STATUS (2026-04-16):** NSF extraction pipeline now
+handles DMC/DAC. See `scripts/nsf_to_reaper.py` `frames_to_channel_data()`
+for the $4010-$4013 register parsing and per-frame event classification
+(dpcm_trigger / dac_write / idle). MIDI track 5 on channel 4 carries
+the DMC output. RPP generation in `scripts/generate_project.py` creates
+a matching "NES - DMC / DAC" track. See `.claude/rules/architecture.md`
+Rule 28 for the prevention/implementation summary.
+
 The DMC channel ($4010-$4013, $4011, $4015 bit 4) serves two
 fundamentally different purposes that require distinct event types.
 

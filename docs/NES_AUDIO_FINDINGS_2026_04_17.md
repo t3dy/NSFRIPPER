@@ -391,6 +391,109 @@ The other 260 games have unique driver code (at 8+ byte prefix).
   port of Sega) and Festers Quest (Sunsoft) share play-routine
   bytes. Likely a licensed/contracted sound library.
 
+## Pass 5 (2026-04-17): Noise channel conventions + Gimmick! 5B deep dive
+
+### Noise channel usage patterns — per-driver drum conventions
+
+Aggregate noise period usage across 28 tested games:
+
+| Period | Frames | % | Meaning |
+|-------:|-------:|--:|---------|
+| 3 | 92539 | 29.2% | Dominant snare/mid period |
+| 4 | 34843 | 11.0% | Snare variant |
+| 11 | 34599 | 10.9% | Low/kick |
+| 2 | 33960 | 10.7% | High-snare |
+| 10 | 26083 | 8.2% | Kick variant |
+| 1 | 22765 | 7.2% | Hi-hat/crash |
+| 13 | 18864 | 6.0% | Low-kick variant |
+| 8 | 17842 | 5.6% | Mid |
+| 6 | 15878 | 5.0% | Mid |
+| 15 | 6389 | 2.0% | Rumble |
+| 0 | 5378 | 1.7% | Highest pitch |
+| 5, 7, 9, 12, 14 | <1% each | rare |
+
+**Noise mode 1 (tonal/short LFSR) is essentially unused** — >99% of
+noise frames use mode 0 (long LFSR). Only Section Z uses tonal noise
+(25% of its noise frames). This is a near-universal invariant.
+
+**Per-driver drum palette size:**
+- **Nintendo minimal palette**: Zelda 100% period 3 (1 drum sound).
+  Metroid 100% period 2. Punch Out 98% period 2. SMB/SMB2/SMB3 use
+  3-4 periods. Nintendo uses the FEWEST distinct noise pitches.
+- **Capcom late (6C80) varied palette**: MM3/MM4/Darkwing/TaleSpin use
+  5-8 distinct periods. Larger drum kit.
+- **Konami CV/Contra canonical**: 2-3 periods (1, 3, 6 for CV; 1, 3 for
+  Contra).
+- **Sunsoft short-period-heavy**: Blaster Master, Batman, Journey,
+  Gremlins all favor periods 1-3 (66-94% of their noise is short-period).
+- **Square/Uematsu binary**: 3-D WorldRunner + JJ Tobidase 2 BOTH use
+  only periods 4 and 11 (60/40 split). Two drum sounds period.
+- **W&W unique**: 100% period 0 (highest-pitch only). Distinctive.
+
+**Pipeline implication**: The current drum note mapping
+(period<=4=hi-hat, <=8=snare, else kick) is consistent with the
+observed distribution. Period 3 → snare (most common), period 11 →
+kick. Fine-grained mapping per driver family would be more accurate
+but the coarse mapping catches the main cases.
+
+### Gimmick! 5B (Sunsoft YM2149) — first deep dive into the one 5B game
+
+Probed song 3 "Good Weather" for 1800 frames. Register write counts:
+
+| Register | Writes | Per-frame | Top values |
+|:---------|-------:|----------:|:-----------|
+| R0-R5 (6 tone regs) | 1800 each | 1.00 | Fine tones vary; coarse always $00 |
+| R7 (Mixer) | 1800 | 1.00 | $F8 exclusively (tones on, noise off) |
+| R8 (Ch A vol) | 1800 | 1.00 | vol 7, 9, 8, 10 — direct mode |
+| R9 (Ch B vol) | 1800 | 1.00 | vol 7, 3, 0, 6, 5 — direct mode |
+| R10 (Ch C vol) | 1800 | 1.00 | vol 7, 9, 0, 8, 10 — direct mode |
+| R6 (Noise period) | 173 | 0.10 | $00 always |
+| R11, R12 (Env period) | 116 | 0.06 | $00 always |
+| R13 (Env shape) | 116 | 0.06 | $99 (decay-single-then-silent) 96x |
+
+**Findings about Gimmick!'s 5B usage:**
+
+1. **100% DIRECT volume mode** — Gimmick! does NOT use the 5B
+   hardware envelope for main volume. All volume writes have bit 4 = 0.
+   This is counter-intuitive — you'd expect Sunsoft to leverage the
+   hardware envelope, but they implement SW envelope like a 2A03.
+
+2. **3-channel SW-envelope extension of standard APU** — Gimmick uses
+   5B as three EXTRA software-envelope square-wave channels. The driver
+   writes volume + tone period every frame, same as 2A03 SW drivers.
+
+3. **Noise generator unused** — Mixer $F8 has all noise-disable bits
+   set. The noise portion of 5B is never used for music.
+
+4. **Coarse tone period always $00** — Only 8-bit fine period used,
+   limiting 5B melody to frequencies ≥ 219Hz (A3). Low bass handled
+   by standard APU triangle.
+
+5. **Envelope shape $99 for percussion effects only** — Shape $99 =
+   decay-single-then-silent, used 96 times across 1800 frames (5%).
+   Likely for short percussive accents, NOT main melody.
+
+6. **APU side: sweep register written every frame** — Gimmick's 2A03
+   side writes $4001/$4005 every single frame (27000/27000) but never
+   enables sweep. Likely to keep the sweep divider reset for timing
+   purposes, not for musical pitch modulation.
+
+7. **NO DPCM usage** — 5B channels replace what DPCM would be in
+   other Sunsoft games. Gimmick! has zero DPCM triggers.
+
+**Conclusion**: Gimmick!'s legendary sound comes from having 5
+software-enveloped square-wave channels (pulse1 + pulse2 + 5B A/B/C)
+plus a triangle bass. The 5B is used in its SIMPLEST mode — like a
+plain YM2149 with no hardware-envelope tricks. The richness comes
+from channel count and dense per-frame envelope writing, not from
+exotic 5B features.
+
+**Pipeline implication**: Implementing 5B support for Gimmick! only
+requires: reading R0/R1 (fine+coarse) → period, R8/R9/R10 → volume
+(strip bit 4), R7 → ignored (always mixer=$F8). The envelope-shape
+bursts are a small extra. This is ~30 lines of code in
+`frames_to_channel_data()`, similar complexity to VRC6.
+
 ## Tooling added this session
 
 - `scripts/register_analysis.py` — parses MIDI SysEx streams to extract
@@ -406,4 +509,8 @@ The other 260 games have unique driver code (at 8+ byte prefix).
 - `scripts/auto_driver_clusters.py` — scans all 298 NSFs, groups games
   by matching init/play-routine prefix bytes, identifies code-identity
   clusters automatically without hypotheses
+- `scripts/probe_noise_patterns.py` — per-game noise period/mode
+  distribution and aggregate statistics across drivers
+- `scripts/probe_gimmick_5b.py` — 5B (YM2149) register protocol decoder
+  for Gimmick!, reveals driver's actual 5B usage mode
 - `data/register_analysis.json` — full 321-game analysis output

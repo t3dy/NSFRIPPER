@@ -198,6 +198,71 @@ Based on signature matches, the 298-game corpus breaks into at least
 5. **VRC7 game parse** — take Lagrange Point's captured $9010/$9030
    writes, decode the YM2413 instrument patches, see what's there.
 
+## Correction (2026-04-17 pass 2): "HW envelope dominant" count was inflated
+
+The original finding of "26 games HW envelope dominant" was based on
+`const_vol bit 4 of $4000 cleared >80% of frames`. That criterion
+treats $4000 = $00 (never-initialized default) as "HW envelope" when
+it's really just "silent / unused channel".
+
+**Section Z** and **Destiny of an Emperor**: 100% of pulse1 frames
+have $4000 = $00 literal. The driver never writes pulse1's control
+register at all. Pulse1 is silent. The 100% phase_reset rate on
+pulse1 is $4003 writes to an uninitialized channel — the driver
+sets period but never volume. Likely pulse1 is reserved or these
+games use only pulse2/triangle/noise for music.
+
+**Corrected HW envelope finding**: Of 26 "HW envelope dominant" games,
+the genuine HW-envelope users (where pulse1 has non-zero volume/period
+but const_vol=0 AND active envelope) are a smaller subset. Candidates
+confirmed by non-zero env_period distribution:
+
+| Game | env_period pattern |
+|------|-------------------|
+| Commando | 100% period=15 (slowest decay, "legato" HW envelope) |
+| Ghosts'n'Goblins | 69% period=15, 30% period=8 |
+| Super Arabian | 95% period=10 (fixed medium-slow) |
+| Smash T.V. | 100% period=1 (fastest/percussive) |
+| Chinou Game Series 1 | 50% period=15, mixed |
+| Ikki | 46% period=15, 44% period=7 |
+| Maerchen Veil | 36% period=12, 36% period=14 |
+| Defender of the Crown | 50% period=9, 39% period=11 |
+| Apple Town Monogatari | 50% period=3, 25% period=8 |
+
+**New rule: channel active classifier.** A channel is "active" when
+period > 8 (pulse) or linear > 0 (triangle) or vol > 0, AND $4000
+is non-zero. Silent-default channels don't count as "HW envelope
+users". Future driver-family analysis should include this filter.
+
+## Driver cluster validation via byte matching (pass 2)
+
+Compared init-routine hex bytes across the 5 hypothesized clusters.
+
+| Cluster | Byte identity | Verdict |
+|---------|--------------|---------|
+| Capcom late | 7 games, 59/64 bytes identical (94%) | **Confirmed same driver code** |
+| Capcom early | 0 bytes common across 8 games | Multiple sub-drivers, not one family |
+| Nintendo R&D | 0 bytes common across 6 games | Every game has distinct driver code |
+| Sunsoft | 0 bytes common across 5 games | Journey/Gremlins share prefix, others differ |
+| Konami | 0 bytes common across 5 games | Hyper Sports/Road Fighter identical, others differ |
+
+**Behavioral clustering ≠ code clustering.** Register behavior
+converges because composers/sound designers follow conventions even
+when the code differs. Only Capcom's late 6C80 driver has true code
+identity across multiple games.
+
+Confirmed sub-clusters with byte match:
+- **Capcom late/6C80** (7 games): MM3, MM4, Darkwing Duck, TaleSpin,
+  Little Mermaid, Mighty Final Fight, Tenchi wo Kurau II
+- **Capcom early variant A** (Mega Man 1): `4c70beea4c2a91c9fdd0034c2e91c9fe`
+- **Capcom early variant B** (Bionic Commando, Gun.Smoke): `4cXXbfea4c2X81c9fdd0034c2X81c9fe`
+- **Konami arcade-port** (Hyper Sports + Road Fighter): identical first 16 bytes
+- **Sunsoft late** (Journey to Silius + Gremlins 2): near-identical
+
+**Nintendo has NO single driver.** SMB, SMB2, SMB3, Zelda, Zelda II,
+Punch Out all have distinct init code. The env_loop modulation
+convention we found is shared BY CONVENTION, not by code identity.
+
 ## Tooling added this session
 
 - `scripts/register_analysis.py` — parses MIDI SysEx streams to extract
@@ -205,4 +270,7 @@ Based on signature matches, the 298-game corpus breaks into at least
   DMC rates, duty distribution, volume reset patterns)
 - `scripts/probe_driver_signature.py` — reads NSF headers and extracts
   32-byte init signatures, clusters games by matching bytes
+- `scripts/probe_driver_clusters.py` — verifies behavioral clusters by
+  computing longest common byte prefix + byte-position agreement rate
+  across all games in a hypothesized cluster
 - `data/register_analysis.json` — full 321-game analysis output

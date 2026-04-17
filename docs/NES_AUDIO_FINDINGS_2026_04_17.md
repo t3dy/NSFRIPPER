@@ -316,6 +316,81 @@ This is deferred work — VRC7 is 3 games out of 321 (<1% coverage).
 Full implementation needs: YM2413 register decoding, FM patch schema,
 FM-to-MIDI mapping (doesn't fit CC11/CC12 paradigm).
 
+## Pass 4 (2026-04-17): Automatic cluster discovery across full library
+
+Ran `scripts/auto_driver_clusters.py` on all 298 NSFs. Found clusters
+automatically — no hypotheses. Confirmed code-identity driver families:
+
+### Init-routine clusters (16-byte prefix, strict identity)
+
+| # | Prefix (hex) | Games | Driver |
+|---|--------------|------:|--------|
+| 1 | `4cfe80a90085c2a00806c226c1900d18` | 7 | **Capcom late / 6C80**: MM3, MM4, Darkwing Duck, TaleSpin, Little Mermaid, Mighty Final Fight, Tenchi II |
+| 2 | `c9fcd0034c2981c9fdd0034c2d81c9fe` | 2 | **Capcom 1943-era** (Perorins Tonomura): 1943 Battle of Midway, Destiny of an Emperor |
+| 3 | `48a9c08d174068aabdc0dc85e8bdd0dc` | 2 | **Square early (Uematsu)**: 3-D WorldRunner, JJ Tobidase 2 |
+| 4 | `48a9808d174068aabdc0c0481012a940` | 2 | **Chinou Series** (FDS, puzzle/adventure): Chinou 1, Chinou 2 |
+| 5 | `48a91f8d1540a9008d00408d01408d02` | 2 | **Kyouhei Sada**: Dungeon Magic US + JP (regional duplicates) |
+| 6 | `aaa9808d1740bdf6bd38e901207c8160` | 2 | **Konami Goonies**: The Goonies II + Goonies_II_The (duplicates) |
+| 7 | `48a91f8d1540a9008d00058d01058d02` | 2 | **Konami early arcade-port**: Hyper Sports, Road Fighter |
+| 8 | `4c70beea4c2a91c9fdd0034c2e91c9fe` | 2 | **Capcom MM1 era (C. Manami + Yukichan's Papa)**: Mega Man, Mega_Man_1 |
+
+### Play-routine clusters add 6 more driver families
+
+| Prefix | Games | Driver |
+|--------|------:|--------|
+| `4c6c804cfe80a90085c2a00806c226c1` | 7 | Capcom late / 6C80 (same 7, confirmed by play routine) |
+| `4c3a804cc980a90085c2a00806c226c1` | 2 | **Chip n Dale Rescue Rangers + Mizushima Shinji** (variant of 6C80) |
+| `a5902901f00320c880a5902904f00320` | 2 | **After Burner + Festers Quest** (shared 3rd-party arcade port driver?) |
+| `a540f00320af80a541f00320af80a542` | 2 | **Sunsoft sports (Naoki Kodaka)**: Dodge Danpei 1+2 |
+| `4c5a874c27804c0980ad154029e08d15` | 2 | **Nantettatte Baseball** (Sunsoft sports, Kodaka+Morota): NB + NB 91 |
+| `4c3d82c9fcd0034c2881c9fdd0034c2c` | 2 | **Capcom horror/adventure (Jun.A)**: Marusa no Onna + Sweet Home |
+
+### 8-byte-prefix clusters reveal variant families
+
+| Prefix | Games | Family |
+|--------|------:|--------|
+| `4c6c804cfe80a900` | 7 | Capcom late (same cluster at 8-byte) |
+| `a210a00086f484f5` | 3 | **Konami early arcade-port expanded**: Circus Charlie + Road Fighter + Yie Ar Kung Fu |
+| `4c3d82c9fcd0034c` | 3 | **Capcom Jun.A expanded**: Marusa no Onna + Pro Yakyuu Satsujin Jiken + Sweet Home |
+
+### Total map of confirmed code-identity driver families
+
+Combining init and play clusters + variant matches:
+
+1. **Capcom late/6C80** (7 games) — largest cluster
+2. **Capcom MM1 era** (2) — C. Manami + Yukichan's Papa composers
+3. **Capcom 1943-era** (2) — Perorins Tonomura composer
+4. **Capcom Jun.A horror/adventure** (3) — Marusa no Onna + Sweet Home + Pro Yakyuu Satsujin Jiken
+5. **Capcom variant of 6C80** (2) — Chip n Dale + Mizushima Shinji
+6. **Konami early arcade-port** (3+) — Circus Charlie, Road Fighter, Yie Ar Kung Fu; Hyper Sports also shares
+7. **Konami Goonies** (2) — same game, duplicate entry
+8. **Sunsoft late** (Journey to Silius + Gremlins 2) via near-match
+9. **Sunsoft Dodge Danpei** (2) — Naoki Kodaka sports games
+10. **Sunsoft Nantettatte Baseball** (2) — Kodaka + Morota
+11. **Square/Uematsu early** (2) — 3-D WorldRunner + JJ Tobidase 2
+12. **Kyouhei Sada (Dungeon Magic)** (2) — US + JP regional
+13. **Chinou Series** (2) — FDS puzzle games
+14. **After Burner / Festers Quest shared** (2) — cross-publisher driver sharing
+
+Total: **14 identified code-identity driver families covering ~38 games**.
+The other 260 games have unique driver code (at 8+ byte prefix).
+
+### Observations
+
+- **Capcom has at least 5 distinct sound drivers** across its library:
+  early MM1, MM2 era, 1943-era, 6C80 (late), Jun.A horror/adventure.
+- **Sunsoft has at least 3 distinct drivers**: Blaster Master's own
+  (unique), Journey/Gremlins (late), and two sports variants (Dodge
+  Danpei, Nantettatte Baseball).
+- **Konami has at least 3 drivers**: early arcade-port (Circus Charlie
+  family), Goonies' own, and later CV/Contra/Gradius each with unique
+  code.
+- **Nintendo R&D has NO shared driver** across first-party games.
+  Each title has its own code.
+- **Cross-publisher driver sharing** exists: After Burner (Tengen
+  port of Sega) and Festers Quest (Sunsoft) share play-routine
+  bytes. Likely a licensed/contracted sound library.
+
 ## Tooling added this session
 
 - `scripts/register_analysis.py` — parses MIDI SysEx streams to extract
@@ -328,4 +403,7 @@ FM-to-MIDI mapping (doesn't fit CC11/CC12 paradigm).
   across all games in a hypothesized cluster
 - `scripts/probe_dmc_inventory.py` — extracts unique DPCM samples per
   game by parsing (sample_addr, sample_len) pairs from trigger events
+- `scripts/auto_driver_clusters.py` — scans all 298 NSFs, groups games
+  by matching init/play-routine prefix bytes, identifies code-identity
+  clusters automatically without hypotheses
 - `data/register_analysis.json` — full 321-game analysis output

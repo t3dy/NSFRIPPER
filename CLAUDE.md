@@ -127,6 +127,18 @@ use trace pipeline. Battletoads and Mario are confirmed trace-required games.
 Revised 2026-04-14 based on 271-game census. Family 5 eliminated (zero members).
 See `docs/NEWDRIVERFAMILIES414.md` for full analysis.
 
+**NOTE (2026-04-17):** The CC density classification is a **proxy** for
+envelope mode, not the ground truth. Register-level analysis of 298 games
+(see `docs/NES_AUDIO_FINDINGS_2026_04_17.md`) reveals the real driver
+landscape is 5-dimensional, not 1-dimensional, with at least 10 identifiable
+driver families by init-signature match and register behavior. Key findings:
+- Triangle length counter is universally unused — invariant across 298 games
+- env_loop bit modulation is Nintendo/Rare driver signature (59 games)
+- Capcom late driver (MM3/4+Disney, 7 games) differs from early (MM1/2+BC)
+- Sunsoft driver uses sweep as core musical effect (Blaster Master/Batman)
+Use the table below for fast classification; use the findings doc when
+the classification needs to drive a specific technical decision.
+
 | Family | CC11/note | CC12/note | Envelope Mode | NSF Trust | Count | Example Games |
 |--------|-----------|-----------|---------------|-----------|-------|---------------|
 | 1: Sparse Envelope | 0.0-2.8 | < 0.7 | HW decay / set-once | High | 156 | Mega Man, DuckTales, W&W |

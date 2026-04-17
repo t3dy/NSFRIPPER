@@ -564,6 +564,109 @@ effects include resetting the frame counter and inhibiting IRQ.
 These are CONVENTIONS — not shared code. Nintendo's sound programmers
 follow the same internal style guide across different codebases.
 
+## Pass 7 (2026-04-17): Note durations + Tecmo cluster + Uematsu evolution
+
+### Per-driver note duration distributions
+
+Median note duration on pulse 1, sampled across 5 songs per game:
+
+| Family / Game | Median (frames) | Character |
+|---------------|----------------:|-----------|
+| **Capcom early (MM2, Bionic Commando)** | **1** | **95% staccato — fires notes every frame** |
+| Square/Uematsu (early) | 5 | 32% staccato, 35% short — bouncy |
+| Rare | 8 | Short-dominant (43%) — rhythmic |
+| Nintendo R&D | 10 | Balanced distribution |
+| Tecmo | 10 | Eighth-note heavy (59%) |
+| Taito | 10 | Short+eighth mix |
+| Capcom late 6C80 | 11 | Eighth-note dominant (50%) |
+| Sunsoft | 12 | Eighth-note (52%) |
+| Konami CV/Contra | 12 | Balanced with 18% staccato (CV) |
+| Metroid (Nintendo outlier) | 42 | Longest notes — atmospheric drones |
+
+**Key insights:**
+
+- **Capcom early** (MM2, Bionic Commando): 95% staccato with median duration
+  of 1 FRAME. These drivers write a new note literally every 60Hz tick —
+  extreme phase-reset behavior. The 42-60% phase-reset rate finding from
+  pass 1 matches this perfectly.
+
+- **Ghosts'n'Goblins** breaks the Capcom early cluster entirely — median 12
+  frames, 57% eighth notes. Uses yet another Capcom driver (not MM1 era, not
+  MM2 era, not 6C80). Confirms Capcom has at least 5 distinct drivers.
+
+- **Uematsu evolution** across his NES catalog:
+  - 3-D WorldRunner + JJ Tobidase 2 (early): 44-52% staccato, median 1-5
+  - Final Fantasy 1: 0% staccato, 66% eighth-note
+  - Final Fantasy 2: 61% short, 30% eighth
+  - Final Fantasy 3: 29% staccato, 46% eighth
+
+  Uematsu's rhythmic style evolved from staccato (early Square) to sustained
+  (FF1) then varied through FF2/FF3. His driver may be the same but his
+  WRITING CHANGED dramatically.
+
+- **Kirby's Adventure** (46% staccato) is a Nintendo R&D outlier. Most
+  Nintendo titles have 0-10% staccato, but Kirby is highly rhythmic.
+
+- **Metroid** at median 42 frames is the longest-note game in the library.
+  Hirokazu Tanaka's atmospheric style.
+
+- **Battletoads** median 7 frames matches its famously dense drum/bass
+  style — short, rhythmic notes.
+
+- **R.C. Pro-Am**: 90% eighth notes — very regular rhythm (fitting for a
+  racing game with repetitive loops).
+
+- **Captain Tsubasa II** at median 35 frames is sustained/legato but
+  has only 250 notes sampled — may be bass-heavy.
+
+### Tecmo driver cluster discovered
+
+Checking init/play routines for Tecmo titles found a cluster:
+
+- **Ninja Gaiden, Tecmo Baseball, Mighty Bomb Jack, Kyattou Ninden
+  Teyandee** — their init addresses point into bankswitched memory
+  (init offset out of ROM range in our direct read). They share
+  play-routine byte prefixes.
+
+- **Solomon's Key** uses a DIFFERENT Tecmo driver (early, non-bankswitched).
+
+- **Tecmo Bowl / Super Bowl** use yet another different driver.
+- **Tecmo World Cup Soccer** uses yet another one.
+
+Tecmo has at least 4 distinct sound drivers across its catalog.
+Mighty Bomb Jack sharing with Ninja Gaiden is interesting because
+the composer style matches (Keiji Yamagishi on NG, same era).
+
+### Final Fantasy sub-driver discovery
+
+FF1, FF2, FF3 all have DIFFERENT init routines:
+- FF1: `1869014c07b0ffffffffffff1eff6e65`
+- FF2: `0aaabd0d9e85c8bd0e9e85c9a000a200`
+- FF3: `a8aabd89ffaa8efa5fe88efb5f98aabd`
+
+Three Uematsu games, three different drivers. Square's engine
+evolved across each FF release. Not a single "Square driver" —
+separate codebases per title.
+
+### Standard init preamble (not a cluster!)
+
+The byte sequence `48a91f8d1540a900` appears at the start of 4+
+games (Dungeon Magic, Hyper Sports, Road Fighter, Don Doko Don 2).
+This is the **standard APU init preamble**:
+- `48` PHA (save A)
+- `a9 1f` LDA #$1F
+- `8d 15 40` STA $4015 (enable all 5 APU channels)
+- `a9 00` LDA #$00
+
+This is BOILERPLATE. Any game starting with `48a91f8d1540` is just
+doing standard APU channel enable — NOT evidence of shared driver.
+Real driver identity requires matching 16+ bytes past the preamble.
+
+**Pipeline lesson**: When clustering drivers by init prefix, strip
+the common boilerplate or require longer matches. The 8-byte-prefix
+clusters from pass 4 may include false-positives from games just
+sharing this preamble.
+
 ## Tooling added this session
 
 - `scripts/register_analysis.py` — parses MIDI SysEx streams to extract
@@ -585,4 +688,7 @@ follow the same internal style guide across different codebases.
   for Gimmick!, reveals driver's actual 5B usage mode
 - `scripts/probe_envelope_shapes.py` — captures 15-frame post-attack
   volume curves to reveal per-driver envelope fingerprints
+- `scripts/probe_note_durations.py` — measures per-driver note duration
+  distributions (staccato / short / eighth / quarter / half buckets)
+  using phase_reset + volume=0 silence to define note boundaries
 - `data/register_analysis.json` — full 321-game analysis output

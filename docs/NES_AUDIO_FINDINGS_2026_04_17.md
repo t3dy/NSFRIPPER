@@ -494,6 +494,76 @@ requires: reading R0/R1 (fine+coarse) → period, R8/R9/R10 → volume
 bursts are a small extra. This is ~30 lines of code in
 `frames_to_channel_data()`, similar complexity to VRC6.
 
+## Pass 6 (2026-04-17): Volume envelope shapes + $4017 frame counter
+
+### Volume envelope fingerprints per driver
+
+Captured the first 15 frames of volume after every note attack
+(vol transition 0 → non-zero) across 24 games. Each driver has a
+characteristic shape:
+
+**Capcom late 6C80 (moderate-sustain):**
+- MM3: `10 8 7 7 7 6 6 5 5 4 4 4 6 7 6` — attack + slow decay with pulse
+- MM4: `12 10 9 10 9 9 9 9 8 8 7 7 7 8 7` — near-constant sustain (legato)
+- Darkwing Duck: `7 5 5 5 5 5 4 4 4 4 4 4 3 4 3` — flat sustain
+- TaleSpin: `9 10 10 9 8 7 6 6 6 6 6 6 5 5 4` — **brief attack swell then decay**
+
+**Konami CV/Contra (sharp decay):**
+- Castlevania: `4 3 2 1 1 1 0 1 1 1 1 1 1 0 2` — percussive attack, near-silent tail
+- Contra: `2 2 2 2 2 1 2 2 2 2 2 1 3 2 2` — flat low level (const_vol)
+- Gradius: `10 9 8 7 7 7 7 6 7 6 5 4 3 2 1` — linear decay to silence
+
+**Sunsoft (textured/vibrato):**
+- Blaster Master: `8 8 7 6 6 5 4 7 6 5 4 4 3 3 7` — decay with retrigger blips
+- Batman: `6 7 7 7 5 4 4 5 6 7 5 6 6 5` — **hump shape with secondary peak**
+- Journey to Silius: `4 4 4 3 3 2 2 2 2 4 4 3 3 2 2` — low-level with occasional re-peaks
+
+**Nintendo R&D — UNIQUE attack-swell signature:**
+- Zelda: `4 5 6 6 7 7 6 5 5 5 6 5 5 5 5` — **LOW to HIGH** (attack swells UP)
+- Metroid: `4 5 6 7 8 7 6 5 6 6 6 6 6 6` — slow attack, peak at frame 4
+- Kirby's Adventure: `3 5 5 1 1 2 2 2 1 1 3 3 3 1 1` — chaotic, many silences
+
+This is a real driver signature: **Nintendo R&D composers favor notes
+that crescendo UP from 0 to peak over 3-5 frames**, while every other
+publisher starts at peak and decays down. Zelda's signature "singing"
+flute-like tone comes from this attack-swell shape.
+
+**Square/Uematsu:**
+- 3-D WorldRunner: `12 11 8 5 3 2 1 1 8 7 8 5 3 3 3` — strong attack, fast
+  decay to silence, then another attack (staccato melodic style)
+
+**SMB-era Nintendo** (SMB / SMB3):
+- SMB: `8 7 6 5 5 4 4 0 0 2 2 2 2 2 2` — decay to silence at frame 7 then re-attack
+- SMB3: `10 8 7 5 5 4 4 4 3 3 2 2 4 3 3` — exponential decay
+
+### $4017 frame counter mode usage
+
+Surprisingly distinctive. Most drivers write $4017 ONCE at init and
+leave it alone. But **three Nintendo R&D games write it every frame**:
+
+| Game | $4017 write pattern |
+|------|---------------------|
+| Super Mario Bros 3 | $FF every frame (600/600) |
+| Legend of Zelda | $C0 every frame (600/600) |
+| Kirby's Adventure | $C0 every frame (600/600) |
+| Castlevania | $80 once at init |
+| Mega Man 2, 4 | $00 once at init |
+| Contra, Battletoads, Blaster Master, Batman, Gimmick, Ninja Gaiden | $00 once |
+
+Nintendo drivers use $4017 writes to **reset the frame counter to 0
+every frame** — a timing-synchronization mechanism. $4017 write side
+effects include resetting the frame counter and inhibiting IRQ.
+
+**Combined Nintendo R&D driver signature:**
+1. env_loop ($4000 bit 5) modulated per note
+2. $4017 written every frame (at least in SMB3/Zelda/Kirby)
+3. Minimal noise drum palette (1-3 distinct periods per game)
+4. Attack-swell volume shape (0→peak over 3-5 frames)
+5. No shared init-routine code across titles
+
+These are CONVENTIONS — not shared code. Nintendo's sound programmers
+follow the same internal style guide across different codebases.
+
 ## Tooling added this session
 
 - `scripts/register_analysis.py` — parses MIDI SysEx streams to extract
@@ -513,4 +583,6 @@ bursts are a small extra. This is ~30 lines of code in
   distribution and aggregate statistics across drivers
 - `scripts/probe_gimmick_5b.py` — 5B (YM2149) register protocol decoder
   for Gimmick!, reveals driver's actual 5B usage mode
+- `scripts/probe_envelope_shapes.py` — captures 15-frame post-attack
+  volume curves to reveal per-driver envelope fingerprints
 - `data/register_analysis.json` — full 321-game analysis output

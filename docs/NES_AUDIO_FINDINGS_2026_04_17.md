@@ -263,6 +263,59 @@ Confirmed sub-clusters with byte match:
 Punch Out all have distinct init code. The env_loop modulation
 convention we found is shared BY CONVENTION, not by code identity.
 
+## Pass 3 (2026-04-17): DMC sample inventory + VRC7 gap discovered
+
+### DMC sample usage patterns per game
+
+Counting distinct (sample_addr, sample_len) pairs per game reveals
+how drivers use DPCM:
+
+| Game | Unique samples | Triggers | Rates used | Strategy |
+|------|---------------:|---------:|-----------|----------|
+| Gremlins 2 (Sunsoft) | 8 | 1584 | 0,7,8,9,10,12,13,14,15 | Large drum kit, many rates |
+| Super Mario Bros 3 | 9 | 2535 | 0,14,15 | 9 samples, 3 rates — distinct drums |
+| Journey to Silius (Sunsoft) | 6 | 1952 | 7-15 (all high) | 6 drums pitched via rate |
+| Batman (Sunsoft) | 4 | 2533 | 0,12,14,15 | 4 core samples, pitched |
+| Ninja Gaiden | 3 | 2872 | 0,15 | Heavy reuse of 3 samples |
+| Ninja Gaiden II | 3 | 1570 | 0,15 | Same strategy as NG1 |
+| Contra (Konami) | 3 | 2262 | 0,15 | Standard Konami drum kit |
+| Kirby's Adventure | 3 | 941 | 0,15 | Nintendo minimal sample set |
+| Blaster Master (Sunsoft) | **1** | 5 | 0 | **No DPCM samples — uses DAC writes** |
+| Battletoads (Rare) | 1 | 10 | 0 | **Algorithmic DAC-only — confirmed** |
+| Castlevania (Konami) | 1 | 5 | 0 | Init-only, uses noise for drums |
+| Metroid, MM2/3/4, Zelda, DT2, W&W | 1 | 3-10 | 0 | Init-only, no DPCM use |
+
+**Key insights:**
+- **Sunsoft uses the MOST diverse rate set** (Gremlins 2: 9 different rates).
+  They pitch-shift samples to cover percussion AND bass melodies.
+- **Blaster Master uses ZERO DPCM samples** — only 5 init triggers. The
+  signature Sunsoft bass is DAC writes ($4011), confirming Rule 28.
+- **Battletoads confirmed algorithmic-only** — 1 sample × 10 triggers =
+  just init. All drums come from DAC writes.
+- **Capcom late driver (MM3/MM4)** uses DPCM minimally (1 sample × 5
+  triggers). Percussion in late Capcom games comes from noise channel.
+- **Nintendo SMB3** has 9 distinct samples — the most sample-diverse
+  Nintendo title in the library.
+
+### VRC7 pipeline gap (2026-04-17)
+
+Lagrange Point NSF has expansion byte 0x02 (VRC7 set). Emulator captures
+$9010/$9030 register writes correctly (the capture_ranges include these).
+But the extracted MIDI has **zero type-0x04 expansion SysEx messages**
+for VRC7 channels. Pipeline gap:
+
+- `frames_to_channel_data()` has no VRC7 channel handling
+- `build_midi()` expansion SysEx emission only covers VRC6 + FDS
+- No VRC7 MIDI track in output
+
+Impact: 3 VRC7 games (Lagrange Point, Tiny Toon Adventures 2 Montana
+Lands, and one other) have their FM synthesis completely absent from
+MIDI output. Standard 2A03 channels still work.
+
+This is deferred work — VRC7 is 3 games out of 321 (<1% coverage).
+Full implementation needs: YM2413 register decoding, FM patch schema,
+FM-to-MIDI mapping (doesn't fit CC11/CC12 paradigm).
+
 ## Tooling added this session
 
 - `scripts/register_analysis.py` — parses MIDI SysEx streams to extract
@@ -273,4 +326,6 @@ convention we found is shared BY CONVENTION, not by code identity.
 - `scripts/probe_driver_clusters.py` — verifies behavioral clusters by
   computing longest common byte prefix + byte-position agreement rate
   across all games in a hypothesized cluster
+- `scripts/probe_dmc_inventory.py` — extracts unique DPCM samples per
+  game by parsing (sample_addr, sample_len) pairs from trigger events
 - `data/register_analysis.json` — full 321-game analysis output

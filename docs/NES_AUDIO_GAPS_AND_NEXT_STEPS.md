@@ -543,10 +543,11 @@ give us validated ROM-level extraction for ~80 games + NSF emulation
 for all 1577. The NSF pipeline already handles all games — ROM parsing
 adds fidelity, not coverage.
 
-### 2.7 Mixing Model Gaps
+### 2.7 Mixing Model (IMPLEMENTED 2026-04-15)
 
-Current JSFX synth uses linear mixing. Real NES uses non-linear
-impedance-based mixing.
+Real NES uses non-linear impedance-based mixing. This is now
+implemented in all three renderers (render_wav, ReapNES_Console.jsfx,
+ReapNES_APU2.jsfx). Formulas documented below for reference.
 
 #### Pulse pin (confirmed from FamiTracker source + NESDev wiki)
 
@@ -705,13 +706,19 @@ Add missing event types to Frame IR:
 - Sweep unit state changes
 - Frame counter mode ($4017)
 
-### 4.4 Non-Linear Mixing in Synth (Priority: MEDIUM)
+### 4.4 Non-Linear Mixing in Synth — IMPLEMENTED (2026-04-15)
 
-Replace linear mixing with lookup-table-based non-linear mixing:
-- 31-entry pulse table
-- 203-entry TND table
-- Per-chip volume scaling for expansion audio
-- Optional hardware filter modeling
+Status: DONE. Formulas (not lookup tables) implemented in three places:
+- `scripts/nsf_to_reaper.py` — `_apu_nonlinear_mix()` function, per-sample mixing in `render_wav()`
+- `studio/jsfx/ReapNES_Console.jsfx` lines 451-476 — replaced linear additive mixing
+- `studio/jsfx/ReapNES_APU2.jsfx` lines 726-734 — already had this before
+
+See `architecture.md` Rule 27 for the formulas and prevention guidance.
+See `synth_fidelity.md` Rule 7 for implementation status and slider interaction.
+
+Still open (lower priority):
+- Per-chip volume scaling for expansion audio (VRC6/FDS loudness relative to APU)
+- Hardware low-pass filter modeling
 
 ### 4.5 NSF Divergence Detection (Priority: LOW)
 
@@ -818,8 +825,9 @@ Mesen trace ───┘ (when available)
 
 ### Phase 4: Synth fidelity (long-term)
 
-9. **Non-linear mixing** — Replace linear mixing in JSFX with
-   lookup-table implementation. Estimate: 3 days.
+9. **Non-linear mixing** — DONE 2026-04-15. Used formulas (not
+   lookup tables) in render_wav, ReapNES_Console.jsfx, ReapNES_APU2.jsfx.
+   See architecture.md Rule 27 and synth_fidelity.md Rule 7.
 
 10. **Expansion audio in synth** — Render VRC6/FDS/5B/N163 waveforms
     in JSFX alongside APU channels. Estimate: 2 weeks per chip.

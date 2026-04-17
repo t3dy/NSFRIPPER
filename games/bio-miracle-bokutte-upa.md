@@ -9,25 +9,27 @@ title: Bio Miracle Bokutte Upa
 
 **Driver family:** Family 1: Sparse Envelope (sub-group 1B) — CC11/note: 2.1, CC12/note: 0.06
 
-Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.
+**Expansion audio:** FDS (1 wavetable)
+
+Each track includes 5-channel MIDI (4 APU + 0 DMC + 1 FDS: Pulse 1, Pulse 2, Triangle, Noise, FDS Wavetable) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.
 
 ## Track List
 
 | # | Track | Notes | CCs | Duration |
 |---|-------|-------|-----|----------|
-| 1 | Bio Miracle Bokutte UPA 01 Song 1 | 2144 | 4640 | 420s |
-| 2 | Bio Miracle Bokutte UPA 02 Song 2 | 1270 | 1816 | 420s |
-| 3 | Bio Miracle Bokutte UPA 03 Song 3 | 1395 | 2666 | 420s |
-| 4 | Bio Miracle Bokutte UPA 04 Song 4 | 1103 | 1438 | 420s |
-| 5 | Bio Miracle Bokutte UPA 05 Song 5 | 3338 | 4229 | 420s |
-| 6 | Bio Miracle Bokutte UPA 06 Song 6 | 1853 | 3742 | 420s |
-| 7 | Bio Miracle Bokutte UPA 07 Song 7 | 2786 | 6937 | 420s |
-| 8 | Bio Miracle Bokutte UPA 08 Song 8 | 900 | 1353 | 252s |
-| 9 | Bio Miracle Bokutte UPA 09 Song 9 | 69 | 154 | 17s |
-| 10 | Bio Miracle Bokutte UPA 10 Song 10 | 156 | 359 | 35s |
-| 11 | Bio Miracle Bokutte UPA 11 Song 11 | 52 | 119 | 11s |
-| 12 | Bio Miracle Bokutte UPA 12 Song 12 | 95 | 236 | 28s |
-| 13 | Bio Miracle Bokutte UPA 13 Song 13 | 1241 | 1561 | 420s |
+| 1 | Bio Miracle Bokutte UPA 01 Song 1 | 2464 | 7227 | 504s |
+| 2 | Bio Miracle Bokutte UPA 02 Song 2 | 1530 | 4325 | 504s |
+| 3 | Bio Miracle Bokutte UPA 03 Song 3 | 1680 | 5290 | 504s |
+| 4 | Bio Miracle Bokutte UPA 04 Song 4 | 1372 | 3790 | 504s |
+| 5 | Bio Miracle Bokutte UPA 05 Song 5 | 4233 | 8703 | 504s |
+| 6 | Bio Miracle Bokutte UPA 06 Song 6 | 2259 | 6297 | 504s |
+| 7 | Bio Miracle Bokutte UPA 07 Song 7 | 3654 | 11153 | 504s |
+| 8 | Bio Miracle Bokutte UPA 08 Song 8 | 1800 | 2703 | 336s |
+| 9 | Bio Miracle Bokutte UPA 09 Song 9 | 88 | 252 | 21s |
+| 10 | Bio Miracle Bokutte UPA 10 Song 10 | 180 | 577 | 42s |
+| 11 | Bio Miracle Bokutte UPA 11 Song 11 | 65 | 192 | 13s |
+| 12 | Bio Miracle Bokutte UPA 12 Song 12 | 120 | 393 | 33s |
+| 13 | Bio Miracle Bokutte UPA 13 Song 13 | 1487 | 3423 | 504s |
 | 14 | Bio Miracle Bokutte UPA 14 Song 14 | 1 | 0 | 2s |
 | 15 | Bio Miracle Bokutte UPA 15 Song 15 | 1 | 0 | 2s |
 | 16 | Bio Miracle Bokutte UPA 16 Song 16 | 2 | 8 | 2s |
@@ -72,7 +74,7 @@ Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11
 | 55 | Bio Miracle Bokutte UPA 55 Song 55 | 24 | 78 | 4s |
 | 56 | Bio Miracle Bokutte UPA 56 Song 56 | 4 | 9 | 2s |
 
-**Total: 16,760 note events, 29,677 CC automation events**
+**Total: 21,290 note events, 54,752 CC automation events**
 
 ## Downloads
 

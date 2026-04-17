@@ -188,8 +188,10 @@ See `docs/NES_AUDIO_GAPS_AND_NEXT_STEPS.md` for full analysis.
 |-----|--------|--------|
 | Bankswitch emulation | 39 games failed extraction | **FIXED** (Rule 26, session 415) |
 | Pipeline hooks not wired | 47% of games had no DB records | **FIXED** (docs/PIPELINEHOOKS.md) |
-| Expansion audio (VRC6/FDS/5B/N163/VRC7/MMC5) | ~250 games silently losing channels | Not started |
-| DPCM/DAC conflation ($4011) | Battletoads drums, Sunsoft bass misrepresented | Schema designed, not implemented |
+| Expansion audio: VRC6 + FDS | 35 games, 768 songs recovered | **DONE** (2026-04-16, architecture.md Rule 28 adjacent) |
+| Expansion audio: VRC7 + 5B | 4 games (FM synth + YM2149) | Register capture done, parsing/MIDI TBD |
+| DPCM/DAC conflation ($4011) | Battletoads drums, Sunsoft bass misrepresented | **DONE** (2026-04-16, architecture.md Rule 28) |
+| Non-linear APU mixing | All games too loud in multi-channel | **DONE** (2026-04-15, architecture.md Rule 27) |
 | Missing APU events (phase reset, $4015, sweep) | Same-pitch retriggers merge, unexplained silences | Schema designed, not implemented |
 | No cross-validation pipeline | Can't auto-compare NSF vs VGM vs NES-MDB | vgm_to_frame_state.py built, cross_validate.py not |
 | ROM parsing coverage (~80 games vs 1577) | Capcom 6C80 is highest-ROI next parser | Format doc exists (RH #274), parser not built |
@@ -201,10 +203,10 @@ See `docs/NES_AUDIO_GAPS_AND_NEXT_STEPS.md` for full analysis.
 |-------|---------|-----------|--------|
 | 1: Audit & Schema | Scan expansion flags, design multi-chip Frame IR | None | **Complete** (297 NSFs, 35 expansion) |
 | 2: Frame IR Extensions | Implement all missing event types + chip types | Layer 1 | **Complete** (38 tests, all chips) |
-| 3: Capture Pipeline | Update nsf_to_reaper.py for expansion + DPCM + phase reset | Layer 2 | **Partial** (capture done, processing TBD) |
+| 3: Capture Pipeline | Update nsf_to_reaper.py for expansion + DPCM + phase reset | Layer 2 | **Mostly done** (VRC6/FDS/DMC done 2026-04-16; phase reset, $4015, sweep still TBD; VRC7/5B still TBD) |
 | 4: Validation Infrastructure | cross_validate.py + nsf_trust_scorer.py | Layer 3 | Not started |
 | 5: ROM Parsers | Capcom 6C80 + Sunsoft (parallel with 3-4) | Layer 2 | Not started |
-| 6: Synth Fidelity | Non-linear mixing + expansion audio in JSFX | Layer 3 | Not started |
+| 6: Synth Fidelity | Non-linear mixing + expansion audio in JSFX | Layer 3 | **Partial** (non-linear mixing done 2026-04-15; expansion synth playback TBD) |
 | 7: Classification Refinement | Sub-family patterns, secondary metrics | Layer 4 | Not started |
 
 ## Key Commands

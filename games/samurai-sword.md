@@ -9,7 +9,9 @@ title: Samurai Sword
 
 **Driver family:** Family 1: Sparse Envelope (sub-group 1B) — CC11/note: 2.63, CC12/note: 0.01
 
-Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.
+**Expansion audio:** FDS (1 wavetable)
+
+Each track includes 5-channel MIDI (4 APU + 0 DMC + 1 FDS: Pulse 1, Pulse 2, Triangle, Noise, FDS Wavetable) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.
 
 ## Track List
 

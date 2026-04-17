@@ -7,7 +7,9 @@ title: Risa no Yousei Densetsu
 
 **31 tracks** extracted via NSF emulation with per-frame APU register capture.
 
-Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.
+**Expansion audio:** FDS (1 wavetable)
+
+Each track includes 5-channel MIDI (4 APU + 0 DMC + 1 FDS: Pulse 1, Pulse 2, Triangle, Noise, FDS Wavetable) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.
 
 ## Track List
 
@@ -31,7 +33,7 @@ Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11
 | 16 | 16 Song 16 | 1020 | 5062 | 419s |
 | 17 | 17 Song 17 | 937 | 5307 | 420s |
 | 18 | 18 Song 18 | 1082 | 6433 | 420s |
-| 19 | 19 Song 19 | 1492 | 3861 | 420s |
+| 19 | 19 Song 19 | 1510 | 3902 | 421s |
 | 20 | 20 Song 20 | 1055 | 3377 | 420s |
 | 21 | 21 Song 21 | 1378 | 6851 | 420s |
 | 22 | 22 Song 22 | 1250 | 4928 | 336s |
@@ -45,7 +47,7 @@ Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11
 | 30 | 30 Song 30 | 60 | 185 | 9s |
 | 31 | 31 Song 31 | 37 | 153 | 22s |
 
-**Total: 35,539 note events, 152,264 CC automation events**
+**Total: 35,557 note events, 152,305 CC automation events**
 
 ## Downloads
 

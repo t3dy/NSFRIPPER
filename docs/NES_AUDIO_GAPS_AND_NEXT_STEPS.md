@@ -352,7 +352,14 @@ there's no game code competing for CPU time.
 the game uses DPCM (NSF header expansion byte), flag as suspect.
 Cross-validate with VGM if available.
 
-### 2.4 Incomplete APU Event Coverage in Frame IR
+### 2.4 Incomplete APU Event Coverage in Frame IR — PARTIALLY IMPLEMENTED (2026-04-16)
+
+Status: phase reset, $4015 enable, and sweep state are now captured in
+the NSF extraction per-frame state. See `architecture.md` Rule 29.
+Phase reset drives MIDI retriggers for same-pitch re-attacks. $4015
+state is captured but deliberately not used for MIDI gating (volume
+is a more reliable silence signal across drivers). Sweep state is
+captured but not yet applied to effective-period calculation.
 
 Current Frame IR captures: period, volume, duty, sounding, plus recently
 added sweep/noise_mode/dac/const_vol fields. What's still missing:

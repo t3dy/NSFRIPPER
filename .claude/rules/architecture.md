@@ -163,3 +163,46 @@ forgetting to process them in `frames_to_channel_data()`. The `channels`
 dict must include a `"dmc"` key and per-frame event_type classification.
 
 See `docs/MULTI_CHIP_SCHEMA.md` Section 3 for the full event model.
+
+## 29. Phase Reset, $4015, Sweep — Three Events Previously Dropped (Proven 2026-04-16)
+
+Three APU behaviors the pipeline now captures that were previously lost:
+
+**Phase reset** ($4003, $4007, $400B writes)
+- Writing period-high for pulse1/pulse2 resets the pulse phase counter AND
+  reloads the length counter. Same-pitch retriggers (arpeggios, staccato
+  melodies) require this write to audibly re-attack.
+- Writing $400B reloads the triangle linear counter and length counter.
+- Without tracking this, same-pitch retriggers silently merge into one
+  sustained MIDI note. W&W title theme had a game-specific workaround
+  (`note_boundary_map`) that now generalizes via `phase_reset_frame`.
+
+**$4015 channel enable**
+- Bits 0-4 enable pulse1/pulse2/tri/noise/dmc length counters.
+- Clearing a bit silences the channel — but most drivers (CV, Contra,
+  Mega Man, many others) write $4015 once during init with $00 and rely
+  on volume=0 for silencing. **Do NOT use $4015 as a per-note MIDI gate**
+  — it will silence every frame on those drivers. Capture the bits in
+  per-frame state for SysEx fidelity, but let volume-based gating drive
+  MIDI note on/off.
+
+**Pulse sweep unit** ($4001, $4005)
+- Enable/period/negate/shift for pulse pitch modulation. Currently
+  captured into per-frame state but not yet applied to MIDI pitch
+  calculation. Future work: compute effective period per frame accounting
+  for sweep shifts.
+
+**Implementation rule**: Transient event flags (`phase_reset_frame`,
+`dac_written_frame`, `trigger_frame`) MUST be reset to False after each
+frame's state is recorded in the notes list. Forgetting the reset causes
+every frame after the first event to be marked as an event frame.
+
+**Prevention**: Any new frame-level event tracking follows the same
+pattern: state dict has a flag, writes set it, recording reads it, reset
+clears it. See `frames_to_channel_data()` for the canonical pattern.
+
+**Impact**: Castlevania Vampire Killer triangle went from 139 → 163
+naive notes (24 same-pitch retriggers recovered per 300 frames).
+W&W title NSF extraction now matches trace-based ground truth within
+a handful of notes — the generic phase_reset mechanism replaces the
+game-specific note_boundary_map workaround.

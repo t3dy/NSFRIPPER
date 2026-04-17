@@ -7,23 +7,25 @@ title: Exciting Billiard
 
 **9 tracks** extracted via NSF emulation with per-frame APU register capture.
 
-Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.
+**Expansion audio:** FDS (1 wavetable)
+
+Each track includes 5-channel MIDI (4 APU + 0 DMC + 1 FDS: Pulse 1, Pulse 2, Triangle, Noise, FDS Wavetable) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.
 
 ## Track List
 
 | # | Track | Notes | CCs | Duration |
 |---|-------|-------|-----|----------|
-| 1 | 01 Song 1 | 1110 | 2879 | 420s |
-| 2 | 02 Song 2 | 1031 | 2945 | 420s |
-| 3 | 03 Song 3 | 660 | 2224 | 335s |
-| 4 | 04 Song 4 | 933 | 2665 | 419s |
-| 5 | 05 Song 5 | 1110 | 2856 | 419s |
-| 6 | 06 Song 6 | 920 | 2173 | 419s |
-| 7 | 07 Song 7 | 1595 | 6173 | 420s |
-| 8 | 08 Song 8 | 949 | 2830 | 419s |
-| 9 | 09 Song 9 | 34 | 164 | 15s |
+| 1 | 01 Song 1 | 1584 | 6228 | 504s |
+| 2 | 02 Song 2 | 1413 | 5128 | 503s |
+| 3 | 03 Song 3 | 909 | 3260 | 419s |
+| 4 | 04 Song 4 | 1336 | 5280 | 503s |
+| 5 | 05 Song 5 | 1404 | 3979 | 503s |
+| 6 | 06 Song 6 | 1209 | 3663 | 504s |
+| 7 | 07 Song 7 | 2083 | 9641 | 504s |
+| 8 | 08 Song 8 | 1350 | 5083 | 503s |
+| 9 | 09 Song 9 | 47 | 271 | 17s |
 
-**Total: 8,342 note events, 24,909 CC automation events**
+**Total: 11,335 note events, 42,533 CC automation events**
 
 ## Downloads
 

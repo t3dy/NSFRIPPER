@@ -292,11 +292,40 @@ def frames_to_channel_data(frames, expansion_chips=None):
         expansion_chips: list of chip names (e.g. ["vrc6", "fds"]) or None
     """
     expansion_chips = expansion_chips or []
+    # Channel dicts include transient "event" flags that track $4015/$4003/$4007/
+    # $4001/$4005 writes. These get reset each frame after recording. They are
+    # distinct from the state fields (period/vol/duty) because they represent
+    # events ("a phase reset happened this frame") not continuous state.
     channels = {
-        "pulse1": {"period": 0, "vol": 0, "duty": 1, "const_vol": 0, "env_loop": 0, "env_period": 0, "notes": []},
-        "pulse2": {"period": 0, "vol": 0, "duty": 1, "const_vol": 0, "env_loop": 0, "env_period": 0, "notes": []},
-        "triangle": {"period": 0, "linear": 0, "linear_reload": 0, "linear_control": 0, "notes": []},
-        "noise": {"vol": 0, "period": 0, "mode": 0, "notes": []},
+        "pulse1": {
+            "period": 0, "vol": 0, "duty": 1, "const_vol": 0, "env_loop": 0, "env_period": 0,
+            # $4015-derived enable (per-channel length counter bit)
+            "enabled": 1,  # default to enabled — $4015 writes can clear this
+            # $4003 write flag = phase reset + length counter reload = hard retrigger
+            "phase_reset_frame": False,
+            # Sweep unit ($4001): enable, period (0-7), negate, shift (0-7)
+            "sweep_en": 0, "sweep_period": 0, "sweep_negate": 0, "sweep_shift": 0,
+            "notes": [],
+        },
+        "pulse2": {
+            "period": 0, "vol": 0, "duty": 1, "const_vol": 0, "env_loop": 0, "env_period": 0,
+            "enabled": 1,  # default to enabled — $4015 writes can clear this
+            "phase_reset_frame": False,
+            "sweep_en": 0, "sweep_period": 0, "sweep_negate": 0, "sweep_shift": 0,
+            "notes": [],
+        },
+        "triangle": {
+            "period": 0, "linear": 0, "linear_reload": 0, "linear_control": 0,
+            "enabled": 1,  # default to enabled — $4015 writes can clear this
+            # $400B write = triangle linear counter reload (analogous to pulse phase reset)
+            "phase_reset_frame": False,
+            "notes": [],
+        },
+        "noise": {
+            "vol": 0, "period": 0, "mode": 0,
+            "enabled": 1,  # default to enabled — $4015 writes can clear this
+            "notes": [],
+        },
         # DMC: tracks both DPCM sample playback and direct DAC writes
         # $4010 = rate index + loop flag + IRQ enable
         # $4011 = 7-bit DAC value (direct write OR current DMA output)
@@ -329,20 +358,35 @@ def frames_to_channel_data(frames, expansion_chips=None):
                 channels["pulse1"]["const_vol"] = (value >> 4) & 1
                 channels["pulse1"]["env_period"] = value & 0x0F
                 channels["pulse1"]["vol"] = value & 0x0F
+            elif reg == 0x4001:
+                # Pulse 1 sweep unit
+                channels["pulse1"]["sweep_en"] = (value >> 7) & 1
+                channels["pulse1"]["sweep_period"] = (value >> 4) & 0x07
+                channels["pulse1"]["sweep_negate"] = (value >> 3) & 1
+                channels["pulse1"]["sweep_shift"] = value & 0x07
             elif reg == 0x4002:
                 channels["pulse1"]["period"] = (channels["pulse1"]["period"] & 0x700) | value
             elif reg == 0x4003:
                 channels["pulse1"]["period"] = (channels["pulse1"]["period"] & 0xFF) | ((value & 7) << 8)
+                # $4003 write resets phase counter + reloads length counter (hard retrigger)
+                channels["pulse1"]["phase_reset_frame"] = True
             elif reg == 0x4004:
                 channels["pulse2"]["duty"] = (value >> 6) & 3
                 channels["pulse2"]["env_loop"] = (value >> 5) & 1
                 channels["pulse2"]["const_vol"] = (value >> 4) & 1
                 channels["pulse2"]["env_period"] = value & 0x0F
                 channels["pulse2"]["vol"] = value & 0x0F
+            elif reg == 0x4005:
+                # Pulse 2 sweep unit
+                channels["pulse2"]["sweep_en"] = (value >> 7) & 1
+                channels["pulse2"]["sweep_period"] = (value >> 4) & 0x07
+                channels["pulse2"]["sweep_negate"] = (value >> 3) & 1
+                channels["pulse2"]["sweep_shift"] = value & 0x07
             elif reg == 0x4006:
                 channels["pulse2"]["period"] = (channels["pulse2"]["period"] & 0x700) | value
             elif reg == 0x4007:
                 channels["pulse2"]["period"] = (channels["pulse2"]["period"] & 0xFF) | ((value & 7) << 8)
+                channels["pulse2"]["phase_reset_frame"] = True
             elif reg == 0x4008:
                 channels["triangle"]["linear_control"] = (value >> 7) & 1
                 channels["triangle"]["linear_reload"] = value & 0x7F
@@ -351,11 +395,22 @@ def frames_to_channel_data(frames, expansion_chips=None):
                 channels["triangle"]["period"] = (channels["triangle"].get("period", 0) & 0x700) | value
             elif reg == 0x400B:
                 channels["triangle"]["period"] = (channels["triangle"].get("period", 0) & 0xFF) | ((value & 7) << 8)
+                # $400B write reloads triangle length counter + linear counter (retrigger)
+                channels["triangle"]["phase_reset_frame"] = True
             elif reg == 0x400C:
                 channels["noise"]["vol"] = value & 0x0F
             elif reg == 0x400E:
                 channels["noise"]["period"] = value & 0x0F
                 channels["noise"]["mode"] = (value >> 7) & 1
+            elif reg == 0x4015:
+                # Channel enable bits: bit0=pulse1, 1=pulse2, 2=tri, 3=noise, 4=dmc
+                # Writing 0 to a bit clears the length counter and silences that channel.
+                # This overrides volume — a channel with vol=15 but bit cleared is silent.
+                channels["pulse1"]["enabled"] = value & 0x01
+                channels["pulse2"]["enabled"] = (value >> 1) & 0x01
+                channels["triangle"]["enabled"] = (value >> 2) & 0x01
+                channels["noise"]["enabled"] = (value >> 3) & 0x01
+                # DMC bit tracked via the existing trigger/dac_written flags
             # DMC registers (proven 2026-04-16)
             elif reg == 0x4010:
                 # bit 7 = IRQ enable (ignored here), bit 6 = loop, bits 0-3 = rate
@@ -422,7 +477,15 @@ def frames_to_channel_data(frames, expansion_chips=None):
                 "const_vol": ch["const_vol"],
                 "env_loop": ch["env_loop"],
                 "env_period": ch["env_period"],
+                "enabled": ch["enabled"],
+                "phase_reset": ch["phase_reset_frame"],
+                "sweep_en": ch["sweep_en"],
+                "sweep_period": ch["sweep_period"],
+                "sweep_negate": ch["sweep_negate"],
+                "sweep_shift": ch["sweep_shift"],
             })
+            # Reset transient flags for next frame
+            ch["phase_reset_frame"] = False
 
         ch = channels["triangle"]
         ch["notes"].append({
@@ -431,7 +494,10 @@ def frames_to_channel_data(frames, expansion_chips=None):
             "linear": ch["linear"],
             "linear_reload": ch["linear_reload"],
             "linear_control": ch["linear_control"],
+            "enabled": ch["enabled"],
+            "phase_reset": ch["phase_reset_frame"],
         })
+        ch["phase_reset_frame"] = False
 
         ch = channels["noise"]
         ch["notes"].append({
@@ -439,6 +505,7 @@ def frames_to_channel_data(frames, expansion_chips=None):
             "vol": ch["vol"],
             "period": ch["period"],
             "mode": ch["mode"],
+            "enabled": ch["enabled"],
         })
 
         # VRC6 per-frame state
@@ -670,12 +737,22 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
                 period = frame_data["period"]
                 vol = frame_data["vol"]
                 duty = frame_data["duty"]
+                # $4003/$4007 write = phase reset = hard retrigger even at same pitch
+                # Note: $4015 enable is captured into frame state for SysEx fidelity
+                # but deliberately NOT used to gate MIDI notes — most drivers (CV, Contra,
+                # Mega Man, etc.) write $4015 once during INIT with $00 and rely on
+                # volume=0 for silencing. Using $4015 as a per-note gate would silence
+                # every frame on those drivers. Volume-based gating matches driver intent.
+                phase_reset = frame_data.get("phase_reset", False)
                 midi_note = period_fn(period) if period > 8 and vol > 0 else 0
                 force_retrigger = (
-                    frame_idx in boundary_frames
-                    and frame_idx > 0
-                    and midi_note > 0
+                    midi_note > 0
                     and prev_midi == midi_note
+                    and frame_idx > 0
+                    and (
+                        frame_idx in boundary_frames  # existing game-specific boundaries
+                        or phase_reset                 # hardware phase reset (applies to all games)
+                    )
                 )
 
                 # CC12: duty cycle change
@@ -723,12 +800,14 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
             elif ch_name == "triangle":
                 period = frame_data["period"]
                 linear = frame_data["linear"]
+                phase_reset = frame_data.get("phase_reset", False)
+                # $4015 tracked for SysEx but not gating (see pulse branch comment)
                 midi_note = period_fn(period, is_tri=True) if period > 2 and linear > 0 else 0
                 force_retrigger = (
-                    frame_idx in boundary_frames
-                    and frame_idx > 0
-                    and midi_note > 0
+                    midi_note > 0
                     and prev_midi == midi_note
+                    and frame_idx > 0
+                    and (frame_idx in boundary_frames or phase_reset)
                 )
 
                 if force_retrigger and prev_midi > 0:
@@ -759,6 +838,7 @@ def build_midi(channels, game_title, song_name, song_num, frames=None,
                 vol = frame_data["vol"]
                 period = frame_data["period"]
                 mode = frame_data["mode"]
+                # $4015 tracked for SysEx but not gating (see pulse branch comment)
 
                 # Track drum hit state for duration capping
                 if not hasattr(frame_data, '_noise_init'):

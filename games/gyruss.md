@@ -7,21 +7,23 @@ title: Gyruss
 
 **39 tracks** extracted via NSF emulation with per-frame APU register capture.
 
-Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.
+**Expansion audio:** FDS (1 wavetable)
+
+Each track includes 5-channel MIDI (4 APU + 0 DMC + 1 FDS: Pulse 1, Pulse 2, Triangle, Noise, FDS Wavetable) with CC11 volume envelopes and CC12 duty cycle automation, plus a REAPER project with the ReapNES NES APU synthesizer plugin loaded.
 
 ## Track List
 
 | # | Track | Notes | CCs | Duration |
 |---|-------|-------|-----|----------|
-| 1 | 01 Song 1 | 105 | 1485 | 79s |
-| 2 | 02 Song 2 | 2773 | 7952 | 420s |
-| 3 | 03 Song 3 | 123 | 135 | 21s |
-| 4 | 04 Song 4 | 3060 | 8009 | 420s |
-| 5 | 05 Song 5 | 2460 | 8579 | 420s |
-| 6 | 06 Song 6 | 2801 | 7594 | 420s |
-| 7 | 07 Song 7 | 2154 | 5549 | 420s |
-| 8 | 08 Song 8 | 64 | 341 | 24s |
-| 9 | 09 Song 9 | 899 | 3124 | 327s |
+| 1 | 01 Song 1 | 132 | 2250 | 99s |
+| 2 | 02 Song 2 | 3390 | 11157 | 504s |
+| 3 | 03 Song 3 | 172 | 353 | 25s |
+| 4 | 04 Song 4 | 3754 | 11164 | 504s |
+| 5 | 05 Song 5 | 3284 | 12162 | 504s |
+| 6 | 06 Song 6 | 3609 | 10571 | 504s |
+| 7 | 07 Song 7 | 2834 | 7961 | 504s |
+| 8 | 08 Song 8 | 81 | 483 | 29s |
+| 9 | 09 Song 9 | 1111 | 4909 | 393s |
 | 10 | 10 Song 10 | 9 | 12 | 2s |
 | 11 | 11 Song 11 | 1 | 6 | 2s |
 | 12 | 12 Song 12 | 1 | 6 | 2s |
@@ -53,7 +55,7 @@ Each track includes 4-channel MIDI (Pulse 1, Pulse 2, Triangle, Noise) with CC11
 | 38 | 38 Song 38 | 11 | 15 | 6s |
 | 39 | 39 Song 39 | 4 | 10 | 2s |
 
-**Total: 14,913 note events, 43,196 CC automation events**
+**Total: 18,841 note events, 61,438 CC automation events**
 
 ## Downloads
 

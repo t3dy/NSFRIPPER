@@ -22,6 +22,56 @@ architecture.
 The primary goal is producing REAPER projects and YouTube videos for all
 games in the library. Maximize deterministic scripting; minimize LLM involvement.
 
+**2026-04-18 NEW: Stems approach is the default path for sound-accuracy.**
+See `docs/STEMS_APPROACH.md`. Instead of trying to reproduce NES APU audio
+in a live REAPER JSFX synth (multi-track linear sum cannot match hardware
+non-linear DAC), we render per-channel audio stems from the Python pipeline
+and place them as audio tracks in the REAPER project. MIDI tracks
+preserved alongside for editing, score export, and live keyboard play.
+
+**2026-04-18 afternoon: Four more pipeline fixes shipped (outputv6).**
+User listening tests on outputv5 revealed residual issues that spectral
+matching against libgme missed. All fixed; see rules 30-33 in
+architecture.md and `docs/STEMS_APPROACH.md` for detail:
+
+1. **Shared-scale stems** — was: each stem normalized to 0.9 peak
+   independently, REAPER summed to ~2.7× clipping. Now: one peak from
+   the summed stems, same factor applied to each. Preserves per-channel
+   level proportions. (`render_channel_stems.py::main`)
+2. **NES analog LP** — was: hard-edge pulse/triangle transitions produced
+   click on every note, "overdrive" buzz from naive-sampled pulse edges.
+   Now: 2-pole Butterworth LP at 14 kHz matches hardware's RC filter.
+   Peak transition diff dropped 37%. (architecture.md Rule 33)
+3. **DC blocker** — was: `mix -= mean(mix)` biased silent regions to a
+   non-zero DC offset when drum hits dominated the mean. Now: 1-pole HP
+   DC blocker at ~10 Hz. Silent regions stay at true zero.
+4. **Noise length counter** — was: noise gated only on `vol > 0` and
+   $4015 bit 3. Nintendo/Capcom drivers (SMB, SMB2, Zelda, Metroid)
+   write vol once and rely on hardware length counter to silence each
+   drum hit → continuous "wash of noise" in our output. Now: full
+   length counter simulation with $400F reload, $400C env_loop halt,
+   $4015 bit 3 clear. SMB noise active frames 276/300 → 74/300 (drum
+   bursts as intended). (architecture.md Rule 32)
+5. **M3U-aware batching** — was: batch_stems_project.py iterated all
+   NSF tracks (including SFX), produced "blank first songs" from silent
+   intro tracks. Now: reads the nsfe2m3u playlist next to the NSF and
+   renders only listed music tracks with proper song names and
+   per-track durations.
+
+```bash
+# Per-game batch (primary pipeline as of 2026-04-18 afternoon)
+python scripts/batch_stems_project.py <game.nsf> \
+    --out-dir outputv6/<Game>/         # M3U auto-detected next to NSF
+
+# Full rebuild of every outputv5 game into outputv6 with new pipeline:
+python scripts/rebuild_v6.py --seconds 60
+```
+
+Output: `outputv6/<Game>/reaper/<slug>.rpp` — multi-track with hardware-
+accurate audio stems + editable MIDI tracks + per-track durations from
+M3U. `outputv5/` preserved as the "noisy examples" archive for
+before/after comparison. See architecture.md Rule 31.
+
 ### Layer 1: Batch Production (DETERMINISTIC — no LLM)
 
 For games with NSF files, the entire pipeline is automated:
@@ -224,6 +274,15 @@ See `docs/NES_AUDIO_GAPS_AND_NEXT_STEPS.md` for full analysis.
 ## Key Commands
 
 ```bash
+# STEMS PIPELINE (primary 2026-04-18): per-game batch into outputv6/
+python scripts/batch_stems_project.py <nsf> --seconds 60 --out-dir outputv6/<Game>/
+#   --m3u PATH    explicit playlist (else auto-detect next to NSF)
+#   --no-m3u      render all NSF tracks (includes SFX / blank banks)
+#   --only N      single track
+python scripts/rebuild_v6.py --seconds 60                          # rebuild every outputv5 game
+python scripts/render_channel_stems.py <nsf> --song N --seconds 60 --out-dir STEMS/
+python scripts/generate_stems_rpp.py --midi MIDI.mid --stems-dir STEMS/ --out OUT.rpp
+
 # BATCH: extract all games with NSF files (skip-wav, early-exit, scaled timeouts)
 python scripts/batch_nsf_all.py                                    # all unprocessed games
 python scripts/batch_nsf_all.py --force                            # re-process everything

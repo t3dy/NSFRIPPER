@@ -42,6 +42,14 @@ SPF = SAMPLE_RATE // 60
 TICKS_PER_BEAT = 480
 TICKS_PER_FRAME = 16  # at our tempo mapping
 
+# NES APU length counter lookup table (indexed by top 5 bits of $4003/$4007/$400B/$400F).
+# Half-frame ticks decrement this counter; channel silences at 0.
+# Reference: nesdev.org/wiki/APU_Length_Counter
+LENGTH_TABLE = (
+    10, 254, 20,  2, 40,  4, 80,  6, 160,  8, 60, 10, 14, 12, 26, 14,
+    12,  16, 24, 18, 48, 20, 96, 22, 192, 24, 72, 26, 16, 28, 32, 30,
+)
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 JSFX_PATH = REPO_ROOT / "studio" / "jsfx" / "ReapNES_APU.jsfx"
 if str(REPO_ROOT) not in sys.path:
@@ -183,7 +191,23 @@ class NsfEmulator:
         during that play-call, including same-value rewrites. Those rewrites
         carry real hardware meaning for attack/retrigger cases such as the
         Wizards & Warriors title triangle phrase.
+
+        `song_num` MUST be 1-indexed (1 = first song).  The INIT call
+        uses `song_num - 1` to match the 0-indexed NSF convention.
+        Callers must NOT pre-subtract 1 -- see docs/NAMING_POLICY.md
+        invariant #2.
         """
+        if song_num < 1:
+            raise ValueError(
+                f"play_song(song_num={song_num}): NSF track numbers are "
+                "1-indexed.  Caller double-subtracted or passed 0.  See "
+                "docs/NAMING_POLICY.md invariant #2."
+            )
+        if song_num > self.total_songs:
+            raise ValueError(
+                f"play_song(song_num={song_num}): only {self.total_songs} "
+                "songs in this NSF."
+            )
         cpu = MPU()
         for i in range(0x10000):
             cpu.memory[i] = 0
@@ -193,16 +217,27 @@ class NsfEmulator:
 
         base_memory = cpu.memory
 
-        # Build capture ranges based on expansion flags
-        capture_ranges = [(0x4000, 0x4017)]  # Standard APU always captured
-        if self.has_vrc6:
-            capture_ranges.extend([(0x9000, 0x9002), (0xA000, 0xA002), (0xB000, 0xB002)])
-        if self.has_vrc7:
-            capture_ranges.extend([(0x9010, 0x9010), (0x9030, 0x9030)])
-        if self.has_fds:
-            capture_ranges.append((0x4040, 0x408A))
-        if self.has_mmc5:
-            capture_ranges.append((0x5000, 0x5015))
+        # Build capture ranges.  Standard APU always captured.
+        # ALSO always capture VRC6/VRC7/FDS/MMC5 audio ranges regardless of
+        # the NSF header's expansion flag byte -- some NSF files have the
+        # flag byte cleared despite using expansion chips (e.g. Castlevania 3's
+        # Neill Corlett rip has $7B = $00 but the driver writes VRC6 $9000-$B002
+        # every frame).  The silence-counter early-exit fires after 120 quiet
+        # APU frames, which truncates VRC6-only music to 2 seconds unless we
+        # observe writes on the expansion ranges too.  N163 and 5B use
+        # game-RAM-adjacent addresses ($4800/$F800, $C000/$E000) that DO
+        # overlap with common mapper/ROM reads on some cartridges, so those
+        # remain flag-gated.
+        capture_ranges = [
+            (0x4000, 0x4017),  # Standard APU
+            (0x4040, 0x408A),  # FDS wave/volume/envelope
+            (0x5000, 0x5015),  # MMC5 audio
+            (0x9000, 0x9002),  # VRC6 pulse 1
+            (0x9010, 0x9010),  # VRC7 reg select
+            (0x9030, 0x9030),  # VRC7 reg data
+            (0xA000, 0xA002),  # VRC6 pulse 2
+            (0xB000, 0xB002),  # VRC6 saw
+        ]
         if self.has_n163:
             capture_ranges.extend([(0x4800, 0x4800), (0xF800, 0xF800)])
         if self.has_5b:
@@ -234,7 +269,28 @@ class NsfEmulator:
 
         cpu.memory = CaptureMemory(base_memory, capture_ranges)
 
-        def call(addr, a=0, max_cyc=50000):
+        # NSF player convention: before INIT, write $4015 = $0F to enable all
+        # four standard APU channels (pulse1/pulse2/triangle/noise length counters).
+        # Per NSF spec (nesdev.org/wiki/NSF) and matches what nsfplay / FamiTracker
+        # / libgme all do.  Without this, many drivers (Konami Castlevania/Gradius,
+        # Nintendo Kid Icarus, Rare Battletoads/W&W, Sunsoft Spy Hunter, ...)
+        # never enable noise on their own and the channel is silenced by Rule 30's
+        # gate.  Also write $4017 = $40 to suppress the frame IRQ, matching the
+        # NSF player contract.  Both writes go through CaptureMemory so they
+        # appear in frame 0's writes list.
+        cpu.memory[0x4017] = 0x40
+        cpu.memory[0x4015] = 0x0F
+
+        def call(addr, a=0, max_cyc=200000):
+            # Budget per PLAY call.  Real NES runs PLAY during vblank with
+            # ~29829 CPU cycles available (1 frame @ 1.789 MHz / 60 Hz).
+            # Our cyc counter is instructions, not cycles -- avg ~3 cycles
+            # per instruction -> ~10000 instructions per frame.  But some
+            # drivers (Metroid Intro init) have wait loops or heavy setup
+            # that bursts past the average; old 30000-instruction limit
+            # caused false "stuck" detection that truncated the song at
+            # 0.5s.  200000 = ~7 frames of CPU, generous for init/setup
+            # bursts without letting genuine infinite loops run forever.
             cpu.sp = 0xFD
             cpu.stPushWord(0x46FE)
             cpu.a = a; cpu.x = 0; cpu.y = 0; cpu.pc = addr; cpu.p = 0x04
@@ -250,11 +306,22 @@ class NsfEmulator:
         frames = []
         silence_count = 0
         stuck_count = 0
-        SILENCE_THRESHOLD = 120  # 2 seconds of no APU activity = song ended
-        STUCK_THRESHOLD = 30     # 30 consecutive max-cyc calls = driver stuck
+        # SILENCE_THRESHOLD: bumped 120 -> 600 (10 s) 2026-04-18 evening.
+        # The old 2-second threshold truncated short-quiet-phase songs on
+        # CV3 Beginning (125 frames rendered, M3U says 100s) and CV3 boss
+        # themes where the driver has a long quiet intro before the main
+        # phrase.  10 s catches those without significantly hurting CPU
+        # on genuinely-ended songs (worst case = wasting a few seconds
+        # past song end, within the existing --seconds cap).
+        SILENCE_THRESHOLD = 600
+        # STUCK_THRESHOLD: bumped 30 -> 600 (10 s) 2026-04-18 evening.
+        # Metroid Intro hit cycle limit 29 frames in a row then break at
+        # frame 29, capping song to 0.5 s despite M3U saying 92 s.  Real
+        # driver hangs should still get caught within 10 s.
+        STUCK_THRESHOLD = 600
         for frame in range(duration_frames):
             cpu.memory.current_writes = []
-            completed = call(self.play_addr, max_cyc=30000)
+            completed = call(self.play_addr, max_cyc=200000)
             writes = list(cpu.memory.current_writes)
 
             # Detect stuck driver: play routine didn't return normally
@@ -280,6 +347,35 @@ class NsfEmulator:
                     break
             else:
                 silence_count = 0
+
+        # Auto-detect expansion chips from observed register writes.  NSF
+        # headers sometimes have the expansion flag byte cleared despite the
+        # ROM using expansion audio (e.g. CV3 Neill Corlett rip).  Set the
+        # flags post-capture so frames_to_channel_data builds the right
+        # channel dicts.
+        observed_regs = set()
+        for f in frames:
+            for reg, _ in f["writes"]:
+                observed_regs.add(reg)
+        # VRC6: $9000-$9002, $A000-$A002, $B000-$B002
+        if any(0x9000 <= r <= 0x9002 or 0xA000 <= r <= 0xA002
+               or 0xB000 <= r <= 0xB002 for r in observed_regs):
+            if not self.has_vrc6:
+                self.has_vrc6 = True
+                if "vrc6" not in self.expansion_chips:
+                    self.expansion_chips.append("vrc6")
+        # FDS: $4040-$408A
+        if any(0x4040 <= r <= 0x408A for r in observed_regs):
+            if not self.has_fds:
+                self.has_fds = True
+                if "fds" not in self.expansion_chips:
+                    self.expansion_chips.append("fds")
+        # MMC5: $5000-$5015
+        if any(0x5000 <= r <= 0x5015 for r in observed_regs):
+            if not self.has_mmc5:
+                self.has_mmc5 = True
+                if "mmc5" not in self.expansion_chips:
+                    self.expansion_chips.append("mmc5")
 
         return frames
 
@@ -324,6 +420,17 @@ def frames_to_channel_data(frames, expansion_chips=None):
         "noise": {
             "vol": 0, "period": 0, "mode": 0,
             "enabled": 1,  # default to enabled — $4015 writes can clear this
+            # Length counter + envelope state ($400C bits 4-5 + $400F).
+            # Many drivers (Kondo/SMB, Nintendo 1st party) write vol != 0 once
+            # and let the hardware length counter silence the drum after N
+            # half-frame ticks.  Without simulating this, noise plays
+            # continuously.  See architecture.md Rule 30 for the $4015 gate
+            # and Rule 32 (new) for the length counter.
+            "env_loop": 0,   # $400C bit 5 - also halts length counter
+            "const_vol": 0,  # $400C bit 4
+            "env_period": 0, # $400C bits 0-3
+            "length_counter": 0,
+            "length_reload_frame": False,
             "notes": [],
         },
         # DMC: tracks both DPCM sample playback and direct DAC writes
@@ -337,6 +444,12 @@ def frames_to_channel_data(frames, expansion_chips=None):
         "dmc": {
             "dac": 0, "rate_idx": 0, "loop": 0, "sample_addr": 0xC000,
             "sample_len": 1, "trigger_frame": False, "dac_written_frame": False,
+            # $4015 bit 4 — DMC enable.  Hardware: writes to $4012/$4013 only
+            # start playback when DMC is enabled.  Without gating on this, many
+            # drivers (Metroid, W&W, etc.) that zero $4012/$4013 during init
+            # produce phantom dpcm_triggers with default params ($C000, len=1,
+            # rate=0) that read random ROM bytes and create audible DAC noise.
+            "enabled": 0,
             "notes": [],
         },
     }
@@ -398,10 +511,25 @@ def frames_to_channel_data(frames, expansion_chips=None):
                 # $400B write reloads triangle length counter + linear counter (retrigger)
                 channels["triangle"]["phase_reset_frame"] = True
             elif reg == 0x400C:
+                # Noise envelope register:
+                #   bits 0-3 = env_period (also the constant volume)
+                #   bit 4 = const_vol flag
+                #   bit 5 = env_loop / length counter halt
                 channels["noise"]["vol"] = value & 0x0F
+                channels["noise"]["env_period"] = value & 0x0F
+                channels["noise"]["const_vol"] = (value >> 4) & 1
+                channels["noise"]["env_loop"] = (value >> 5) & 1
             elif reg == 0x400E:
                 channels["noise"]["period"] = value & 0x0F
                 channels["noise"]["mode"] = (value >> 7) & 1
+            elif reg == 0x400F:
+                # Top 5 bits load noise length counter (only if $4015 bit 3 set).
+                # SMB and many Nintendo drivers write noise once with const_vol=12,
+                # then rely on length counter decay to silence drum hits.  See
+                # investigation in session 2026-04-18.
+                if channels["noise"]["enabled"]:
+                    channels["noise"]["length_counter"] = LENGTH_TABLE[(value >> 3) & 0x1F]
+                channels["noise"]["length_reload_frame"] = True
             elif reg == 0x4015:
                 # Channel enable bits: bit0=pulse1, 1=pulse2, 2=tri, 3=noise, 4=dmc
                 # Writing 0 to a bit clears the length counter and silences that channel.
@@ -410,7 +538,16 @@ def frames_to_channel_data(frames, expansion_chips=None):
                 channels["pulse2"]["enabled"] = (value >> 1) & 0x01
                 channels["triangle"]["enabled"] = (value >> 2) & 0x01
                 channels["noise"]["enabled"] = (value >> 3) & 0x01
-                # DMC bit tracked via the existing trigger/dac_written flags
+                # Clearing the noise enable bit also zeros its length counter.
+                if not channels["noise"]["enabled"]:
+                    channels["noise"]["length_counter"] = 0
+                # DMC enable bit.  Rising edge (0->1) starts sample playback
+                # using the currently latched $4012/$4013 params.  Falling edge
+                # silences DMC immediately.
+                new_dmc_en = (value >> 4) & 0x01
+                if new_dmc_en and not channels["dmc"]["enabled"]:
+                    channels["dmc"]["trigger_frame"] = True
+                channels["dmc"]["enabled"] = new_dmc_en
             # DMC registers (proven 2026-04-16)
             elif reg == 0x4010:
                 # bit 7 = IRQ enable (ignored here), bit 6 = loop, bits 0-3 = rate
@@ -422,10 +559,15 @@ def frames_to_channel_data(frames, expansion_chips=None):
                 channels["dmc"]["dac_written_frame"] = True
             elif reg == 0x4012:
                 channels["dmc"]["sample_addr"] = 0xC000 + (value * 64)
-                channels["dmc"]["trigger_frame"] = True
+                # Only fire trigger if DMC is currently enabled.  Many drivers
+                # zero $4012/$4013 during init while DMC is disabled -- that is
+                # parameter latching, not playback start.
+                if channels["dmc"]["enabled"]:
+                    channels["dmc"]["trigger_frame"] = True
             elif reg == 0x4013:
                 channels["dmc"]["sample_len"] = (value * 16) + 1
-                channels["dmc"]["trigger_frame"] = True
+                if channels["dmc"]["enabled"]:
+                    channels["dmc"]["trigger_frame"] = True
             # VRC6 registers
             elif reg == 0x9000 and "vrc6_pulse1" in channels:
                 channels["vrc6_pulse1"]["duty"] = (value >> 4) & 0x07
@@ -506,7 +648,15 @@ def frames_to_channel_data(frames, expansion_chips=None):
             "period": ch["period"],
             "mode": ch["mode"],
             "enabled": ch["enabled"],
+            "length_counter": ch["length_counter"],
         })
+        # Hardware length counter: 2 half-frame ticks per 60 Hz frame unless
+        # halted by env_loop.  Done AFTER recording so the reload frame is
+        # audible at its full loaded value.
+        if (not ch["length_reload_frame"] and not ch["env_loop"]
+                and ch["length_counter"] > 0):
+            ch["length_counter"] = max(0, ch["length_counter"] - 2)
+        ch["length_reload_frame"] = False
 
         # VRC6 per-frame state
         if "vrc6_pulse1" in channels:
@@ -1393,44 +1543,100 @@ def _apu_nonlinear_mix(sq1, sq2, tri, noise, dpcm=0):
 
 
 def render_wav(channels, output_path, num_frames):
-    """Render WAV from channel data using hardware-accurate non-linear mixing."""
-    # Clamp to actual captured frames (may be shorter due to silence detection)
+    """Render WAV from channel data using hardware-accurate non-linear mixing.
+
+    v2 (2026-04-17): added hardware-state simulation for:
+      - Pulse HW envelope decay (when const_vol=0, decay_level counts
+        down from 15 at quarter-frame rate via divider)
+      - Triangle internal linear counter (gates note off at hardware
+        timing instead of playing as long as reload value != 0)
+    Both are clocked at 240 Hz (4 ticks per 60 Hz frame).
+    """
     actual_frames = len(channels["pulse1"]["notes"])
     num_frames = min(num_frames, actual_frames)
     total_samples = num_frames * SPF
     mix = np.zeros(total_samples, dtype=np.float64)
     phase = {"p1": 0.0, "p2": 0.0, "tri": 0.0}
 
+    # Pulse HW envelope state per channel
+    # decay_level counts down from 15; divider reloads with env_period+1
+    p_env = {
+        "pulse1": {"decay": 15, "divider": 0, "start_flag": False},
+        "pulse2": {"decay": 15, "divider": 0, "start_flag": False},
+    }
+    # Triangle linear counter state
+    tri_linear_live = 0
+    tri_reload_flag = False
+
     for frame in range(num_frames):
         s = frame * SPF
         e = s + SPF
 
-        # Generate per-channel waveforms as amplitude values (0-15 scale)
         p1_wave = np.zeros(SPF)
         p2_wave = np.zeros(SPF)
         tri_wave = np.zeros(SPF)
         noise_wave = np.zeros(SPF)
 
+        # --- Update envelope / linear counter state (4 quarter-frame ticks) ---
+        for ch_name in ("pulse1", "pulse2"):
+            fd = channels[ch_name]["notes"][frame]
+            env = p_env[ch_name]
+            # Phase reset loads the decay level and restarts the divider
+            if fd["phase_reset"]:
+                env["start_flag"] = True
+            period = fd["env_period"]
+            loop = fd["env_loop"]
+            # Clock envelope 4 times per frame (quarter-frame)
+            for _ in range(4):
+                if env["start_flag"]:
+                    env["decay"] = 15
+                    env["divider"] = period
+                    env["start_flag"] = False
+                else:
+                    if env["divider"] == 0:
+                        if env["decay"] > 0:
+                            env["decay"] -= 1
+                        elif loop:
+                            env["decay"] = 15
+                        env["divider"] = period
+                    else:
+                        env["divider"] -= 1
+
+        # Triangle linear counter clocked at 240 Hz (4 per 60 Hz frame)
+        tri_fd = channels["triangle"]["notes"][frame]
+        if tri_fd["phase_reset"]:
+            tri_reload_flag = True
+        tri_ctrl = tri_fd["linear_control"]
+        tri_reload = tri_fd["linear_reload"]
+        for _ in range(4):
+            if tri_reload_flag:
+                tri_linear_live = tri_reload
+            elif tri_linear_live > 0:
+                tri_linear_live -= 1
+            if tri_ctrl == 0:
+                tri_reload_flag = False
+
+        # --- Generate per-channel waveforms using simulated state ---
         for ch_name, ph_key, out_arr in [
             ("pulse1", "p1", p1_wave), ("pulse2", "p2", p2_wave)
         ]:
             fd = channels[ch_name]["notes"][frame]
-            p, v, d = fd["period"], fd["vol"], fd["duty"]
-            if p >= 8 and v > 0:
+            p, d = fd["period"], fd["duty"]
+            # Effective volume: const_vol uses the raw nibble, HW envelope
+            # uses the simulated decay level
+            effective_vol = fd["env_period"] if fd["const_vol"] else p_env[ch_name]["decay"]
+            if p >= 8 and effective_vol > 0:
                 freq = 1789773 / (16 * (p + 1))
                 dv = [0.125, 0.25, 0.5, 0.75][d]
                 pa = (np.arange(SPF) * freq / SAMPLE_RATE + phase[ph_key]) % 1.0
-                # Pulse output: v when high, 0 when low (NES pulse is unipolar 0-15)
-                out_arr[:] = np.where(pa < dv, v, 0)
+                out_arr[:] = np.where(pa < dv, effective_vol, 0)
                 phase[ph_key] = (phase[ph_key] + SPF * freq / SAMPLE_RATE) % 1.0
 
-        fd = channels["triangle"]["notes"][frame]
-        p = fd["period"]
-        lin = fd["linear"]
-        if p >= 2 and lin > 0:
+        # Triangle: gate on simulated linear counter, not reload value
+        p = tri_fd["period"]
+        if p >= 2 and tri_linear_live > 0:
             freq = 1789773 / (32 * (p + 1))
             pa = (np.arange(SPF) * freq / SAMPLE_RATE + phase["tri"]) % 1.0
-            # Triangle output: 0-15 ramp up, 15-0 ramp down (unipolar)
             tri_wave[:] = np.where(pa < 0.5, pa * 30, (1.0 - pa) * 30)
             phase["tri"] = (phase["tri"] + SPF * freq / SAMPLE_RATE) % 1.0
 
@@ -1445,8 +1651,21 @@ def render_wav(channels, output_path, num_frames):
                 p1_wave[i], p2_wave[i], tri_wave[i], noise_wave[i]
             )
 
-    # Center around zero (NES output is 0-1, audio needs AC coupling)
+    # ===================================================================
+    # NOTE: the NESdev wiki documents a 3-stage analog output filter
+    # (90 Hz HP + 440 Hz HP + 14 kHz LP) that we previously applied here.
+    # Empirically (measured vs libgme ground truth on W&W Song 3 via
+    # audio_diff), applying those filters moves our render FURTHER from
+    # libgme, not closer.  Libgme evidently does not apply the 440 HP
+    # by default, and the unfiltered output from HW envelope sim +
+    # linear counter + non-linear DAC already matches libgme within
+    # ~1.6 dB across all 8 critical bands.  So we deliberately DO NOT
+    # apply those filters here.  Leaving the signal as DAC output.
+
+    # Simple DC block is still useful to keep the waveform AC-coupled
+    # for clean 16-bit output (no low-frequency drift from unipolar DAC).
     mix -= np.mean(mix)
+
     pk = np.max(np.abs(mix))
     if pk > 0:
         mix = mix / pk * 0.9
@@ -1501,6 +1720,7 @@ def process_song(emu, song_num, song_name, duration_sec, output_dir, skip_wav=Fa
     subprocess.run([
         sys.executable, gen_script,
         "--midi", midi_path, "--nes-native",
+        "--synth", "apu2",
         "-o", rpp_path,
     ], check=True)
     print(f"  REAPER: {rpp_path}")
@@ -1539,8 +1759,18 @@ def main():
     parser.add_argument('--all', action='store_true', help='Process all songs')
     parser.add_argument('--names', help='Comma-separated track names')
     parser.add_argument('--names-json', help='Path to JSON file with track names array')
-    parser.add_argument('--skip-wav', action='store_true', help='Skip WAV preview render (faster batch)')
+    parser.add_argument('--skip-wav', action='store_true', default=True,
+                        help='(default) Skip full-mix WAV preview render. '
+                             'Stems pipeline is the canonical path (Rule 31); '
+                             'full-mix WAV previews bloated the disk (43 GB of '
+                             'wav/ dirs across outputv5 got the project to 100%% '
+                             'full on 2026-04-18).  Opt-in with --wav-preview.')
+    parser.add_argument('--wav-preview', action='store_true',
+                        help='Force the full-mix WAV preview render on.')
     args = parser.parse_args()
+
+    # --wav-preview opts in; otherwise skip (default).
+    skip_wav = not args.wav_preview
 
     emu = NsfEmulator(args.nsf)
     print(f"NSF: {emu.title} by {emu.artist}")
@@ -1563,12 +1793,12 @@ def main():
             dur = args.seconds
 
             print(f"\n=== Song {song_num}: {name} ===")
-            process_song(emu, song_num, name, dur, args.output, skip_wav=args.skip_wav)
+            process_song(emu, song_num, name, dur, args.output, skip_wav=skip_wav)
     else:
         song_num = int(args.song)
         name = f"Song {song_num}"
         print(f"\n=== Song {song_num} ===")
-        process_song(emu, song_num, name, args.seconds, args.output)
+        process_song(emu, song_num, name, args.seconds, args.output, skip_wav=skip_wav)
 
 
 if __name__ == "__main__":

@@ -118,7 +118,10 @@ APU2_DEFAULTS = [
     1, 15, 0, 60, 10, 80,      # P2: duty=25%, vol=15, ADSR
     0, 50,                      # Tri: attack=0, release=50ms
     0, 100,                     # Noise: attack=0, decay=100ms
-    0.8,                        # Master gain
+    0.1,                        # Master gain - calibrated so multi-track
+                                # linear-sum RMS matches Zophar MP3 reference
+                                # (~-14 dBFS). At 0.3 we were +11 dB over
+                                # Zophar; at 0.1 we're in the right ballpark.
 ]
 
 APU2_CH_MODE_IDX = 0  # slider1 = channel mode
@@ -252,14 +255,24 @@ def fmt_slider_values(values: list[float], total: int = 64) -> str:
 #  RPP building blocks
 # ---------------------------------------------------------------------------
 
-def rpp_header(tempo: float = 120.0, title: str = "") -> str:
+def rpp_header(tempo: float = 120.0, title: str = "",
+               hardware_mix: bool = False) -> str:
     """Generate a full RPP header matching REAPER's own saved-project format.
 
     All fields are derived from a known-good user-created project (Console_Test.rpp)
     where MIDI keyboard input works correctly.  Do NOT remove fields without
-    testing in REAPER — the full header is required for proper audio/MIDI
+    testing in REAPER - the full header is required for proper audio/MIDI
     graph initialization.
+
+    If hardware_mix=True:
+      - A separate NES Bus TRACK (first in the track list) receives sends
+        from each channel track and applies NES_MasterMixer. Per-track
+        MAINSEND is disabled so audio only reaches master through the bus.
+      - This is conventional REAPER routing and avoids master-FX block
+        syntax issues.
     """
+    master_nch = 2
+    master_fx_chain = ""
     return f"""<REAPER_PROJECT 0.1 "7.27/win64" 1707000000
   <NOTES 0 2
     |ReapNES Studio Project
@@ -375,6 +388,7 @@ def rpp_track(
     jsfx_plugin: str = "",
     midi_events: list[str] | None = None,
     ticks_per_beat: int = 480,
+    mainsend_offset: int = 0,
 ) -> str:
     """Generate a complete track block matching REAPER's saved-project format.
 
@@ -434,7 +448,13 @@ def rpp_track(
     lines.append(f"    TRACKID {track_guid}")
     lines.append(f"    PERF 0")
     lines.append(f"    MIDIOUT -1")
-    lines.append(f"    MAINSEND 1 0")
+    # MAINSEND: route this track's output to specific master channels.
+    # offset=0 => master channels 1-2 (default)
+    # offset=2 => master channels 3-4, etc.
+    # Used by --hardware-mix to route each NES channel to its own master
+    # input pair so the master-bus NES_MasterMixer JSFX can apply the
+    # correct nonlinear DAC math per channel group.
+    lines.append(f"    MAINSEND 1 {mainsend_offset}")
     # FX chain
     lines.append(f"    <FXCHAIN")
     lines.append(f"      WNDRECT 24 52 700 560")
@@ -745,7 +765,8 @@ def generate_midi_project(midi_path: Path, output_path: Path,
                           song_set_path: Path | None = None,
                           nes_native: bool = False,
                           synth: str = "console",
-                          full_apu: bool = False) -> None:
+                          full_apu: bool = False,
+                          hardware_mix: bool = False) -> None:
     """Generate project with MIDI items, optionally remapping channels to 0-3.
 
     Creates a remapped MIDI copy where active channels are assigned to
@@ -805,7 +826,7 @@ def generate_midi_project(midi_path: Path, output_path: Path,
     print(f"  Synth: {synth} ({plugin_name})")
     print(f"  Channel mapping:")
 
-    lines = [rpp_header(tempo=tempo, title=title)]
+    lines = [rpp_header(tempo=tempo, title=title, hardware_mix=hardware_mix)]
 
     if full_apu:
         full_events = midi_file_to_events(midi_info["mid"])
@@ -901,6 +922,14 @@ def generate_midi_project(midi_path: Path, output_path: Path,
                 )
 
         midi_file_str = str(remapped_path.resolve()).replace("\\", "/") if has_midi else ""
+        # Hardware-mix routing: each NES channel sends to its own master input pair
+        # so the master NES_MasterMixer JSFX sees channels separately (not pre-summed).
+        # Mapping: pulse1->0, pulse2->2, triangle->4, noise->6, dmc->8
+        if hardware_mix:
+            hw_mix_offsets = {"pulse1": 0, "pulse2": 2, "triangle": 4, "noise": 6, "dmc": 8}
+            mainsend_off = hw_mix_offsets.get(role, 0)
+        else:
+            mainsend_off = 0
         lines.append(rpp_track(
             name=name, color=COLORS[role], slider_values=vals,
             midi_file=midi_file_str, midi_length=duration,
@@ -909,6 +938,7 @@ def generate_midi_project(midi_path: Path, output_path: Path,
             jsfx_plugin=plugin_name,
             midi_events=track_events,
             ticks_per_beat=midi_info["ticks_per_beat"],
+            mainsend_offset=mainsend_off,
         ))
 
     lines.append(">")
@@ -978,7 +1008,8 @@ def main() -> None:
             sys.exit(1)
         ss = SONG_SETS_DIR / f"{args.palette}.json" if args.palette else None
         out = Path(args.output) if args.output else PROJECTS_DIR / f"{midi.stem}_nes.rpp"
-        generate_midi_project(midi, out, ss, nes_native=args.nes_native, synth=args.synth, full_apu=args.full_apu)
+        generate_midi_project(midi, out, ss, nes_native=args.nes_native, synth=args.synth,
+                              full_apu=args.full_apu)
     elif args.all:
         generate_all()
     else:

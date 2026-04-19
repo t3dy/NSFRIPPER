@@ -206,3 +206,309 @@ naive notes (24 same-pitch retriggers recovered per 300 frames).
 W&W title NSF extraction now matches trace-based ground truth within
 a handful of notes — the generic phase_reset mechanism replaces the
 game-specific note_boundary_map workaround.
+
+## 30. Noise Channel $4015 Gate is NOT Optional (Proven 2026-04-18)
+
+Unlike pulses and triangle (where most drivers rely on `vol=0` for
+silencing and $4015 bits are written once at init), the **noise channel
+in many games relies on $4015 bit 3** for active silencing.
+
+- In W&W, noise bit 3 is NEVER set in any of the 16 songs, so hardware
+  noise is completely silent. Without gating on `enabled`, the render
+  generates continuous LFSR noise that does not exist in the Zophar
+  reference. User feedback: "extremely noisy."
+- SMB uses $4015 bit 3 briefly during drum hits; same behavior across
+  many Nintendo/Capcom games.
+
+**Rule:** In any rendering path (Python `render_wav`, JSFX plugin,
+stems renderer), the noise channel's output MUST be gated by BOTH
+`nv > 0` AND `fd["enabled"]`. Do not blanket-disable the enable check
+the way we do for pulses/triangle.
+
+See `scripts/render_channel_stems.py` keep=="noise" branch for the
+canonical pattern. Do NOT apply this gate to pulses/triangle — those
+still use `vol=0` for silencing across most drivers.
+
+## 31. Audio Stems Are the Primary Deliverable Path (2026-04-18)
+
+**Multi-track REAPER projects cannot reproduce the NES APU's non-linear
+DAC mixing at the master-bus level.** Attempted solutions:
+- Master-track FX block (REAPER syntax unreliable without live
+  verification; broke multiple times)
+- Bus track with AUXRECV + NES_MasterMixer JSFX (routing partially
+  worked but bass was still +11 dB over reference)
+- Per-channel attenuation + filter compensation (modest improvement,
+  did not solve note-articulation issues)
+
+**The stems approach supersedes these:** render per-channel audio via
+`render_channel_stems.py`, load stems as audio tracks in REAPER,
+keep MIDI tracks alongside for editing. This is the user-approved path.
+
+**Rule:** When a user reports that a REAPER project "doesn't sound like
+the game," the default response is not "fix the JSFX" but "render
+hardware-accurate stems." The JSFX is useful for live keyboard play
+only; it is not the primary audio path.
+
+See `docs/STEMS_APPROACH.md` for the full architecture and
+`scripts/batch_stems_project.py` for the per-game pipeline.
+
+## 32. Noise Length Counter Is the Silencer for Many Drivers (Proven 2026-04-18)
+
+Unlike pulses and triangle (where most drivers silence via `vol=0`), the
+noise channel in a large class of drivers — Nintendo 1st-party (SMB, SMB2,
+Zelda, Metroid, Kid Icarus), Capcom, many others — relies on the
+**hardware length counter** to silence each drum hit, NOT on writing vol=0
+and NOT on clearing $4015 bit 3.
+
+Driver pattern:
+- Write $400C once with const_vol=1 and vol=12 (env_loop=0 -> length counter enabled)
+- For each drum hit: write $400E (period/mode) and $400F (length index)
+- $400F load triggers: length_counter = LENGTH_TABLE[(val >> 3) & 0x1F]
+- Length counter decrements twice per 60 Hz frame (two half-frame ticks)
+- When length counter reaches 0, channel silenced
+
+Without simulating this, SMB drums sound like "a wash of continuous
+noise" because `vol > 0` and `$4015 bit 3 = 1` stay true for the whole
+song.
+
+**Capture rule** (implemented in `frames_to_channel_data()`):
+- $400C bit 5 = env_loop (halts length counter when 1)
+- $400F write: reload `length_counter` from LENGTH_TABLE if `enabled`
+- $4015 bit 3 clear: force `length_counter = 0`
+- Per frame AFTER recording: decrement by 2 unless halted or just-reloaded
+
+**Render rule** (implemented in `render_channel_stems.py`):
+- Noise gate: `nv > 0 AND enabled AND length_counter > 0`
+- Fall back to the legacy 2-way gate when `length_counter` is missing
+  (older captures — the field was added 2026-04-18).
+
+**Impact**: SMB Overworld noise active frames dropped from 276/300 (92%,
+continuous wash) to ~74/300 (25%, drum bursts with natural decay).
+
+Generalizing to other channels: pulses and triangle also have length
+counters, but most drivers set `env_loop=1` (halt) on them, so the counter
+never decrements. Currently not simulated for those channels — add only
+if a specific game reveals the bug.
+
+## 33. Stems Need Analog LP + DC Blocker For DAW Playback (Proven 2026-04-18)
+
+Raw hardware-accurate DAC output sounds correct on spectral metrics but
+clicks audibly on every note when played in a DAW.  Two pipeline issues:
+
+**Problem 1: Per-note click transients**
+Instantaneous volume steps (vol 0 -> 15 in one sample on note-on) and
+phase resets ($4003 write) produce hard amplitude steps.  Step functions
+contain infinite-bandwidth content.  On the real NES, a ~14 kHz analog
+RC filter smooths these.  libgme BLEP-synthesizes bandlimited waveforms
+directly.  Our naive `np.where(pa < dv, vol, 0)` has neither.
+
+**Fix**: 2-pole Butterworth LP at 14 kHz applied to each stem's DAC
+output (`render_channel_stems.py::apply_nes_analog_lp`).  Measured effect
+on Ghosts 'n Goblins s2: max sample-to-sample diff dropped from 0.563 to
+0.356 (37% reduction in click magnitude).
+
+**Problem 2: Silent regions biased off-zero**
+`mix -= np.mean(mix)` DC-centers by subtracting the signal's mean.  When
+the signal is asymmetric (e.g. drums on a noise stem - loud positive
+transients, otherwise silent), silent regions end up at the negated-mean
+offset, not at zero.  Every frame registers as "active" in a DAW even
+when nothing should be playing.
+
+**Fix**: proper 1-pole HP DC blocker at ~10 Hz
+(`render_channel_stems.py::dc_block`).  Silent regions stay at true zero.
+
+**Stem normalization scope**: the shared-scale pattern (one peak computed
+from the sum of all stems, same factor applied to each) preserves
+per-channel level proportions so noise doesn't dominate the mix.  Do not
+revert to per-stem normalization.
+
+## 34. Triangle Gate-Off Holds DAC Value (Proven 2026-04-18 evening)
+
+When the triangle channel's linear counter OR length counter is zero, the
+**hardware sequencer pauses at its current step and the DAC continues
+outputting that step's value**.  This is NOT silence -- it is a held
+DC level.  Per NESdev wiki (APU_Triangle):
+
+> If either the linear counter or the length counter is zero, the
+> sequencer is held at its current position.
+
+Zeroing the wave on gate-off produces a step from the current sequencer
+value (up to 15) down to 0, which -- combined with the non-linear TND
+DAC -- creates a step of up to 0.26 in the raw output per gate transition.
+Scaled by the shared-stem factor, this registers as a ~38% click that the
+user perceives as a **vinyl-record-style pop**.
+
+Battletoads song 1 produces 129 triangle gate transitions in 10 seconds
+(triangle bassline staccato at ~14 Hz).  Game-wide, this is a recurring
+artifact in any title whose driver uses linear-counter gating for
+triangle bass articulation (most NES music).
+
+**Render rule** (`render_channel_stems.py::render_stem`, `keep == "tri"`):
+- When `tri_linear_live > 0`: render the wave as normal, advance phase.
+- When `tri_linear_live == 0`: evaluate the wave at the CURRENT (frozen)
+  phase and output that value for every sample of the frame.  Do NOT
+  advance phase (matches HW sequencer pause).  The DC blocker then
+  resolves the held level to silence over ~50 ms without any step.
+
+**Measured impact**: triangle stem max single-sample step on
+Battletoads s1 dropped 0.386 -> 0.006 (98.4% reduction).  Samples with
+steps > 10% of peak: 1292 -> 0.  All triangle vinyl-pops eliminated.
+
+**Prevention**: any new renderer path (JSFX, future C++ engines, etc.)
+must hold the DAC on gate-off, not zero it.  Apply the same principle
+to other channels if they ever need gating -- pulse/noise already
+silence via `vol == 0` which is hardware-correct for those (pulse DAC
+output = `seq_bit * vol` = 0 when vol = 0).
+
+## 35. Bandlimited Pulse Synthesis Is Mandatory (Proven 2026-04-18 evening)
+
+Naive point-sampling of a pulse wave (`np.where(pa < duty, vol, 0)`)
+produces an infinite-bandwidth step function.  Content above Nyquist
+(22.05 kHz at 44.1 kHz SR) folds back into the audible range as
+**inharmonic grit** -- what the user perceived as "overdrive" on
+sustained pulse notes.
+
+A 2-pole Butterworth LP at 14 kHz (added in Rule 33) attenuates this
+aliased content by only 12 dB/octave.  At high pulse pitches (>= 1 kHz),
+residual aliased content is still -20 dBFS or louder -- clearly
+audible as hiss/buzz.
+
+**Render rule**: compute each sample's pulse value as the exact
+time-averaged integral of the ideal pulse over the sample window:
+
+```
+fraction_high = (H(pa_end) - H(pa_start)) / (pa_end - pa_start)
+where H(x) = duty * floor(x) + min(x - floor(x), duty)
+```
+
+`H(x)` is the antiderivative of `1{pa%1 < duty}` from 0 to x.  This
+makes edges 3-level (0, partial, vol) instead of 2-level (0, vol),
+which is equivalent to a rectangular-window anti-alias filter applied
+analytically at the synthesis stage.
+
+**Measured impact on Battletoads s1**:
+- Pulse1 sample-steps > 10% of peak: 2641 -> 1682 (36% fewer).
+- Pulse2 sample-steps > 10% of peak: 1993 -> 1302 (35% fewer).
+- Clicks are no longer stacked at frame boundaries (0.4% at offset 0
+  after fix vs 0% before fix -- redistribution, not concentration).
+
+**Known limit**: 3-level edges still have broadband content.  Full
+elimination of pulse aliasing requires either polyBLEP correction or
+4x oversampling + decimation.  Current formula is the cheapest fix that
+materially helps -- pursue oversampling if ear-tests still flag pulse grit.
+
+**Triangle does NOT need this fix** -- the triangle wave
+(`np.where(pa<0.5, pa*30, (1-pa)*30)`) is already continuous at all
+phase points, so naive sampling does not produce step discontinuities
+within the wave.  Only transitions into/out of gate need smoothing
+(see Rule 34).
+
+**LP order also bumped** in this session: 2-pole -> 4-pole Butterworth
+at 14 kHz, giving 24 dB/octave rolloff instead of 12.  Note-on steps
+now ring slightly (~10% overshoot for 2-3 samples after attack) which
+is arguably part of the desired analog-filter character; if the
+overshoot is audibly flagged, consider 4-pole Bessel (critically-damped
+step response) as an alternative.
+
+## 36. NSF Player Must Write $4015 = $0F Before INIT (Proven 2026-04-18 evening)
+
+Per the NSF specification (nesdev.org/wiki/NSF), an NSF player is
+required to **write `$4015 = $0F` and `$4017 = $40` before calling
+INIT**.  The `$0F` enables all four standard APU channel length
+counters (pulse1/pulse2/triangle/noise).  The `$40` disables frame
+IRQ.  Every reference player does this (nsfplay, FamiTracker's GME
+backend, libgme, FCEUX's NSF mode).
+
+Our py65 NSF emulator was NOT doing this.  Memory was zeroed at reset
+(line 196-197 of `nsf_to_reaper.py::play_song`), INIT was called
+directly, and `$4015` read as `$00` at frame 0 via the memory-scan
+fallback.  Result: `enabled = 0` for every channel in our captured
+frame state, which under Rule 30's noise gate (`vol > 0 AND enabled
+AND length_counter > 0`) silenced noise on **every driver that does
+not re-enable $4015 itself**.
+
+Drivers affected (confirmed silent noise before the fix, correct
+noise activity after):
+
+| Game | Before fix (active/1800) | After fix | Notes |
+|------|-------------------------|-----------|-------|
+| Castlevania | 0 | 573 (31%) | Vampire Killer drums restored |
+| Kid Icarus | 0 | 193 (11%) | Sparse but correct |
+| Wizards and Warriors | 0 | 790 (44%) | Major audible fix |
+| Spy Hunter | 0 | 96 (11%) | Sunsoft driver |
+| Battletoads | 0 | 449 (25%) | Layered drums with DMC |
+| Kirby's Adventure | 0 | 504 (28%) | |
+| Contra | 308 | 308 | Unchanged (driver writes $4015 itself) |
+| Super Mario Bros | 280 | 280 | Unchanged (driver writes $4015 itself) |
+| Gradius | 0 | 0 | Driver doesn't use noise in tested songs |
+| Metroid | 0 | 0 | Same |
+
+**Code location**: `scripts/nsf_to_reaper.py::NsfEmulator.play_song`,
+immediately after `cpu.memory = CaptureMemory(...)` and before the
+INIT `call(self.init_addr, ...)`:
+
+```python
+cpu.memory[0x4017] = 0x40
+cpu.memory[0x4015] = 0x0F
+```
+
+These writes go through CaptureMemory so they appear in frame 0's
+writes list, which is then processed by `frames_to_channel_data` to
+set `enabled = 1` per channel.
+
+**Prevention**: any new NSF player implementation (Python, JSFX, C++,
+whatever) MUST write both registers before INIT.  Failing to do so
+will silently break noise on ~30% of NES games and not flag any
+errors because the NSF emulator "runs" fine -- the bug is just missing
+audio output.
+
+**Generalization**: NSF v2 also adds support for expansion chip init
+regs ($4011, VRC6 $9000-$B002 status, etc.) that some players may
+initialize.  For now we follow the strict v1 spec.  Expand this rule
+if a game's expansion audio shows similar silencing patterns.
+
+## 37. DPCM Trigger Requires $4015 Bit 4 Enabled (Proven 2026-04-18 late)
+
+Hardware: writes to $4012 (sample address) and $4013 (sample length)
+are **parameter latches only**.  They do NOT start DPCM playback.
+Playback starts on the **rising edge of $4015 bit 4 (DMC enable)**
+when sample_bytes_remaining is 0.
+
+Prior behavior in `frames_to_channel_data()` fired
+`trigger_frame=True` on any $4012/$4013 write, treating them as
+sample-start events.  But most drivers **zero $4012/$4013 during
+init** (housekeeping, not intent to play), producing one phantom
+`dpcm_trigger` per song on frame 0 with default params
+($4012=0 -> addr=$C000, $4013=0 -> len=1, rate_idx=0).
+
+`render_dmc_stem()` then dutifully started a 1-byte DPCM playback
+from $C000, reading whatever byte happens to be there (typically
+non-zero), producing an audible DAC click on every track that opens
+with a "really noisy" character on silent/quiet intros.
+
+Games confirmed affected (all had phantom triggers before the fix):
+Metroid (all 12 songs), likely Kid Icarus, and any game whose driver
+zeroes DMC regs during init.
+
+**Rule**: in `frames_to_channel_data`:
+- $4012 write: update sample_addr; set `trigger_frame=True`
+  **only if DMC is currently enabled** ($4015 bit 4 was last set to 1)
+- $4013 write: same gating
+- $4015 write: on rising edge of bit 4 (was 0, now 1),
+  set `trigger_frame=True`.  On falling edge, DMC silences.
+
+Unaffected channels:
+- $4011 direct DAC writes (Rule 28 Mechanism 2, SMB/Battletoads drums)
+  are **not** gated on enable — hardware allows direct DAC output
+  regardless of bit 4.  Keep `dac_written_frame=True` on every $4011
+  write.
+
+Prevention: any future capture-layer handler for DMC-like chips
+(VRC7 etc) must distinguish parameter latching from playback start.
+Never fire a playback event on a register write alone — require an
+explicit enable / trigger signal.
+
+See `scripts/nsf_to_reaper.py::frames_to_channel_data` for the canonical
+implementation.  Architecturally this supersedes Rule 28's
+"$4012 OR $4013 written this frame -> event_type = dpcm_trigger"
+with the enable-gated variant.

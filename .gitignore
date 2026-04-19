@@ -63,3 +63,19 @@ capture_contra.csv
 # Distribution builds
 *.zip
 *.tar.gz
+
+# Generated stems/projects output (2026-04-18+, stems pipeline)
+outputv6/
+outputv6_A/
+outputv6_B/
+outputv6_C/
+outputv6_bach/
+outputv6_*/
+outputv*_rebuild.log
+outputv*_renderall.log
+outputv*_variants*.log
+
+# Audio reference and scratch work
+ref_audio/
+scratch/
+APUBUILDER/

@@ -16,7 +16,24 @@ python scripts/generate_project.py --midi <midi_file> --nes-native -o <output.rp
 python scripts/build_projects.py --force   # rebuild all Projects/
 ```
 
+**Modes already available** (check BEFORE writing new generator code):
+- `--synth console` (default) or `--synth apu2` — pick the plugin
+- `--full-apu` — single-track, all NES channels merged, JSFX in Full APU mode
+  (enables non-linear mixer inside one JSFX — impossible with per-channel
+  tracks because each plugin only sees one channel)
+- `--nes-native` — MIDI already uses channels 0-3 (from NSF extraction)
+
 NEVER write RPP files manually. NEVER edit RPP files by hand.
+**NEVER hand-roll a new RPP template.** Two separate REAPER parse errors
+(2026-04-17: NOTES block syntax, MASTERNCHAN token order) came from
+bypassing `generate_project.py` to build a minimal template from scratch.
+`rpp_header()` + `rpp_track()` emit ~100 lines of REAPER-saved-format
+boilerplate the loader treats as required. Minimal templates miss
+structural elements. If you need a new project shape:
+  1. Read `generate_project.py::main()` — check if a flag already exists.
+  2. If not, ADD a flag to `generate_project.py`, don't fork the template.
+  3. Last resort: wrap `generate_project.py` and post-process its output
+     (see `scripts/make_full_apu_rpp.py` for the swap-plugin-name pattern).
 
 ## Synth Plugin
 

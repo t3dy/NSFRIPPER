@@ -1,0 +1,103 @@
+desc:NES Master Mixer - Hardware-accurate DAC (stereo: L=Pulse sum, R=TND weighted sum)
+tags:mixer chiptune NES hardware-accurate DAC
+
+in_pin:Pulse sum (L)
+in_pin:TND weighted sum (R)
+out_pin:Master L
+out_pin:Master R
+
+// ===================================================================
+// Goes on a bus track that receives from all per-channel NES tracks:
+//
+//   Pulse 1  -> pan -1 -> bus L input
+//   Pulse 2  -> pan -1 -> bus L input
+//   Triangle -> pan +1 -> bus R input (with AUXRECV vol 0.00365)
+//   Noise    -> pan +1 -> bus R input (with AUXRECV vol 0.00245)
+//   DMC      -> pan +1 -> bus R input (with AUXRECV vol 0.01122)
+//
+// The per-channel tracks pan their output so pulses land on bus L and
+// triangle/noise/DMC land on bus R. Per-track AUXRECV volume is chosen
+// so the TND channels arrive already WEIGHTED (tri/8227, noise/12241,
+// dmc/22638) -- this matches the NES hardware TND DAC formula.
+//
+// At this JSFX:
+//   spl0 (L) = pulse1 + pulse2 summed linearly (range 0..1 where 1 = both at max vol)
+//   spl1 (R) = tri/8227 + noise/12241 + dmc/22638 summed linearly
+//
+// Hardware DAC math:
+//   Pulse pin: out = 95.88 * S / (8128 + 100 * S), S = sq1+sq2 (0..30)
+//     In audio units where L = S/30:
+//       out = 2876.4 * |L| / (8128 + 3000 * |L|)
+//   TND pin:   out = 159.79 * W / (1 + 100 * W), W = tri/8227 + noise/12241 + dmc/22638
+//     In audio units R represents W directly (thanks to per-track weighting):
+//       out = 159.79 * |R| / (1 + 100 * |R|)
+//
+// Master output = pulse_dac + tnd_dac (linear sum, matches real NES two-pin topology).
+//
+// Per-channel tracks remain fully editable: mute/solo/FX/automation work normally.
+// Pulses panned hard left and TND hard right is cosmetic routing only; the bus
+// recombines them to mono master output.
+// ===================================================================
+
+slider1:1.5<0,4,0.01>Master Gain
+slider2:1<0,2,0.01>Pulse Gain (DAC output scale)
+slider3:1<0,2,0.01>TND Gain (DAC output scale)
+slider4:1<0,1,1{Off,On}>Bypass (passthrough)
+slider5:1<0,1,1{Off,On}>Remove DC Offset
+
+@init
+// DC blocker (1-pole HP ~10 Hz) for each audio input.
+// NES per-channel plugin outputs have small DC offsets; strip before mixing.
+hp_coef = exp(-2 * $pi * 10 / srate);
+l_x = 0; l_y = 0;
+r_x = 0; r_y = 0;
+
+// Pulse DAC transfer: S = 30 * |L|, formula collapsed to single expression
+function pulse_dac(L)
+  local(aL, denom) (
+  aL = abs(L);
+  denom = 8128 + 3000 * aL;
+  denom < 0.001 ? 0 : (L < 0 ? -1 : 1) * 2876.4 * aL / denom;
+);
+
+// TND DAC transfer: W = |R|
+function tnd_dac(R)
+  local(aR, denom) (
+  aR = abs(R);
+  denom = 1 + 100 * aR;
+  denom < 0.001 ? 0 : (R < 0 ? -1 : 1) * 159.79 * aR / denom;
+);
+
+@slider
+master_gain = slider1;
+pulse_g = slider2;
+tnd_g = slider3;
+bypass_on = slider4;
+dc_remove = slider5;
+
+@sample
+bypass_on ? (
+  // Passthrough: sum L+R to mono, pass to both channels
+  m = (spl0 + spl1) * master_gain;
+  spl0 = m; spl1 = m;
+) : (
+  // DC block both inputs (removes unipolar DAC offset from per-channel plugins)
+  dc_remove ? (
+    l_y = hp_coef * (l_y + spl0 - l_x); l_x = spl0;
+    r_y = hp_coef * (r_y + spl1 - r_x); r_x = spl1;
+    l_in = l_y;
+    r_in = r_y;
+  ) : (
+    l_in = spl0;
+    r_in = spl1;
+  );
+
+  // Apply per-pin nonlinear DAC to pulse sum (L) and TND weighted sum (R)
+  pulse_out = pulse_dac(l_in) * pulse_g;
+  tnd_out = tnd_dac(r_in) * tnd_g;
+
+  // Mix the two DAC pins (linear sum, matches hardware)
+  mono_out = (pulse_out + tnd_out) * master_gain;
+  spl0 = mono_out;
+  spl1 = mono_out;
+);

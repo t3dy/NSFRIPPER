@@ -20,6 +20,32 @@ import sys
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
+
+def preflight_disk_check(num_games, seconds_cap, out_dir=Path(".")):
+    """Estimate disk footprint and refuse if it exceeds 50% of free space.
+
+    Per architecture.md Rule 38.  Prevents the 2026-04-18 and
+    2026-04-19 disk-full failures from recurring.
+
+    Estimate: ~1 GB per game at seconds_cap=180 (stems + midi + RPP).
+    Linear with seconds_cap.
+    """
+    gb_per_game = (seconds_cap / 180.0) * 1.0
+    est_gb = num_games * gb_per_game
+    free_gb = shutil.disk_usage(str(out_dir)).free / (1024 ** 3)
+    print(f"Pre-flight disk check:")
+    print(f"  estimated output: {est_gb:.1f} GB for {num_games} games at "
+          f"{seconds_cap}s each")
+    print(f"  free space: {free_gb:.1f} GB")
+    if est_gb > free_gb * 0.5:
+        print(f"\n  ERROR: estimated footprint exceeds 50% of free disk.")
+        print(f"  Refusing to run.  Options:")
+        print(f"    - Lower --seconds (halve it to halve the footprint)")
+        print(f"    - Free disk (delete outputv6_*/, old stems, etc.)")
+        print(f"    - Override with --disk-override if you accept the risk")
+        return False
+    return True
+
 REPO = Path(__file__).resolve().parent.parent
 OUTPUT = REPO / "output"
 V6 = REPO / "outputv6"
@@ -74,6 +100,11 @@ def main():
                     help="Render N games in parallel (each game is CPU-"
                          "bound; on a multicore machine 4-8 is a good "
                          "starting point).  Default 1 = sequential.")
+    ap.add_argument("--disk-override", action="store_true",
+                    help="Skip the disk-space preflight check.  Only pass "
+                         "this if you understand what you are doing.  "
+                         "The default check refuses to run if estimated "
+                         "output > 50%% of free space.")
     args = ap.parse_args()
 
     if args.from_list:
@@ -106,6 +137,12 @@ def main():
         candidates.append((slug, nsfs[0]))
 
     print(f"Found {len(candidates)} games with NSFs under {OUTPUT}")
+
+    # Pre-flight disk check (architecture.md Rule 38).  Refuse to run
+    # if the estimated output would fill more than half the free disk.
+    if not args.disk_override:
+        if not preflight_disk_check(len(candidates), args.seconds, V6):
+            sys.exit(2)
 
     successes = []
     skipped = []

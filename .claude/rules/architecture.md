@@ -512,3 +512,92 @@ See `scripts/nsf_to_reaper.py::frames_to_channel_data` for the canonical
 implementation.  Architecturally this supersedes Rule 28's
 "$4012 OR $4013 written this frame -> event_type = dpcm_trigger"
 with the enable-gated variant.
+
+## 38. Disk Space Is a Hard Constraint (Proven 2026-04-18 + 2026-04-19)
+
+**The project has filled C: drive to 100% TWICE.**  Once on
+2026-04-18 (41 GB of outputv5 WAV/MP4 bloat), and again on
+2026-04-19 when a 150-game rebuild at `--seconds 180` produced
+138 GB of stems + 23 GB of SysEx-inlined RPPs + 25 GB of
+`_nsf_extract/` intermediate artifacts.  Both incidents caused
+mid-run failures, corrupted partial outputs, and required emergency
+cleanup.
+
+Disk space is not an abundant resource.  Treat it like a hard
+budget.
+
+**The three culprits**:
+
+1. **Stem WAV size.**  5 stems × 180 s × 44.1 kHz × 2 bytes
+   = ~16 MB per channel per song.  A full game with 20+ songs
+   = 1.6 GB.  150 games = 240+ GB.  Render caps must be sized
+   to budget.
+
+2. **Intermediate `_nsf_extract/` artifacts.**  The sub-RPP that
+   `nsf_to_reaper.py` produces for MIDI extraction can be 50+ MB
+   per song because it inlines per-frame SysEx events (a 30-second
+   song at 60 Hz produces ~18000 SysEx events, each a line in the
+   RPP).  These sub-RPPs are NEVER opened by the user — only their
+   `.mid` side-products are used.  They must be cleaned up after
+   MIDI extraction, not kept.
+
+3. **SysEx-inlined stems RPPs.**  `generate_stems_rpp.py` embeds
+   all the MIDI's SysEx events directly in the RPP file instead
+   of referencing the `.mid` file.  A 180-second 5-channel song's
+   RPP ends up at 35 MB.  Across 150 games × 30 songs that's
+   ~150 GB of RPP TEXT.
+
+**Prevention rules** for any new batch-rendering code:
+
+- **Estimate disk before starting.**  `render_all_nsfs.py` and
+  `batch_stems_project.py` must print the expected disk footprint
+  of the planned output and refuse to run if the estimate exceeds
+  50% of free space.
+- **Clean intermediates after use.**  Any helper tool that
+  produces `_nsf_extract/`, `_scratch/`, or `_tmp/` artifacts must
+  delete them after the derived final output is written.
+- **Default to light output.**  `--wav-preview` flag on
+  `nsf_to_reaper.py` is opt-in, not default (landed 2026-04-18).
+  Any future render feature that produces WAV by default must be
+  opt-in too.
+- **Stems MUST reference not inline.**  `generate_stems_rpp.py`
+  and any RPP generator that embeds SysEx must either reference
+  the `.mid` file by path or emit SysEx in a format that doesn't
+  multiply by every frame.  TODO: fix this.
+
+**Pre-flight check** recommended before any batch render:
+
+```python
+import shutil
+free_gb = shutil.disk_usage('.').free / (1024**3)
+est_gb = estimated_output_size(games, seconds_per_song)
+if est_gb > free_gb * 0.5:
+    raise SystemExit(f"Need {est_gb:.1f} GB, only {free_gb:.1f} GB free. Halving.")
+```
+
+**Cleanup commands** for when it happens anyway:
+
+```bash
+# Remove all WAV stems (91 GB on 2026-04-19)
+find . -name '*.wav' -type f -delete
+
+# Remove intermediate sub-RPPs (25 GB on 2026-04-19)
+find outputv6 -type d -name '_nsf_extract' -exec rm -rf {} +
+
+# Remove SysEx-inlined stems RPPs (23 GB on 2026-04-19)
+rm -rf outputv6/*/reaper
+
+# Remove REAPER peak-cache files
+find . -name '*.reapeaks' -delete
+```
+
+Disk incidents cost more than a few hours each time (aborted runs,
+lost progress, emergency cleanup scripting, context window on
+diagnosis).  Instrumenting pre-flight protects against recurrence
+for 10-20 minutes of one-time code.
+
+**Cross-references**: Rule 31 (stems are primary deliverable)
+is the architectural origin of the disk-bloat class.  Future
+`generate_rpp_variants.py`-style tools that ship Variant B
+(MIDI+JSFX only, no stems) are the cheap path — 1 MB per RPP
+vs 35 MB.

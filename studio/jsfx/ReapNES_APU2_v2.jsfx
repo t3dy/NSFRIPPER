@@ -514,12 +514,15 @@ while ((recv_len = midirecv_buf(offset, midi_buf, 128)) > 0) (
           kb_note[0] = midi_buf[1];
           p1_inc = calc_pulse_inc(note2hz(midi_buf[1]));
           p1_en = 1;
+          // PAL dim #6: velocity-scaled attack transient (Class A).
+          p1_transient = midi_buf[2] / 127.0;
           !cc[0] ? trigger_env(0, midi_buf[2]);
         );
         ch == 1 ? (
           kb_note[1] = midi_buf[1];
           p2_inc = calc_pulse_inc(note2hz(midi_buf[1]));
           p2_en = 1;
+          p2_transient = midi_buf[2] / 127.0;
           !cc[4] ? trigger_env(1, midi_buf[2]);
         );
         ch == 2 ? (
@@ -617,10 +620,13 @@ p1_out = 0;
     p1_env = process_env(0);
     kb_note[0] < 0 && ev[0] == 0 ? p1_en = 0;
     p1_en ? (
-      p1_vol_kb = floor(p1_env + 0.5);
+      // PAL dim #6: velocity-scaled transient boost, capped at vol=15.
+      p1_boost_kb = p1_transient * enhancer_amt * 15.0;
+      p1_vol_kb = min(15, floor(p1_env + p1_boost_kb + 0.5));
       p1_out = dt[slider3 * 8 + (floor(p1_phase) & 7)] * p1_vol_kb;
       p1_phase += p1_inc;
       p1_phase >= 8.0 ? p1_phase -= 8.0;
+      p1_transient *= transient_decay_per_sample;
     );
   );
 );
@@ -652,10 +658,12 @@ p2_out = 0;
     p2_env = process_env(1);
     kb_note[1] < 0 && ev[8] == 0 ? p2_en = 0;
     p2_en ? (
-      p2_vol_kb = floor(p2_env + 0.5);
+      p2_boost_kb = p2_transient * enhancer_amt * 15.0;
+      p2_vol_kb = min(15, floor(p2_env + p2_boost_kb + 0.5));
       p2_out = dt[slider9 * 8 + (floor(p2_phase) & 7)] * p2_vol_kb;
       p2_phase += p2_inc;
       p2_phase >= 8.0 ? p2_phase -= 8.0;
+      p2_transient *= transient_decay_per_sample;
     );
   );
 );

@@ -1,0 +1,167 @@
+{
+  "_source": "HiroPlantagenet Layer 1 — parameter ontology for the game/track/synth UI.",
+  "_authority": [
+    "docs/PERFORMANCE_ABSTRACTION_LAYER.md",
+    "keyboard_lab/docs/LIVE_CONTROL_MAPPINGS.md",
+    "studio/jsfx/ReapNES_APU2_v2.jsfx"
+  ],
+  "_generated": "2026-04-19",
+  "_cap": 12,
+  "_note": "Keep total rows <= 12 per LIVE_CONTROL_MAPPINGS.md design principle #1. Class D dims excluded. Class A/C dims favored; Class B unified into one macro knob (row 12).",
+
+  "primary_12": [
+    {
+      "param_id": "p1_duty",
+      "display_name": "P1 Duty",
+      "unit": "enum",
+      "range": [0, 3],
+      "default": 2,
+      "pal_class": "C",
+      "pal_dim": 4,
+      "jsfx_slider": 3,
+      "confidence": "high"
+    },
+    {
+      "param_id": "p2_duty",
+      "display_name": "P2 Duty",
+      "unit": "enum",
+      "range": [0, 3],
+      "default": 1,
+      "pal_class": "C",
+      "pal_dim": 4,
+      "jsfx_slider": 9,
+      "confidence": "high"
+    },
+    {
+      "param_id": "p1_decay_ms",
+      "display_name": "P1 Decay",
+      "unit": "ms",
+      "range": [0, 500],
+      "default": 80,
+      "pal_class": "C",
+      "pal_dim": 7,
+      "jsfx_slider": 6,
+      "confidence": "high"
+    },
+    {
+      "param_id": "p2_decay_ms",
+      "display_name": "P2 Decay",
+      "unit": "ms",
+      "range": [0, 500],
+      "default": 60,
+      "pal_class": "C",
+      "pal_dim": 7,
+      "jsfx_slider": 12,
+      "confidence": "high"
+    },
+    {
+      "param_id": "p1_sustain",
+      "display_name": "P1 Sustain",
+      "unit": "int",
+      "range": [0, 15],
+      "default": 10,
+      "pal_class": "C",
+      "pal_dim": 7,
+      "jsfx_slider": 7,
+      "confidence": "high"
+    },
+    {
+      "param_id": "tri_release_ms",
+      "display_name": "Triangle Release",
+      "unit": "ms",
+      "range": [0, 500],
+      "default": 50,
+      "pal_class": "C",
+      "pal_dim": 8,
+      "jsfx_slider": 16,
+      "confidence": "high"
+    },
+    {
+      "param_id": "noise_decay_ms",
+      "display_name": "Noise Decay",
+      "unit": "ms",
+      "range": [0, 500],
+      "default": 100,
+      "pal_class": "C",
+      "pal_dim": 8,
+      "jsfx_slider": 18,
+      "confidence": "high"
+    },
+    {
+      "param_id": "attack_enhancer",
+      "display_name": "Attack Snap",
+      "unit": "float",
+      "range": [0, 1],
+      "default": 0.4,
+      "pal_class": "A",
+      "pal_dim": 6,
+      "jsfx_slider": 20,
+      "confidence": "high"
+    },
+    {
+      "param_id": "enhancer_decay_ms",
+      "display_name": "Snap Decay",
+      "unit": "ms",
+      "range": [5, 80],
+      "default": 20,
+      "pal_class": "A",
+      "pal_dim": 6,
+      "jsfx_slider": 21,
+      "confidence": "high"
+    },
+    {
+      "param_id": "vibrato_depth",
+      "display_name": "Vibrato Depth",
+      "unit": "cents",
+      "range": [0, 40],
+      "default": 0,
+      "pal_class": "A",
+      "pal_dim": 10,
+      "jsfx_slider": "none",
+      "confidence": "low",
+      "note": "aftertouch source; JSFX wiring pending (Must-do #3)"
+    },
+    {
+      "param_id": "intensity_macro",
+      "display_name": "Intensity",
+      "unit": "float",
+      "range": [0, 1],
+      "default": 0.5,
+      "pal_class": "B",
+      "pal_dim": "multi",
+      "jsfx_slider": "none",
+      "confidence": "low",
+      "note": "CC71 performance macro per LIVE_CONTROL_MAPPINGS.md; not yet wired (Should-do #4). Drives decay+duty_anim+vibrato+transient together via preset curve."
+    },
+    {
+      "param_id": "master_gain",
+      "display_name": "Master",
+      "unit": "float",
+      "range": [0, 1],
+      "default": 0.2,
+      "pal_class": "META",
+      "pal_dim": null,
+      "jsfx_slider": 19,
+      "confidence": "high"
+    }
+  ],
+
+  "advanced_overflow": [
+    {"param_id": "p1_attack_ms",    "jsfx_slider": 5,  "pal_dim": 2, "note": "usually 0"},
+    {"param_id": "p1_release_ms",   "jsfx_slider": 8,  "pal_dim": 8},
+    {"param_id": "p1_volume",       "jsfx_slider": 4,  "pal_dim": 3, "note": "velocity drives this live"},
+    {"param_id": "p2_attack_ms",    "jsfx_slider": 11, "pal_dim": 2},
+    {"param_id": "p2_release_ms",   "jsfx_slider": 14, "pal_dim": 8},
+    {"param_id": "p2_volume",       "jsfx_slider": 10, "pal_dim": 3},
+    {"param_id": "p2_sustain",      "jsfx_slider": 13, "pal_dim": 7},
+    {"param_id": "tri_attack_ms",   "jsfx_slider": 15, "pal_dim": 2},
+    {"param_id": "noise_attack_ms", "jsfx_slider": 17, "pal_dim": 2},
+    {"param_id": "channel_mode",    "jsfx_slider": 1,  "pal_dim": null, "note": "routing: per-channel vs Full APU"},
+    {"param_id": "keyboard_mode",   "jsfx_slider": 2,  "pal_dim": null}
+  ],
+
+  "excluded_class_d": [
+    {"pal_dim": 16, "name": "DMC DAC direct value",         "reason": "Class D non-performable"},
+    {"pal_dim": 17, "name": "Frame-accurate register seq.", "reason": "Class D non-performable"}
+  ]
+}

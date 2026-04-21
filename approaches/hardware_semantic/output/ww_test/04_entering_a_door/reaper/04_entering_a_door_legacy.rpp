@@ -1,0 +1,552 @@
+<REAPER_PROJECT 0.1 "7.27/win64" 1707000000
+  <NOTES 0 2
+    |ReapNES Studio Project
+    |04_entering_a_door_legacy - stems+MIDI
+  >
+  RIPPLE 0
+  GROUPOVERRIDE 0 0 0
+  AUTOXFADE 129
+  ENVATTACH 3
+  POOLEDENVATTACH 0
+  MIXERUIFLAGS 11 48
+  ENVFADESZ10 40
+  PEAKGAIN 1
+  FEEDBACK 0
+  PANLAW 1
+  PROJOFFS 0 0 0
+  MAXPROJLEN 0 0
+  GRID 3199 8 1 8 1 0 0 0
+  TIMEMODE 1 5 -1 30 0 0 -1
+  VIDEO_CONFIG 0 0 65792
+  PANMODE 3
+  PANLAWFLAGS 3
+  CURSOR 0
+  ZOOM 100 0 0
+  VZOOMEX 6 0
+  USE_REC_CFG 0
+  RECMODE 1
+  SMPTESYNC 0 30 100 40 1000 300 0 0 1 0 0
+  LOOP 0
+  LOOPGRAN 0 4
+  RECORD_PATH "Media" ""
+  <RECORD_CFG
+    ZXZhdxgAAQ==
+  >
+  <APPLYFX_CFG
+  >
+  RENDER_FILE ""
+  RENDER_PATTERN ""
+  RENDER_FMT 0 2 0
+  RENDER_1X 0
+  RENDER_RANGE 1 0 0 18 1000
+  RENDER_RESAMPLE 3 0 1
+  RENDER_ADDTOPROJ 0
+  RENDER_STEMS 0
+  RENDER_DITHER 0
+  TIMELOCKMODE 1
+  TEMPOENVLOCKMODE 1
+  ITEMMIX 1
+  DEFPITCHMODE 589824 0
+  TAKELANE 1
+  SAMPLERATE 44100 0 0
+  <RENDER_CFG
+    ZXZhdxgAAQ==
+  >
+  LOCK 1
+  <METRONOME 6 2
+    VOL 0.25 0.125
+    BEATLEN 4
+    FREQ 1760 880 1
+    SAMPLES "" ""
+    SPLIGNORE 0 0
+    SPLDEF 2 660 "" 0
+    SPLDEF 3 440 "" 0
+    PATTERN 0 169
+    PATTERNSTR ABBB
+    MULT 1
+  >
+  GLOBAL_AUTO -1
+  TEMPO 128.59999614200012 4 4
+  PLAYRATE 1 0 0.25 4
+  SELECTION 0 0
+  SELECTION2 0 0
+  MASTERAUTOMODE 0
+  MASTERTRACKHEIGHT 0 0
+  MASTERPEAKCOL 16576
+  MASTERMUTESOLO 0
+  MASTERTRACKVIEW 0 0.6667 0.5 0.5 0 0 0 0 0 0 0 0 0 0
+  MASTERHWOUT 0 0 1 0 0 0 0 -1
+  MASTER_NCH 2 2
+  MASTER_VOLUME 1 0 -1 -1 1
+  MASTER_PANMODE 3
+  MASTER_PANLAWFLAGS 3
+  MASTER_FX 1
+  MASTER_SEL 0
+  <MASTERPLAYSPEEDENV
+    EGUID {EABF5898-9783-4759-A47E-52021BE49F1E}
+    ACT 0 -1
+    VIS 0 1 1
+    LANEHEIGHT 0 0
+    ARM 0
+    DEFSHAPE 0 -1 -1
+  >
+  <TEMPOENVEX
+    EGUID {53794EE2-7C64-429B-AEDE-E92097EA0DB4}
+    ACT 1 -1
+    VIS 1 0 1
+    LANEHEIGHT 0 0
+    ARM 0
+    DEFSHAPE 1 -1 -1
+  >
+  <PROJBAY
+  >
+  <TRACK {3066A6D6-6FC7-4836-A21D-A87FD9B70C8D}
+    NAME "[AUDIO] NES - NES - Pulse 1"
+    PEAKCOL 25600
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 0 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 0
+    TRACKID {3066A6D6-6FC7-4836-A21D-A87FD9B70C8D}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <ITEM
+      POSITION 0
+      LENGTH 2.400000
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {F468D3EB-695A-42F2-B10B-3B348022B8B0}
+      IID 1
+      NAME "pulse1.wav"
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {5441597E-2115-4F0A-9EE8-948ABE13893C}
+      <SOURCE WAVE
+        FILE "C:/Dev/NSFRIPPER/approaches/hardware_semantic/output/ww_test/04_entering_a_door/stems/pulse1.wav"
+      >
+    >
+  >
+
+  <TRACK {680B9246-30A2-4876-B847-C26077A9E97A}
+    NAME "[MIDI] NES - NES - Pulse 1"
+    PEAKCOL 16576606
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 1 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 5088 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {680B9246-30A2-4876-B847-C26077A9E97A}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 24 52 700 560
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <JS "ReapNES Studio/ReapNES_APU2.jsfx" ""
+        0 1 2 15 0 80 10 100 1 15 0 60 10 80 0 50 0 100 0.100000 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      >
+      FLOATPOS 0 0 0 0
+      FXID {207EFB0D-9953-4587-8B02-2F1A987FCCEF}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      LENGTH 2.4
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {5080CDC7-7905-4AE8-A3AA-A7ED93C17F82}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 c0 50
+        E 0 b0 0c 40
+        E 0 b0 0b 10
+        E 0 90 4c 10
+        E 80 80 4c 00
+        E 0 90 47 10
+        E 80 80 47 00
+        E 0 90 4a 10
+        E 80 80 4a 00
+        E 0 90 47 10
+        E 80 80 47 00
+        E 0 90 4c 10
+        E 80 80 4c 00
+        E 0 90 4f 10
+        E 80 80 4f 00
+        E 0 90 53 10
+        E 80 80 53 00
+        E 0 90 56 10
+        E 80 80 56 00
+        E 0 90 58 10
+        E 80 80 58 00
+        E 0 ff 2f 00
+      >
+    >
+  >
+  <TRACK {51D40688-F529-4A18-BDCD-BE6A686D1050}
+    NAME "[AUDIO] NES - NES - Pulse 2"
+    PEAKCOL 25600
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 0 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 0
+    TRACKID {51D40688-F529-4A18-BDCD-BE6A686D1050}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <ITEM
+      POSITION 0
+      LENGTH 2.400000
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {90DCD2F5-FD18-48A7-807D-FB463767C116}
+      IID 1
+      NAME "pulse2.wav"
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {AE8C2247-F096-4E6A-B9BE-A7F42AEE591A}
+      <SOURCE WAVE
+        FILE "C:/Dev/NSFRIPPER/approaches/hardware_semantic/output/ww_test/04_entering_a_door/stems/pulse2.wav"
+      >
+    >
+  >
+
+  <TRACK {ED980E7B-E757-4382-84AE-C0CEED7E0BDF}
+    NAME "[MIDI] NES - NES - Pulse 2"
+    PEAKCOL 10092441
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 1 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 5088 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {ED980E7B-E757-4382-84AE-C0CEED7E0BDF}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 24 52 700 560
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <JS "ReapNES Studio/ReapNES_APU2.jsfx" ""
+        1 1 2 15 0 80 10 100 1 15 0 60 10 80 0 50 0 100 0.100000 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      >
+      FLOATPOS 0 0 0 0
+      FXID {5465475C-C9A6-4B06-A345-A892823378FB}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      LENGTH 2.4
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {850193CA-BF15-4887-8FCD-6CB93A302BF2}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 c1 51
+        E 0 b1 0c 60
+        E 0 b1 0b 10
+        E 0 91 34 10
+        E 80 81 34 00
+        E 0 91 40 10
+        E 80 81 40 00
+        E 0 91 3b 10
+        E 80 81 3b 00
+        E 0 91 3e 10
+        E 80 81 3e 00
+        E 0 91 34 10
+        E 80 81 34 00
+        E 0 91 40 10
+        E 80 81 40 00
+        E 0 91 3e 10
+        E 80 81 3e 00
+        E 0 91 3b 10
+        E 80 81 3b 00
+        E 0 91 34 10
+        E 80 81 34 00
+        E 0 ff 2f 00
+      >
+    >
+  >
+  <TRACK {F55B2F23-05A4-43B7-958F-103E059DC0AA}
+    NAME "[AUDIO] NES - NES - Triangle"
+    PEAKCOL 25600
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 0 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 0
+    TRACKID {F55B2F23-05A4-43B7-958F-103E059DC0AA}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <ITEM
+      POSITION 0
+      LENGTH 2.400000
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {C8AF4E47-0B42-4E5F-A588-EA0853F01C53}
+      IID 1
+      NAME "triangle.wav"
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {96362254-09D3-4464-B99F-ECF1D6713389}
+      <SOURCE WAVE
+        FILE "C:/Dev/NSFRIPPER/approaches/hardware_semantic/output/ww_test/04_entering_a_door/stems/triangle.wav"
+      >
+    >
+  >
+
+  <TRACK {339A5841-DF18-4299-B8A1-2B65C8E98968}
+    NAME "[AUDIO] NES - NES - Noise / Drums"
+    PEAKCOL 25600
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 0 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 0
+    TRACKID {339A5841-DF18-4299-B8A1-2B65C8E98968}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <ITEM
+      POSITION 0
+      LENGTH 2.400000
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {506DD203-862A-46F5-867D-1152103F070B}
+      IID 1
+      NAME "noise.wav"
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {2683B3B0-8BDF-4003-9F83-9CDBAEAB854C}
+      <SOURCE WAVE
+        FILE "C:/Dev/NSFRIPPER/approaches/hardware_semantic/output/ww_test/04_entering_a_door/stems/noise.wav"
+      >
+    >
+  >
+
+  <TRACK {9D236ACD-555D-447D-AC8E-A0E416B7FE99}
+    NAME "[AUDIO] NES - NES - DMC / DAC"
+    PEAKCOL 25600
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 0 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 0
+    TRACKID {9D236ACD-555D-447D-AC8E-A0E416B7FE99}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <ITEM
+      POSITION 0
+      LENGTH 2.400000
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {0669F0EF-BEFD-46D4-8DB3-DBE5D9ADAAF9}
+      IID 1
+      NAME "dmc.wav"
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {9E3D7381-2755-4E39-BBA2-B655C90DB3F9}
+      <SOURCE WAVE
+        FILE "C:/Dev/NSFRIPPER/approaches/hardware_semantic/output/ww_test/04_entering_a_door/stems/dmc.wav"
+      >
+    >
+  >
+
+  <TRACK {F64D7E50-6EEE-4898-8F5A-34725EEF7779}
+    NAME "[MIDI] NES - NES - DMC / DAC"
+    PEAKCOL 13395456
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 1 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0 0 0
+    SEL 0
+    REC 0 5088 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {F64D7E50-6EEE-4898-8F5A-34725EEF7779}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 24 52 700 560
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <JS "ReapNES Studio/ReapNES_APU2.jsfx" ""
+        4 1 2 15 0 80 10 100 1 15 0 60 10 80 0 50 0 100 0.100000 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      >
+      FLOATPOS 0 0 0 0
+      FXID {61F850D2-6D05-4396-B834-A88760CB9CF3}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      LENGTH 2.4
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 0 0 0 0 0 0 0
+      FADEOUT 0 0 0 0 0 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {22530CFC-3FA5-4F7C-82DC-626A3CF974C3}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        E 0 94 28 01
+        E 16 84 28 00
+        E 0 ff 2f 00
+      >
+    >
+  >
+>

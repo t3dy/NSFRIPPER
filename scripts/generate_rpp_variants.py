@@ -124,11 +124,22 @@ def variant_b_rpp(midi_path, stems_dir, out_path):
     stats = info["channel_stats"]
     tempo = info["tempo_bpm"]
 
-    # Estimate length from pulse1 stem if available, else 60 s fallback
+    # Estimate length from pulse1 stem if available, else from MIDI length, else 60 s.
     length = 60.0
-    p1 = stems_dir / "pulse1.wav"
-    if p1.is_file():
-        length = get_wav_length(p1)
+    if stems_dir is not None:
+        p1 = stems_dir / "pulse1.wav"
+        if p1.is_file():
+            length = get_wav_length(p1)
+        else:
+            try:
+                length = mido.MidiFile(str(midi_path)).length or 60.0
+            except Exception:
+                pass
+    else:
+        try:
+            length = mido.MidiFile(str(midi_path)).length or 60.0
+        except Exception:
+            pass
 
     lines = [rpp_header(tempo=tempo, title=f"{midi_path.stem} - Variant B")]
     nes_ch = {"pulse1": 0, "pulse2": 1, "triangle": 2, "noise": 3, "dmc": 4}
@@ -183,22 +194,30 @@ def variant_c_rpp(midi_path, stems_dir, out_path):
 
 
 def process_game(game_dir, variants):
-    """For each song in a outputv6/<game>/, produce variant RPPs."""
+    """For each song in a outputv6/<game>/, produce variant RPPs.
+
+    Variants B and C only need MIDI; if stems/ is absent we still
+    emit them with a length fallback.  Variant A requires stems.
+    """
     midi_dir = game_dir / "midi"
     stems_root = game_dir / "stems"
-    if not midi_dir.is_dir() or not stems_root.is_dir():
+    if not midi_dir.is_dir():
+        return (0, 0)
+
+    needs_stems = "A" in variants
+    if needs_stems and not stems_root.is_dir():
         return (0, 0)
 
     produced = 0
     failed = 0
     for midi_path in sorted(midi_dir.glob("*.mid")):
         slug = midi_path.stem
-        stems_dir = stems_root / slug
-        if not stems_dir.is_dir():
-            continue
+        stems_dir = stems_root / slug if stems_root.is_dir() else None
 
         for variant in variants:
             if variant == "A":
+                if stems_dir is None or not stems_dir.is_dir():
+                    continue
                 target_root = V6_A
                 builder = variant_a_rpp
             elif variant == "B":

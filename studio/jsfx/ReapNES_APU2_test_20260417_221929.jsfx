@@ -1,0 +1,812 @@
+desc:ReapNES APU2 v2 - Envelope + Linear Counter Simulator
+tags:instrument synthesizer chiptune NES 8-bit hardware-accurate
+
+in_pin:none
+out_pin:Left
+out_pin:Right
+
+// ===================================================================
+// v2 (2026-04-17): Adds missing hardware simulations that the v1
+// pipeline+plugin were flattening. Changes vs v1:
+//
+//   1. TRIANGLE LINEAR COUNTER SIMULATION
+//      v1 treated ($4008 & 0x7F) > 0 as the triangle gate. That reads
+//      the latched reload value as if it were live counter state. When
+//      a driver writes $4008=0x81 (ctrl=1, reload=1) the gate stayed
+//      "alive" forever. Now simulates the APU internal counter:
+//      on $400B write set reload_flag; at 240Hz quarter-frames, reload
+//      or decrement; control bit latches reload_flag only when it is
+//      set. Gate closes when counter reaches 0 (unless ctrl=1).
+//      Fixes Wizards & Warriors bass overhang (36% of frames) and all
+//      short-reload decay-style games (Konami CV/Contra use reload=15).
+//
+//   2. TWO-PHASE ATTACK ENHANCER (optional, slider20)
+//      Adds a fast-decay transient burst on pulse phase-resets to
+//      restore percussive attack ("tink") that CC11 quantization
+//      smooths out. Transient decays over ~20ms independently of
+//      the envelope. Set to 0 for pure hardware fidelity.
+//
+//   3. NOISE LENGTH COUNTER SIMULATION (fixes SMB/SMB3 drum hits)
+//      v1 noise channel was gated on vol>0 only. Many drivers (SMB,
+//      SMB3, Kirby, Metroid) use $400C const_vol=1 + $400F length-load
+//      for drum hits: the length counter decrements at 120Hz and
+//      auto-silences the channel. Without simulation we hear a
+//      continuous "shhhh" instead of percussive "kt!". v2 tracks
+//      $400F writes, loads from the NES length table, decrements at
+//      120Hz, and gates noise output when counter reaches 0 (unless
+//      $400C bit 5 sets halt). Gives SMB/SMB3 back their drum kit.
+//
+// See docs/NES_AUDIO_FINDINGS_2026_04_17.md for the register-behavior
+// survey. See architecture.md Rule 29 for phase reset / linear counter
+// handling.
+//
+// Tells: CC11 = volume (NES 0-15 -> MIDI 0-127); CC12 = duty
+// SysEx: F0 7D 02 ch r0lo r0hi r1lo r1hi r2lo r2hi r3lo r3hi en mask F7
+// ===================================================================
+
+slider1:4<0,4,1{Pulse 1 Only,Pulse 2 Only,Triangle Only,Noise/Drums Only,Full APU}>Channel Mode
+slider2:0<0,1,1{Off,On}>Keyboard Mode
+
+slider3:2<0,3,1{12.5%,25%,50%,75%}>P1 Duty
+slider4:15<0,15,1>P1 Volume
+slider5:0<0,500,1>P1 Attack (ms)
+slider6:80<0,500,1>P1 Decay (ms)
+slider7:10<0,15,1>P1 Sustain
+slider8:100<0,500,1>P1 Release (ms)
+
+slider9:1<0,3,1{12.5%,25%,50%,75%}>P2 Duty
+slider10:15<0,15,1>P2 Volume
+slider11:0<0,500,1>P2 Attack (ms)
+slider12:60<0,500,1>P2 Decay (ms)
+slider13:10<0,15,1>P2 Sustain
+slider14:80<0,500,1>P2 Release (ms)
+
+slider15:0<0,500,1>Tri Attack (ms)
+slider16:50<0,500,1>Tri Release (ms)
+
+slider17:0<0,500,1>Noise Attack (ms)
+slider18:100<0,500,1>Noise Decay (ms)
+
+slider19:0.2<0,1,0.01>Master Gain
+slider20:0.4<0,1,0.01>Attack Enhancer (2-phase)
+slider21:20<5,80,1>Enhancer Decay (ms)
+
+@init
+cpu_clk = 1789773;
+
+dt = 0;
+dt[0]=0; dt[1]=1; dt[2]=0; dt[3]=0; dt[4]=0; dt[5]=0; dt[6]=0; dt[7]=0;
+dt[8]=0; dt[9]=1; dt[10]=1; dt[11]=0; dt[12]=0; dt[13]=0; dt[14]=0; dt[15]=0;
+dt[16]=0; dt[17]=1; dt[18]=1; dt[19]=1; dt[20]=1; dt[21]=0; dt[22]=0; dt[23]=0;
+dt[24]=1; dt[25]=0; dt[26]=0; dt[27]=1; dt[28]=1; dt[29]=1; dt[30]=1; dt[31]=1;
+
+tt = 32;
+tt[0]=15; tt[1]=14; tt[2]=13; tt[3]=12; tt[4]=11; tt[5]=10; tt[6]=9; tt[7]=8;
+tt[8]=7; tt[9]=6; tt[10]=5; tt[11]=4; tt[12]=3; tt[13]=2; tt[14]=1; tt[15]=0;
+tt[16]=0; tt[17]=1; tt[18]=2; tt[19]=3; tt[20]=4; tt[21]=5; tt[22]=6; tt[23]=7;
+tt[24]=8; tt[25]=9; tt[26]=10; tt[27]=11; tt[28]=12; tt[29]=13; tt[30]=14; tt[31]=15;
+
+np = 64;
+np[0]=4; np[1]=8; np[2]=16; np[3]=32; np[4]=64; np[5]=96; np[6]=128; np[7]=160;
+np[8]=202; np[9]=254; np[10]=380; np[11]=508; np[12]=762; np[13]=1016; np[14]=2034; np[15]=4068;
+
+dm = 80;
+dm[0]=14; dm[1]=0; dm[2]=15; dm[3]=600;
+dm[4]=13; dm[5]=0; dm[6]=15; dm[7]=500;
+dm[8]=3; dm[9]=1; dm[10]=10; dm[11]=200;
+dm[12]=6; dm[13]=0; dm[14]=15; dm[15]=350;
+dm[16]=5; dm[17]=0; dm[18]=13; dm[19]=300;
+dm[20]=7; dm[21]=0; dm[22]=15; dm[23]=400;
+dm[24]=11; dm[25]=0; dm[26]=14; dm[27]=500;
+dm[28]=1; dm[29]=1; dm[30]=10; dm[31]=100;
+dm[32]=10; dm[33]=0; dm[34]=14; dm[35]=450;
+dm[36]=1; dm[37]=1; dm[38]=8; dm[39]=80;
+dm[40]=8; dm[41]=0; dm[42]=14; dm[43]=400;
+dm[44]=2; dm[45]=0; dm[46]=11; dm[47]=250;
+dm[48]=9; dm[49]=0; dm[50]=14; dm[51]=400;
+dm[52]=6; dm[53]=0; dm[54]=13; dm[55]=350;
+dm[56]=3; dm[57]=0; dm[58]=13; dm[59]=800;
+dm[60]=5; dm[61]=0; dm[62]=13; dm[63]=350;
+dm[64]=2; dm[65]=0; dm[66]=9; dm[67]=300;
+dm[68]=4; dm[69]=0; dm[70]=10; dm[71]=300;
+dm[72]=4; dm[73]=0; dm[74]=10; dm[75]=300;
+dm[76]=4; dm[77]=0; dm[78]=10; dm[79]=300;
+dm[80]=2; dm[81]=0; dm[82]=11; dm[83]=600;
+dm[84]=4; dm[85]=1; dm[86]=12; dm[87]=200;
+dm[88]=3; dm[89]=0; dm[90]=13; dm[91]=900;
+
+// Oscillator state
+p1_phase = 0; p1_inc = 0; p1_en = 0;
+p2_phase = 0; p2_inc = 0; p2_en = 0;
+tri_phase = 0; tri_inc = 0; tri_en = 0;
+lfsr = 1; lfsr_acc = 0; noi_en = 0;
+noi_period_idx = 4; noi_mode = 0;
+
+// ===================================================================
+// TRIANGLE linear counter simulator (v2 fix)
+// ===================================================================
+// tri_reload:       (value last written to $4008 bits 0-6)
+// tri_control:      (value of $4008 bit 7)
+// tri_linear_live:  (internal countdown, decrements at 240Hz)
+// tri_reload_flag:  (set on $400B write, cleared by quarter-frame tick
+//                    when control=0; stays set when control=1)
+// tri_qf_ctr:       (per-sample counter to clock the 240Hz quarter-frame)
+// tri_qf_samples:   (samples per quarter-frame = srate/240)
+// ===================================================================
+tri_reload = 0;
+tri_control = 0;
+tri_linear_live = 0;
+tri_reload_flag = 0;
+tri_qf_ctr = 0;
+tri_qf_samples = srate / 240;
+
+// Transient state for two-phase attack
+p1_transient = 0;
+p2_transient = 0;
+transient_decay_per_sample = 1.0;
+
+// ===================================================================
+// NOISE length counter + envelope simulator (v2 fix for SMB-style drums)
+// ===================================================================
+// Length counter ticks at 120Hz (every other quarter-frame tick in 4-step
+// frame counter mode, which is the default).
+// $400F write: length_load_idx = (value >> 3) & 0x1F; reload counter from
+// the NES length table at that index.
+// Each tick (if not halted via $400C bit 5): decrement counter; when 0
+// gate closes permanently until next reload.
+// Envelope (same semantics as pulse envelope): when const_vol=0, decay
+// level counts down from 15 at quarter-frame divider rate.
+// ===================================================================
+noi_length_counter = 0;       // live 7-bit length countdown
+noi_length_halt = 0;          // bit 5 of $400C = halt/loop flag
+noi_envelope_level = 15;      // HW envelope decay level
+noi_envelope_divider = 0;
+noi_envelope_period = 0;
+noi_envelope_loop = 0;
+noi_envelope_start = 0;       // set on $400F write
+noi_const_vol = 1;
+noi_const_vol_nibble = 0;
+noi_lc_half_tick = 0;         // toggles 0/1 to get 120Hz from 240Hz quarter-frames
+
+// Per-channel DC blocker state (1-pole highpass ~10 Hz)
+dc_coef = exp(-2 * $pi * 10 / srate);
+dc_x = 0; dc_y = 0;
+
+// ===================================================================
+// NOTE: NESdev wiki documents a 3-stage analog output filter
+// (90 HP + 440 HP + 14 kHz LP) but empirically (measured vs libgme
+// ground truth via audio_diff), libgme does NOT apply the 440 HP.
+// Our unfiltered output (HW envelope + linear counter + non-linear
+// DAC) matches libgme within 1.6 dB on all critical bands.  So we
+// do NOT apply those filters here -- they would move us AWAY from
+// hardware behavior, not toward it.  Coefficients kept unused in
+// case a user wants to wire them up via a slider later.
+// ===================================================================
+nes_hp90_b  = exp(-2 * $pi * 90 / srate);
+nes_hp440_b = exp(-2 * $pi * 440 / srate);
+nes_lp14k_a = 1.0 - exp(-2 * $pi * 14000 / srate);
+// Per-plugin state (one filter instance serves this track)
+hp90_x = 0; hp90_y = 0;
+hp440_x = 0; hp440_y = 0;
+lp14k_y = 0;
+
+// NES noise length counter lookup table (indexed by top 5 bits of $400F)
+ntab = 500;
+ntab[0] = 10;  ntab[1] = 254; ntab[2] = 20;  ntab[3] = 2;
+ntab[4] = 40;  ntab[5] = 4;   ntab[6] = 80;  ntab[7] = 6;
+ntab[8] = 160; ntab[9] = 8;   ntab[10] = 60; ntab[11] = 10;
+ntab[12] = 14; ntab[13] = 12; ntab[14] = 26; ntab[15] = 14;
+ntab[16] = 12; ntab[17] = 16; ntab[18] = 24; ntab[19] = 18;
+ntab[20] = 48; ntab[21] = 20; ntab[22] = 96; ntab[23] = 22;
+ntab[24] = 192; ntab[25] = 24; ntab[26] = 72; ntab[27] = 26;
+ntab[28] = 16; ntab[29] = 28; ntab[30] = 32; ntab[31] = 30;
+
+// SysEx state
+sx = 150;
+i = 0; loop(32, sx[i] = 0; i += 1; );
+
+art = 190;
+i = 0; loop(16, art[i] = 0; i += 1; );
+
+cc = 200;
+i = 0; loop(16, cc[i] = 0; i += 1; );
+
+ev = 300;
+i = 0; loop(32, ev[i] = 0; i += 1; );
+
+// Pulse envelope simulator state
+// penv[ch*8]: 0=env_active(non-const mode after retrigger), 1=period,
+//             2=loop, 3=decay_level, 4=remaining_samples_in_divider,
+//             5=samples_per_step, 6=const_vol, 7=raw_nibble
+penv = 340;
+i = 0; loop(16, penv[i] = 0; i += 1; );
+
+kb_note = 400;
+kb_note[0] = -1; kb_note[1] = -1; kb_note[2] = -1; kb_note[3] = -1;
+
+drum_vol = 0; drum_decay = 0; drum_timer = 0; drum_active = 0;
+
+midi_buf = 450;
+
+function note2hz(n) ( 440 * 2 ^ ((n - 69) / 12); );
+
+function calc_pulse_inc(freq) local(period, f) (
+  period = cpu_clk / (16 * freq) - 1;
+  period = max(0, min(2047, floor(period + 0.5)));
+  f = cpu_clk / (16 * (period + 1));
+  8.0 * f / srate;
+);
+
+function calc_tri_inc(freq) local(period, f) (
+  period = cpu_clk / (32 * freq) - 1;
+  period = max(0, min(2047, floor(period + 0.5)));
+  f = cpu_clk / (32 * (period + 1));
+  32.0 * f / srate;
+);
+
+function ms_to_rate(ms_val, range) local(samples) (
+  ms_val <= 0 ? 99999 : (
+    samples = max(1, ms_val * srate / 1000);
+    range / samples;
+  );
+);
+
+function trigger_env(ch, velocity) local(base, peak_vol, atk_ms, dec_ms, sus, rel_ms) (
+  base = ev + ch * 8;
+  peak_vol = floor(velocity / 127 * 15 + 0.5);
+  ch == 0 ? ( atk_ms = slider5;  dec_ms = slider6;  sus = slider7;  rel_ms = slider8; );
+  ch == 1 ? ( atk_ms = slider11; dec_ms = slider12; sus = slider13; rel_ms = slider14; );
+  ch == 2 ? ( atk_ms = slider15; dec_ms = 0;        sus = 15;       rel_ms = slider16; );
+  ch == 3 ? ( atk_ms = slider17; dec_ms = slider18; sus = 0;        rel_ms = 0; );
+  base[6] = peak_vol;
+  base[4] = sus;
+  base[2] = ms_to_rate(atk_ms, peak_vol);
+  base[3] = ms_to_rate(dec_ms, peak_vol - sus);
+  base[5] = ms_to_rate(rel_ms, peak_vol);
+  atk_ms > 0 ? (
+    base[0] = 1; base[1] = 0;
+  ) : (
+    base[0] = dec_ms > 0 ? 2 : 3;
+    base[1] = peak_vol;
+  );
+);
+
+function release_env(ch) local(base) (
+  base = ev + ch * 8;
+  base[0] == 0 ? 0 : ( base[0] = 4; );
+);
+
+function process_env(ch) local(base, phase, level, sus) (
+  base = ev + ch * 8;
+  phase = base[0]; level = base[1]; sus = base[4];
+  phase == 1 ? ( level += base[2]; level >= base[6] ? ( level = base[6]; base[0] = 2; ); );
+  phase == 2 ? ( level -= base[3]; level <= sus ? ( level = sus; base[0] = 3; ); );
+  phase == 3 ? ( level = sus; );
+  phase == 4 ? ( level -= base[5]; level <= 0 ? ( level = 0; base[0] = 0; ); );
+  base[1] = max(0, min(15, level));
+  base[1];
+);
+
+// ===================================================================
+// Pulse hardware envelope simulator
+// Called on each $4003/$4007 write (phase-reset) to reset decay=15
+// and reload the divider. clock_pulse_env() runs at sample rate and
+// internally counts samples-per-quarter-frame.
+// ===================================================================
+function trigger_pulse_env(ch, env_period, env_loop) local(base, step_samples) (
+  base = penv + ch * 8;
+  // divider reloads with period+1 quarter-frames; one quarter-frame = srate/240 samples
+  step_samples = max(1, floor(((env_period + 1) * srate / 240.0) + 0.5));
+  base[0] = 1;
+  base[1] = env_period;
+  base[2] = env_loop;
+  base[3] = 15;
+  base[4] = step_samples;
+  base[5] = step_samples;
+);
+
+function clock_pulse_env(ch) local(base, level, remain) (
+  base = penv + ch * 8;
+  base[0] ? (
+    level = base[3];
+    remain = base[4] - 1;
+    remain <= 0 ? (
+      level > 0 ? (
+        level -= 1;
+      ) : (
+        base[2] ? level = 15;
+      );
+      remain += max(1, base[5]);
+    );
+    base[3] = max(0, min(15, level));
+    base[4] = remain;
+  );
+  base[3];
+);
+
+function trigger_drum(gm_note, velocity) local(idx, base) (
+  idx = gm_note - 35;
+  idx >= 0 && idx <= 22 ? (
+    base = idx * 4;
+    noi_period_idx = dm[base];
+    noi_mode = dm[base + 1];
+    drum_vol = dm[base + 2] * (velocity / 127);
+    drum_decay = dm[base + 3];
+    drum_timer = drum_decay;
+    drum_active = 1;
+    noi_en = 1;
+  );
+);
+
+@slider
+// Recompute transient decay factor whenever enhancer slider changes
+// decay_per_sample = exp(-1 / (srate * tau_seconds))
+// For tau = slider21 / 1000 seconds
+tau_samples = max(1, slider21 * srate / 1000);
+transient_decay_per_sample = exp(-1 / tau_samples);
+
+@block
+ch_mode = slider1;
+kb_mode = slider2;
+enhancer_amt = slider20;
+
+while ((recv_len = midirecv_buf(offset, midi_buf, 128)) > 0) (
+
+  status_byte = midi_buf[0];
+
+  status_byte == 0xF0 ? (
+    ((recv_len >= 13 && midi_buf[1] == 0x7D && midi_buf[2] == 0x01)
+      || (recv_len >= 14 && midi_buf[1] == 0x7D && midi_buf[2] == 0x02)) ? (
+      sx_ch = midi_buf[3];
+      sx_msg = midi_buf[2];
+      (ch_mode == 4 || ch_mode == sx_ch) ? (
+        r0 = (midi_buf[4] & 0x7F) | ((midi_buf[5] & 0x01) << 7);
+        r1 = (midi_buf[6] & 0x7F) | ((midi_buf[7] & 0x01) << 7);
+        r2 = (midi_buf[8] & 0x7F) | ((midi_buf[9] & 0x01) << 7);
+        r3 = (midi_buf[10] & 0x7F) | ((midi_buf[11] & 0x01) << 7);
+        sx_en = midi_buf[12] & 1;
+        write_mask = sx_msg == 0x02 ? (midi_buf[13] & 0x0F) : 0;
+
+        sx_base = sx_ch * 8;
+        sx[sx_base] = 1;
+        sx[sx_base + 4] = sx_en;
+        sx[sx_base + 7] = write_mask;
+
+        // --- Pulse 1/2 ---
+        sx_ch < 2 ? (
+          env_loop = (r0 >> 5) & 0x01;
+          const_vol = (r0 >> 4) & 0x01;
+          env_period = r0 & 0x0F;
+          sx[sx_base + 1] = env_period;
+          sx[sx_base + 2] = (r0 >> 6) & 0x03;
+          sx[sx_base + 5] = r1;
+
+          penv_base = penv + sx_ch * 8;
+          penv_base[1] = env_period;
+          penv_base[2] = env_loop;
+          penv_base[6] = const_vol;
+          penv_base[7] = env_period;
+          !const_vol ? (
+            // Fire envelope retrigger on $4003/$4007 write (write_mask bit 3).
+            // v2: always also fire transient burst for attack enhancer.
+            (write_mask & 8) ? (
+              trigger_pulse_env(sx_ch, env_period, env_loop);
+              sx_ch == 0 ? p1_transient = 1.0 : p2_transient = 1.0;
+            );
+          ) : (
+            penv_base[0] = 0;
+            penv_base[3] = env_period;
+            // Constant-volume retrigger: still fire transient on r3 write
+            (write_mask & 8) ? (
+              sx_ch == 0 ? p1_transient = 1.0 : p2_transient = 1.0;
+            );
+          );
+
+          sx_period = r2 | ((r3 & 0x07) << 8);
+          sx[sx_base + 3] = sx_period;
+
+          // Period validity only - NOT $4015/sx_en.  Most NES drivers
+          // don't use $4015 for gating; they silence via volume=0.
+          // Matches the render_wav() Python path which measured-right on W&W.
+          sx_period >= 8 ? (
+            sx_freq = cpu_clk / (16.0 * (sx_period + 1));
+            sx_ch == 0 ? (
+              p1_inc = 8.0 * sx_freq / srate;
+              p1_en = 1;
+            ) : (
+              p2_inc = 8.0 * sx_freq / srate;
+              p2_en = 1;
+            );
+          ) : (
+            sx_ch == 0 ? ( p1_en = 0; ) : ( p2_en = 0; );
+          );
+
+          sx_ch == 0 ? (
+            r3 != p1_prev_r3 ? p1_phase = 0;
+            p1_prev_r3 = r3;
+          ) : (
+            r3 != p2_prev_r3 ? p2_phase = 0;
+            p2_prev_r3 = r3;
+          );
+        );
+
+        // --- Triangle (v2: proper linear counter simulation) ---
+        sx_ch == 2 ? (
+          tri_control = (r0 >> 7) & 0x01;
+          tri_reload = r0 & 0x7F;
+          sx[sx_base + 6] = tri_reload;
+          // v1-style gate kept for backward compatibility with older
+          // plugin diagnostics, but NOT used for actual output gating.
+          sx[sx_base + 1] = tri_reload > 0 ? 15 : 0;
+
+          sx_period = r2 | ((r3 & 0x07) << 8);
+          sx[sx_base + 3] = sx_period;
+
+          // $400B write sets the internal reload_flag and resets the
+          // oscillator phase (triangle phase reset is audible as a soft click).
+          (write_mask & 8) ? (
+            tri_reload_flag = 1;
+            tri_phase = 0;
+          );
+
+          // Period < 2 silences the channel. Ignore $4015/sx_en here -
+          // most drivers (W&W included) never set $4015 bit 2 and rely
+          // on linear counter for triangle note gating. Matching
+          // render_wav() Python which was user-confirmed on W&W.
+          sx_period >= 2 ? (
+            sx_freq = cpu_clk / (32.0 * (sx_period + 1));
+            tri_inc = 32.0 * sx_freq / srate;
+            tri_en = 1;
+          ) : (
+            tri_en = 0;
+          );
+        );
+
+        sx_ch == 3 ? (
+          sx[sx_base + 1] = r0 & 0x0F;
+          noi_period_idx = r2 & 0x0F;
+          noi_mode = (r2 >> 7) & 1;
+          // Ignore $4015/sx_en for noise too; drivers use vol=0 to silence.
+          (r0 & 0x0F) > 0 ? noi_en = 1 : noi_en = 0;
+        );
+      );
+    ) : (
+      recv_len >= 7 && midi_buf[1] == 0x7D && midi_buf[2] == 0x03 ? (
+        sx_ch = midi_buf[3];
+        (ch_mode == 4 || ch_mode == sx_ch) ? (
+          art_base = art + sx_ch * 4;
+          art_base[0] = midi_buf[4] & 0x7F;
+          art_base[1] = midi_buf[5] & 0x7F;
+          art_base[2] = midi_buf[6] & 0x7F;
+        );
+      );
+    );
+    0;
+  ) : (
+    status = status_byte & 0xF0;
+    ch = status_byte & 0x0F;
+
+    use_msg = 1;
+    ch_mode < 4 ? (
+      ch != ch_mode ? (
+        kb_mode ? ( ch = ch_mode; ) : ( use_msg = 0; );
+      );
+    );
+
+    use_msg ? (
+      status == 0xB0 && midi_buf[1] == 11 && !sx[ch * 8] ? (
+        nes_vol = floor(midi_buf[2] * 15 / 127 + 0.5);
+        cc[ch * 4] = 1;
+        cc[ch * 4 + 1] = nes_vol;
+      );
+
+      status == 0xB0 && midi_buf[1] == 12 && !sx[ch * 8] ? (
+        cc[ch * 4] = 1;
+        cc[ch * 4 + 2] = floor(midi_buf[2] / 32);
+      );
+
+      status == 0xB0 && (midi_buf[1] == 123 || midi_buf[1] == 121) ? (
+        cc[ch * 4] = 0;
+      );
+
+      status == 0x90 && midi_buf[2] > 0 && !sx[ch * 8] ? (
+        ch == 0 ? (
+          kb_note[0] = midi_buf[1];
+          p1_inc = calc_pulse_inc(note2hz(midi_buf[1]));
+          p1_en = 1;
+          !cc[0] ? trigger_env(0, midi_buf[2]);
+        );
+        ch == 1 ? (
+          kb_note[1] = midi_buf[1];
+          p2_inc = calc_pulse_inc(note2hz(midi_buf[1]));
+          p2_en = 1;
+          !cc[4] ? trigger_env(1, midi_buf[2]);
+        );
+        ch == 2 ? (
+          kb_note[2] = midi_buf[1];
+          tri_inc = calc_tri_inc(note2hz(midi_buf[1]));
+          tri_en = 1;
+          !cc[8] ? trigger_env(2, midi_buf[2]);
+        );
+        ch == 3 ? (
+          midi_buf[1] >= 35 && midi_buf[1] <= 57 ? trigger_drum(midi_buf[1], midi_buf[2]) : (
+            kb_note[3] = midi_buf[1]; noi_en = 1; drum_active = 0;
+            !cc[12] ? trigger_env(3, midi_buf[2]);
+          );
+        );
+      );
+
+      !sx[ch * 8] && (status == 0x80 || (status == 0x90 && midi_buf[2] == 0)) ? (
+        ch == 0 && midi_buf[1] == kb_note[0] ? (
+          !cc[0] ? release_env(0);
+          kb_note[0] = -1;
+        );
+        ch == 1 && midi_buf[1] == kb_note[1] ? (
+          !cc[4] ? release_env(1);
+          kb_note[1] = -1;
+        );
+        ch == 2 && midi_buf[1] == kb_note[2] ? (
+          !cc[8] ? release_env(2);
+          kb_note[2] = -1;
+        );
+        ch == 3 && !drum_active && midi_buf[1] == kb_note[3] ? (
+          !cc[12] ? release_env(3);
+          kb_note[3] = -1;
+        );
+      );
+
+      !sx[ch * 8] && status == 0xE0 ? (
+        pb = ((midi_buf[2] << 7) | midi_buf[1]) - 8192;
+        pb_semi = pb / 8192 * 2;
+        ch == 0 && kb_note[0] >= 0 ? p1_inc = calc_pulse_inc(note2hz(kb_note[0] + pb_semi));
+        ch == 1 && kb_note[1] >= 0 ? p2_inc = calc_pulse_inc(note2hz(kb_note[1] + pb_semi));
+        ch == 2 && kb_note[2] >= 0 ? tri_inc = calc_tri_inc(note2hz(kb_note[2] + pb_semi));
+      );
+    );
+
+    midisend_buf(offset, midi_buf, recv_len);
+  );
+);
+
+@sample
+// ===================================================================
+// TRIANGLE quarter-frame clock (v2): simulate internal linear counter
+// at 240Hz regardless of whether there's a triangle frame in flight.
+// ===================================================================
+tri_qf_ctr += 1;
+tri_qf_ctr >= tri_qf_samples ? (
+  tri_qf_ctr -= tri_qf_samples;
+  // Reload phase
+  tri_reload_flag ? (
+    tri_linear_live = tri_reload;
+  ) : (
+    tri_linear_live > 0 ? tri_linear_live -= 1;
+  );
+  // Control bit clears reload_flag ONLY when control=0
+  // (control=1 keeps it latched, giving effective sustain)
+  tri_control == 0 ? tri_reload_flag = 0;
+);
+
+// ===================================================================
+// Pulse 1
+// ===================================================================
+p1_out = 0;
+(ch_mode == 0 || ch_mode == 4) ? (
+  sx[0] ? (
+    // v2: simulated envelope drives volume when const_vol=0.
+    // clock_pulse_env runs at sample rate and handles quarter-frame
+    // timing internally.
+    p1_vol_base = penv[6] ? penv[7] : clock_pulse_env(0);
+    // Two-phase attack: add transient amplitude burst on retrigger
+    p1_boost = p1_transient * enhancer_amt * 15.0;
+    p1_vol_sx = min(15, p1_vol_base + p1_boost);
+    p1_en && p1_vol_sx > 0 ? (
+      p1_out = dt[sx[2] * 8 + (floor(p1_phase) & 7)] * p1_vol_sx;
+      p1_phase += p1_inc;
+      p1_phase >= 8.0 ? p1_phase -= 8.0;
+    );
+    p1_transient *= transient_decay_per_sample;
+  ) : cc[0] ? (
+    p1_en && cc[1] > 0 ? (
+      p1_out = dt[cc[2] * 8 + (floor(p1_phase) & 7)] * cc[1];
+      p1_phase += p1_inc;
+      p1_phase >= 8.0 ? p1_phase -= 8.0;
+    );
+    kb_note[0] < 0 ? ( p1_en = 0; );
+  ) : (
+    p1_env = process_env(0);
+    kb_note[0] < 0 && ev[0] == 0 ? p1_en = 0;
+    p1_en ? (
+      p1_vol_kb = floor(p1_env + 0.5);
+      p1_out = dt[slider3 * 8 + (floor(p1_phase) & 7)] * p1_vol_kb;
+      p1_phase += p1_inc;
+      p1_phase >= 8.0 ? p1_phase -= 8.0;
+    );
+  );
+);
+
+// ===================================================================
+// Pulse 2
+// ===================================================================
+p2_out = 0;
+(ch_mode == 1 || ch_mode == 4) ? (
+  sx[8] ? (
+    p2_penv = penv + 8;
+    p2_vol_base = p2_penv[6] ? p2_penv[7] : clock_pulse_env(1);
+    p2_boost = p2_transient * enhancer_amt * 15.0;
+    p2_vol_sx = min(15, p2_vol_base + p2_boost);
+    p2_en && p2_vol_sx > 0 ? (
+      p2_out = dt[sx[10] * 8 + (floor(p2_phase) & 7)] * p2_vol_sx;
+      p2_phase += p2_inc;
+      p2_phase >= 8.0 ? p2_phase -= 8.0;
+    );
+    p2_transient *= transient_decay_per_sample;
+  ) : cc[4] ? (
+    p2_en && cc[5] > 0 ? (
+      p2_out = dt[cc[6] * 8 + (floor(p2_phase) & 7)] * cc[5];
+      p2_phase += p2_inc;
+      p2_phase >= 8.0 ? p2_phase -= 8.0;
+    );
+    kb_note[1] < 0 ? ( p2_en = 0; );
+  ) : (
+    p2_env = process_env(1);
+    kb_note[1] < 0 && ev[8] == 0 ? p2_en = 0;
+    p2_en ? (
+      p2_vol_kb = floor(p2_env + 0.5);
+      p2_out = dt[slider9 * 8 + (floor(p2_phase) & 7)] * p2_vol_kb;
+      p2_phase += p2_inc;
+      p2_phase >= 8.0 ? p2_phase -= 8.0;
+    );
+  );
+);
+
+// ===================================================================
+// Triangle (v2: uses simulated linear counter)
+// ===================================================================
+tri_out = 0;
+(ch_mode == 2 || ch_mode == 4) ? (
+  sx[16] ? (
+    // v2: gate is (linear_live > 0), NOT (reload > 0).
+    // When control=0 the counter decays toward 0 and the gate closes
+    // after ~reload quarter-frames (reload * 4.17 ms).
+    // When control=1 the reload_flag keeps reloading, counter holds
+    // at reload value, gate stays open (effective sustain).
+    tri_gate = tri_en && tri_linear_live > 0;
+    tri_gate ? (
+      tri_out = tt[floor(tri_phase) & 31];
+      tri_phase += tri_inc;
+      tri_phase >= 32.0 ? tri_phase -= 32.0;
+    );
+  ) : cc[8] ? (
+    tri_en ? (
+      tri_out = tt[floor(tri_phase) & 31];
+      tri_phase += tri_inc;
+      tri_phase >= 32.0 ? tri_phase -= 32.0;
+    );
+    kb_note[2] < 0 ? ( tri_en = 0; tri_out = 0; );
+  ) : (
+    tri_env = process_env(2);
+    kb_note[2] < 0 && ev[16] == 0 ? ( tri_en = 0; tri_out = 0; );
+    tri_env <= 0 && (ev[16] == 4 || ev[16] == 0) ? ( tri_en = 0; tri_out = 0; );
+    tri_en ? (
+      tri_out = tt[floor(tri_phase) & 31];
+      tri_phase += tri_inc;
+      tri_phase >= 32.0 ? tri_phase -= 32.0;
+    );
+  );
+);
+
+// ===================================================================
+// Noise
+// ===================================================================
+!sx[24] && !cc[12] && drum_active ? (
+  drum_timer -= 1;
+  drum_timer <= 0 ? (
+    drum_vol -= 1;
+    drum_vol <= 0 ? ( drum_vol = 0; drum_active = 0; noi_en = 0; ) : drum_timer = drum_decay;
+  );
+);
+
+noi_out = 0;
+(ch_mode == 3 || ch_mode == 4) ? (
+  noi_en ? (
+    noi_rate = cpu_clk / (np[noi_period_idx & 15] * srate);
+    lfsr_acc += noi_rate;
+    lfsr_acc >= 1.0 ? (
+      lfsr_acc -= 1.0;
+      noi_mode ? (
+        fb = ((lfsr & 1) + ((lfsr >> 6) & 1)) & 1;
+      ) : (
+        fb = ((lfsr & 1) + ((lfsr >> 1) & 1)) & 1;
+      );
+      lfsr = (lfsr >> 1) | (fb << 14);
+    );
+    sx[24] ? (
+      noi_out = (lfsr & 1) ? 0 : sx[25];
+    ) : cc[12] ? (
+      noi_out = (lfsr & 1) ? 0 : cc[13];
+    ) : (
+      !drum_active ? (
+        noi_env = process_env(3);
+        kb_note[3] < 0 && ev[24] == 0 ? noi_en = 0;
+        noi_out = (lfsr & 1) ? 0 : floor(noi_env + 0.5);
+      ) : (
+        noi_out = (lfsr & 1) ? 0 : floor(drum_vol + 0.5);
+      );
+    );
+  );
+);
+
+// Per-channel output with gate-based silence (2026-04-17 fix).
+//
+// Problem previously: when a channel's synthesized value was 0 (e.g.
+// triangle with linear counter expired, or pulse in the "off" half of
+// its duty cycle after vol drops), the formula (raw/15 - 0.5) emits
+// a constant -0.5 DC held value. Downstream HP filters eventually
+// remove this, but during the transition you hear it as "bass ringing"
+// or note overhang - the exact symptom reported on W&W triangle and
+// SMB triangle.
+//
+// Fix: track whether the channel's gate is actually open (pulse:
+// volume > 0 and period valid; triangle: linear counter > 0;
+// noise: vol > 0). When gate is closed, emit 0 silence - the HP
+// filter settles to 0 cleanly from 0 input, no ring-over.
+// Per-channel output with VOLUME-based gate (not waveform-based).
+//
+// Old behavior: emit (raw/15 - 0.5) always -> emits -0.5 DC held value
+// whenever the instantaneous waveform sample was 0.  For pulses that's
+// the "off" half of the duty cycle (normal), for triangle that was
+// the post-linear-counter silence (causing the ring-over the user hears).
+//
+// Fix: silence the track only when the channel's EFFECTIVE VOLUME is 0,
+// not when the waveform sample happens to be 0. For pulse this means
+// channel was set to vol=0; the duty cycle still works normally.  For
+// triangle this checks the simulated linear counter.
+// Per-channel output.
+// KEY FIX (2026-04-17): triangle silence gate uses simulated linear
+// counter when SysEx drives playback. Previously the triangle would
+// emit (tri_out/15 - 0.5) = -0.5 DC whenever tri_out happened to be 0,
+// which was happening whenever the APU linear counter would have closed
+// the gate on real hardware -- causing audible bass ringing/overhang.
+// Pulse and noise keep the original centered-waveform output (the 0
+// samples during their duty/LFSR off-phases are musically correct).
+ch_mode < 4 ? (
+  out = 0;
+  // Pulse 1 / Pulse 2 - emit centered square wave only when gate is open.
+  // Gate: period valid AND SOME volume source active (sysex envelope or CC).
+  ch_mode == 0 && p1_en ? out = (p1_out / 15.0 - 0.5);
+  ch_mode == 1 && p2_en ? out = (p2_out / 15.0 - 0.5);
+  // Triangle: ONLY emit when simulated linear counter is strictly positive.
+  // When gate closes -> hard zero (prevents -0.5 DC ring-over that reads
+  // as "bass notes holding too long" in multi-track REAPER playback).
+  // Triangle also attenuated by 0.35x (-9 dB) so it doesn't dominate the
+  // multi-track linear sum vs hardware non-linear DAC behavior.
+  ch_mode == 2 ? (
+    tri_active = sx[16] ? tri_linear_live > 0 : (cc[8] || ev[16] > 0);
+    tri_en && tri_active ? out = (tri_out / 15.0 - 0.5) * 0.35;
+  );
+  // Noise
+  ch_mode == 3 && noi_en ? out = (noi_out / 15.0 - 0.5);
+  out *= slider19;
+) : (
+  pulse_sum = p1_out + p2_out;
+  pulse_mix = pulse_sum == 0 ? 0 : 95.88 / ((8128.0 / pulse_sum) + 100.0);
+  tnd_denom = tri_out / 8227.0 + noi_out / 12241.0;
+  tnd_mix = tnd_denom == 0 ? 0 : 159.79 / ((1.0 / tnd_denom) + 100.0);
+  raw = pulse_mix + tnd_mix;
+  out = raw > 0 ? (raw - 0.4) * slider19 : 0;
+);
+
+// ===================================================================
+// 440 Hz HP applied PER-CHANNEL in REAPER multi-track context only.
+// Purpose: compensate for the lack of hardware non-linear DAC mixing
+// that would otherwise compress bass when channels sum.
+// Empirically measured: REAPER multi-track sum of Song 3 was +14 dB
+// bass vs Zophar Tree reference. This HP pulls bass back down to
+// approximate the DAC-compressed behavior.
+// We do NOT apply this in render_wav() Python because that already
+// goes through the non-linear DAC and matches Zophar within 1 dB.
+hp440_y = nes_hp440_b * (hp440_y + out - hp440_x);
+hp440_x = out;
+spl0 = 0;
+spl1 = 0;

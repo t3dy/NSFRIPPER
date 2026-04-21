@@ -70,6 +70,7 @@ slider18:100<0,500,1>Noise Decay (ms)
 slider19:0.2<0,1,0.01>Master Gain
 slider20:0.4<0,1,0.01>Attack Enhancer (2-phase)
 slider21:20<5,80,1>Enhancer Decay (ms)
+slider22:24<0,60,1>Phase-Reset Keyswitch Note (MIDI)
 
 @init
 cpu_clk = 1789773;
@@ -529,31 +530,49 @@ while ((recv_len = midirecv_buf(offset, midi_buf, 128)) > 0) (
       );
 
       status == 0x90 && midi_buf[2] > 0 && !sx[ch * 8] ? (
-        ch == 0 ? (
-          kb_note[0] = midi_buf[1];
-          p1_inc = calc_pulse_inc(note2hz(midi_buf[1]));
-          p1_en = 1;
-          // PAL dim #6: velocity-scaled attack transient (Class A).
-          p1_transient = midi_buf[2] / 127.0;
-          !cc[0] ? trigger_env(0, midi_buf[2]);
-        );
-        ch == 1 ? (
-          kb_note[1] = midi_buf[1];
-          p2_inc = calc_pulse_inc(note2hz(midi_buf[1]));
-          p2_en = 1;
-          p2_transient = midi_buf[2] / 127.0;
-          !cc[4] ? trigger_env(1, midi_buf[2]);
-        );
-        ch == 2 ? (
-          kb_note[2] = midi_buf[1];
-          tri_inc = calc_tri_inc(note2hz(midi_buf[1]));
-          tri_en = 1;
-          !cc[8] ? trigger_env(2, midi_buf[2]);
-        );
-        ch == 3 ? (
-          midi_buf[1] >= 35 && midi_buf[1] <= 57 ? trigger_drum(midi_buf[1], midi_buf[2]) : (
-            kb_note[3] = midi_buf[1]; noi_en = 1; drum_active = 0;
-            !cc[12] ? trigger_env(3, midi_buf[2]);
+        // PAL supplement: phase-reset keyswitch (Should-do #7).
+        // Low-octave pad re-articulates held pulse notes without
+        // re-attacking the envelope -- phase=0 + full transient give
+        // an audible "tick" like a hardware $4003/$4007 register write.
+        // Fires on whichever pulse channels are enabled in this
+        // instance's ch_mode.  Triangle/noise skipped (no transient).
+        // Not added to kb_note -- the keyswitch is NOT a pitch.
+        midi_buf[1] == slider22 ? (
+          (ch_mode == 0 || ch_mode == 4) ? (
+            p1_phase = 0;
+            p1_transient = midi_buf[2] / 127.0;
+          );
+          (ch_mode == 1 || ch_mode == 4) ? (
+            p2_phase = 0;
+            p2_transient = midi_buf[2] / 127.0;
+          );
+        ) : (
+          ch == 0 ? (
+            kb_note[0] = midi_buf[1];
+            p1_inc = calc_pulse_inc(note2hz(midi_buf[1]));
+            p1_en = 1;
+            // PAL dim #6: velocity-scaled attack transient (Class A).
+            p1_transient = midi_buf[2] / 127.0;
+            !cc[0] ? trigger_env(0, midi_buf[2]);
+          );
+          ch == 1 ? (
+            kb_note[1] = midi_buf[1];
+            p2_inc = calc_pulse_inc(note2hz(midi_buf[1]));
+            p2_en = 1;
+            p2_transient = midi_buf[2] / 127.0;
+            !cc[4] ? trigger_env(1, midi_buf[2]);
+          );
+          ch == 2 ? (
+            kb_note[2] = midi_buf[1];
+            tri_inc = calc_tri_inc(note2hz(midi_buf[1]));
+            tri_en = 1;
+            !cc[8] ? trigger_env(2, midi_buf[2]);
+          );
+          ch == 3 ? (
+            midi_buf[1] >= 35 && midi_buf[1] <= 57 ? trigger_drum(midi_buf[1], midi_buf[2]) : (
+              kb_note[3] = midi_buf[1]; noi_en = 1; drum_active = 0;
+              !cc[12] ? trigger_env(3, midi_buf[2]);
+            );
           );
         );
       );

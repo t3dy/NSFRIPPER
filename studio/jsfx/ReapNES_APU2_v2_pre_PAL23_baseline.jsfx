@@ -145,18 +145,6 @@ p1_transient = 0;
 p2_transient = 0;
 transient_decay_per_sample = 1.0;
 
-// PAL dim #4: CC1 (mod wheel) -> quantized duty override.
-// -1 = untouched (fall back to slider3/slider9); 0-3 = live override.
-cc1_duty = -1;
-
-// PAL dim #10: aftertouch -> vibrato depth (Class A).
-// +/-20 cents at 5 Hz.  vib_depth is normalized 0..1 from channel pressure.
-vib_depth = 0;
-vib_phase = 0;
-vib_freq = 5.0;
-vib_cents = 20.0;
-vib_ln2_scaled = log(2) * vib_cents / 1200.0;
-
 // ===================================================================
 // NOISE length counter + envelope simulator (v2 fix for SMB-style drums)
 // ===================================================================
@@ -521,13 +509,6 @@ while ((recv_len = midirecv_buf(offset, midi_buf, 128)) > 0) (
         cc[ch * 4] = 0;
       );
 
-      // PAL dim #4: CC1 (mod wheel) -> quantized duty in Priority 3.
-      // Applied only in the keyboard-only output branch below, so CC12
-      // and SysEx keep priority automatically.
-      status == 0xB0 && midi_buf[1] == 1 ? (
-        cc1_duty = floor(midi_buf[2] / 32);
-      );
-
       status == 0x90 && midi_buf[2] > 0 && !sx[ch * 8] ? (
         ch == 0 ? (
           kb_note[0] = midi_buf[1];
@@ -584,12 +565,6 @@ while ((recv_len = midirecv_buf(offset, midi_buf, 128)) > 0) (
         ch == 1 && kb_note[1] >= 0 ? p2_inc = calc_pulse_inc(note2hz(kb_note[1] + pb_semi));
         ch == 2 && kb_note[2] >= 0 ? tri_inc = calc_tri_inc(note2hz(kb_note[2] + pb_semi));
       );
-
-      // PAL dim #10: channel pressure (aftertouch) -> vibrato depth.
-      // Applied per-sample in @sample as a frequency multiplier.
-      status == 0xD0 ? (
-        vib_depth = midi_buf[1] / 127.0;
-      );
     );
 
     midisend_buf(offset, midi_buf, recv_len);
@@ -597,16 +572,6 @@ while ((recv_len = midirecv_buf(offset, midi_buf, 128)) > 0) (
 );
 
 @sample
-// ===================================================================
-// PAL dim #10: aftertouch vibrato (+/-20 cents at 5 Hz).
-// vib_mod is a per-sample frequency multiplier applied to phase advance.
-// Linear approximation of 2^(d * sin) for small d -- 20 cents is small
-// enough that the error vs true exponential is < 0.01% at the peaks.
-// ===================================================================
-vib_phase += vib_freq / srate;
-vib_phase >= 1.0 ? vib_phase -= 1.0;
-vib_mod = vib_depth > 0 ? 1.0 + vib_depth * vib_ln2_scaled * sin(2 * $pi * vib_phase) : 1.0;
-
 // ===================================================================
 // TRIANGLE quarter-frame clock (v2): simulate internal linear counter
 // at 240Hz regardless of whether there's a triangle frame in flight.
@@ -640,14 +605,14 @@ p1_out = 0;
     p1_vol_sx = min(15, p1_vol_base + p1_boost);
     p1_en && p1_vol_sx > 0 ? (
       p1_out = dt[sx[2] * 8 + (floor(p1_phase) & 7)] * p1_vol_sx;
-      p1_phase += p1_inc * vib_mod;
+      p1_phase += p1_inc;
       p1_phase >= 8.0 ? p1_phase -= 8.0;
     );
     p1_transient *= transient_decay_per_sample;
   ) : cc[0] ? (
     p1_en && cc[1] > 0 ? (
       p1_out = dt[cc[2] * 8 + (floor(p1_phase) & 7)] * cc[1];
-      p1_phase += p1_inc * vib_mod;
+      p1_phase += p1_inc;
       p1_phase >= 8.0 ? p1_phase -= 8.0;
     );
     kb_note[0] < 0 ? ( p1_en = 0; );
@@ -658,9 +623,8 @@ p1_out = 0;
       // PAL dim #6: velocity-scaled transient boost, capped at vol=15.
       p1_boost_kb = p1_transient * enhancer_amt * 15.0;
       p1_vol_kb = min(15, floor(p1_env + p1_boost_kb + 0.5));
-      p1_duty_kb = cc1_duty >= 0 ? cc1_duty : slider3;
-      p1_out = dt[p1_duty_kb * 8 + (floor(p1_phase) & 7)] * p1_vol_kb;
-      p1_phase += p1_inc * vib_mod;
+      p1_out = dt[slider3 * 8 + (floor(p1_phase) & 7)] * p1_vol_kb;
+      p1_phase += p1_inc;
       p1_phase >= 8.0 ? p1_phase -= 8.0;
       p1_transient *= transient_decay_per_sample;
     );
@@ -679,14 +643,14 @@ p2_out = 0;
     p2_vol_sx = min(15, p2_vol_base + p2_boost);
     p2_en && p2_vol_sx > 0 ? (
       p2_out = dt[sx[10] * 8 + (floor(p2_phase) & 7)] * p2_vol_sx;
-      p2_phase += p2_inc * vib_mod;
+      p2_phase += p2_inc;
       p2_phase >= 8.0 ? p2_phase -= 8.0;
     );
     p2_transient *= transient_decay_per_sample;
   ) : cc[4] ? (
     p2_en && cc[5] > 0 ? (
       p2_out = dt[cc[6] * 8 + (floor(p2_phase) & 7)] * cc[5];
-      p2_phase += p2_inc * vib_mod;
+      p2_phase += p2_inc;
       p2_phase >= 8.0 ? p2_phase -= 8.0;
     );
     kb_note[1] < 0 ? ( p2_en = 0; );
@@ -696,9 +660,8 @@ p2_out = 0;
     p2_en ? (
       p2_boost_kb = p2_transient * enhancer_amt * 15.0;
       p2_vol_kb = min(15, floor(p2_env + p2_boost_kb + 0.5));
-      p2_duty_kb = cc1_duty >= 0 ? cc1_duty : slider9;
-      p2_out = dt[p2_duty_kb * 8 + (floor(p2_phase) & 7)] * p2_vol_kb;
-      p2_phase += p2_inc * vib_mod;
+      p2_out = dt[slider9 * 8 + (floor(p2_phase) & 7)] * p2_vol_kb;
+      p2_phase += p2_inc;
       p2_phase >= 8.0 ? p2_phase -= 8.0;
       p2_transient *= transient_decay_per_sample;
     );
@@ -719,7 +682,7 @@ tri_out = 0;
     tri_gate = tri_en && tri_linear_live > 0;
     tri_gate ? (
       tri_out = tt[floor(tri_phase) & 31];
-      tri_phase += tri_inc * vib_mod;
+      tri_phase += tri_inc;
       tri_phase >= 32.0 ? tri_phase -= 32.0;
     ) : (
       // architecture.md Rule 34 (ported from Python 2026-04-19):
@@ -733,7 +696,7 @@ tri_out = 0;
   ) : cc[8] ? (
     tri_en ? (
       tri_out = tt[floor(tri_phase) & 31];
-      tri_phase += tri_inc * vib_mod;
+      tri_phase += tri_inc;
       tri_phase >= 32.0 ? tri_phase -= 32.0;
     );
     kb_note[2] < 0 ? ( tri_en = 0; tri_out = 0; );
@@ -743,7 +706,7 @@ tri_out = 0;
     tri_env <= 0 && (ev[16] == 4 || ev[16] == 0) ? ( tri_en = 0; tri_out = 0; );
     tri_en ? (
       tri_out = tt[floor(tri_phase) & 31];
-      tri_phase += tri_inc * vib_mod;
+      tri_phase += tri_inc;
       tri_phase >= 32.0 ? tri_phase -= 32.0;
     );
   );
